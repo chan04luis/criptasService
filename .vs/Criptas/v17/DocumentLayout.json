@@ -1,12 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC-Chan\\source\\repos\\Criptas\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Documentos\\GitHub\\Criptas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\entities\\pagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\pagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\entities\\mappagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\mappagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Pagos.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\Pagos.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\Pagos.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\Pagos.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\Pagos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T23:45:44.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MapPagos.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\MapPagos.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\MapPagos.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\MapPagos.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\MapPagos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADUAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T22:49:59.567Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
