@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Data.cs.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Data.cs.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.cs.Mapping
 {
@@ -9,28 +9,61 @@ namespace Data.cs.Mapping
         public void Configure(EntityTypeBuilder<Iglesias> builder)
         {
             builder.ToTable("iglesias");
+            builder.HasKey(i => i.uId).HasName("PK_Iglesia");
 
-            builder.HasKey(e => e.id).HasName("id");
+            builder.Property(i => i.uId)
+                .HasColumnType("uuid")
+                .HasColumnName("id");
 
-            builder.Property(e => e.nombre)
+            builder.Property(i => i.sNombre)
                 .HasColumnType("VARCHAR(255)")
+                .IsUnicode(false)
                 .HasColumnName("nombre");
 
-            builder.Property(e => e.direccion)
-                .HasColumnType("VARCHAR")
+            builder.Property(i => i.sDireccion)
+                .HasColumnType("TEXT")
                 .HasColumnName("direccion");
 
-            builder.Property(e => e.fecha_registro)
-                .HasColumnType("DateTime")
-                .HasColumnName("fecha_registro");
+            builder.Property(i => i.sCiudad)
+                .HasColumnType("VARCHAR(100)")
+                .HasColumnName("ciudad");
 
-            builder.Property(e => e.fecha_actualizacion)
-                .HasColumnType("DateTime")
-                .HasColumnName("fecha_actualizacion");
+            builder.Property(i => i.dtFechaRegistro)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_registro")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
-            builder.Property(e => e.estatus)
-                .HasColumnType("bollean")
+            builder.Property(i => i.dtFechaActualizacion)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_actualizacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
+            builder.Property(i => i.dtFechaEliminado)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_eliminado")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
+            builder.Property(i => i.bEstatus)
+                .HasColumnType("bolean")
+                .IsUnicode(false)
                 .HasColumnName("estatus");
+
+            builder.Property(i => i.bEliminado)
+                .HasColumnType("bolean")
+                .IsUnicode(false)
+                .HasColumnName("eliminado");
         }
     }
 }

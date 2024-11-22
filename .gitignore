@@ -14,9 +14,7 @@ mono_crash.*
 
 # Azure DevOps
 .vs/
-
-# Ignore Visual Studio folder
-.vs/
+.vs/*
 
 # Ignore build outputs
 bin/
@@ -98,3 +96,23 @@ _NCrunch_*
 
 # CodeRush
 .cr/
+
+
+# Ignore temporary ASP.NET files
+**/bin/
+**/obj/
+
+# User-specific files
+.vs2019/
+.vs2017/
+
+# Rider settings
+.idea/
+
+# JetBrains ReSharper
+.idea/
+*.suo
+*.user
+*.userosscache
+.vs/Criptas/v17/.suo
+.sou

@@ -16,5 +16,9 @@ namespace Entities.JsonRequest.Clientes
         public string sTelefono { get; set; }
         [JsonProperty("Email")]
         public string sEmail { get; set; }
+        [JsonProperty("FechaNac")]
+        public string sFechaNac { get; set; }
+        [JsonProperty("Sexo")]
+        public string sSexo { get; set; }
     }
 }

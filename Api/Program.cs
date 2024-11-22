@@ -7,6 +7,8 @@ using Utils.Implementation;
 using Utils.Interfaces;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
+using Business.Data;
+using Data.cs.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +60,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
 builder.Services.AddScoped<IBusClientes, BusClientes>();
 builder.Services.AddScoped<IFiltros, Filtros>();
+builder.Services.AddScoped<IIglesiasRepositorio, IglesiasRepositorio>();
+builder.Services.AddScoped<IBusIglesias, BusIglesias>();
 
 #endregion
 

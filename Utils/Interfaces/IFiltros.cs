@@ -4,5 +4,7 @@
     {
         bool IsValidPhone(string phone);
         bool IsValidEmail(string email);
+        bool IsValidFecha(string fecha);
+        bool IsValidSexo(string sexo);
     }
 }

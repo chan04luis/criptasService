@@ -26,6 +26,8 @@ namespace Data.cs
 
             modelBuilder.ApplyConfiguration(new MapClientes());
 
+            modelBuilder.ApplyConfiguration(new MapIglesias());
+
             OnModelCreatingPartial(modelBuilder);
         }
 
