@@ -62,6 +62,8 @@ builder.Services.AddScoped<IBusClientes, BusClientes>();
 builder.Services.AddScoped<IFiltros, Filtros>();
 builder.Services.AddScoped<IIglesiasRepositorio, IglesiasRepositorio>();
 builder.Services.AddScoped<IBusIglesias, BusIglesias>();
+builder.Services.AddScoped<IZonasRepositorio, ZonasRepositorio>();
+builder.Services.AddScoped<IBusZonas, BusZonas>();
 
 #endregion
 

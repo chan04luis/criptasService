@@ -1,7 +1,10 @@
-﻿using Business.Interfaces;
+﻿using Business.Implementation;
+using Business.Interfaces;
 using Entities;
 using Entities.JsonRequest.Iglesias;
+using Entities.JsonRequest.Zonas;
 using Entities.Models;
+using Entities.Responses.Iglesia;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -13,12 +16,14 @@ namespace Api.Controllers
     public class IglesiasController : ControllerBase
     {
         private readonly IBusIglesias _busIglesias;
+        private readonly IBusZonas _busZonas;
         private readonly ILogger<IglesiasController> _logger;
 
-        public IglesiasController(IBusIglesias busIglesias, ILogger<IglesiasController> logger)
+        public IglesiasController(IBusIglesias busIglesias, ILogger<IglesiasController> logger, IBusZonas busZonas)
         {
             _busIglesias = busIglesias;
             _logger = logger;
+            _busZonas = busZonas;
         }
 
         [HttpPost("Create")]
@@ -91,9 +96,9 @@ namespace Api.Controllers
 
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Obtiene una iglesia por ID", Description = "Recupera una iglesia específica utilizando su ID.")]
-        public async Task<Response<EntIglesias>> GetIglesiaById(Guid id)
+        public async Task<Response<EntIglesiaResponse>> GetIglesiaById(Guid id)
         {
-            _logger.LogInformation("Iniciando búsqueda de iglesia con ID: {Id}", id);
+            _logger.LogInformation("Iniciando búsqueda de la iglesia con ID: {Id}", id);
             var response = await _busIglesias.GetIglesiaById(id);
             if (response.HasError)
             {
@@ -139,5 +144,126 @@ namespace Api.Controllers
             }
             return response;
         }
+
+        #region Zonas
+        [HttpPost("Zonas/Create")]
+        [SwaggerOperation(Summary = "Crea una zona", Description = "Valida los datos y guarda una nueva zona en la base de datos.")]
+        public async Task<Response<EntZonas>> CreateZona([FromBody] EntZonaRequest zona)
+        {
+            _logger.LogInformation("Iniciando creación de zona.");
+            var response = await _busZonas.ValidateAndSaveZone(zona);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al crear zona: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Zona creada exitosamente con ID: {Id}", response.Result?.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Zonas/Update")]
+        [SwaggerOperation(Summary = "Actualiza una zona", Description = "Valida y actualiza los datos de una zona existente.")]
+        public async Task<Response<EntZonas>> UpdateZona([FromBody] EntZonaUpdateRequest zona)
+        {
+            _logger.LogInformation("Iniciando actualización de zona con ID: {Id}", zona.uId);
+            var response = await _busZonas.ValidateAndUpdateZone(zona);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar zona con ID {Id}: {Error}", zona.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Zona actualizada exitosamente con ID: {Id}", zona.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Zonas/UpdateStatus")]
+        [SwaggerOperation(Summary = "Actualiza el estado de una zona", Description = "Actualiza el estado booleano de una zona.")]
+        public async Task<Response<EntZonas>> UpdateZonaStatus([FromBody] EntZonaUpdateEstatusRequest zona)
+        {
+            _logger.LogInformation("Iniciando actualización de estado para zona con ID: {Id}", zona.uId);
+            var response = await _busZonas.UpdateZoneStatus(zona);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar estado de zona con ID {Id}: {Error}", zona.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Estado de zona actualizado exitosamente con ID: {Id}", zona.uId);
+            }
+            return response;
+        }
+
+        [HttpDelete("Zonas/{id}")]
+        [SwaggerOperation(Summary = "Elimina una zona por ID", Description = "Elimina una zona específica utilizando su ID.")]
+        public async Task<Response<bool>> DeleteZonaById(Guid id)
+        {
+            _logger.LogInformation("Iniciando eliminado de zona con ID: {Id}", id);
+            var response = await _busZonas.DeleteZoneById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Zona no encontrada con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Zona eliminada con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpGet("Zonas/{id}")]
+        [SwaggerOperation(Summary = "Obtiene una zona por ID", Description = "Recupera una zona específica utilizando su ID.")]
+        public async Task<Response<EntZonas>> GetZonaById(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de zona con ID: {Id}", id);
+            var response = await _busZonas.GetZoneById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Zona no encontrada con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Zona encontrada con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpPost("Zonas/ByFilters")]
+        [SwaggerOperation(Summary = "Obtiene zonas por filtros", Description = "Recupera una lista de zonas que coincidan con los filtros proporcionados.")]
+        public async Task<Response<List<EntZonas>>> GetZonasByFilters([FromBody] EntZonaSearchRequest filtros)
+        {
+            _logger.LogInformation("Iniciando búsqueda de zonas con los filtros: {filtros}", filtros);
+            var response = await _busZonas.GetZonesByFilters(filtros);
+            if (response.HasError)
+            {
+                _logger.LogWarning("No se encontraron zonas con los filtros {filtros}: {Error}", filtros, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Zonas encontradas con los filtros: {filtros}", filtros);
+            }
+            return response;
+        }
+
+        [HttpGet("Zonas/List/{IdIglesia}")]
+        [SwaggerOperation(Summary = "Obtiene la lista de zonas", Description = "Recupera una lista de todas las zonas.")]
+        public async Task<Response<List<EntZonas>>> GetZonaList(Guid IdIglesia)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de zonas.");
+            var response = await _busZonas.GetZoneList(IdIglesia);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de zonas: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de zonas recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+        #endregion
     }
 }

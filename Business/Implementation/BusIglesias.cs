@@ -6,6 +6,7 @@ using Entities;
 using Microsoft.Extensions.Logging;
 using Utils.Interfaces;
 using Business.Interfaces;
+using Entities.Responses.Iglesia;
 
 namespace Business.Implementation
 {
@@ -159,7 +160,7 @@ namespace Business.Implementation
             }
         }
 
-        public async Task<Response<EntIglesias>> GetIglesiaById(Guid id)
+        public async Task<Response<EntIglesiaResponse>> GetIglesiaById(Guid id)
         {
             try
             {
@@ -168,7 +169,7 @@ namespace Business.Implementation
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener la iglesia por ID");
-                var response = new Response<EntIglesias>();
+                var response = new Response<EntIglesiaResponse>();
                 response.SetError("Hubo un error al obtener la iglesia.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
