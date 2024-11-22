@@ -13,7 +13,7 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<Beneficiarios> builder)
         {
-            builder.ToTable("Beneficiaros");
+            builder.ToTable("beneficiaros");
             builder.HasKey(e => e.id).HasName("id_Beneficiaros");
 
             builder.Property(e => e.id_cripta)

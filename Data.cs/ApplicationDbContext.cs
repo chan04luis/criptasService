@@ -13,7 +13,7 @@ namespace Data.cs
         public virtual DbSet<Iglesias> Iglesias { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
 
-        private const string EsquemaIglesia = "Iglesia";
+        private const string EsquemaIglesia = "iglesia";
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
