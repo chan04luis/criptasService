@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\business\\implementation\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Api\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "Api\\Mapping\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T04:35:53.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientesRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T04:35:02.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BusClientes.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Implementation\\BusClientes.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\BusClientes.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Implementation\\BusClientes.cs",
+              "RelativeToolTip": "Business\\Implementation\\BusClientes.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAwwIcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T04:34:34.025Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

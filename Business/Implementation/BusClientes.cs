@@ -120,15 +120,7 @@ namespace Business.Implementation
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
-                EntClientes nCliente = new EntClientes
-                {
-                    uId = cliente.uId,
-                    sNombre = cliente.sNombre,
-                    sApellidos = cliente.sApellidos,
-                    sEmail = cliente.sEmail,
-                    sTelefono = cliente.sTelefono,
-                    sDireccion = cliente.sDireccion
-                };
+                var nCliente = _mapper.Map<EntClientes>(cliente);
                 return await UpdateClient(nCliente);
             }
             catch (Exception ex)
