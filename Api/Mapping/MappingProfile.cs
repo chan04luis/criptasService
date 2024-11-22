@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.cs.Entities;
 using Entities.JsonRequest.Clientes;
+using Entities.JsonRequest.Iglesias;
 using Entities.Models;
 
 public class MappingProfile : Profile
@@ -16,7 +17,11 @@ public class MappingProfile : Profile
         CreateMap<EntClienteUpdateRequest, EntClientes>();
         CreateMap<EntClienteUpdateEstatusRequest, EntClientes>();
 
+        CreateMap<EntIglesias, Iglesias>();
+        CreateMap<Iglesias, EntIglesias>();
 
+        CreateMap<EntIglesiaUpdateRequest, EntIglesias>();
+        CreateMap<EntIglesiaUpdateEstatusRequest, EntIglesias>();
     }
 
     private int? CalcularEdad(string fechaNacimiento)
