@@ -11,5 +11,6 @@
         public bool? bEstatus { get; set; }
         public bool bEliminado { get; set; }
         public DateTime dtFechaEliminado { get; set; }
+        public List<Zonas> listZonas { get; set; }
     }
 }

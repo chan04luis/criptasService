@@ -5,6 +5,7 @@ using Data.cs.Entities;
 using Entities;
 using Entities.JsonRequest.Iglesias;
 using Entities.Models;
+using Entities.Responses.Iglesia;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -119,7 +120,7 @@ namespace Data.cs.Commands
                 var exec = await dbContext.SaveChangesAsync();
 
                 if (exec > 0)
-                    response.SetSuccess(true, "Eliminado correctamente");
+                    response.SetSuccess(true, "bEliminado correctamente");
                 else
                 {
                     response.SetError("Registro no eliminado");
@@ -133,15 +134,18 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<EntIglesias>> DGetById(Guid iKey)
+        public async Task<Response<EntIglesiaResponse>> DGetById(Guid iKey)
         {
-            var response = new Response<EntIglesias>();
+            var response = new Response<EntIglesiaResponse>();
             try
             {
-                var entity = await dbContext.Iglesias.AsNoTracking().Where(x => x.bEliminado == false).AsNoTracking()
-                .SingleOrDefaultAsync(x => x.uId == iKey);
+                var entity = await dbContext.Iglesias
+                    .AsNoTracking()
+                    .Where(x => x.bEliminado == false)
+                    .Include(x => x.listZonas)
+                    .SingleOrDefaultAsync(x => x.uId == iKey);
                 if (entity != null)
-                    response.SetSuccess(_mapper.Map<EntIglesias>(entity));
+                    response.SetSuccess(_mapper.Map<EntIglesiaResponse>(entity));
                 else
                 {
                     response.SetError("Registro no encontrado");

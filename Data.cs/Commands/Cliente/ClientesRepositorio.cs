@@ -119,7 +119,7 @@ public class ClientesRepositorio : IClientesRepositorio
             var exec = await dbContext.SaveChangesAsync();
 
             if (exec > 0)
-                response.SetSuccess(true, "Eliminado correctamente");
+                response.SetSuccess(true, "bEliminado correctamente");
             else
             {
                 response.SetError("Registro no eliminado");

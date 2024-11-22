@@ -12,6 +12,7 @@ namespace Data.cs
 
         public virtual DbSet<Iglesias> Iglesias { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Zonas> Zonas { get; set; }
 
         private const string EsquemaIglesia = "iglesia";
 
@@ -25,8 +26,8 @@ namespace Data.cs
             modelBuilder.HasDefaultSchema(EsquemaIglesia);
 
             modelBuilder.ApplyConfiguration(new MapClientes());
-
             modelBuilder.ApplyConfiguration(new MapIglesias());
+            modelBuilder.ApplyConfiguration(new MapZonas());
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -1,6 +1,7 @@
 ﻿using Entities.JsonRequest.Iglesias;
 using Entities.Models;
 using Entities;
+using Entities.Responses.Iglesia;
 
 namespace Business.Interfaces
 {
@@ -12,7 +13,7 @@ namespace Business.Interfaces
         Task<Response<EntIglesias>> UpdateIglesia(EntIglesias iglesia);
         Task<Response<EntIglesias>> UpdateIglesiaStatus(EntIglesiaUpdateEstatusRequest iglesia);
         Task<Response<bool>> DeleteIglesiaById(Guid id);
-        Task<Response<EntIglesias>> GetIglesiaById(Guid id);
+        Task<Response<EntIglesiaResponse>> GetIglesiaById(Guid id);
         Task<Response<List<EntIglesias>>> GetIglesiasByFilters(EntIglesiaSearchRequest filtros);
         Task<Response<List<EntIglesias>>> GetIglesiaList();
     }
