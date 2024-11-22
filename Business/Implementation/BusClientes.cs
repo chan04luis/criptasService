@@ -32,9 +32,11 @@ namespace Business.Implementation
                 if (string.IsNullOrWhiteSpace(cliente.sNombre) ||
                     string.IsNullOrWhiteSpace(cliente.sApellidos) ||
                     string.IsNullOrWhiteSpace(cliente.sEmail) ||
-                    string.IsNullOrWhiteSpace(cliente.sTelefono))
+                    string.IsNullOrWhiteSpace(cliente.sTelefono) ||
+                    string.IsNullOrWhiteSpace(cliente.sSexo) ||
+                    string.IsNullOrWhiteSpace(cliente.sFechaNac))
                 {
-                    response.SetError("Los campos Nombre, Apellidos, Teléfono y Email son obligatorios.");
+                    response.SetError("Los campos Nombre, Apellidos, Teléfono, Sexo, Fecha de nacimiento y Email son obligatorios.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
@@ -52,6 +54,25 @@ namespace Business.Implementation
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
+                if (!_filtros.IsValidFecha(cliente.sFechaNac))
+                {
+                    response.SetError("El formato de la fecha de nacimiento no es inválido.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
+                if (!_filtros.IsValidSexo(cliente.sSexo))
+                {
+                    response.SetError("El Sexo es inválido.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
+                var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
+                if (!item.HasError && item.Result.Count > 0)
+                {
+                    response.SetError("Email ya registrado.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
                 EntClientes nCliente = new EntClientes
                 {
                     uId = Guid.NewGuid(),
@@ -60,6 +81,8 @@ namespace Business.Implementation
                     sEmail = cliente.sEmail,
                     sTelefono = cliente.sTelefono,
                     sDireccion = cliente.sDireccion,
+                    sSexo = cliente.sSexo,
+                    sFechaNacimiento = cliente.sFechaNac,
                     bEstatus = true,
                     dtFechaActualizacion = DateTime.Now.ToLocalTime(),
                     dtFechaRegistro = DateTime.Now.ToLocalTime()
@@ -100,9 +123,11 @@ namespace Business.Implementation
                 if (string.IsNullOrWhiteSpace(cliente.sNombre) ||
                     string.IsNullOrWhiteSpace(cliente.sApellidos) ||
                     string.IsNullOrWhiteSpace(cliente.sEmail) ||
-                    string.IsNullOrWhiteSpace(cliente.sTelefono))
+                    string.IsNullOrWhiteSpace(cliente.sTelefono) ||
+                    string.IsNullOrWhiteSpace(cliente.sSexo) ||
+                    string.IsNullOrWhiteSpace(cliente.sFechaNac))
                 {
-                    response.SetError("Los campos Nombre, Apellidos, Teléfono y Email son obligatorios.");
+                    response.SetError("Los campos Nombre, Apellidos, Teléfono, Sexo, Fecha de nacimiento y Email son obligatorios.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
@@ -117,6 +142,26 @@ namespace Business.Implementation
                 if (!_filtros.IsValidEmail(cliente.sEmail))
                 {
                     response.SetError("El formato del correo electrónico es inválido.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
+
+                if (!_filtros.IsValidFecha(cliente.sFechaNac))
+                {
+                    response.SetError("El formato de la fecha de nacimiento no es inválido.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
+                if (!_filtros.IsValidSexo(cliente.sSexo))
+                {
+                    response.SetError("El Sexo es inválido.");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response;
+                }
+                var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
+                if (!item.HasError && item.Result.Where(x=>x.uId != cliente.uId).ToList().Count > 0)
+                {
+                    response.SetError("Email ya registrado.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
@@ -169,6 +214,22 @@ namespace Business.Implementation
             }
         }
 
+        public async Task<Response<bool>> DeleteClientById(Guid id)
+        {
+            try
+            {
+                return await _clientesRepositorio.DUpdateEliminado(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al eliminar el cliente por ID");
+                var response = new Response<bool>();
+                response.SetError("Hubo un error al eliminar el cliente.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
         public async Task<Response<EntClientes>> GetClientById(Guid id)
         {
             try
@@ -185,15 +246,15 @@ namespace Business.Implementation
             }
         }
 
-        public async Task<Response<List<EntClientes>>> GetClientsByName(string nombre)
+        public async Task<Response<List<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest filtros)
         {
             try
             {
-                return await _clientesRepositorio.DGetByName(nombre);
+                return await _clientesRepositorio.DGetByFilters(filtros);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener los clientes por nombre");
+                _logger.LogError(ex, "Error al obtener los clientes por filtros");
                 var response = new Response<List<EntClientes>>();
                 response.SetError("Hubo un error al obtener los clientes.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;

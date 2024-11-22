@@ -71,6 +71,23 @@ namespace Api.Controllers
             return response;
         }
 
+        [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Elimina un cliente por ID", Description = "Elimina un cliente específico utilizando su ID.")]
+        public async Task<Response<bool>> DeleteClientById(Guid id)
+        {
+            _logger.LogInformation("Iniciando eliminado de cliente con ID: {Id}", id);
+            var response = await _busClientes.DeleteClientById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Cliente no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Cliente encontrado con ID: {Id}", id);
+            }
+            return response;
+        }
+
         [HttpGet("{id}")]
         [SwaggerOperation(Summary = "Obtiene un cliente por ID", Description = "Recupera un cliente específico utilizando su ID.")]
         public async Task<Response<EntClientes>> GetClientById(Guid id)
@@ -88,19 +105,19 @@ namespace Api.Controllers
             return response;
         }
 
-        [HttpGet("ByName/{name}")]
-        [SwaggerOperation(Summary = "Obtiene clientes por nombre", Description = "Recupera una lista de clientes que coincidan con el nombre proporcionado.")]
-        public async Task<Response<List<EntClientes>>> GetClientsByName(string name)
+        [HttpPost("ByFilters")]
+        [SwaggerOperation(Summary = "Obtiene clientes por filtros", Description = "Recupera una lista de clientes que coincidan con los filtros proporcionado.")]
+        public async Task<Response<List<EntClientes>>> GetClientsByFilters([FromBody] EntClienteSearchRequest cliente)
         {
-            _logger.LogInformation("Iniciando búsqueda de clientes con nombre: {Name}", name);
-            var response = await _busClientes.GetClientsByName(name);
+            _logger.LogInformation("Iniciando búsqueda de clientes con los filtros: {cliente}", cliente);
+            var response = await _busClientes.GetClientsByFilters(cliente);
             if (response.HasError)
             {
-                _logger.LogWarning("No se encontraron clientes con nombre {Name}: {Error}", name, response.Message);
+                _logger.LogWarning("No se encontraron clientes con los filtros {cliente}: {Error}", cliente, response.Message);
             }
             else
             {
-                _logger.LogInformation("Clientes encontrados con nombre: {Name}", name);
+                _logger.LogInformation("Clientes encontrados con los filtros: {cliente}", cliente);
             }
             return response;
         }

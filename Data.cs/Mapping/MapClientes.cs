@@ -38,6 +38,14 @@ namespace Data.cs.Mapping
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("email");
 
+            builder.Property(c => c.sSexo)
+                .HasColumnType("VARCHAR(10)")
+                .HasColumnName("sexo");
+
+            builder.Property(c => c.sFechaNacimiento)
+                .HasColumnType("VARCHAR(20)")
+                .HasColumnName("fecha_nac");
+
             builder.Property(c => c.dtFechaRegistro)
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
@@ -56,10 +64,24 @@ namespace Data.cs.Mapping
                     v => v
                 );
 
+            builder.Property(c => c.dtFechaEliminado)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_eliminado")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
             builder.Property(c => c.bEstatus)
                 .HasColumnType("bolean")
                 .IsUnicode(false)
                 .HasColumnName("estatus");
+
+            builder.Property(c => c.bEliminado)
+                .HasColumnType("bolean")
+                .IsUnicode(false)
+                .HasColumnName("eliminado");
         }
     }
 }

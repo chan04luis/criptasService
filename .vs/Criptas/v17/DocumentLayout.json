@@ -3,16 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\entities\\jsonrequest\\clientes\\entclienteupdateestatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\jsonrequest\\clientes\\entclienteupdateestatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\business\\implementation\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79BAD930-42B3-485A-B56F-6F3775C51699}|Utils\\Utils.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\utils\\interfaces\\ifiltros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79BAD930-42B3-485A-B56F-6F3775C51699}|Utils\\Utils.csproj|solutionrelative:utils\\interfaces\\ifiltros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79BAD930-42B3-485A-B56F-6F3775C51699}|Utils\\Utils.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\utils\\implementation\\filtros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79BAD930-42B3-485A-B56F-6F3775C51699}|Utils\\Utils.csproj|solutionrelative:utils\\implementation\\filtros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\entities\\models\\entclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\models\\entclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\business\\interfaces\\ibusclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\ibusclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\data.cs\\mapping\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\business\\data\\iclientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\data\\iclientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\entities\\jsonrequest\\clientes\\entclienteupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\jsonrequest\\clientes\\entclienteupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|c:\\users\\chan0\\documents\\github\\criptasservice\\entities\\jsonrequest\\clientes\\entclienterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\jsonrequest\\clientes\\entclienterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,41 +66,171 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "Api\\Mapping\\MappingProfile.cs",
-              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "Api\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA2AAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "MapClientes.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Mapping\\MapClientes.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapClientes.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Mapping\\MapClientes.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\MapClientes.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAvwE4AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T04:35:53.85Z",
+              "WhenOpened": "2024-11-22T05:58:26.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientesRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "IClientesRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Data\\IClientesRepositorio.cs",
+              "RelativeDocumentMoniker": "Business\\Data\\IClientesRepositorio.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Data\\IClientesRepositorio.cs",
+              "RelativeToolTip": "Business\\Data\\IClientesRepositorio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T04:35:02.754Z",
+              "WhenOpened": "2024-11-22T05:52:09.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ClientesRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs*",
+              "RelativeToolTip": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs*",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAwwKgAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:51:39.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BusClientes.cs",
               "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Implementation\\BusClientes.cs",
               "RelativeDocumentMoniker": "Business\\Implementation\\BusClientes.cs",
               "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Implementation\\BusClientes.cs",
               "RelativeToolTip": "Business\\Implementation\\BusClientes.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAwwIcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAQwEUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T04:34:34.025Z",
+              "WhenOpened": "2024-11-22T05:50:21.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Api\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAawE4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:47:53.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Api\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "Api\\Mapping\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:43:51.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EntClientes.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\Models\\EntClientes.cs",
+              "RelativeDocumentMoniker": "Entities\\Models\\EntClientes.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\Models\\EntClientes.cs",
+              "RelativeToolTip": "Entities\\Models\\EntClientes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:42:04.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EntClienteUpdateRequest.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteUpdateRequest.cs",
+              "RelativeDocumentMoniker": "Entities\\JsonRequest\\Clientes\\EntClienteUpdateRequest.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteUpdateRequest.cs",
+              "RelativeToolTip": "Entities\\JsonRequest\\Clientes\\EntClienteUpdateRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:41:56.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EntClienteUpdateEstatusRequest.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteUpdateEstatusRequest.cs",
+              "RelativeDocumentMoniker": "Entities\\JsonRequest\\Clientes\\EntClienteUpdateEstatusRequest.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteUpdateEstatusRequest.cs",
+              "RelativeToolTip": "Entities\\JsonRequest\\Clientes\\EntClienteUpdateEstatusRequest.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwBMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:41:51.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IBusClientes.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Interfaces\\IBusClientes.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\IBusClientes.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Business\\Interfaces\\IBusClientes.cs",
+              "RelativeToolTip": "Business\\Interfaces\\IBusClientes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:00:02.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Filtros.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Utils\\Implementation\\Filtros.cs",
+              "RelativeDocumentMoniker": "Utils\\Implementation\\Filtros.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Utils\\Implementation\\Filtros.cs",
+              "RelativeToolTip": "Utils\\Implementation\\Filtros.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:12:00.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IFiltros.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Utils\\Interfaces\\IFiltros.cs",
+              "RelativeDocumentMoniker": "Utils\\Interfaces\\IFiltros.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Utils\\Interfaces\\IFiltros.cs",
+              "RelativeToolTip": "Utils\\Interfaces\\IFiltros.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:24:44.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EntClienteRequest.cs",
+              "DocumentMoniker": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteRequest.cs",
+              "RelativeDocumentMoniker": "Entities\\JsonRequest\\Clientes\\EntClienteRequest.cs",
+              "ToolTip": "C:\\Users\\chan0\\Documents\\GitHub\\criptasService\\Entities\\JsonRequest\\Clientes\\EntClienteRequest.cs",
+              "RelativeToolTip": "Entities\\JsonRequest\\Clientes\\EntClienteRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T05:40:53.346Z",
               "EditorCaption": ""
             }
           ]

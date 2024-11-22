@@ -12,6 +12,12 @@ namespace Entities.Models
         public string sApellidos { get; set; }
         [JsonProperty("Direccion")]
         public string sDireccion { get; set; }
+        [JsonProperty("FechaNac")]
+        public string sFechaNacimiento { get; set; }
+        [JsonProperty("Sexo")]
+        public string sSexo { get; set; }
+        [JsonProperty("Edad")]
+        public int? iEdad { get; set; }
         [JsonProperty("Telefono")]
         public string sTelefono { get; set; }
         [JsonProperty("Email")]

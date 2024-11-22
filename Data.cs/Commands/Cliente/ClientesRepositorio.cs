@@ -3,6 +3,7 @@ using AutoMapper;
 using Data.cs;
 using Data.cs.Entities;
 using Entities;
+using Entities.JsonRequest.Clientes;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ public class ClientesRepositorio : IClientesRepositorio
     private readonly ApplicationDbContext dbContext;
     private readonly IHttpContextAccessor httpContext;
     private readonly IMapper _mapper;
+
     public ClientesRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
     {
         this.dbContext = dbContext;
@@ -25,6 +27,7 @@ public class ClientesRepositorio : IClientesRepositorio
         try
         {
             var newItem = _mapper.Map<Clientes>(entity);
+            newItem.bEliminado = false;
             dbContext.Clientes.Add(newItem);
             int i = await dbContext.SaveChangesAsync();
             if (i == 0)
@@ -103,12 +106,39 @@ public class ClientesRepositorio : IClientesRepositorio
         return response;
     }
 
+    public async Task<Response<bool>> DUpdateEliminado(Guid uId)
+    {
+        Response<bool> response = new Response<bool>();
+
+        try
+        {
+            var bEntity = dbContext.Clientes.AsNoTracking().FirstOrDefault(x => x.uId == uId);
+            bEntity.bEliminado = true;
+            bEntity.dtFechaEliminado = DateTime.Now.ToLocalTime();
+            dbContext.Update(bEntity);
+            var exec = await dbContext.SaveChangesAsync();
+
+            if (exec > 0)
+                response.SetSuccess(true, "Eliminado correctamente");
+            else
+            {
+                response.SetError("Registro no eliminado");
+                response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+        return response;
+    }
+
     public async Task<Response<EntClientes>> DGetById(Guid iKey)
     {
         var response = new Response<EntClientes>();
         try
         {
-            var entity = await dbContext.Clientes.AsNoTracking()
+            var entity = await dbContext.Clientes.AsNoTracking().Where(x => x.bEliminado == false).AsNoTracking()
             .SingleOrDefaultAsync(x => x.uId == iKey);
             if (entity != null)
                 response.SetSuccess(_mapper.Map<EntClientes>(entity));
@@ -125,12 +155,24 @@ public class ClientesRepositorio : IClientesRepositorio
         return response;
     }
 
-    public async Task<Response<List<EntClientes>>> DGetByName(string nombre)
+    public async Task<Response<List<EntClientes>>> DGetByFilters(EntClienteSearchRequest filtros)
     {
         var response = new Response<List<EntClientes>>();
         try
         {
-            var items = await dbContext.Clientes.Where(c => c.sNombre.Contains(nombre)).ToListAsync();
+            var items = await dbContext.Clientes.AsNoTracking().Where(c => c.bEliminado == false).ToListAsync();
+            if(items.Count >0 && filtros.sNombre != null) 
+            {
+                items = items.Where(x => x.sNombre.ToLower().Contains(filtros.sNombre.ToLower())).ToList();
+            }
+            if (items.Count > 0 && filtros.sApellido != null)
+            {
+                items = items.Where(x => x.sApellidos.ToLower().Contains(filtros.sApellido.ToLower())).ToList();
+            }
+            if (items.Count >0 && filtros.bEstatus != null) 
+            {
+                items = items.Where(x => x.bEstatus==filtros.bEstatus).ToList();
+            }
             if (items.Count > 0)
                 response.SetSuccess(_mapper.Map<List<EntClientes>>(items));
             else
@@ -152,7 +194,7 @@ public class ClientesRepositorio : IClientesRepositorio
         var response = new Response<List<EntClientes>>();
         try
         {
-            var items = await dbContext.Clientes.Where(c => c.sEmail==sEmail).ToListAsync();
+            var items = await dbContext.Clientes.AsNoTracking().Where(c => c.sEmail==sEmail && c.bEliminado==false).ToListAsync();
             if (items.Count > 0)
                 response.SetSuccess(_mapper.Map<List<EntClientes>>(items));
             else
@@ -174,7 +216,7 @@ public class ClientesRepositorio : IClientesRepositorio
         var response = new Response<List<EntClientes>>();
         try
         {
-            var items = await dbContext.Clientes.ToListAsync();
+            var items = await dbContext.Clientes.AsNoTracking().Where(x=>x.bEliminado==false).ToListAsync();
             if (items.Count > 0)
                 response.SetSuccess(_mapper.Map<List<EntClientes>>(items));
             else
