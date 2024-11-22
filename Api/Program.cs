@@ -1,3 +1,13 @@
+using Api.HostedService;
+using Business.Implementation;
+using Business.Interfaces;
+using Data.cs;
+using Microsoft.EntityFrameworkCore;
+using Utils.Implementation;
+using Utils.Interfaces;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,15 +17,64 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region Configuracion detalles
+var allowSpecificOrigins = "_allowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowSpecificOrigins,
+        policy =>
+        {
+            policy.AllowAnyOrigin() // Permitir cualquier origen
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Iglesia API",
+        Version = "v1",
+        Description = "API para gestión de criptas."
+    });
+    c.EnableAnnotations();
+    c.SchemaFilter<SwaggerSchemaFilter>();
+});
+
+#endregion
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+string CONNECTION_STRING = builder.Configuration.GetConnectionString("Connection");
+builder.Services.AddDbContext<ApplicationDbContext>(option =>
+{
+    option.UseNpgsql(CONNECTION_STRING);
+});
+
+#region Inyeccion de dependencias
+builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
+builder.Services.AddScoped<IBusClientes, BusClientes>();
+builder.Services.AddScoped<IFiltros, Filtros>();
+
+#endregion
+
+#region Hosted Background Services
+builder.Services.AddHostedService<TestDat>();
+#endregion
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(allowSpecificOrigins);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

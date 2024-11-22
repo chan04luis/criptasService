@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Data.cs.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.cs.Mapping
 {
@@ -13,7 +8,7 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<Fallecidos> builder)
         {
-            builder.ToTable("Fallecidos");
+            builder.ToTable("fallecidos");
 
             builder.HasKey(e => e.id).HasName("id");
 
