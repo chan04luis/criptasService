@@ -11,5 +11,6 @@
         public bool bEliminado { get; set; }
         public DateTime dtFechaEliminado { get; set; }
         public Iglesias Iglesia { get; set; }
+        public List<Secciones> listSecciones { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Business.Implementation;
-using Business.Interfaces;
+﻿using Business.Interfaces;
 using Entities;
 using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
+using Entities.Request.Secciones;
 using Entities.Responses.Iglesia;
-using Microsoft.AspNetCore.Http;
+using Entities.Responses.Zonas;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -17,13 +17,15 @@ namespace Api.Controllers
     {
         private readonly IBusIglesias _busIglesias;
         private readonly IBusZonas _busZonas;
+        private readonly IBusSecciones _busSecciones;
         private readonly ILogger<IglesiasController> _logger;
 
-        public IglesiasController(IBusIglesias busIglesias, ILogger<IglesiasController> logger, IBusZonas busZonas)
+        public IglesiasController(IBusIglesias busIglesias, ILogger<IglesiasController> logger, IBusZonas busZonas, IBusSecciones busSecciones)
         {
             _busIglesias = busIglesias;
             _logger = logger;
             _busZonas = busZonas;
+            _busSecciones = busSecciones;
         }
 
         [HttpPost("Create")]
@@ -265,5 +267,127 @@ namespace Api.Controllers
             return response;
         }
         #endregion
+
+        #region Secciones
+        [HttpPost("Zonas/Secciones/Create")]
+        [SwaggerOperation(Summary = "Crea una sección", Description = "Valida los datos y guarda una nueva sección en la base de datos.")]
+        public async Task<Response<EntSecciones>> CreateSeccion([FromBody] EntSeccionRequest seccion)
+        {
+            _logger.LogInformation("Iniciando creación de sección.");
+            var response = await _busSecciones.ValidateAndSaveSection(seccion);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al crear sección: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Sección creada exitosamente con ID: {Id}", response.Result?.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Zonas/Secciones/Update")]
+        [SwaggerOperation(Summary = "Actualiza una sección", Description = "Valida y actualiza los datos de una sección existente.")]
+        public async Task<Response<EntSecciones>> UpdateSeccion([FromBody] EntSeccionesUpdateRequest seccion)
+        {
+            _logger.LogInformation("Iniciando actualización de sección con ID: {Id}", seccion.uId);
+            var response = await _busSecciones.ValidateAndUpdateSection(seccion);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar sección con ID {Id}: {Error}", seccion.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Sección actualizada exitosamente con ID: {Id}", seccion.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Zonas/Secciones/UpdateStatus")]
+        [SwaggerOperation(Summary = "Actualiza el estado de una sección", Description = "Actualiza el estado booleano de una sección.")]
+        public async Task<Response<EntSecciones>> UpdateSeccionStatus([FromBody] EntSeccionesUpdateEstatusRequest seccion)
+        {
+            _logger.LogInformation("Iniciando actualización de estado para sección con ID: {Id}", seccion.uId);
+            var response = await _busSecciones.UpdateSectionStatus(seccion);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar estado de sección con ID {Id}: {Error}", seccion.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Estado de sección actualizado exitosamente con ID: {Id}", seccion.uId);
+            }
+            return response;
+        }
+
+        [HttpDelete("Zonas/Secciones/{id}")]
+        [SwaggerOperation(Summary = "Elimina una sección por ID", Description = "Elimina una sección específica utilizando su ID.")]
+        public async Task<Response<bool>> DeleteSeccionById(Guid id)
+        {
+            _logger.LogInformation("Iniciando eliminado de sección con ID: {Id}", id);
+            var response = await _busSecciones.DeleteSectionById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Sección no encontrada con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Sección eliminada con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpGet("Zonas/Secciones/{id}")]
+        [SwaggerOperation(Summary = "Obtiene una sección por ID", Description = "Recupera una sección específica utilizando su ID.")]
+        public async Task<Response<EntSecciones>> GetSeccionById(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de sección con ID: {Id}", id);
+            var response = await _busSecciones.GetSectionById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Sección no encontrada con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Sección encontrada con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpPost("Zonas/Secciones/ByFilters")]
+        [SwaggerOperation(Summary = "Obtiene secciones por filtros", Description = "Recupera una lista de secciones que coincidan con los filtros proporcionados.")]
+        public async Task<Response<List<EntSecciones>>> GetSeccionesByFilters([FromBody] EntSeccionSearchRequest filtros)
+        {
+            _logger.LogInformation("Iniciando búsqueda de secciones con los filtros: {filtros}", filtros);
+            var response = await _busSecciones.GetSectionsByFilters(filtros);
+            if (response.HasError)
+            {
+                _logger.LogWarning("No se encontraron secciones con los filtros {filtros}: {Error}", filtros, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Secciones encontradas con los filtros: {filtros}", filtros);
+            }
+            return response;
+        }
+
+        [HttpGet("Secciones/List/{IdZona}")]
+        [SwaggerOperation(Summary = "Obtiene la lista de secciones", Description = "Recupera una lista de todas las secciones.")]
+        public async Task<Response<List<EntSecciones>>> GetSeccionList(Guid IdZona)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de secciones.");
+            var response = await _busSecciones.GetSectionList(IdZona);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de secciones: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de secciones recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+        #endregion
+
     }
 }

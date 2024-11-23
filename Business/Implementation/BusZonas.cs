@@ -37,7 +37,7 @@ namespace Business.Implementation
                     return response;
                 }
 
-                var item = await _zonasRepositorio.DGetByName(zona.sNombre);
+                var item = await _zonasRepositorio.DGetByName(zona.sNombre, zona.uIdIglesia);
                 if (!item.HasError && item.Result.Count > 0)
                 {
                     response.SetError("Zona ya registrada con ese nombre.");
@@ -95,7 +95,7 @@ namespace Business.Implementation
                     return response;
                 }
 
-                var item = await _zonasRepositorio.DGetByName(zona.sNombre);
+                var item = await _zonasRepositorio.DGetByName(zona.sNombre, zona.uIdIglesia);
                 if (!item.HasError && item.Result.Where(x => x.uId != zona.uId).ToList().Count > 0)
                 {
                     response.SetError("Zona ya registrada con ese nombre.");

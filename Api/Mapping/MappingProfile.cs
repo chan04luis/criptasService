@@ -4,7 +4,9 @@ using Entities.JsonRequest.Clientes;
 using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
+using Entities.Request.Secciones;
 using Entities.Responses.Iglesia;
+using Entities.Responses.Zonas;
 
 public class MappingProfile : Profile
 {
@@ -28,9 +30,16 @@ public class MappingProfile : Profile
 
         CreateMap<EntZonas, Zonas>();
         CreateMap<Zonas, EntZonas>();
+        CreateMap<Zonas, EntZonasResponse>().ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.listSecciones));
 
         CreateMap<EntZonaUpdateRequest, EntZonas>();
         CreateMap<EntZonaUpdateEstatusRequest, EntZonas>();
+
+        CreateMap<EntSecciones, Secciones>();
+        CreateMap<Secciones, EntSecciones>();
+
+        CreateMap<EntSeccionesUpdateRequest, EntSecciones>();
+        CreateMap<EntSeccionesUpdateEstatusRequest, EntSecciones>();
     }
 
     private int? CalcularEdad(string fechaNacimiento)
