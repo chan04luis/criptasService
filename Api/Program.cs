@@ -11,7 +11,7 @@ using Business.Data;
 using Data.cs.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//builder.WebHost.UseUrls("http://127.0.0.1:5001");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -64,11 +64,13 @@ builder.Services.AddScoped<IIglesiasRepositorio, IglesiasRepositorio>();
 builder.Services.AddScoped<IBusIglesias, BusIglesias>();
 builder.Services.AddScoped<IZonasRepositorio, ZonasRepositorio>();
 builder.Services.AddScoped<IBusZonas, BusZonas>();
+builder.Services.AddScoped<ISeccionesRepositorio, SeccionesRepositorio>();
+builder.Services.AddScoped<IBusSecciones, BusSecciones>();
 
 #endregion
 
 #region Hosted Background Services
-builder.Services.AddHostedService<TestDat>();
+//builder.Services.AddHostedService<TestDat>();
 #endregion
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -77,9 +79,10 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseCors(allowSpecificOrigins);
 app.UseHttpsRedirection();
 

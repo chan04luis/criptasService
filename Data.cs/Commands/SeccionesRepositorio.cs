@@ -2,35 +2,39 @@
 using Business.Data;
 using Data.cs.Entities;
 using Entities;
-using Entities.JsonRequest.Zonas;
 using Entities.Models;
-using Entities.Responses.Zonas;
+using Entities.Request.Secciones;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Data.cs.Commands
 {
-    public class ZonasRepositorio : IZonasRepositorio
+    public class SeccionesRepositorio : ISeccionesRepositorio
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public ZonasRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public SeccionesRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.httpContext = httpContext;
             _mapper = mapper;
         }
 
-        public async Task<Response<EntZonas>> DSave(EntZonas entity)
+        public async Task<Response<EntSecciones>> DSave(EntSecciones entity)
         {
-            var response = new Response<EntZonas>();
+            var response = new Response<EntSecciones>();
             try
             {
-                var newItem = _mapper.Map<Zonas>(entity);
+                var newItem = _mapper.Map<Secciones>(entity);
                 newItem.bEliminado = false;
-                dbContext.Zonas.Add(newItem);
+                dbContext.Secciones.Add(newItem);
                 int i = await dbContext.SaveChangesAsync();
                 if (i == 0)
                 {
@@ -39,7 +43,7 @@ namespace Data.cs.Commands
                 }
                 else
                 {
-                    response.SetSuccess(_mapper.Map<EntZonas>(newItem));
+                    response.SetSuccess(_mapper.Map<EntSecciones>(newItem));
                 }
             }
             catch (Exception ex)
@@ -49,24 +53,22 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<EntZonas>> DUpdate(EntZonas entity)
+        public async Task<Response<EntSecciones>> DUpdate(EntSecciones entity)
         {
-            Response<EntZonas> response = new Response<EntZonas>();
-
+            var response = new Response<EntSecciones>();
             try
             {
-                var bEntity = dbContext.Zonas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                var bEntity = dbContext.Secciones.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
                 if (bEntity != null)
                 {
                     bEntity.sNombre = entity.sNombre;
-                    bEntity.uIdIglesia = entity.uIdIglesia;
-                    bEntity.bEstatus = entity.bEstatus;
+                    bEntity.uIdZona = entity.uIdZona;
                     bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                     dbContext.Update(bEntity);
                     var exec = await dbContext.SaveChangesAsync();
 
                     if (exec > 0)
-                        response.SetSuccess(_mapper.Map<EntZonas>(bEntity), "Actualizado correctamente");
+                        response.SetSuccess(_mapper.Map<EntSecciones>(bEntity), "Actualizado correctamente");
                     else
                     {
                         response.SetError("Registro no actualizado");
@@ -75,7 +77,7 @@ namespace Data.cs.Commands
                 }
                 else
                 {
-                    response.SetError("Zona no encontrada");
+                    response.SetError("Sección no encontrada");
                     response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
@@ -86,13 +88,12 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<EntZonas>> DUpdateBoolean(EntZonas entity)
+        public async Task<Response<EntSecciones>> DUpdateBoolean(EntSecciones entity)
         {
-            Response<EntZonas> response = new Response<EntZonas>();
-
+            var response = new Response<EntSecciones>();
             try
             {
-                var bEntity = dbContext.Zonas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                var bEntity = dbContext.Secciones.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
                 if (bEntity != null)
                 {
                     bEntity.bEstatus = entity.bEstatus;
@@ -101,7 +102,7 @@ namespace Data.cs.Commands
                     var exec = await dbContext.SaveChangesAsync();
 
                     if (exec > 0)
-                        response.SetSuccess(_mapper.Map<EntZonas>(bEntity), "Actualizado correctamente");
+                        response.SetSuccess(_mapper.Map<EntSecciones>(bEntity), "Actualizado correctamente");
                     else
                     {
                         response.SetError("Registro no actualizado");
@@ -110,7 +111,7 @@ namespace Data.cs.Commands
                 }
                 else
                 {
-                    response.SetError("Zona no encontrada");
+                    response.SetError("Sección no encontrada");
                     response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
@@ -123,11 +124,10 @@ namespace Data.cs.Commands
 
         public async Task<Response<bool>> DUpdateEliminado(Guid uId)
         {
-            Response<bool> response = new Response<bool>();
-
+            var response = new Response<bool>();
             try
             {
-                var bEntity = dbContext.Zonas.AsNoTracking().FirstOrDefault(x => x.uId == uId);
+                var bEntity = dbContext.Secciones.AsNoTracking().FirstOrDefault(x => x.uId == uId);
                 if (bEntity != null)
                 {
                     bEntity.bEliminado = true;
@@ -136,7 +136,7 @@ namespace Data.cs.Commands
                     var exec = await dbContext.SaveChangesAsync();
 
                     if (exec > 0)
-                        response.SetSuccess(true, "bEliminado correctamente");
+                        response.SetSuccess(true, "Eliminado correctamente");
                     else
                     {
                         response.SetError("Registro no eliminado");
@@ -145,7 +145,7 @@ namespace Data.cs.Commands
                 }
                 else
                 {
-                    response.SetError("Zona no encontrada");
+                    response.SetError("Sección no encontrada");
                     response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
@@ -156,15 +156,14 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<EntZonas>> DGetById(Guid iKey)
+        public async Task<Response<EntSecciones>> DGetById(Guid iKey)
         {
-            var response = new Response<EntZonas>();
+            var response = new Response<EntSecciones>();
             try
             {
-                var entity = await dbContext.Zonas.AsNoTracking().Where(x => x.bEliminado == false).AsNoTracking()
-                .SingleOrDefaultAsync(x => x.uId == iKey);
+                var entity = await dbContext.Secciones.AsNoTracking().SingleOrDefaultAsync(x => x.uId == iKey && !x.bEliminado);
                 if (entity != null)
-                    response.SetSuccess(_mapper.Map<EntZonas>(entity));
+                    response.SetSuccess(_mapper.Map<EntSecciones>(entity));
                 else
                 {
                     response.SetError("Registro no encontrado");
@@ -178,14 +177,14 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntZonas>>> DGetByName(string sNombre, Guid uIdIglesia)
+        public async Task<Response<List<EntSecciones>>> DGetByName(string sNombre, Guid uIdZona)
         {
-            var response = new Response<List<EntZonas>>();
+            var response = new Response<List<EntSecciones>>();
             try
             {
-                var items = await dbContext.Zonas.AsNoTracking().Where(x => x.bEliminado == false && x.sNombre.ToLower() == sNombre.ToLower() && x.uIdIglesia == uIdIglesia).ToListAsync();
-                if (items.Count > 0)
-                    response.SetSuccess(_mapper.Map<List<EntZonas>>(items));
+                var items = await dbContext.Secciones.AsNoTracking().Where(x => !x.bEliminado && x.sNombre.ToLower() == sNombre.ToLower() && x.uIdZona == uIdZona).ToListAsync();
+                if (items.Any())
+                    response.SetSuccess(_mapper.Map<List<EntSecciones>>(items));
                 else
                 {
                     response.SetError("Registro no encontrado");
@@ -199,28 +198,26 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntZonas>>> DGetByFilters(EntZonaSearchRequest filtros)
+        public async Task<Response<List<EntSecciones>>> DGetByFilters(EntSeccionSearchRequest filtros)
         {
-            var response = new Response<List<EntZonas>>();
+            var response = new Response<List<EntSecciones>>();
             try
             {
-                var items = await dbContext.Zonas.AsNoTracking().Where(z => z.bEliminado == false).ToListAsync();
+                var query = dbContext.Secciones.AsNoTracking().Where(x => !x.bEliminado);
 
-                if (items.Count > 0 && filtros.sNombre != null)
-                {
-                    items = items.Where(x => x.sNombre.ToLower().Contains(filtros.sNombre.ToLower())).ToList();
-                }
+                if (!string.IsNullOrWhiteSpace(filtros.sNombre))
+                    query = query.Where(x => x.sNombre.Contains(filtros.sNombre, StringComparison.OrdinalIgnoreCase));
 
-                if (items.Count > 0 && filtros.bEstatus != null)
-                {
-                    items = items.Where(x => x.bEstatus == filtros.bEstatus).ToList();
-                }
+                if (filtros.bEstatus.HasValue)
+                    query = query.Where(x => x.bEstatus == filtros.bEstatus);
 
-                if (items.Count > 0)
-                    response.SetSuccess(_mapper.Map<List<EntZonas>>(items));
+                var items = await query.ToListAsync();
+
+                if (items.Any())
+                    response.SetSuccess(_mapper.Map<List<EntSecciones>>(items));
                 else
                 {
-                    response.SetError("Registro no encontrado");
+                    response.SetError("No se encontraron registros");
                     response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
@@ -231,41 +228,17 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntZonas>>> DGetList(Guid uIdIglesia)
+        public async Task<Response<List<EntSecciones>>> DGetList(Guid uIdZona)
         {
-            var response = new Response<List<EntZonas>>();
+            var response = new Response<List<EntSecciones>>();
             try
             {
-                var items = await dbContext.Zonas.AsNoTracking().Where(x => x.bEliminado == false && x.uIdIglesia == uIdIglesia).ToListAsync();
-                if (items.Count > 0)
-                    response.SetSuccess(_mapper.Map<List<EntZonas>>(items));
+                var items = await dbContext.Secciones.AsNoTracking().Where(x => !x.bEliminado && x.uIdZona == uIdZona).ToListAsync();
+                if (items.Any())
+                    response.SetSuccess(_mapper.Map<List<EntSecciones>>(items));
                 else
                 {
                     response.SetError("Sin registros");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
-                }
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex.Message);
-            }
-            return response;
-        }
-
-        public async Task<Response<List<EntZonas>>> DGetByIglesiaId(Guid iglesiaId)
-        {
-            var response = new Response<List<EntZonas>>();
-            try
-            {
-                var items = await dbContext.Zonas
-                    .Where(z => z.uIdIglesia == iglesiaId && !z.bEliminado)
-                    .ToListAsync();
-
-                if (items.Count > 0)
-                    response.SetSuccess(_mapper.Map<List<EntZonas>>(items));
-                else
-                {
-                    response.SetError("No se encontraron zonas para esta iglesia");
                     response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }

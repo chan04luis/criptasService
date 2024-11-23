@@ -9,7 +9,7 @@ namespace Business.Data
         Task<Response<EntZonas>> DSave(EntZonas newItem);
         Task<Response<EntZonas>> DGetById(Guid iKey);
         Task<Response<List<EntZonas>>> DGetByFilters(EntZonaSearchRequest filtros);
-        Task<Response<List<EntZonas>>> DGetByName(string name);
+        Task<Response<List<EntZonas>>> DGetByName(string name, Guid uIdIglesia);
         Task<Response<List<EntZonas>>> DGetList(Guid uIdIglesia);
         Task<Response<EntZonas>> DUpdate(EntZonas entity);
         Task<Response<EntZonas>> DUpdateBoolean(EntZonas entity);

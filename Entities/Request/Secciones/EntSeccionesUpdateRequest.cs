@@ -1,18 +1,20 @@
 ﻿using Newtonsoft.Json;
-namespace Entities.JsonRequest.Zonas
+
+namespace Entities.Request.Secciones
 {
-    public class EntZonaUpdateRequest
+    public class EntSeccionesUpdateRequest
     {
         [JsonProperty("Id")]
         public Guid uId { get; set; }
 
-        [JsonProperty("IdIglesia")]
-        public Guid uIdIglesia { get; set; }
+        [JsonProperty("IdZona")]
+        public Guid uIdZona { get; set; }
 
         [JsonProperty("Nombre")]
         public string sNombre { get; set; }
 
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+
     }
 }

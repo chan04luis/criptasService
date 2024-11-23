@@ -13,6 +13,7 @@ namespace Data.cs
         public virtual DbSet<Iglesias> Iglesias { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Zonas> Zonas { get; set; }
+        public virtual DbSet<Secciones> Secciones { get; set; }
 
         private const string EsquemaIglesia = "iglesia";
 
@@ -28,6 +29,7 @@ namespace Data.cs
             modelBuilder.ApplyConfiguration(new MapClientes());
             modelBuilder.ApplyConfiguration(new MapIglesias());
             modelBuilder.ApplyConfiguration(new MapZonas());
+            modelBuilder.ApplyConfiguration(new MapSecciones());
 
             OnModelCreatingPartial(modelBuilder);
         }
