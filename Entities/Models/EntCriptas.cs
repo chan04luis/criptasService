@@ -1,24 +1,36 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.cs.Entities
+namespace Entities.Models
 {
-    public class Criptas
+    public class EntCriptas
     {
+        [JsonProperty("Id")]
         public Guid uId { get; set; }
+
+        [JsonProperty("IdSeccion")]
         public Guid uIdSeccion { get; set; }
+
+        [JsonProperty("IdCliente")]
         public Guid uIdCliente { get; set; }
+
+        [JsonProperty("Numero")]
         public string sNumero { get; set; }
+
+        [JsonProperty("UbicacionEspecifica")]
         public string sUbicacionEspecifica { get; set; }
+
+        [JsonProperty("FechaRegistro")]
         public DateTime dtFechaRegistro { get; set; }
+
+        [JsonProperty("FechaActualizacion")]
         public DateTime dtFechaActualizacion { get; set; }
-        public DateTime dtFechaEliminado { get; set; }
+
+        [JsonProperty("Estatus")]
         public bool bEstatus { get; set; }
-        public bool bEliminado { get; set; }
-        public Secciones? Seccion { get; set; }
-        public Clientes? Cliente { get; set; }
     }
 }

@@ -11,5 +11,6 @@
         public bool bEliminado { get; set; }
         public DateTime dtFechaEliminado { get; set; }
         public Zonas Zona { get; set; }
+        public List<Criptas>? listCriptas { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace Data.cs.Entities
         public DateTime dtFechaEliminado { get; set; }
         public bool? bEstatus { get; set; }
         public bool? bEliminado { get; set; }
+        public List<Criptas>? listCriptas { get; set; }
     }
 }

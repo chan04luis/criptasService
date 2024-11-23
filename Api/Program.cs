@@ -66,6 +66,8 @@ builder.Services.AddScoped<IZonasRepositorio, ZonasRepositorio>();
 builder.Services.AddScoped<IBusZonas, BusZonas>();
 builder.Services.AddScoped<ISeccionesRepositorio, SeccionesRepositorio>();
 builder.Services.AddScoped<IBusSecciones, BusSecciones>();
+builder.Services.AddScoped<ICriptasRepositorio, CriptasRepositorio>();
+builder.Services.AddScoped<IBusCriptas, BusCriptas>();
 
 #endregion
 
