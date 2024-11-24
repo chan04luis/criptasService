@@ -37,9 +37,24 @@ namespace Data.cs.Mapping
                     v => v
                 );
 
+            builder.Property(c => c.dtFechaEliminado)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_eliminado")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
             builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
+                .IsUnicode(false)
                 .HasColumnName("estatus");
+
+            builder.Property(e => e.bEliminado)
+                .HasColumnType("boolean")
+                .IsUnicode(false)
+                .HasColumnName("eliminado");
         }
     }
 }

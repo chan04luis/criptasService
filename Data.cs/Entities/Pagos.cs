@@ -12,7 +12,9 @@ namespace Data.cs.Entities
         public bool bPagado {  get; set; }
         public DateTime dtFechaRegistro { get; set; }
         public DateTime dtFechaActualizacion { get; set; }
+        public DateTime dtFechaEliminado { get; set; }
         public bool? bEstatus { get; set; }
+        public bool bEliminado { get; set; }
 
     }
 }

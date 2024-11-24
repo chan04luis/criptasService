@@ -14,6 +14,8 @@ namespace Data.cs.Entities
         public DateTime dtFechaFallecimiento { get; set; }
         public DateTime dtFechaRegistro { get; set; }
         public DateTime dtFechaActializacion { get; set; }
-        public bool? bEstatus {  get; set; }  
+        public DateTime dtFechaEliminado { get; set; }
+        public bool? bEstatus {  get; set; }
+        public bool bEliminado { get; set; }
     }
 }

@@ -4,22 +4,22 @@ namespace Entities.Models
 {
     public class EntSecciones
     {
-        [JsonProperty("id")]
+        [JsonProperty("Id")]
         public Guid uId { get; set; }
 
-        [JsonProperty("idZona")]
+        [JsonProperty("IdZona")]
         public Guid uIdZona { get; set; }
 
-        [JsonProperty("nombre")]
+        [JsonProperty("Nombre")]
         public string sNombre { get; set; }
 
-        [JsonProperty("fechaRegistro")]
+        [JsonProperty("FechaRegistro")]
         public DateTime? dtFechaRegistro { get; set; }
 
-        [JsonProperty("fechaActualizacion")]
+        [JsonProperty("FechaActualizacion")]
         public DateTime? dtFechaActualizacion { get; set; }
 
-        [JsonProperty("estatus")]
+        [JsonProperty("Estatus")]
         public bool bEstatus { get; set; }
     }
 }

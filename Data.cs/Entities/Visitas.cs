@@ -14,6 +14,8 @@ namespace Data.cs.Entities
         public DateTime dtFechaVisita {  get; set; }
         public DateTime dtFechaResgistro { get; set; }
         public DateTime dtFechaActualizacion { get; set; }
+        public DateTime dtFechaEliminado { get; set; }
         public bool bEstatus {  get; set; }
+        public bool bEliminado { get; set; }
     }
 }
