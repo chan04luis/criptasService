@@ -8,12 +8,14 @@ namespace Data.cs.Entities
 {
     public class Visitas
     {
-        public Guid id { get; set; }
-        public string nombre { get; set; }
-        public Guid id_criptas { get; set; }
-        public DateTime fecha_visita {  get; set; }
-        public DateTime fecha_resgistro { get; set; }
-        public DateTime fecha_actualizacion { get; set; }
-        public bool estatus {  get; set; }
+        public Guid uId { get; set; }
+        public string sNombreVisitante { get; set; }
+        public Guid uIdCriptas { get; set; }
+        public DateTime dtFechaVisita {  get; set; }
+        public DateTime dtFechaResgistro { get; set; }
+        public DateTime dtFechaActualizacion { get; set; }
+        public DateTime dtFechaEliminado { get; set; }
+        public bool bEstatus {  get; set; }
+        public bool bEliminado { get; set; }
     }
 }

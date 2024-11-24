@@ -1,27 +1,36 @@
-﻿using Data.cs.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data.cs.Entities;
 
 namespace Data.cs.Mapping
 {
-    public partial class MapBeneficiarios : IEntityTypeConfiguration<Beneficiarios>
+    public partial class MapPagosParciales : IEntityTypeConfiguration<PagosParciales>
     {
-        public void Configure(EntityTypeBuilder<Beneficiarios> builder)
+        public void Configure(EntityTypeBuilder<PagosParciales> builder)
         {
-            builder.ToTable("beneficiaros");
-            builder.HasKey(e => e.uId).HasName("id_Beneficiaros");
+            builder.ToTable("PagosParciales");
 
-            builder.Property(e => e.uIdCripta)
+            builder.HasKey(e => e.uId).HasName("Id");
+
+            builder.Property(e => e.uIdPago)
                 .HasColumnType("uuid")
-                .HasColumnName("id_cripta");
+                .HasColumnName("Id_PAGOS");
 
-            builder.Property(e => e.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("nombre");
+            builder.Property(e => e.dMonto)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("monto");
+
+            builder.Property(e => e.dtFechaPago)
+                .HasColumnType("DateTime")
+                .HasColumnName("fecha_pago");
 
             builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("DateTime")
-                .IsUnicode(false)
                 .HasColumnName("fecha_registro")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
@@ -29,26 +38,21 @@ namespace Data.cs.Mapping
                 );
 
             builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_actuallizacion")
+                .HasColumnType("DateTime")
+                .HasColumnName("fecha_actualizacion")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
                     v => v
                 );
 
-            builder.Property(c => c.dtFechaEliminado)
+            builder.Property(e => e.dtFechaEliminado)
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
                 .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), v => v);
 
             builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
-                .IsUnicode(false)
                 .HasColumnName("estatus");
 
             builder.Property(e => e.bEliminado)
@@ -56,5 +60,6 @@ namespace Data.cs.Mapping
                 .IsUnicode(false)
                 .HasColumnName("eliminado");
         }
+
     }
 }

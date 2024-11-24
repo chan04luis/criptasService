@@ -1,28 +1,45 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Data.cs.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Data.cs.Mapping
+namespace Data.cs.Entities
 {
-    public partial class MapFallecidos : IEntityTypeConfiguration<Fallecidos>
+    public partial class MapPagos : IEntityTypeConfiguration<Pagos>
     {
-        public void Configure(EntityTypeBuilder<Fallecidos> builder)
+        public void Configure(EntityTypeBuilder<Pagos> builder)
         {
-            builder.ToTable("fallecidos");
+            builder.ToTable("Pagos");
 
             builder.HasKey(e => e.uId).HasName("id");
 
-            builder.Property(e => e.uId_cirpta)
+            builder.Property(e => e.uIdClientes)
                 .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("id_clientes");
 
-            builder.Property(e => e.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("nombre");
+            builder.Property(e => e.uIdCripta)
+                .HasColumnType("uuid")
+                .HasColumnName("id_cripta");
 
-            builder.Property(e => e.dtFechaFallecimiento)
+            builder.Property(e => e.uIdTipoPago)
+                .HasColumnType("uuid")
+                .HasColumnName("id_tipo_pago");
+
+            builder.Property(e => e.montoTotal)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("monto_total");
+
+            builder.Property(e => e.dtFechaLimite)
                 .HasColumnType("DateTime")
-                .HasColumnName("fecha_fallecimiento");
+                .HasColumnName("fecha_limite");
+
+            builder.Property(e => e.bPagado)
+                .HasColumnType("boolean")
+                .HasColumnName("pagado");
 
             builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("DateTime")
@@ -32,8 +49,8 @@ namespace Data.cs.Mapping
                     v => v
                 );
 
-            builder.Property(e => e.dtFechaActializacion)
-                .HasColumnType("timestamp without time zone")
+            builder.Property(e => e.dtFechaActualizacion)
+                .HasColumnType("DateTime")
                 .HasColumnName("fecha_actualizacion")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
@@ -44,8 +61,9 @@ namespace Data.cs.Mapping
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
                 .HasColumnName("fecha_eliminado")
-                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                v => v );
+                .HasConversion(
+                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                     v => v);
 
             builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
@@ -55,7 +73,6 @@ namespace Data.cs.Mapping
                 .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("eliminado");
-
         }
     }
 }

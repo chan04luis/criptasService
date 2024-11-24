@@ -10,11 +10,19 @@ namespace Data.cs
         {
         }
 
-        public virtual DbSet<Iglesias> Iglesias { get; set; }
+        public virtual DbSet<Beneficiarios> Beneficiarios { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Criptas> Criptas { get; set; }
+        public virtual DbSet<Iglesias> Iglesias { get; set; }
+        public virtual DbSet<Fallecidos> Fallecidos { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<PagosParciales> PagosParciales { get; set; }
+        public virtual DbSet<TiposDePago> TiposDePagos { get; set; }
         public virtual DbSet<Zonas> Zonas { get; set; }
         public virtual DbSet<Secciones> Secciones { get; set; }
-        public virtual DbSet<Criptas> Criptas { get; set; }
+        public virtual DbSet<Visitas> Visitas { get; set; } 
+       
+        
 
         private const string EsquemaIglesia = "iglesia";
 
@@ -32,6 +40,12 @@ namespace Data.cs
             modelBuilder.ApplyConfiguration(new MapZonas());
             modelBuilder.ApplyConfiguration(new MapSecciones());
             modelBuilder.ApplyConfiguration(new MapCriptas());
+            modelBuilder.ApplyConfiguration(new MapBeneficiarios());
+            modelBuilder.ApplyConfiguration(new MapFallecidos());
+            modelBuilder.ApplyConfiguration(new MapPagos());
+            modelBuilder.ApplyConfiguration(new MapPagosParciales());
+            modelBuilder.ApplyConfiguration(new MapVisitas());
+            modelBuilder.ApplyConfiguration(new MapTiposDePago());
 
             OnModelCreatingPartial(modelBuilder);
         }

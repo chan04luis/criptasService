@@ -8,12 +8,14 @@ namespace Data.cs.Entities
 {
     public class Fallecidos
     {
-        public Guid id { get; set; }
-        public Guid id_cirpta { get; set; }
-        public string nombre { get; set; }
-        public DateTime? fecha_fallecimiento { get; set; }
-        public DateTime? fecha_registro { get; set; }
-        public DateTime? fecha_actializacion { get; set; }
-        public bool? estatus {  get; set; }  
+        public Guid uId { get; set; }
+        public Guid uId_cirpta { get; set; }
+        public string sNombre { get; set; }
+        public DateTime dtFechaFallecimiento { get; set; }
+        public DateTime dtFechaRegistro { get; set; }
+        public DateTime dtFechaActializacion { get; set; }
+        public DateTime dtFechaEliminado { get; set; }
+        public bool? bEstatus {  get; set; }
+        public bool bEliminado { get; set; }
     }
 }
