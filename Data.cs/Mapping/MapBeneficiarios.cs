@@ -1,11 +1,6 @@
 ﻿using Data.cs.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.cs.Mapping
 {
@@ -14,25 +9,35 @@ namespace Data.cs.Mapping
         public void Configure(EntityTypeBuilder<Beneficiarios> builder)
         {
             builder.ToTable("beneficiaros");
-            builder.HasKey(e => e.id).HasName("id_Beneficiaros");
+            builder.HasKey(e => e.uId).HasName("id_Beneficiaros");
 
-            builder.Property(e => e.id_cripta)
+            builder.Property(e => e.uIdCripta)
                 .HasColumnType("uuid")
                 .HasColumnName("id_cripta");
 
-            builder.Property(e => e.nombre)
+            builder.Property(e => e.sNombre)
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre");
 
-            builder.Property(e => e.fecha_registro)
+            builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("DateTime")
-                .HasColumnName("fecha_registro");
+                .IsUnicode(false)
+                .HasColumnName("fecha_registro")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
-            builder.Property(e => e.fecha_actualizacion)
-                .HasColumnType("DateTime")
-                .HasColumnName("fecha_actuallizacion");
+            builder.Property(e => e.dtFechaActualizacion)
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_actuallizacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
-            builder.Property(e => e.estatus)
+            builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
                 .HasColumnName("estatus");
         }

@@ -10,25 +10,29 @@ namespace Data.cs.Mapping
         {
             builder.ToTable("fallecidos");
 
-            builder.HasKey(e => e.id).HasName("id");
+            builder.HasKey(e => e.uId).HasName("id");
 
-            builder.Property(e => e.id_cirpta)
+            builder.Property(e => e.uId_cirpta)
                 .HasColumnType("uuid")
                 .HasColumnName("id");
 
-            builder.Property(e => e.nombre)
+            builder.Property(e => e.sNombre)
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre");
 
-            builder.Property(e => e.fecha_fallecimiento)
+            builder.Property(e => e.dtFechaFallecimiento)
                 .HasColumnType("DateTime")
                 .HasColumnName("fecha_fallecimiento");
 
-            builder.Property(e => e.fecha_registro)
+            builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("DateTime")
                 .HasColumnName("fecha_registro");
 
-            builder.Property(e => e.estatus)
+            builder.Property(e => e.dtFechaActializacion)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_actualizacion");
+
+            builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
                 .HasColumnName("estatus");
 
