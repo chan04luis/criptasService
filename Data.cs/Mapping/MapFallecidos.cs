@@ -10,9 +10,10 @@ namespace Data.cs.Mapping
         {
             builder.ToTable("fallecidos");
 
-            builder.HasKey(e => e.uId).HasName("id");
+            builder.HasKey(z => z.uId)
+                .HasName("PK_fallecidos");
 
-            builder.Property(e => e.uIdCripta)
+            builder.Property(z => z.uId)
                 .HasColumnType("uuid")
                 .HasColumnName("id");
 
@@ -21,11 +22,11 @@ namespace Data.cs.Mapping
                 .HasColumnName("nombre");
 
             builder.Property(e => e.dtFechaFallecimiento)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_fallecimiento");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_registro")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),

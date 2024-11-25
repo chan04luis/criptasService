@@ -13,8 +13,13 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<Visitas> builder)
         {
-            builder.ToTable("Visitas");
-            builder.HasKey(e => e.uId).HasName("Id");
+            builder.ToTable("visitas");
+
+            builder.HasKey(z => z.uId).HasName("PK_Visitas");
+
+            builder.Property(z => z.uId)
+                .HasColumnType("uuid")
+                .HasColumnName("id");
 
             builder.Property(e => e.sNombreVisitante)
                 .HasColumnType("VARCHAR(255)")
