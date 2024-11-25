@@ -8,8 +8,13 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<Beneficiarios> builder)
         {
-            builder.ToTable("beneficiaros");
-            builder.HasKey(e => e.uId).HasName("id_Beneficiaros");
+            builder.ToTable("beneficiarios");
+            builder.HasKey(z => z.uId)
+                .HasName("PK_Beneficiarios");
+
+            builder.Property(z => z.uId)
+                .HasColumnType("uuid")
+                .HasColumnName("id");
 
             builder.Property(e => e.uIdCripta)
                 .HasColumnType("uuid")
@@ -20,7 +25,7 @@ namespace Data.cs.Mapping
                 .HasColumnName("nombre");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
                 .HasColumnName("fecha_registro")
                 .HasConversion(

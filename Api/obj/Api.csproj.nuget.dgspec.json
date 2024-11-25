@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\GitHub\\Criptas\\Api\\Api.csproj": {}
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Api\\Api.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\GitHub\\Criptas\\Api\\Api.csproj": {
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\GitHub\\Criptas\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Api\\Api.csproj",
-        "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\GitHub\\Criptas\\Api\\obj\\",
+        "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Api\\Api.csproj",
+        "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -30,17 +34,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj"
               },
-              "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Data.cs.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Data.cs.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\Data.cs.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\Data.cs.csproj"
               },
-              "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj"
               },
-              "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj"
               }
             }
           }
@@ -130,21 +134,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj": {
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj",
-        "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\GitHub\\Criptas\\Business\\obj\\",
+        "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj",
+        "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,7 +160,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -160,11 +168,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj"
               },
-              "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj"
               }
             }
           }
@@ -209,21 +217,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Data.cs.csproj": {
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\Data.cs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Data.cs.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\Data.cs.csproj",
         "projectName": "Data.cs",
-        "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Data.cs.csproj",
-        "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\obj\\",
+        "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\Data.cs.csproj",
+        "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Data.cs\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -231,7 +243,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -239,8 +251,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj": {
-                "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Business\\Business.csproj"
+              "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Business\\Business.csproj"
               }
             }
           }
@@ -315,21 +327,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj": {
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\GitHub\\Criptas\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -337,7 +353,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -383,21 +399,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj": {
+    "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj",
         "projectName": "Utils",
-        "projectPath": "D:\\Documentos\\GitHub\\Criptas\\Utils\\Utils.csproj",
-        "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\GitHub\\Criptas\\Utils\\obj\\",
+        "projectPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\Utils.csproj",
+        "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luis Chan\\Documents\\imasD\\chan04luis\\Utils\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -405,7 +425,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -445,7 +465,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

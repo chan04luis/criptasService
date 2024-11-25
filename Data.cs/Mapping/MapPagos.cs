@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Data.cs.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Data.cs.Entities
 {
@@ -13,9 +8,14 @@ namespace Data.cs.Entities
     {
         public void Configure(EntityTypeBuilder<Pagos> builder)
         {
-            builder.ToTable("Pagos");
+            builder.ToTable("pagos");
 
-            builder.HasKey(e => e.uId).HasName("id");
+            builder.HasKey(z => z.uId)
+                .HasName("PK_Pago");
+
+            builder.Property(z => z.uId)
+                .HasColumnType("uuid")
+                .HasColumnName("id");
 
             builder.Property(e => e.uIdClientes)
                 .HasColumnType("uuid")
@@ -34,7 +34,7 @@ namespace Data.cs.Entities
                 .HasColumnName("monto_total");
 
             builder.Property(e => e.dtFechaLimite)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_limite");
 
             builder.Property(e => e.bPagado)
@@ -42,7 +42,7 @@ namespace Data.cs.Entities
                 .HasColumnName("pagado");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_registro")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
@@ -50,7 +50,7 @@ namespace Data.cs.Entities
                 );
 
             builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_actualizacion")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
