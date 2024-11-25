@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Data.cs.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.cs.Mapping
 {
@@ -13,9 +8,14 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<TiposDePago> builder)
         {
-            builder.ToTable("TiposDePago");
+            builder.ToTable("tipos_pago");
 
-            builder.HasKey(e => e.uId).HasName("Id");
+            builder.HasKey(z => z.uId)
+                .HasName("PK_TiposPago");
+
+            builder.Property(z => z.uId)
+                .HasColumnType("uuid")
+                .HasColumnName("id");
 
             builder.Property(e => e.sNombre)
                 .HasColumnType("VARCHAR(100)")
@@ -26,7 +26,7 @@ namespace Data.cs.Mapping
                 .HasColumnName("descripcion");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_registro")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
@@ -34,7 +34,7 @@ namespace Data.cs.Mapping
                 );
 
             builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("DateTime")
+                .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_actualizacion")
                 .HasConversion(
                      v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
