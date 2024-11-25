@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Request\Beneficiarios\EntBeneficiariosRequest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Request\Beneficiarios\EntBeneficiariosRequest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

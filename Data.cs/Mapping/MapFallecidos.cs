@@ -12,7 +12,7 @@ namespace Data.cs.Mapping
 
             builder.HasKey(e => e.uId).HasName("id");
 
-            builder.Property(e => e.uId_cirpta)
+            builder.Property(e => e.uIdCripta)
                 .HasColumnType("uuid")
                 .HasColumnName("id");
 

@@ -3,36 +3,24 @@
   "WorkspaceRootPath": "D:\\Documentos\\GitHub\\Criptas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\cliente\\clientesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|d:\\documentos\\github\\criptas\\entities\\request\\beneficiarios\\entbeneficiariosestatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\request\\beneficiarios\\entbeneficiariosestatusrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\mapfallecidos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mapfallecidos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\mappagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mappagos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\mappagosparciales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mappagosparciales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\maptiposdepago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\maptiposdepago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\mapvisitas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mapvisitas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\mapping\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|d:\\documentos\\github\\criptas\\entities\\models\\entbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\models\\entbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\entities\\beneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\beneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|d:\\documentos\\github\\criptas\\entities\\request\\beneficiarios\\entbeneficiariosrequest.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}|Entities\\Entities.csproj|solutionrelative:entities\\request\\beneficiarios\\entbeneficiariosrequest.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\criptas\\business\\data\\ibeneficiariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\data\\ibeneficiariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,105 +35,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ClientesRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Cliente\\ClientesRepositorio.cs",
-              "ViewState": "AQIAAMYAAAAAZWZmZiYwwNoAAAAMAAAA",
+              "Title": "EntBeneficiariosEstatusRequest.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Request\\Beneficiarios\\EntBeneficiariosEstatusRequest.cs",
+              "RelativeDocumentMoniker": "Entities\\Request\\Beneficiarios\\EntBeneficiariosEstatusRequest.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Request\\Beneficiarios\\EntBeneficiariosEstatusRequest.cs",
+              "RelativeToolTip": "Entities\\Request\\Beneficiarios\\EntBeneficiariosEstatusRequest.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwBsAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T06:20:25.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MapVisitas.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapVisitas.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapVisitas.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapVisitas.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapVisitas.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:54:19.879Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MapTiposDePago.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapTiposDePago.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapTiposDePago.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapTiposDePago.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapTiposDePago.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAQwDgAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:53:51.825Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MapPagosParciales.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapPagosParciales.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapPagosParciales.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapPagosParciales.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapPagosParciales.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAAACUAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:49:52.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapPagos.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapPagos.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapPagos.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapPagos.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapPagos.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAgwDEAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:44:46.138Z",
+              "WhenOpened": "2024-11-24T22:39:12.419Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MapFallecidos.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapFallecidos.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapFallecidos.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapFallecidos.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapFallecidos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAASAAAA",
+              "Title": "EntBeneficiarios.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Models\\EntBeneficiarios.cs",
+              "RelativeDocumentMoniker": "Entities\\Models\\EntBeneficiarios.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Models\\EntBeneficiarios.cs",
+              "RelativeToolTip": "Entities\\Models\\EntBeneficiarios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:38:53.808Z",
+              "WhenOpened": "2024-11-24T22:35:27.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Beneficiarios.cs",
               "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\Beneficiarios.cs",
               "RelativeDocumentMoniker": "Data.cs\\Entities\\Beneficiarios.cs",
               "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Entities\\Beneficiarios.cs",
               "RelativeToolTip": "Data.cs\\Entities\\Beneficiarios.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAATAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:38:12.153Z",
+              "WhenOpened": "2024-11-24T22:34:19.34Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MapBeneficiarios.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapBeneficiarios.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\MapBeneficiarios.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Mapping\\MapBeneficiarios.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\MapBeneficiarios.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAACsAAAAQAAAA",
+              "DocumentIndex": 4,
+              "Title": "IBeneficiariosRepositorio.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Business\\Data\\IBeneficiariosRepositorio.cs",
+              "RelativeDocumentMoniker": "Business\\Data\\IBeneficiariosRepositorio.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Business\\Data\\IBeneficiariosRepositorio.cs",
+              "RelativeToolTip": "Business\\Data\\IBeneficiariosRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T05:38:03.785Z",
+              "WhenOpened": "2024-11-24T17:47:47.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EntBeneficiariosRequest.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Request\\Beneficiarios\\EntBeneficiariosRequest.cs",
+              "RelativeDocumentMoniker": "Entities\\Request\\Beneficiarios\\EntBeneficiariosRequest.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Entities\\Request\\Beneficiarios\\EntBeneficiariosRequest.cs",
+              "RelativeToolTip": "Entities\\Request\\Beneficiarios\\EntBeneficiariosRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T17:35:58.17Z",
               "EditorCaption": ""
             }
           ]
