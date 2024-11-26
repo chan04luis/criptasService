@@ -1,6 +1,7 @@
 ﻿using Business.Interfaces;
 using Entities;
 using Entities.Models;
+using Entities.Request.Pagos;
 using Entities.Request.TipoPagos;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -12,13 +13,137 @@ namespace Api.Controllers
     public class PagosController : ControllerBase
     {
         private readonly IBusTiposPago _busTiposPago;
+        private readonly IBusPagos _busPagos;
+
         private readonly ILogger<PagosController> _logger;
 
-        public PagosController(IBusTiposPago busTiposPago, ILogger<PagosController> logger)
+        public PagosController(IBusTiposPago busTiposPago, ILogger<PagosController> logger, IBusPagos busPagos)
         {
             _busTiposPago = busTiposPago;
             _logger = logger;
+            _busPagos = busPagos;
         }
+
+        #region PAGOS
+        [HttpPost("Create")]
+        [SwaggerOperation(Summary = "Crea un pago", Description = "Valida los datos y guarda un nuevo pago en la base de datos.")]
+        public async Task<Response<EntPagos>> CreatePago([FromBody] EntPagosRequest pago)
+        {
+            _logger.LogInformation("Iniciando creación de pago.");
+            var response = await _busPagos.ValidateAndSavePago(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al crear pago: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago creado exitosamente con ID: {Id}", response.Result?.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Update")]
+        [SwaggerOperation(Summary = "Actualiza un pago", Description = "Valida y actualiza los datos de un pago existente.")]
+        public async Task<Response<EntPagos>> UpdatePago(Guid id, [FromBody] EntPagosRequest pago)
+        {
+            _logger.LogInformation("Iniciando actualización de pago con ID: {Id}", id);
+            var response = await _busPagos.ValidateAndUpdatePago(id, pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar pago con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago actualizado exitosamente con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpPut("AplicarPago")]
+        [SwaggerOperation(Summary = "Aplica como pagado un pago", Description = "Proceso para generar el cierre de un pago.")]
+        public async Task<Response<EntPagos>> UpdatePagado([FromBody] EntPagosUpdatePagadoRequest pago)
+        {
+            _logger.LogInformation("Iniciando actualización de pago con ID: {Id}", pago.uIdPago);
+            var response = await _busPagos.UpdatePagado(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar pago con ID {Id}: {Error}", pago.uIdPago, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago actualizado exitosamente con ID: {Id}", pago.uIdPago);
+            }
+            return response;
+        }
+
+        [HttpPut("UpdateStatus")]
+        [SwaggerOperation(Summary = "Actualiza el estado de un pago", Description = "Actualiza el estado booleano de un pago.")]
+        public async Task<Response<EntPagos>> UpdatePagoStatus([FromBody] EntPagosUpdateEstatusRequest pago)
+        {
+            _logger.LogInformation("Iniciando actualización de estado para pago con ID: {Id}", pago.uId);
+            var response = await _busPagos.UpdatePagoStatus(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar estado de pago con ID {Id}: {Error}", pago.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Estado de pago actualizado exitosamente con ID: {Id}", pago.uId);
+            }
+            return response;
+        }
+
+        [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Elimina un pago por ID", Description = "Elimina un pago específico utilizando su ID.")]
+        public async Task<Response<bool>> DeletePagoById(Guid id)
+        {
+            _logger.LogInformation("Iniciando eliminación de pago con ID: {Id}", id);
+            var response = await _busPagos.DeletePagoById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Pago no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago eliminado con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Obtiene un pago por ID", Description = "Recupera un pago específico utilizando su ID.")]
+        public async Task<Response<EntPagos>> GetPagoById(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de pago con ID: {Id}", id);
+            var response = await _busPagos.GetPagoById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Pago no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago encontrado con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpPost("ByFilters")]
+        [SwaggerOperation(Summary = "Obtiene pagos por filtros", Description = "Recupera una lista de pagos que coincidan con los filtros proporcionados.")]
+        public async Task<Response<List<EntPagos>>> GetPagosByFilters([FromBody] EntPagosSearchRequest filtros)
+        {
+            _logger.LogInformation("Iniciando búsqueda de pagos con los filtros: {filtros}", filtros);
+            var response = await _busPagos.GetPagosByFilters(filtros);
+            if (response.HasError)
+            {
+                _logger.LogWarning("No se encontraron pagos con los filtros {filtros}: {Error}", filtros, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pagos encontrados con los filtros: {filtros}", filtros);
+            }
+            return response;
+        }
+        #endregion
 
         #region TIPOS DE PAGOS
         [HttpPost("Tipos/Create")]
