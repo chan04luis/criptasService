@@ -50,6 +50,7 @@ namespace Business.Implementation
                 EntCriptas nuevaCripta = new EntCriptas
                 {
                     uId = Guid.NewGuid(),
+                    uIdCliente = cripta.uIdCliente,
                     uIdSeccion = cripta.uIdSeccion,
                     sNumero = cripta.sNumero,
                     sUbicacionEspecifica = cripta.sUbicacionEspecifica,
@@ -219,5 +220,4 @@ namespace Business.Implementation
             }
         }
     }
-
 }

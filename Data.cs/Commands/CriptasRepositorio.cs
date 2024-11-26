@@ -29,7 +29,7 @@ namespace Data.cs.Commands
 
             try
             {
-                var criptas = await dbContext.Criptas
+                var criptas = await dbContext.Criptas.AsNoTracking()
                     .Where(c => c.sNumero == nombre && c.uIdSeccion == uIdSeccion && !c.bEliminado)
                     .ToListAsync();
 

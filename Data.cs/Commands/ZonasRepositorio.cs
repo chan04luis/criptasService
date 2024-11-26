@@ -257,7 +257,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntZonas>>();
             try
             {
-                var items = await dbContext.Zonas
+                var items = await dbContext.Zonas.AsNoTracking()
                     .Where(z => z.uIdIglesia == iglesiaId && !z.bEliminado)
                     .ToListAsync();
 
