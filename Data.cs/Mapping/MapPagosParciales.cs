@@ -8,7 +8,7 @@ namespace Data.cs.Mapping
     {
         public void Configure(EntityTypeBuilder<PagosParciales> builder)
         {
-            builder.ToTable("PagosParciales");
+            builder.ToTable("pagos_parciales");
 
             builder.HasKey(z => z.uId)
                 .HasName("PK_PagosParciales");

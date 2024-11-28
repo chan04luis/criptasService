@@ -35,7 +35,7 @@ namespace Entities.Models
         public bool? bEstatus { get; set; }
 
         [JsonProperty("MontoPagado")]
-        public decimal dMontoPagadot { get; set; }
+        public decimal dMontoPagado { get; set; }
 
         [JsonProperty("FechaPagado")]
         public DateTime dtFechaPagado { get; set; }

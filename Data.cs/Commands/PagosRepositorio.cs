@@ -14,13 +14,11 @@ namespace Data.cs.Commands
     public class PagosRepositorio : IPagosRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public PagosRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public PagosRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
 
@@ -77,12 +75,13 @@ namespace Data.cs.Commands
             var response = new Response<EntPagos>();
             try
             {
-                var bEntity = dbContext.Pagos.AsNoTracking().FirstOrDefault(x => x.uId == entity.uIdPago);
+                var bEntity = dbContext.Pagos.AsNoTracking().FirstOrDefault(x => x.uId == entity.uIdPago && x.bEliminado==false);
                 if (bEntity != null)
                 {
-                    bEntity.dMontoTotal = entity.dMontoPagado;
-                    bEntity.dtFechaLimite = entity.dtFechaPagado;
+                    bEntity.dMontoPagado = entity.dMontoPagado;
+                    bEntity.dtFechaPago = entity.dtFechaPagado;
                     bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                    bEntity.bPagado = entity.bPagado;
                     dbContext.Update(bEntity);
                     var exec = await dbContext.SaveChangesAsync();
 

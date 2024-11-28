@@ -72,6 +72,7 @@ builder.Services.AddScoped<ITiposPagoRepositorio, TiposDePagoRepositorio>();
 builder.Services.AddScoped<IBusTiposPago, BusTiposPago>();
 builder.Services.AddScoped<IPagosRepositorio, PagosRepositorio>();
 builder.Services.AddScoped<IBusPagos, BusPagos>();
+builder.Services.AddScoped<IPagosParcialesRepositorio, PagosParcialesRepositorio>();
 
 #endregion
 
