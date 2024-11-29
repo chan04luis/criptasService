@@ -30,7 +30,7 @@ namespace Data.cs.Commands
             try
             {
                 var tiposPago = await dbContext.TiposDePagos
-                    .Where(tp => tp.sNombre == sNombre && !tp.bEliminado)
+                    .Where(tp => tp.sNombre == sNombre && !tp.bEliminado).AsNoTracking()
                     .ToListAsync();
 
                 response.Result = _mapper.Map<List<EntTiposPago>>(tiposPago);

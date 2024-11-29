@@ -5,6 +5,7 @@ using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
 using Entities.Request.Criptas;
+using Entities.Request.Pagos;
 using Entities.Request.Secciones;
 using Entities.Request.TipoPagos;
 using Entities.Responses.Iglesia;
@@ -59,6 +60,18 @@ public class MappingProfile : Profile
         CreateMap<EntTiposPagoRequest, EntTiposPago>();
         CreateMap<EntTiposPagoSearchRequest, EntTiposPago>();
         CreateMap<EntTiposPago, EntTiposPagoRequest>();
+        #endregion
+
+        #region Pagos
+        CreateMap<EntPagos, Pagos>();
+        CreateMap<Pagos, EntPagos>();
+        CreateMap<EntPagosRequest, EntPagos>();
+        CreateMap<EntPagosSearchRequest, EntPagos>();
+        CreateMap<EntPagosUpdateEstatusRequest, EntPagos>();
+        #endregion
+
+        #region PagosParciales
+        CreateMap<EntPagosParciales, PagosParciales>().ReverseMap();
         #endregion
     }
 

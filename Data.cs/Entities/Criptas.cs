@@ -15,5 +15,6 @@ namespace Data.cs.Entities
         public bool bEliminado { get; set; }
         public Secciones? Seccion { get; set; }
         public Clientes? Cliente { get; set; }
+        public List<Pagos>? listPagos { get; set; }
     }
 }

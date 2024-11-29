@@ -19,7 +19,7 @@ namespace Data.cs.Entities
 
             builder.Property(e => e.uIdClientes)
                 .HasColumnType("uuid")
-                .HasColumnName("id_clientes");
+                .HasColumnName("id_cliente");
 
             builder.Property(e => e.uIdCripta)
                 .HasColumnType("uuid")
@@ -29,13 +29,22 @@ namespace Data.cs.Entities
                 .HasColumnType("uuid")
                 .HasColumnName("id_tipo_pago");
 
-            builder.Property(e => e.montoTotal)
+            builder.Property(e => e.dMontoTotal)
                 .HasColumnType("NUMERIC")
                 .HasColumnName("monto_total");
 
             builder.Property(e => e.dtFechaLimite)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_limite");
+
+
+            builder.Property(e => e.dMontoPagado)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("monto_pagado");
+
+            builder.Property(e => e.dtFechaPago)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_pagado");
 
             builder.Property(e => e.bPagado)
                 .HasColumnType("boolean")
@@ -73,6 +82,21 @@ namespace Data.cs.Entities
                 .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("eliminado");
+
+            builder.HasOne(z => z.Cliente)
+                .WithMany(i => i.listPagos)
+                .HasForeignKey(z => z.uIdClientes)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(z => z.Cripta)
+                .WithMany(i => i.listPagos)
+                .HasForeignKey(z => z.uIdCripta)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(z => z.TipoPago)
+                .WithMany(i => i.listPagos)
+                .HasForeignKey(z => z.uIdTipoPago)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
