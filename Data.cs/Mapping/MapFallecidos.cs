@@ -17,6 +17,10 @@ namespace Data.cs.Mapping
                 .HasColumnType("uuid")
                 .HasColumnName("id");
 
+            builder.Property(c => c.uIdCripta)
+                .HasColumnType("uuid")
+                .HasColumnName("id_cripta");
+
             builder.Property(e => e.sNombre)
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre");
@@ -33,7 +37,7 @@ namespace Data.cs.Mapping
                     v => v
                 );
 
-            builder.Property(e => e.dtFechaActializacion)
+            builder.Property(e => e.dtFechaActualizacion)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_actualizacion")
                 .HasConversion(
@@ -56,6 +60,11 @@ namespace Data.cs.Mapping
                 .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("eliminado");
+
+            builder.HasOne(z => z.cripta)
+               .WithMany(i => i.listFallecidos)
+               .HasForeignKey(z => z.uIdCripta)
+               .OnDelete(DeleteBehavior.Restrict);
 
         }
     }

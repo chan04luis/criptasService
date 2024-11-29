@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities;
 
-namespace Business.Interfaces
+public interface IBusBeneficiarios
 {
-    internal class IBusBeneficiarios
-    {
-    }
+    Task<Response<EntBeneficiarios>> SaveBeneficiary(EntBeneficiariosRequest beneficiario);
+    Task<Response<EntBeneficiarios>> UpdateBeneficiary(EntBeneficiariosUpdateRequest beneficiario);
+    Task<Response<EntBeneficiarios>> GetBeneficiaryById(Guid uId);
+    Task<Response<List<EntBeneficiarios>>> GetBeneficiariesByFilters(EntBeneficiariosSearchRequest filters);
+    Task<Response<bool>> DeleteBeneficiary(Guid uId);
 }

@@ -74,6 +74,13 @@ builder.Services.AddScoped<IBusTiposPago, BusTiposPago>();
 builder.Services.AddScoped<IPagosRepositorio, PagosRepositorio>();
 builder.Services.AddScoped<IBusPagos, BusPagos>();
 builder.Services.AddScoped<IPagosParcialesRepositorio, PagosParcialesRepositorio>();
+builder.Services.AddScoped<IVisitasRepositorio, VisitasRepositorio>();
+builder.Services.AddScoped<IBusVisitas, BusVisitas>();
+builder.Services.AddScoped<IFallecidosRepositorio, FallecidosRepositorio>();
+builder.Services.AddScoped<IBusFallecidos, BusFallecidos>();
+builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>();
+builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
+
 
 #endregion
 

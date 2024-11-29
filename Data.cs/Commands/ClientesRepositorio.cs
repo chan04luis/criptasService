@@ -5,19 +5,16 @@ using Data.cs.Entities;
 using Entities;
 using Entities.JsonRequest.Clientes;
 using Entities.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 public class ClientesRepositorio : IClientesRepositorio
 {
     private readonly ApplicationDbContext dbContext;
-    private readonly IHttpContextAccessor httpContext;
     private readonly IMapper _mapper;
 
-    public ClientesRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+    public ClientesRepositorio(ApplicationDbContext dbContext, IMapper mapper)
     {
         this.dbContext = dbContext;
-        this.httpContext = httpContext;
         _mapper = mapper;
     }
 
