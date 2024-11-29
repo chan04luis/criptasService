@@ -3,23 +3,19 @@ using Business.Data;
 using Data.cs.Entities;
 using Entities;
 using Entities.Request.TipoPagos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using Utils.Implementation;
 
 namespace Data.cs.Commands
 {
     public class TiposDePagoRepositorio : ITiposPagoRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public TiposDePagoRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public TiposDePagoRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
 

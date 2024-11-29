@@ -5,7 +5,6 @@ using Data.cs.Entities;
 using Entities;
 using Entities.Models;
 using Entities.Request.Criptas;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
@@ -14,13 +13,11 @@ namespace Data.cs.Commands
     public class CriptasRepositorio : ICriptasRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public CriptasRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public CriptasRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
         public async Task<Response<List<EntCriptas>>> DGetByName(string nombre, Guid uIdSeccion)

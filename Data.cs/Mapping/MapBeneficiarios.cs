@@ -36,7 +36,7 @@ namespace Data.cs.Mapping
             builder.Property(e => e.dtFechaActualizacion)
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
-                .HasColumnName("fecha_actuallizacion")
+                .HasColumnName("fecha_actualizacion")
                 .HasConversion(
                     v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
                     v => v

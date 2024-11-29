@@ -29,30 +29,32 @@ namespace Data.cs.Mapping
                 .HasColumnType("uuid")
                 .HasColumnName("id_criptas");
 
-            builder.Property(e => e.dtFechaVisita)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_visita")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
-
-            builder.Property(e => e.dtFechaResgistro)
+            builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_registo")
-                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                v => v);
+                .IsUnicode(false)
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), 
+                    v => v
+                 );
 
             builder.Property(e => e.dtFechaActualizacion)
                 .HasColumnType("timestamp winthout time zone")
                 .HasColumnName("fecha_actualizacion")
-                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), v => v);
+                .IsUnicode(false)
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), 
+                    v => v
+                );
 
             builder.Property(e => e.dtFechaEliminado)
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
                 .HasColumnName("fecha_eliminado")
-                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), v => v);
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified), 
+                    v => v
+                );
 
             builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")
@@ -62,6 +64,11 @@ namespace Data.cs.Mapping
                 .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("eliminado");
+
+            builder.HasOne(z => z.cripta)
+               .WithMany(i => i.listVisitas)
+               .HasForeignKey(z => z.uIdCriptas)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

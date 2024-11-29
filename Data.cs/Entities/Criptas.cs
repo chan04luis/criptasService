@@ -16,5 +16,7 @@ namespace Data.cs.Entities
         public Secciones? Seccion { get; set; }
         public Clientes? Cliente { get; set; }
         public List<Pagos>? listPagos { get; set; }
+        public List<Fallecidos>? listFallecidos { get; set; }
+        public List<Visitas>? listVisitas { get; set; }
     }
 }

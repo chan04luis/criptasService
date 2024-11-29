@@ -4,26 +4,18 @@ using Data.cs.Entities;
 using Entities;
 using Entities.Models;
 using Entities.Request.Secciones;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.cs.Commands
 {
     public class SeccionesRepositorio : ISeccionesRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public SeccionesRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public SeccionesRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
 

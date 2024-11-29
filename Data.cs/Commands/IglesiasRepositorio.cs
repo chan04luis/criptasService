@@ -6,7 +6,6 @@ using Entities;
 using Entities.JsonRequest.Iglesias;
 using Entities.Models;
 using Entities.Responses.Iglesia;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.cs.Commands
@@ -14,13 +13,11 @@ namespace Data.cs.Commands
     public class IglesiasRepositorio : IIglesiasRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public IglesiasRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public IglesiasRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
 

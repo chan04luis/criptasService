@@ -4,8 +4,6 @@ using Data.cs.Entities;
 using Entities;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
-using Entities.Responses.Zonas;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.cs.Commands
@@ -13,13 +11,11 @@ namespace Data.cs.Commands
     public class ZonasRepositorio : IZonasRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IHttpContextAccessor httpContext;
         private readonly IMapper _mapper;
 
-        public ZonasRepositorio(ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public ZonasRepositorio(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
-            this.httpContext = httpContext;
             _mapper = mapper;
         }
 

@@ -5,6 +5,7 @@ using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
 using Entities.Request.Criptas;
+using Entities.Request.Fallecidos;
 using Entities.Request.Pagos;
 using Entities.Request.Secciones;
 using Entities.Request.TipoPagos;
@@ -73,6 +74,33 @@ public class MappingProfile : Profile
         #region PagosParciales
         CreateMap<EntPagosParciales, PagosParciales>().ReverseMap();
         #endregion
+
+        #region Criptas
+        CreateMap<EntCriptas, Criptas>();
+        CreateMap<Criptas, EntCriptas>();
+        CreateMap<EntCriptaUpdateRequest, EntCriptas>();
+        CreateMap<EntCriptaUpdateEstatusRequest, EntCriptas>();
+        #endregion
+
+        #region Visitas
+        CreateMap<EntVisitas, Visitas>();
+        CreateMap<Visitas, EntVisitas>();
+        #endregion
+
+        #region Fallecidos
+        CreateMap<EntFallecidos, Fallecidos>().ReverseMap();
+        CreateMap<EntFallecidos, EntFallecidosRequest>().ReverseMap();
+        CreateMap<EntFallecidosUpdateRequest, EntFallecidos>().ReverseMap();
+        CreateMap<EntFallecidosUpdateEstatusRequest, EntFallecidos>().ReverseMap();
+        #endregion
+
+        #region Beneficiarios
+        CreateMap<EntBeneficiarios, Beneficiarios>().ReverseMap();
+        CreateMap<EntBeneficiarios, EntBeneficiariosRequest>().ReverseMap();
+        CreateMap<EntBeneficiariosUpdateRequest, EntBeneficiarios>().ReverseMap();
+        CreateMap<EntBeneficiariosUpdateEstatusRequest, EntBeneficiarios>().ReverseMap();
+        #endregion
+
     }
 
     private int? CalcularEdad(string fechaNacimiento)
