@@ -4,12 +4,14 @@ using Entities.Models;
 using Entities.Request.Criptas;
 using Entities.Request.Fallecidos;
 using Entities.Request.Visitas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Api.Controllers
 {
     [Route("api/Criptas")]
+    [Authorize]
     [ApiController]
     public class CriptasController : ControllerBase
     {

@@ -6,12 +6,14 @@ using Entities.Models;
 using Entities.Request.Secciones;
 using Entities.Responses.Iglesia;
 using Entities.Responses.Zonas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Api.Controllers
 {
     [Route("api/Iglesias")]
+    [Authorize]
     [ApiController]
     public class IglesiasController : ControllerBase
     {

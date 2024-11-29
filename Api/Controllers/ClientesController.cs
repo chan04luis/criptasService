@@ -2,12 +2,14 @@
 using Entities;
 using Entities.JsonRequest.Clientes;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Api.Controllers
 {
     [Route("api/Clientes")]
+    [Authorize]
     [ApiController]
     public class ClientesController : ControllerBase
     {
