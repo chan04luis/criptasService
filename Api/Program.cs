@@ -10,8 +10,32 @@ using Newtonsoft.Json.Serialization;
 using Business.Data;
 using Data.cs.Commands;
 using Microsoft.Extensions.Options;
+using Entities.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+#region JWT
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
+        };
+    });
+#endregion
 //builder.WebHost.UseUrls("http://127.0.0.1:5001");
 // Add services to the container.
 
@@ -43,6 +67,29 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1",
         Description = "API para gestión de criptas."
     });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization - Ingresa el token por ejemplo: 'Bearer {token}'",
+        Type = SecuritySchemeType.ApiKey,
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        BearerFormat = "JWT"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] { }
+            }
+        });
     c.EnableAnnotations();
     c.SchemaFilter<SwaggerSchemaFilter>();
 });
@@ -80,6 +127,8 @@ builder.Services.AddScoped<IFallecidosRepositorio, FallecidosRepositorio>();
 builder.Services.AddScoped<IBusFallecidos, BusFallecidos>();
 builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>();
 builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
+builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
+builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
 
 #endregion
@@ -105,6 +154,7 @@ app.UseSwaggerUI(options =>
 app.UseCors(allowSpecificOrigins);
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

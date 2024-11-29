@@ -2,6 +2,7 @@
 using Data.cs.Entities;
 using Entities.JsonRequest.Clientes;
 using Entities.JsonRequest.Iglesias;
+using Entities.JsonRequest.Usuarios;
 using Entities.JsonRequest.Zonas;
 using Entities.Models;
 using Entities.Request.Criptas;
@@ -9,7 +10,9 @@ using Entities.Request.Fallecidos;
 using Entities.Request.Pagos;
 using Entities.Request.Secciones;
 using Entities.Request.TipoPagos;
+using Entities.Request.Usuarios;
 using Entities.Responses.Iglesia;
+using Entities.Responses.Usuarios;
 using Entities.Responses.Zonas;
 
 public class MappingProfile : Profile
@@ -100,6 +103,17 @@ public class MappingProfile : Profile
         CreateMap<EntBeneficiariosUpdateRequest, EntBeneficiarios>().ReverseMap();
         CreateMap<EntBeneficiariosUpdateEstatusRequest, EntBeneficiarios>().ReverseMap();
         #endregion
+
+        #region Usuarios
+
+        CreateMap<EntUsuarios, Usuarios>().ReverseMap();
+        CreateMap<EntUsuarios, AuthLogin>().ReverseMap();
+        CreateMap<EntUsuarios, EntUsuarioRequest>().ReverseMap();
+        CreateMap<EntUsuarioUpdateRequest, EntUsuarios>().ReverseMap();
+        CreateMap<EntUsuarioUpdateEstatusRequest, EntUsuarios>().ReverseMap();
+
+        #endregion
+
 
     }
 

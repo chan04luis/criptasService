@@ -3,12 +3,14 @@ using Entities;
 using Entities.Models;
 using Entities.Request.Pagos;
 using Entities.Request.TipoPagos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Api.Controllers
 {
     [Route("api/Pagos")]
+    [Authorize]
     [ApiController]
     public class PagosController : ControllerBase
     {
