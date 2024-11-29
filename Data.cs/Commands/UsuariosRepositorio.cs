@@ -224,20 +224,10 @@ public class UsuariosRepositorio : IUsuariosRepositorio
             {
                 response.SetError("No existe usuario");
                 response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
-            }else if (user.sContra != loginRequest.sContra)
-            {
-                response.SetError("Contraseña incorrecta");
-                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
+                return response;
             }
-            else if (!user.bActivo)
-            {
-                response.SetError("Usuario inactivo");
-                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
-            }
-            else
-            {
-                response.SetSuccess(_mapper.Map<EntUsuarios>(user), "Login exitoso");
-            }
+            response.SetSuccess(_mapper.Map<EntUsuarios>(user), "Login exitoso");
+            
         }
         catch (Exception ex)
         {

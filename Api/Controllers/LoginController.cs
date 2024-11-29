@@ -31,48 +31,13 @@ namespace Api.Controllers
         }
         [HttpPatch]
         [SwaggerOperation(Summary = "Obtiene el token", Description = "Inicia tu sesióm")]
-        public async Task<Response<AuthLogin>> getLogin([FromBody] EntUsuarioLoginRequest login)
+        public async Task<ActionResult<Response<AuthLogin>>> getLogin([FromBody] EntUsuarioLoginRequest login)
         {
             _logger.LogInformation("Iniciando login de usuarios.");
-            Response<AuthLogin> response = new Response<AuthLogin>();
-            var consulta = await _busUsuarios.getLogin(login);
-            response.HttpCode = consulta.HttpCode;
-            response.HasError = consulta.HasError;
-            response.Message = consulta.Message;
-            response.Result = null;
-            if (consulta.HasError)
-            {
-                _logger.LogWarning("Error al recuperar login de usuarios: {Error}", consulta.Message);
-            }
-            else
-            {
-                var token = GenerateJwtToken(consulta.Result);
-                response.Result = _mapper.Map<AuthLogin>(consulta.Result);
-                response.Result.sToken = token;
-                _logger.LogInformation("login de usuarios recuperada exitosamente. Total: {consulta.Result}", consulta.Result);
-            }
-            return response;
+            Response<AuthLogin> response = await _busUsuarios.getLogin(login);
+            return StatusCode((int)response.HttpCode, response);
         }
 
-        private string GenerateJwtToken(EntUsuarios usuario)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, usuario.uId.ToString()),
-                new Claim(ClaimTypes.Name, usuario.sContra)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JwtSettings:Issuer"],
-                audience: _configuration["JwtSettings:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+      
     }
 }

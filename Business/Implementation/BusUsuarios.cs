@@ -11,6 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utils.Interfaces;
+using Newtonsoft.Json.Linq;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Entities.Responses.Usuarios;
 
 namespace Business.Implementation
 {
@@ -20,13 +26,15 @@ namespace Business.Implementation
         private readonly IFiltros _filtros;
         private readonly ILogger<BusUsuarios> _logger;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public BusUsuarios(IUsuariosRepositorio usuariosRepositorio, IFiltros filtros, ILogger<BusUsuarios> logger, IMapper mapper)
+        public BusUsuarios(IUsuariosRepositorio usuariosRepositorio, IFiltros filtros, ILogger<BusUsuarios> logger, IMapper mapper,IConfiguration configuration)
         {
             _usuariosRepositorio = usuariosRepositorio;
             _filtros = filtros;
             _logger = logger;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         public async Task<Response<EntUsuarios>> ValidateAndSaveUser(EntUsuarioRequest usuario)
@@ -243,29 +251,85 @@ namespace Business.Implementation
             }
         }
 
-        public async Task<Response<EntUsuarios>> getLogin(EntUsuarioLoginRequest usuario)
+        public async Task<Response<AuthLogin>> getLogin(EntUsuarioLoginRequest usuario)
         {
-            var response = new Response<EntUsuarios>();
+            var response = new Response<AuthLogin>();
 
             try
             {
-                if (string.IsNullOrWhiteSpace(usuario.sCorreo) ||
-                    string.IsNullOrWhiteSpace(usuario.sContra))
+                Response<bool> validarDatosLogin = ValidarGetLogin(usuario);
+                if (validarDatosLogin.HasError)
                 {
-                    response.SetError("Los campos Correo y contraseña son obligatorios.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    return response.GetResponse(validarDatosLogin);
+                }
+
+                var obtenerUsuario = await _usuariosRepositorio.DLogin(usuario);
+
+                if (obtenerUsuario?.Result == null)
+                {
+                    response.SetError(obtenerUsuario.Message);
+                    response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
                     return response;
                 }
 
-                return await _usuariosRepositorio.DLogin(usuario);
+                var usuarioEntidad = obtenerUsuario.Result;
+                
+                EntUsuarios entUsuario = _mapper.Map<EntUsuarios>(obtenerUsuario.Result);
+                var token = GenerateJwtToken(entUsuario);
+                response.Result = _mapper.Map<AuthLogin>(entUsuario);
+                response.Result.sToken = token;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al validar y actualizar el usuario");
                 response.SetError("Hubo un error al procesar la solicitud.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
+                
             }
+
+            return response;
+        }
+
+        private Response<bool> ValidarGetLogin(EntUsuarioLoginRequest entLoginRequest)
+        {
+            Response<bool> response = new();
+            if (entLoginRequest is null)
+            {
+                return response.GetBadRequest("Los campos Correo y contraseña son obligatorios.");
+            }
+
+            if (string.IsNullOrWhiteSpace(entLoginRequest.sCorreo))
+            {
+                return response.GetBadRequest("No se ingresó el correo");
+            }
+
+            if (string.IsNullOrWhiteSpace(entLoginRequest.sContra))
+            {
+                return response.GetBadRequest("No se ingresó la contraseña");
+            }
+
+            return response.GetSuccess(true);
+        }
+
+        private string GenerateJwtToken(EntUsuarios usuario)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.uId.ToString()),
+                new Claim(ClaimTypes.Name, usuario.sContra)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JwtSettings:Issuer"],
+                audience: _configuration["JwtSettings:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

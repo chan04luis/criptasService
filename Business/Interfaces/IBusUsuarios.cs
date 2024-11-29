@@ -1,6 +1,7 @@
 ﻿using Entities.JsonRequest.Usuarios;
 using Entities.Request.Usuarios;
 using Entities;
+using Entities.Responses.Usuarios;
 
 namespace Business.Interfaces
 {
@@ -19,6 +20,6 @@ namespace Business.Interfaces
         Task<Response<List<EntUsuarios>>> GetUsersByFilters(EntUsuarioSearchRequest filtros);
 
         Task<Response<List<EntUsuarios>>> GetUserList();
-        Task<Response<EntUsuarios>> getLogin(EntUsuarioLoginRequest usuario);
+        Task<Response<AuthLogin>> getLogin(EntUsuarioLoginRequest usuario);
     }
 }
