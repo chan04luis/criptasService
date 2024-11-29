@@ -8,9 +8,6 @@ namespace Entities.Request.Beneficiarios
         public Guid uId { get; set; }
         [JsonProperty("IdCripta")]
         public Guid uIdCripta { get; set; }
-       
-
-        
     }
 
     public class BeneficiariosEstatusRequest
@@ -25,6 +22,7 @@ namespace Entities.Request.Beneficiarios
 
     public class EntBeneficiarioDeleteRequest
     {
-        //[JsonProperty("Id")]
+        [JsonProperty("Id")]
+        public Guid uId { get; set; }
     }
 }
