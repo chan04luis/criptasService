@@ -69,6 +69,10 @@ public class MappingProfile : Profile
         CreateMap<EntPagosSearchRequest, EntPagos>();
         CreateMap<EntPagosUpdateEstatusRequest, EntPagos>();
         #endregion
+
+        #region PagosParciales
+        CreateMap<EntPagosParciales, PagosParciales>().ReverseMap();
+        #endregion
     }
 
     private int? CalcularEdad(string fechaNacimiento)

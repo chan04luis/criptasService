@@ -8,10 +8,10 @@ namespace Entities.Request.Pagos
         public Guid uIdPago { get; set; }
 
         [JsonProperty("MontoPagado")]
-        public decimal dMontoPagado { get; set; }
+        public decimal? dMontoPagado { get; set; }
 
         [JsonProperty("FechaPagado")]
-        public DateTime dtFechaPagado { get; set; }
+        public DateTime? dtFechaPagado { get; set; }
 
         [JsonProperty("Pagado")]
         public bool bPagado { get; set; }

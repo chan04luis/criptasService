@@ -8,7 +8,7 @@ namespace Data.cs.Entities
         public Guid uIdCripta {  get; set; }
         public Guid uIdTipoPago { get; set; }
         public decimal dMontoTotal { get; set; }
-        public decimal dMontoPagado { get; set; }
+        public decimal? dMontoPagado { get; set; }
         public DateTime dtFechaLimite { get; set; }
         public DateTime? dtFechaPago { get; set; }
         public bool bPagado {  get; set; }

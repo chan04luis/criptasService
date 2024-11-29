@@ -61,7 +61,7 @@ namespace Api.Controllers
 
         [HttpPut("AplicarPago")]
         [SwaggerOperation(Summary = "Aplica como pagado un pago", Description = "Proceso para generar el cierre de un pago.")]
-        public async Task<Response<EntPagos>> UpdatePagado([FromBody] EntPagosUpdatePagadoRequest pago)
+        public async Task<Response<EntPagos>> UpdatePagado([FromBody] ReadPagosRequest pago)
         {
             _logger.LogInformation("Iniciando actualización de pago con ID: {Id}", pago.uIdPago);
             var response = await _busPagos.UpdatePagado(pago);
@@ -72,6 +72,57 @@ namespace Api.Controllers
             else
             {
                 _logger.LogInformation("Pago actualizado exitosamente con ID: {Id}", pago.uIdPago);
+            }
+            return response;
+        }
+
+        [HttpPut("CancelarPago/{uIdPago}")]
+        [SwaggerOperation(Summary = "Aplica como pagado un pago", Description = "Proceso para generar el cierre de un pago.")]
+        public async Task<Response<EntPagos>> UpdateCancelarPagado(Guid uIdPago)
+        {
+            _logger.LogInformation("Iniciando actualización de pago con ID: {Id}", uIdPago);
+            var response = await _busPagos.UpdateCancelarPagado(uIdPago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar pago con ID {Id}: {Error}", uIdPago, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago actualizado exitosamente con ID: {Id}", uIdPago);
+            }
+            return response;
+        }
+
+        [HttpGet("Parcialidades/{id}")]
+        [SwaggerOperation(Summary = "Obtiene parcialidades por ID de pago", Description = "Recupera un listado de pagos parciales específicando su ID de pago.")]
+        public async Task<Response<List<EntPagosParciales>>> GetPagoParcialById(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de pagos parciales con ID: {Id}", id);
+            var response = await _busPagos.GetParcialidadesByIdPago(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Pagos no encontrados con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pagos encontrados con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpDelete("Parcialidades/{id}")]
+        [SwaggerOperation(Summary = "Elimina un pago parcial por ID", Description = "Elimina un pago parcial específico utilizando su ID.")]
+        public async Task<Response<bool>> DeletePagoById(Guid id)
+        {
+            _logger.LogInformation("Iniciando eliminación de pago parcial con ID: {Id}", id);
+            var response = await _busPagos.DeletePagoParcialById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Pago parcial no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago parcial eliminado con ID: {Id}", id);
             }
             return response;
         }
@@ -95,7 +146,7 @@ namespace Api.Controllers
 
         [HttpDelete("{id}")]
         [SwaggerOperation(Summary = "Elimina un pago por ID", Description = "Elimina un pago específico utilizando su ID.")]
-        public async Task<Response<bool>> DeletePagoById(Guid id)
+        public async Task<Response<bool>> DeletePagoParcialById(Guid id)
         {
             _logger.LogInformation("Iniciando eliminación de pago con ID: {Id}", id);
             var response = await _busPagos.DeletePagoById(id);

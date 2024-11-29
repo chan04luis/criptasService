@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
 using Business.Data;
 using Data.cs.Commands;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.WebHost.UseUrls("http://127.0.0.1:5001");
@@ -72,6 +73,7 @@ builder.Services.AddScoped<ITiposPagoRepositorio, TiposDePagoRepositorio>();
 builder.Services.AddScoped<IBusTiposPago, BusTiposPago>();
 builder.Services.AddScoped<IPagosRepositorio, PagosRepositorio>();
 builder.Services.AddScoped<IBusPagos, BusPagos>();
+builder.Services.AddScoped<IPagosParcialesRepositorio, PagosParcialesRepositorio>();
 
 #endregion
 
@@ -88,7 +90,11 @@ if (app.Environment.IsDevelopment())
     
 }
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
+{
+    options.DefaultModelsExpandDepth(-1);
+    options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+});
 app.UseCors(allowSpecificOrigins);
 app.UseHttpsRedirection();
 
