@@ -218,11 +218,22 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         try
         {
             var user = await dbContext.Usuarios.AsNoTracking()
-                .FirstOrDefaultAsync(u => u.sCorreo == loginRequest.sCorreo && u.sContra == loginRequest.sContra && u.bActivo == true && u.bEliminado == false);
+                .FirstOrDefaultAsync(u => u.sCorreo == loginRequest.sCorreo && u.bEliminado == false);
 
             if (user == null)
             {
                 response.SetError("No existe usuario");
+                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
+                return response;
+            }else if (user.sContra != loginRequest.sContra)
+            {
+                response.SetError("Contraseña incorrecta");
+                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
+                return response;
+            }
+            else if (!user.bActivo)
+            {
+                response.SetError("Usuario desactivado");
                 response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
                 return response;
             }
