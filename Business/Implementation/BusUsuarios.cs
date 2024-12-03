@@ -274,9 +274,8 @@ namespace Business.Implementation
 
                 var usuarioEntidad = obtenerUsuario.Result;
                 
-                EntUsuarios entUsuario = _mapper.Map<EntUsuarios>(obtenerUsuario.Result);
-                var token = GenerateJwtToken(entUsuario);
-                response.Result = _mapper.Map<AuthLogin>(entUsuario);
+                var token = GenerateJwtToken(usuarioEntidad);
+                response.SetSuccess(_mapper.Map<AuthLogin>(usuarioEntidad), "Login Exitoso");
                 response.Result.sToken = token;
             }
             catch (Exception ex)
