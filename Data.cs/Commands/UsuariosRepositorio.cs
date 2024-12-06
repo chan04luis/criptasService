@@ -122,11 +122,11 @@ public class UsuariosRepositorio : IUsuariosRepositorio
 
         try
         {
-            var bEntity = dbContext.Usuarios.FindAsync(entity.uId);
-            bEntity.Result.sNombres = entity.sNombres;
-            bEntity.Result.sApellidos = entity.sApellidos;
-            bEntity.Result.sTelefono = entity.sTelefono;
-            bEntity.Result.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            var bEntity = await dbContext.Usuarios.FindAsync(entity.uId);
+            bEntity.sNombres = entity.sNombres;
+            bEntity.sApellidos = entity.sApellidos;
+            bEntity.sTelefono = entity.sTelefono;
+            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
             dbContext.Update(bEntity);
             var exec = await dbContext.SaveChangesAsync();
 
@@ -151,9 +151,9 @@ public class UsuariosRepositorio : IUsuariosRepositorio
 
         try
         {
-            var bEntity = dbContext.Usuarios.FindAsync(entity.uId);
-            bEntity.Result.bActivo = entity.bActivo;
-            bEntity.Result.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            var bEntity =await dbContext.Usuarios.FindAsync(entity.uId);
+            bEntity.bActivo = entity.bActivo;
+            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
             dbContext.Attach(bEntity);
             var exec = await dbContext.SaveChangesAsync();
 

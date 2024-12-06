@@ -95,13 +95,13 @@ namespace Business.Implementation
 
                 var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
 
-                var usuariosExistentes = await _usuariosRepositorio.AnyExitMailAndKey(usuarioMapeado);
+                /*var usuariosExistentes = await _usuariosRepositorio.AnyExitMailAndKey(usuarioMapeado);
 
                 if (usuariosExistentes.Result)
                 {
                     response.SetError("Usuario ya existente.");
                     return response;
-                }
+                }*/
 
                 var result = await _usuariosRepositorio.DUpdate(usuarioMapeado);
 
