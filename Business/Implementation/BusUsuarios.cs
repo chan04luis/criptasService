@@ -17,6 +17,8 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Entities.Responses.Usuarios;
+using FluentValidation;
+using Entities.Validations.Seguridad;
 
 namespace Business.Implementation
 {
@@ -37,145 +39,90 @@ namespace Business.Implementation
             _configuration = configuration;
         }
 
-        public async Task<Response<EntUsuarios>> ValidateAndSaveUser(EntUsuarioRequest usuario)
+        public async Task<Response<EntUsuarios>> SaveUser(EntUsuarioRequest usuario)
         {
             var response = new Response<EntUsuarios>();
 
             try
             {
-                if (string.IsNullOrWhiteSpace(usuario.sNombres) ||
-                    string.IsNullOrWhiteSpace(usuario.sApellidos) ||
-                    string.IsNullOrWhiteSpace(usuario.sCorreo) ||
-                    string.IsNullOrWhiteSpace(usuario.sTelefono) ||
-                    string.IsNullOrWhiteSpace(usuario.sContra))
+                UsuarioValidator usuarioValidator = new UsuarioValidator();
+                var validator= usuarioValidator.Validate(usuario);
+                if (!validator.IsValid)
                 {
-                    response.SetError("Los campos Nombres, Apellidos, Teléfono, Coreo y Contraseña son obligatorios.");
+                    var errors = string.Join(", ", validator.Errors.Select(e => e.ErrorMessage));
+                    response.SetError(errors);
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
 
-                if (!_filtros.IsValidPhone(usuario.sTelefono))
+                var existMail = await _usuariosRepositorio.DAnyExistEmail(usuario.sCorreo);
+                if (existMail.Result)
                 {
-                    response.SetError("El número de teléfono debe tener 10 dígitos numéricos.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    response.SetError(existMail.Message);
                     return response;
                 }
 
-                if (!_filtros.IsValidEmail(usuario.sCorreo))
-                {
-                    response.SetError("El formato del correo electrónico es inválido.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
-                    return response;
-                }
+                var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
+            
+                var usuarioCreado= await _usuariosRepositorio.DSave(usuarioMapeado);
 
-                var item = await _usuariosRepositorio.DGetByEmail(usuario.sCorreo);
-                if (!item.HasError && item.Result != null)
-                {
-                    response.SetError("Email ya registrado.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
-                    return response;
-                }
-
-                EntUsuarios nUsuario = new EntUsuarios
-                {
-                    uId = Guid.NewGuid(),
-                    sNombres = usuario.sNombres,
-                    sApellidos = usuario.sApellidos,
-                    sCorreo = usuario.sCorreo,
-                    sTelefono = usuario.sTelefono,
-                    sContra = usuario.sContra,
-                    bActivo = true,
-                    dtFechaActualizacion = DateTime.Now.ToLocalTime(),
-                    dtFechaRegistro = DateTime.Now.ToLocalTime()
-                };
-
-                return await SaveUser(nUsuario);
+                response.SetSuccess(usuarioCreado.Result);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al validar y guardar el usuario");
                 response.SetError("Hubo un error al procesar la solicitud.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
             }
+            return response;
         }
 
-        public async Task<Response<EntUsuarios>> SaveUser(EntUsuarios usuario)
-        {
-            try
-            {
-                return await _usuariosRepositorio.DSave(_mapper.Map<EntUsuarios>(usuario));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al guardar el usuario");
-                var response = new Response<EntUsuarios>();
-                response.SetError("Hubo un error al guardar el usuario.");
-                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
-            }
-        }
-
-        public async Task<Response<EntUsuarios>> ValidateAndUpdateUser(EntUsuarioUpdateRequest usuario)
+        public async Task<Response<EntUsuarios>> UpdateUser(EntUsuarioUpdateRequest usuario)
         {
             var response = new Response<EntUsuarios>();
 
             try
             {
-                if (string.IsNullOrWhiteSpace(usuario.sNombres) ||
-                    string.IsNullOrWhiteSpace(usuario.sApellidos) ||
-                    string.IsNullOrWhiteSpace(usuario.sTelefono))
+                UsuarioUpdateValidator usuarioValidator = new UsuarioUpdateValidator();
+                var validator = usuarioValidator.Validate(usuario);
+                if (!validator.IsValid)
                 {
-                    response.SetError("Los campos Nombres, Apellidos y Teléfono son obligatorios.");
+                    var errors = string.Join(", ", validator.Errors.Select(e => e.ErrorMessage));
+                    response.SetError(errors);
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
 
-                if (!_filtros.IsValidPhone(usuario.sTelefono))
+                var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
+
+                var usuariosExistentes = await _usuariosRepositorio.AnyExitMailAndKey(usuarioMapeado);
+
+                if (usuariosExistentes.Result)
                 {
-                    response.SetError("El número de teléfono debe tener 10 dígitos numéricos.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    response.SetError("Usuario ya existente.");
                     return response;
                 }
 
-                var nUsuario = _mapper.Map<EntUsuarios>(usuario);
-                return await UpdateUser(nUsuario);
+                var result = await _usuariosRepositorio.DUpdate(usuarioMapeado);
+
+                response.SetSuccess(result.Result);
+                
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al validar y actualizar el usuario");
                 response.SetError("Hubo un error al procesar la solicitud.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
             }
-        }
-
-        public async Task<Response<EntUsuarios>> UpdateUser(EntUsuarios usuario)
-        {
-            try
-            {
-                return await _usuariosRepositorio.DUpdate(usuario);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al actualizar el usuario");
-                var response = new Response<EntUsuarios>();
-                response.SetError("Hubo un error al actualizar el usuario.");
-                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
-            }
+            return response;
         }
 
         public async Task<Response<EntUsuarios>> UpdateUserStatus(EntUsuarioUpdateEstatusRequest usuario)
         {
             try
             {
-                EntUsuarios nUsuario = new EntUsuarios
-                {
-                    uId = usuario.uId,
-                    bActivo = usuario.bEstatus
-                };
-                return await _usuariosRepositorio.DUpdateBoolean(nUsuario);
+                var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
+                return await _usuariosRepositorio.DUpdateEstatus(usuarioMapeado);
             }
             catch (Exception ex)
             {
@@ -189,18 +136,24 @@ namespace Business.Implementation
 
         public async Task<Response<bool>> DeleteUserById(Guid id)
         {
+            Response<bool> response = new Response<bool>();
+
             try
             {
-                return await _usuariosRepositorio.DUpdateEliminado(id);
+                var existKey = await _usuariosRepositorio.AnyExistKey(id);
+                if (!existKey.Result)
+                {
+                    response.SetError(existKey.Message);
+                    return response;
+                }
+
+                response = await _usuariosRepositorio.DDelete(id);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al eliminar el usuario por ID");
-                var response = new Response<bool>();
-                response.SetError("Hubo un error al eliminar el usuario.");
-                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
-                return response;
+                response.SetError(ex);
             }
+            return response;
         }
 
         public async Task<Response<EntUsuarios>> GetUserById(Guid id)

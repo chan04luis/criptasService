@@ -7,9 +7,9 @@ namespace Business.Interfaces
 {
     public interface IBusUsuarios
     {
-        Task<Response<EntUsuarios>> ValidateAndSaveUser(EntUsuarioRequest usuario);
+        Task<Response<EntUsuarios>> SaveUser(EntUsuarioRequest usuario);
 
-        Task<Response<EntUsuarios>> ValidateAndUpdateUser(EntUsuarioUpdateRequest usuario);
+        Task<Response<EntUsuarios>> UpdateUser(EntUsuarioUpdateRequest usuario);
 
         Task<Response<EntUsuarios>> UpdateUserStatus(EntUsuarioUpdateEstatusRequest usuario);
 

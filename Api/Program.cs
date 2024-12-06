@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using FluentValidation;
+using Entities.Validations.Seguridad;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -59,6 +61,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
         options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UsuarioUpdateValidator>();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo

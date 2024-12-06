@@ -26,7 +26,7 @@ namespace Api.Controllers
         public async Task<Response<EntUsuarios>> CreateUser([FromBody] EntUsuarioRequest usuario)
         {
             _logger.LogInformation("Iniciando creación de usuario.");
-            var response = await _busUsuarios.ValidateAndSaveUser(usuario);
+            var response = await _busUsuarios.SaveUser(usuario);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al crear usuario: {Error}", response.Message);
@@ -43,7 +43,7 @@ namespace Api.Controllers
         public async Task<Response<EntUsuarios>> UpdateUser([FromBody] EntUsuarioUpdateRequest usuario)
         {
             _logger.LogInformation("Iniciando actualización de usuario con ID: {Id}", usuario.uId);
-            var response = await _busUsuarios.ValidateAndUpdateUser(usuario);
+            var response = await _busUsuarios.UpdateUser(usuario);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al actualizar usuario con ID {Id}: {Error}", usuario.uId, response.Message);

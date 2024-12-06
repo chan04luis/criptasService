@@ -17,13 +17,86 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         _mapper = mapper;
     }
 
+    public async Task<Response<bool>> AnyExistKey(Guid pKey)
+    {
+        Response<bool> response = new Response<bool>();
+
+        try
+        {
+            var exitsKey = await dbContext.Usuarios.AnyAsync(i => i.uId == pKey && i.bActivo == true);
+            if (exitsKey)
+            {
+                response.SetSuccess(exitsKey, "Usuario ya existente");
+            }
+            else
+            {
+                response.SetError("No existe el usuario");
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+        return response;
+    }
+    public async Task<Response<bool>> AnyExitMailAndKey(EntUsuarios pEntity)
+    {
+        Response<bool> response = new Response<bool>();
+
+        try
+        {
+            var existMail = await dbContext.Usuarios.AnyAsync(i => (i.uId != pEntity.uId)
+                                                                    && (i.sCorreo.Equals(pEntity.sCorreo)) && i.bActivo == true);
+
+            if (existMail)
+            {
+                response.SetSuccess(existMail, "Correo ya existente");
+            }
+            else
+            {
+                response.SetError("No existe el correo");
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+        return response;
+    }
+    public async Task<Response<bool>> DAnyExistEmail(string pCorreo)
+    {
+        Response<bool> response = new Response<bool>();
+
+        try
+        {
+            var existMail = await dbContext.Usuarios.AnyAsync(i => i.sCorreo.Equals(pCorreo) && i.bActivo == true);
+
+            if (existMail)
+            {
+                response.SetSuccess(existMail, "Correo ya existente");
+            }
+            else
+            {
+                response.SetError("No existe el correo");
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+        return response;
+    }
+
     public async Task<Response<EntUsuarios>> DSave(EntUsuarios entity)
     {
         var response = new Response<EntUsuarios>();
         try
         {
             var newItem = _mapper.Map<Usuarios>(entity);
+            newItem.uId=Guid.NewGuid();
             newItem.bEliminado = false;
+            newItem.bActivo = true;
+            newItem.dtFechaRegistro = DateTime.Now.ToLocalTime();
             dbContext.Usuarios.Add(newItem);
             int i = await dbContext.SaveChangesAsync();
             if (i == 0)
@@ -49,11 +122,11 @@ public class UsuariosRepositorio : IUsuariosRepositorio
 
         try
         {
-            var bEntity = dbContext.Usuarios.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
-            bEntity.sNombres = entity.sNombres;
-            bEntity.sApellidos = entity.sApellidos;
-            bEntity.sTelefono = entity.sTelefono;
-            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            var bEntity = dbContext.Usuarios.FindAsync(entity.uId);
+            bEntity.Result.sNombres = entity.sNombres;
+            bEntity.Result.sApellidos = entity.sApellidos;
+            bEntity.Result.sTelefono = entity.sTelefono;
+            bEntity.Result.dtFechaActualizacion = DateTime.Now.ToLocalTime();
             dbContext.Update(bEntity);
             var exec = await dbContext.SaveChangesAsync();
 
@@ -72,16 +145,16 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         return response;
     }
 
-    public async Task<Response<EntUsuarios>> DUpdateBoolean(EntUsuarios entity)
+    public async Task<Response<EntUsuarios>> DUpdateEstatus(EntUsuarios entity)
     {
         Response<EntUsuarios> response = new Response<EntUsuarios>();
 
         try
         {
-            var bEntity = dbContext.Usuarios.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
-            bEntity.bActivo = entity.bActivo;
-            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
-            dbContext.Update(bEntity);
+            var bEntity = dbContext.Usuarios.FindAsync(entity.uId);
+            bEntity.Result.bActivo = entity.bActivo;
+            bEntity.Result.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            dbContext.Attach(bEntity);
             var exec = await dbContext.SaveChangesAsync();
 
             if (exec > 0)
@@ -99,20 +172,20 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         return response;
     }
 
-    public async Task<Response<bool>> DUpdateEliminado(Guid uId)
+    public async Task<Response<bool>> DDelete(Guid uId)
     {
         Response<bool> response = new Response<bool>();
 
         try
         {
-            var bEntity = dbContext.Usuarios.AsNoTracking().FirstOrDefault(x => x.uId == uId);
+            var bEntity =await dbContext.Usuarios.FindAsync(uId);
             bEntity.bEliminado = true;
             bEntity.dtFechaEliminado = DateTime.Now.ToLocalTime();
-            dbContext.Update(bEntity);
+            dbContext.Attach(bEntity);
             var exec = await dbContext.SaveChangesAsync();
 
             if (exec > 0)
-                response.SetSuccess(true, "bEliminado correctamente");
+                response.SetSuccess(true, "Eliminado correctamente");
             else
             {
                 response.SetError("Registro no eliminado");
@@ -131,30 +204,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         var response = new Response<EntUsuarios>();
         try
         {
-            var entity = await dbContext.Usuarios.AsNoTracking().Where(x => x.bEliminado == false).AsNoTracking()
-            .SingleOrDefaultAsync(x => x.uId == iKey);
-            if (entity != null)
-                response.SetSuccess(_mapper.Map<EntUsuarios>(entity));
-            else
-            {
-                response.SetError("Registro no encontrado");
-                response.HttpCode = System.Net.HttpStatusCode.NotFound;
-            }
-        }
-        catch (Exception ex)
-        {
-            response.SetError(ex.Message);
-        }
-        return response;
-    }
-
-    public async Task<Response<EntUsuarios>> DGetByEmail(string sCorreo)
-    {
-        var response = new Response<EntUsuarios>();
-        try
-        {
-            var entity = await dbContext.Usuarios.AsNoTracking().Where(x => x.bEliminado == false).AsNoTracking()
-            .SingleOrDefaultAsync(x => x.sContra == sCorreo);
+            var entity = await dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.uId == iKey && x.bActivo==true);
             if (entity != null)
                 response.SetSuccess(_mapper.Map<EntUsuarios>(entity));
             else
@@ -175,7 +225,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         var response = new Response<List<EntUsuarios>>();
         try
         {
-            var items = await dbContext.Usuarios.AsNoTracking().Where(x => x.bEliminado == false).ToListAsync();
+            var items = await dbContext.Usuarios.AsNoTracking().Where(x => x.bEliminado == false).OrderBy(x=>x.sNombres).ToListAsync();
             if (items.Count > 0)
                 response.SetSuccess(_mapper.Map<List<EntUsuarios>>(items));
             else
