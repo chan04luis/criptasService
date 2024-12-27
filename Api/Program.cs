@@ -17,6 +17,10 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using FluentValidation;
 using Entities.Validations.Seguridad;
+using Data.cs.Interfaces.Seguridad;
+using Data.cs.Commands.Seguridad;
+using Business.Interfaces.Seguridad;
+using Business.Implementation.Seguridad;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -136,6 +140,12 @@ builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
 builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
 builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
+#endregion
+
+#region Inyeccion de dependencias Seguridad
+
+builder.Services.AddScoped<IPerfilesRepositorio, PerfilesRepositorio>();
+builder.Services.AddScoped<IBusPerfiles, BusPerfiles>();
 
 #endregion
 

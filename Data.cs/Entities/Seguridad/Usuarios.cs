@@ -1,9 +1,9 @@
-﻿
-namespace Data.cs.Entities
+﻿namespace Data.cs.Entities.Seguridad
 {
     public class Usuarios
     {
         public Guid uId { get; set; }
+        public Guid uIdPerfil { get; set; }
         public string sNombres { get; set; }
         public string sApellidos { get; set; }
         public string sCorreo { get; set; }

@@ -158,3 +158,5 @@ node_modules/
 .env/
 env/
 /.vs/Criptas/DesignTimeBuild/.dtbcache.v2
+/Api/obj/Debug/net8.0/Api.csproj.AssemblyReference.cache
+/.vs/Criptas/v17/DocumentLayout.json

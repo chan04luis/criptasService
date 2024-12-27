@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Business.Data;
 using Data.cs;
-using Data.cs.Entities;
+using Data.cs.Entities.Seguridad;
 using Entities;
 using Entities.Request.Usuarios;
 using Microsoft.EntityFrameworkCore;

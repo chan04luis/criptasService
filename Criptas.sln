@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.cs", "Data.cs\Data.cs.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{51173E67-741F-4E9D-9080-10786D2926B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelos", "Entities\Modelos.csproj", "{7915FDC0-871D-44B3-8C0A-43F6ABCBD313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{79BAD930-42B3-485A-B56F-6F3775C51699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{79BAD930-42B3-485A-B56F-6F3775C51699}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

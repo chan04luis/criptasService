@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Data.cs.Entities;
+using Data.cs.Entities.Seguridad;
 using Entities.JsonRequest.Clientes;
 using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Usuarios;

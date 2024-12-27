@@ -1,8 +1,8 @@
-﻿using Data.cs.Entities;
+﻿using Data.cs.Entities.Seguridad;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Data.cs.Mapping
+namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapUsuarios : IEntityTypeConfiguration<Usuarios>
     {
@@ -12,8 +12,12 @@ namespace Data.cs.Mapping
             builder.HasKey(u => u.uId).HasName("PK_Usuario");
 
             builder.Property(u => u.uId)
+               .HasColumnType("uuid")
+               .HasColumnName("id");
+
+            builder.Property(u => u.uIdPerfil)
                 .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("id_perfil");
 
             builder.Property(u => u.sNombres)
                 .HasColumnType("VARCHAR(100)")
