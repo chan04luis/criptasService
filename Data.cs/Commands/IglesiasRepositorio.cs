@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 using Business.Data;
-using Data.cs.Entities;
+using Data.cs.Entities.Catalogos;
 using Entities;
 using Entities.JsonRequest.Iglesias;
 using Entities.Models;

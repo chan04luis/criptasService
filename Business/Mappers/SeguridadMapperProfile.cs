@@ -13,7 +13,27 @@ namespace Business.Mappers
     {
         public SeguridadMapperProfile()
         {
+            MapearSeguridad();
+        }
+
+        private void MapearSeguridad()
+        {
+
+            CreateMap<Boton, BotonModelo>().ReverseMap();
             CreateMap<Perfil, PerfilModelo>().ReverseMap();
+
+            CreateMap<Usuarios, UsuarioModelo>().ReverseMap();
+
+            CreateMap<Boton, BotonModelo>().ReverseMap();
+
+            CreateMap<Perfil, PerfilModelo>().ReverseMap();
+
+            CreateMap<Pagina, PaginaModelo>().ReverseMap();
+
+            CreateMap<Modulo, ModuloModelo>().ReverseMap();
+
+            CreateMap<Configuracion, ConfiguracionModelo>().ReverseMap();
+
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿using Business.Interfaces.Seguridad;
+using Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Modelos.Seguridad;
+
+namespace Api.Controllers.Seguridad
+{
+    [Route("api/seguridad/modulos/{idModulo}/paginas/{idPagina}/botones")]
+    [ApiController]
+    public class BotonesController : ControllerBase
+    {
+        private readonly IBusBoton busBoton;
+        public BotonesController(IBusBoton busBoton)
+        {
+            this.busBoton = busBoton;
+        }
+        [HttpPost]
+        public async Task<ActionResult<Response<BotonModelo>>> CrearBoton(BotonModelo entBDBoton)
+        {
+            Response<BotonModelo> response = await busBoton.BCreate(entBDBoton);
+            return StatusCode((int)response.HttpCode, response);
+        }
+
+        [HttpPut("{idBoton}")]
+        public async Task<ActionResult<Response<BotonModelo>>> ActualizarBoton(BotonModelo entBDBoton)
+        {
+            Response<BotonModelo> response = await busBoton.BUpdate(entBDBoton);
+            return StatusCode((int)response.HttpCode, response);
+        }
+        [HttpDelete("{idBoton}")]
+        public async Task<ActionResult<Response<bool>>> EliminarPagina(Guid idBoton)
+        {
+            Response<bool> response = await busBoton.BDelete(idBoton);
+            return StatusCode((int)response.HttpCode, response);
+        }
+    }
+}

@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using Business.Interfaces;
+﻿using Api.Controllers.Seguridad;
+using AutoMapper;
+using Business.Interfaces.Seguridad;
 using Entities;
 using Entities.Request.Usuarios;
 using Entities.Responses.Usuarios;

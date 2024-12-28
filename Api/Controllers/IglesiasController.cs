@@ -1,4 +1,4 @@
-﻿using Business.Interfaces;
+﻿using Business.Interfaces.Catalogos;
 using Entities;
 using Entities.JsonRequest.Iglesias;
 using Entities.JsonRequest.Zonas;

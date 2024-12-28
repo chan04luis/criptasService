@@ -1,4 +1,4 @@
-﻿using Business.Interfaces;
+﻿using Business.Interfaces.Catalogos;
 using Entities;
 using Entities.Models;
 using Entities.Request.Criptas;

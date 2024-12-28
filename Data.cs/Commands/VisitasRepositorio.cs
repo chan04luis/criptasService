@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Data.cs.Entities;
 using Data.cs;
 using System.Net;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using Entities.Request.Visitas;
+using Data.cs.Entities.Catalogos;
 
 public class VisitasRepositorio : IVisitasRepositorio
 {

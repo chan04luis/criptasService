@@ -1,6 +1,4 @@
 using Api.HostedService;
-using Business.Implementation;
-using Business.Interfaces;
 using Data.cs;
 using Microsoft.EntityFrameworkCore;
 using Utils.Implementation;
@@ -21,6 +19,8 @@ using Data.cs.Interfaces.Seguridad;
 using Data.cs.Commands.Seguridad;
 using Business.Interfaces.Seguridad;
 using Business.Implementation.Seguridad;
+using Business.Implementation.Catalogos;
+using Business.Interfaces.Catalogos;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT

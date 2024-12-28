@@ -1,4 +1,5 @@
 ﻿using Data.cs.Entities;
+using Data.cs.Entities.Catalogos;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Mapping;
 using Data.cs.Mapping.Seguridad;

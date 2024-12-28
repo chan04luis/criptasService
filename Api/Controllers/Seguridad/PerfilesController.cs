@@ -1,4 +1,5 @@
-﻿using Business.Interfaces.Seguridad;
+﻿using Business.Implementation.Seguridad;
+using Business.Interfaces.Seguridad;
 using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Modelos.Seguridad;
 
 namespace Api.Controllers.Seguridad
 {
-    [Route("api/Perfiles")]
+    [Route("api/seguridad/perfiles")]
     [ApiController]
     public class PerfilesController : ControllerBase
     {
@@ -16,35 +17,31 @@ namespace Api.Controllers.Seguridad
             this.busPerfiles = busPerfiles;
         }
 
-        [HttpGet("obtenerPerfil/{IdPerfil}")]
-        public async Task<ActionResult<Response<PerfilModelo>>> Get(Guid IdPerfil)
-        {
-            Response<PerfilModelo> response = new Response<PerfilModelo>();
-
-            try
-            {
-                var temp = await busPerfiles.BGet(IdPerfil);
-                response.Result = temp.Result;
-                response.HasError = temp.HasError;
-                response.HttpCode = temp.HttpCode;
-                response.Message = temp.Message;
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex);
-            }
-            return StatusCode((int)response.HttpCode, response);
-        }
         [HttpPost]
-        public async Task<ActionResult<Response<PerfilModelo>>> CrearInvitado(PerfilModelo createModel)
+        public async Task<ActionResult<Response<PerfilModelo>>> CrearPerfil(PerfilModelo entPerfilCreacion)
         {
-            Response<PerfilModelo> response = await busPerfiles.BCreate(createModel);
+            Response<PerfilModelo> response = await busPerfiles.BCreate(entPerfilCreacion);
             return StatusCode((int)response.HttpCode, response);
         }
-        [HttpPut("{IdPerfil}")]
-        public async Task<ActionResult<Response<PerfilModelo>>> ActualizarInvitado(Guid IdPerfil, PerfilModelo perfilModelo)
+
+        [HttpPut("{idPerfil}")]
+        public async Task<ActionResult<Response<PerfilModelo>>> ActualizarPerfil(Guid idPerfil, PerfilModelo entPerfilCreacion)
         {
-            Response<perfilModelo> response = await busPerfiles.BUpdate(perfilModelo);
+            Response<PerfilModelo> response = await busPerfiles.BUpdate(entPerfilCreacion);
+            return StatusCode((int)response.HttpCode, response);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Response<List<PerfilModelo>>>> ObtenerPerfiles()
+        {
+            Response<List<PerfilModelo>> response = await busPerfiles.BGetAll();
+            return StatusCode((int)response.HttpCode, response);
+        }
+
+        [HttpDelete("{idPerfil}")]
+        public async Task<ActionResult<Response<bool>>> ELiminarPerfil(Guid idPerfil)
+        {
+            Response<bool> response = await busPerfiles.BDelete(idPerfil);
             return StatusCode((int)response.HttpCode, response);
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 using Data.cs;
-using Data.cs.Entities;
+using Data.cs.Entities.Catalogos;
 using Entities;
 using Entities.JsonRequest.Clientes;
 using Entities.Models;

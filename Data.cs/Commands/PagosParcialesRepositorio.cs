@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Business.Data;
-using Data.cs.Entities;
+using Data.cs.Entities.Catalogos;
 using Entities;
 using Entities.Models;
 using Microsoft.EntityFrameworkCore;
