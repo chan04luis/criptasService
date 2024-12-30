@@ -3,8 +3,8 @@ using Business.Data;
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
-using Entities;
 using Microsoft.AspNetCore.Http;
+using Modelos.Models;
 using Modelos.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace Business.Implementation.Seguridad
 {
@@ -44,9 +45,9 @@ namespace Business.Implementation.Seguridad
                     return response.GetResponse(validarLogin);
                 }
 
-                Response<Usuarios> obtenerUsuario = await _datUsuario.DLogin(loginModel.sUserName, loginModel.sPassword);
+                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGet(loginModel.sCorreo, loginModel.sPassword);
 
-                Usuarios usuario = obtenerUsuario.Result;
+                EntUsuarios usuario = obtenerUsuario.Result;
 
                 UsuarioModelo usuarioMapeado = mapeador.Map<UsuarioModelo>(usuario);
 
@@ -115,7 +116,7 @@ namespace Business.Implementation.Seguridad
             return response;
 
         }
-        private string GenerarToken(Usuarios usuario)
+        private string GenerarToken(EntUsuarios usuario)
         {
             var authClaims = new List<Claim>
                   {
@@ -137,9 +138,9 @@ namespace Business.Implementation.Seguridad
                 return response.GetBadRequest("No se ingresó información");
             }
 
-            if (string.IsNullOrWhiteSpace(entLoginRequest.sUserName))
+            if (string.IsNullOrWhiteSpace(entLoginRequest.sCorreo))
             {
-                return response.GetBadRequest("No se ingresó el usuario");
+                return response.GetBadRequest("No se ingresó el correo");
             }
 
             if (string.IsNullOrWhiteSpace(entLoginRequest.sPassword))

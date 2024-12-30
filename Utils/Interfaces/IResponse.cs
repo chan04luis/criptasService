@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Entities
+namespace Utils.Interfaces
 {
     public interface IResponse<T>
     {

@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
-using Entities;
+using Business.Interfaces.Catalogos;
 using Microsoft.Extensions.Logging;
+using Modelos.Models;
+using Utils;
+
 
 namespace Business.Implementation.Catalogos
 {

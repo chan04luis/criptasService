@@ -8,19 +8,19 @@ using Newtonsoft.Json.Serialization;
 using Business.Data;
 using Data.cs.Commands;
 using Microsoft.Extensions.Options;
-using Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using FluentValidation;
-using Entities.Validations.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Data.cs.Commands.Seguridad;
 using Business.Interfaces.Seguridad;
 using Business.Implementation.Seguridad;
 using Business.Implementation.Catalogos;
 using Business.Interfaces.Catalogos;
+using Modelos.Models;
+using Modelos.Validations.Seguridad;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT

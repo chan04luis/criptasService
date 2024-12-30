@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.Models;
-using Entities.Request.Secciones;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request.Secciones;
+using Utils;
 
 namespace Data.cs.Commands
 {

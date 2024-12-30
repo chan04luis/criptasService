@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Data.cs;
 using System.Net;
-using Entities;
 using Microsoft.EntityFrameworkCore;
-using Entities.Request.Fallecidos;
 using Data.cs.Entities.Catalogos;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Fallecidos;
 
 public class FallecidosRepositorio : IFallecidosRepositorio
 {

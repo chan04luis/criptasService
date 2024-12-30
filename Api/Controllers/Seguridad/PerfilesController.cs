@@ -1,9 +1,7 @@
-﻿using Business.Implementation.Seguridad;
-using Business.Interfaces.Seguridad;
-using Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
 using Modelos.Seguridad;
+using Utils;
 
 namespace Api.Controllers.Seguridad
 {

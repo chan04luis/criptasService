@@ -1,6 +1,6 @@
-﻿using Entities.Models;
-using Entities.Request.Secciones;
-using Entities;
+﻿using Modelos.Models;
+using Modelos.Request.Secciones;
+using Utils;
 
 namespace Business.Data
 {

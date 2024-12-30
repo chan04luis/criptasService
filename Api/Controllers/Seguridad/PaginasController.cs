@@ -1,8 +1,7 @@
 ﻿using Business.Interfaces.Seguridad;
-using Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Modelos.Seguridad;
+using Utils;
 
 namespace Api.Controllers.Seguridad
 {
@@ -32,6 +31,7 @@ namespace Api.Controllers.Seguridad
         public async Task<ActionResult<Response<bool>>> EliminarPagina(Guid idPagina)
         {
             Response<bool> response = await busPagina.BDelete(idPagina);
-
+            return StatusCode((int)response.HttpCode, response);
         }
     }
+}

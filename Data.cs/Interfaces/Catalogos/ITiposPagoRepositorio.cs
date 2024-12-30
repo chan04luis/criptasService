@@ -1,5 +1,5 @@
-﻿using Entities.Request.TipoPagos;
-using Entities;
+﻿using Modelos.Request.TipoPagos;
+using Utils;
 
 namespace Business.Data
 {

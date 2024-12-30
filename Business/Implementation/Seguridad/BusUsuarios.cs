@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Business.Data;
-using Entities.JsonRequest.Usuarios;
-using Entities.Request.Usuarios;
-using Entities;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,10 +12,13 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Entities.Responses.Usuarios;
 using FluentValidation;
-using Entities.Validations.Seguridad;
 using Business.Interfaces.Seguridad;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Usuarios;
+using Modelos.Validations.Seguridad;
+using Modelos.Responses.Iglesia;
 
 namespace Business.Implementation.Seguridad
 {

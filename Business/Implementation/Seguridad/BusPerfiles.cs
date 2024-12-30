@@ -2,7 +2,6 @@
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
-using Entities;
 using Microsoft.Extensions.Logging;
 using Modelos.Seguridad;
 using System;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace Business.Implementation.Seguridad
 {
@@ -30,7 +30,7 @@ namespace Business.Implementation.Seguridad
 
             try
             {
-                Response<List<Perfil>> existName = await perfilesRepositorio.AnyExitName(createModel.NombrePerfil);
+                Response<bool> existName = await perfilesRepositorio.AnyExitName(createModel.NombrePerfil);
              
                 if (existName.Result)
                 {

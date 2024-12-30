@@ -1,5 +1,6 @@
-﻿using Entities;
-using Entities.Request.Fallecidos;
+﻿using Modelos.Models;
+using Modelos.Request.Fallecidos;
+using Utils;
 
 public interface IFallecidosRepositorio
 {

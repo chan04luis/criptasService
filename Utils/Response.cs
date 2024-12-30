@@ -1,7 +1,8 @@
 ﻿
 using System.Net;
+using Utils.Interfaces;
 
-namespace Entities
+namespace Utils
 {
     public class Response<T> : IResponse<T>
     {

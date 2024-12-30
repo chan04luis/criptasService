@@ -1,10 +1,12 @@
-﻿using Business.Interfaces.Catalogos;
-using Entities;
-using Entities.JsonRequest.Clientes;
-using Entities.Models;
+﻿
+using Business.Interfaces.Catalogos;
+using Utils;
+using Modelos.Request.Clientes;
+using Modelos.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Modelos.Request;
 
 namespace Api.Controllers
 {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Business.Data;
-using Entities.JsonRequest.Iglesias;
-using Entities.Models;
-using Entities;
 using Microsoft.Extensions.Logging;
 using Utils.Interfaces;
-using Entities.Responses.Iglesia;
 using Business.Interfaces.Catalogos;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Iglesias;
+using Modelos.Responses.Iglesia;
 
 namespace Business.Implementation.Catalogos
 {

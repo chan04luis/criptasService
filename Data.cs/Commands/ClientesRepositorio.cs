@@ -2,10 +2,10 @@
 using AutoMapper;
 using Data.cs;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.JsonRequest.Clientes;
-using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request;
+using Utils;
 
 public class ClientesRepositorio : IClientesRepositorio
 {

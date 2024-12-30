@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.JsonRequest.Zonas;
-using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request.Zonas;
+using Utils;
 
 namespace Data.cs.Commands
 {
@@ -272,5 +272,6 @@ namespace Data.cs.Commands
             return response;
         }
     }
-
 }
+
+

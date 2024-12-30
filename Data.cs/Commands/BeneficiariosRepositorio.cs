@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Data.cs;
 using System.Net;
-using Entities;
+using Modelos;
 using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Catalogos;
+using Utils;
+using Modelos.Models;
 
 public class BeneficiariosRepositorio : IBeneficiariosRepositorio
 {

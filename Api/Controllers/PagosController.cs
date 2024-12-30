@@ -1,11 +1,11 @@
 ﻿using Business.Interfaces.Catalogos;
-using Entities;
-using Entities.Models;
-using Entities.Request.Pagos;
-using Entities.Request.TipoPagos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modelos.Models;
+using Modelos.Request.Pagos;
+using Modelos.Request.TipoPagos;
 using Swashbuckle.AspNetCore.Annotations;
+using Utils;
 
 namespace Api.Controllers
 {

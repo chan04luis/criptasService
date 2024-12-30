@@ -1,10 +1,11 @@
-﻿using Entities.Models;
-using Entities;
-using Utils.Interfaces;
+﻿using Utils.Interfaces;
 using Microsoft.Extensions.Logging;
-using Entities.JsonRequest.Clientes;
 using AutoMapper;
 using Business.Interfaces.Catalogos;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Clientes;
+using Modelos.Request;
 
 namespace Business.Implementation.Catalogos
 {

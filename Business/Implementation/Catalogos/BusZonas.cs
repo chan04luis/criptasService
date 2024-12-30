@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Business.Data;
-using Entities.JsonRequest.Zonas;
-using Entities.Models;
-using Entities;
 using Microsoft.Extensions.Logging;
 using Utils.Interfaces;
 using Business.Interfaces.Catalogos;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Zonas;
 
 namespace Business.Implementation.Catalogos
 {

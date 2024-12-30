@@ -2,9 +2,11 @@
 using Business.Data;
 using Data.cs;
 using Data.cs.Entities.Seguridad;
-using Entities;
-using Entities.Request.Usuarios;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request.Usuarios;
+using Utils;
+using Utils.Interfaces;
 
 public class UsuariosRepositorio : IUsuariosRepositorio
 {
@@ -268,7 +270,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         try
         {
             var user = await dbContext.Usuarios.AsNoTracking()
-                .FirstOrDefaultAsync(u => u.sCorreo == loginRequest.sCorreo && u.bEliminado == false);
+                .FirstOrDefaultAsync(u => u.sCorreo == loginRequest.sCorreo && u.sContra==loginRequest.sContra && u.bEliminado == false);
 
             if (user == null)
             {
@@ -293,6 +295,23 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         catch (Exception ex)
         {
             response.SetError(ex);
+        }
+        return response;
+    }
+    public async Task<Response<EntUsuarios>> DGet(string correo, string sPassword)
+    {
+        var response = new Response<EntUsuarios>();
+        try
+        {
+            var usuario = await dbContext.Usuarios
+                        .SingleOrDefaultAsync(u => u.sCorreo == correo && u.sContra == sPassword);
+
+            response.SetSuccess(_mapper.Map<EntUsuarios>(usuario));
+        }
+        catch (Exception ex)
+        {
+
+            throw;
         }
         return response;
     }

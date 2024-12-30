@@ -1,12 +1,12 @@
 ﻿using Business.Interfaces.Catalogos;
-using Entities;
-using Entities.Models;
-using Entities.Request.Criptas;
-using Entities.Request.Fallecidos;
-using Entities.Request.Visitas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modelos.Models;
+using Modelos.Request.Criptas;
+using Modelos.Request.Fallecidos;
+using Modelos.Request.Visitas;
 using Swashbuckle.AspNetCore.Annotations;
+using Utils;
 
 namespace Api.Controllers
 {

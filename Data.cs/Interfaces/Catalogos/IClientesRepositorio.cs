@@ -1,7 +1,6 @@
-﻿
-using Entities;
-using Entities.JsonRequest.Clientes;
-using Entities.Models;
+﻿using Modelos.Models;
+using Modelos.Request;
+using Utils;
 
 public interface IClientesRepositorio
 {

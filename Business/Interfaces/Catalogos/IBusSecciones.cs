@@ -1,6 +1,6 @@
-﻿using Entities.Models;
-using Entities.Request.Secciones;
-using Entities;
+﻿using Utils;
+using Modelos.Models;
+using Modelos.Request.Secciones;
 
 namespace Business.Interfaces.Catalogos
 {

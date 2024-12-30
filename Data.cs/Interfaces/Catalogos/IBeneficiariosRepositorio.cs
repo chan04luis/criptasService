@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Modelos.Models;
+using Utils;
 
 public interface IBeneficiariosRepositorio
 {

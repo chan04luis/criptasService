@@ -1,8 +1,6 @@
-﻿using Entities;
-using Entities.Request.Visitas;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Modelos.Models;
+using Modelos.Request.Visitas;
+using Utils;
 
 public interface IVisitasRepositorio
 {

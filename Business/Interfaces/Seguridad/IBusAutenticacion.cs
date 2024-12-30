@@ -1,10 +1,5 @@
-﻿using Entities;
-using Modelos.Seguridad;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Modelos.Seguridad;
+using Utils;
 
 namespace Business.Interfaces.Seguridad
 {

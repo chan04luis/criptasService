@@ -1,10 +1,9 @@
 ﻿using Business.Interfaces.Seguridad;
-using Entities;
-using Entities.JsonRequest.Usuarios;
-using Entities.Request.Usuarios;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modelos.Models;
+using Modelos.Request.Usuarios;
 using Swashbuckle.AspNetCore.Annotations;
+using Utils;
 namespace Api.Controllers.Seguridad
 {
     [Route("api/Usuarios")]

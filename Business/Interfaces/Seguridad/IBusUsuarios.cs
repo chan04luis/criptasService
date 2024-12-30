@@ -1,7 +1,7 @@
-﻿using Entities.JsonRequest.Usuarios;
-using Entities.Request.Usuarios;
-using Entities;
-using Entities.Responses.Usuarios;
+﻿using Utils;
+using Modelos.Models;
+using Modelos.Request.Usuarios;
+using Modelos.Responses.Iglesia;
 
 namespace Business.Interfaces.Seguridad
 {

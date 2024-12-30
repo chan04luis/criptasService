@@ -1,6 +1,6 @@
-﻿using Entities.Models;
-using Entities.Request.Pagos;
-using Entities;
+﻿using Modelos.Models;
+using Utils;
+using Modelos.Request.Pagos;
 
 namespace Business.Interfaces.Catalogos
 {

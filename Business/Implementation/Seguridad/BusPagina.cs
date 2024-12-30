@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Business.Interfaces.Seguridad;
-using Data.cs.Commands.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
-using Entities;
 using Modelos.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace Business.Implementation.Seguridad
 {

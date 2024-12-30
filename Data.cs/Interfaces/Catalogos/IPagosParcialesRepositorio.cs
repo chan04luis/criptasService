@@ -1,5 +1,6 @@
-﻿using Entities.Models;
-using Entities;
+﻿using Modelos.Models;
+using Utils;
+
 namespace Business.Data
 {
     public interface IPagosParcialesRepositorio

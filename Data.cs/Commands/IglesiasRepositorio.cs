@@ -2,11 +2,11 @@
 using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.JsonRequest.Iglesias;
-using Entities.Models;
-using Entities.Responses.Iglesia;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request.Iglesias;
+using Modelos.Responses.Iglesia;
+using Utils;
 
 namespace Data.cs.Commands
 {

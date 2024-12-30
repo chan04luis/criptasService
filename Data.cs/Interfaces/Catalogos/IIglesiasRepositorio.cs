@@ -1,7 +1,7 @@
-﻿using Entities.Models;
-using Entities;
-using Entities.JsonRequest.Iglesias;
-using Entities.Responses.Iglesia;
+﻿using Modelos.Models;
+using Modelos.Request.Iglesias;
+using Modelos.Responses.Iglesia;
+using Utils;
 
 namespace Business.Data
 {

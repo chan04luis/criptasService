@@ -1,7 +1,7 @@
-﻿using Entities.JsonRequest.Iglesias;
-using Entities.Models;
-using Entities;
-using Entities.Responses.Iglesia;
+﻿using Utils;
+using Modelos.Models;
+using Modelos.Request.Iglesias;
+using Modelos.Responses.Iglesia;
 
 namespace Business.Interfaces.Catalogos
 {

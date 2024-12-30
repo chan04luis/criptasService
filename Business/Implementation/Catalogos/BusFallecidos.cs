@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
-using Entities.Request.Fallecidos;
-using Entities;
 using Microsoft.Extensions.Logging;
+using Business.Interfaces.Catalogos;
+using Modelos.Models;
+using Modelos.Request.Fallecidos;
+using Utils;
 
 namespace Business.Implementation.Catalogos
 {

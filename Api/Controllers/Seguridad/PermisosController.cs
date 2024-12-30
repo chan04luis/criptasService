@@ -1,9 +1,7 @@
-﻿using Business.Implementation.Seguridad;
-using Business.Interfaces.Seguridad;
-using Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
 using Modelos.Seguridad;
+using Utils;
 
 namespace Api.Controllers.Seguridad
 {
@@ -17,9 +15,9 @@ namespace Api.Controllers.Seguridad
             this.busPermisos = busPermisos;
         }
         [HttpGet("perfiles/{idPerfil}/permisos")]
-        public async Task<ActionResult<Response<PerfilModelo>>> ObtenerPermisos(Guid idPerfil)
+        public async Task<ActionResult<Response<PerfilPermisosModelo>>> ObtenerPermisos(Guid idPerfil)
         {
-            Response<PerfilModelo> response = await busPermisos.ObtenerPermisos(idPerfil);
+            Response<PerfilPermisosModelo> response = await busPermisos.ObtenerPermisos(idPerfil);
             return StatusCode((int)response.HttpCode, response);
         }
 

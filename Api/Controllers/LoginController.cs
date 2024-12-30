@@ -1,16 +1,16 @@
 ﻿using Api.Controllers.Seguridad;
 using AutoMapper;
 using Business.Interfaces.Seguridad;
-using Entities;
-using Entities.Request.Usuarios;
-using Entities.Responses.Usuarios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Modelos.Request.Usuarios;
+using Modelos.Responses.Iglesia;
 using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Utils;
 
 namespace Api.Controllers
 {

@@ -1,14 +1,13 @@
 ﻿using Business.Interfaces.Catalogos;
-using Entities;
-using Entities.JsonRequest.Iglesias;
-using Entities.JsonRequest.Zonas;
-using Entities.Models;
-using Entities.Request.Secciones;
-using Entities.Responses.Iglesia;
-using Entities.Responses.Zonas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Modelos.Models;
+using Modelos.Request.Iglesias;
+using Modelos.Request.Secciones;
+using Modelos.Request.Zonas;
+using Modelos.Responses.Iglesia;
 using Swashbuckle.AspNetCore.Annotations;
+using Utils;
 
 namespace Api.Controllers
 {

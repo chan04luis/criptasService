@@ -1,6 +1,6 @@
-﻿using Entities.JsonRequest.Zonas;
-using Entities.Models;
-using Entities;
+﻿using Utils;
+using Modelos.Request.Zonas;
+using Modelos.Models;
 namespace Business.Interfaces.Catalogos
 {
     public interface IBusZonas

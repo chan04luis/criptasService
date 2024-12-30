@@ -2,11 +2,11 @@
 using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.Models;
-using Entities.Request.Criptas;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Models;
+using Modelos.Request.Criptas;
 using System.Net;
+using Utils;
 
 namespace Data.cs.Commands
 {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Business.Data;
-using Entities.Models;
-using Entities.Request.Pagos;
-using Entities;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using Business.Interfaces.Catalogos;
+using Utils;
+using Modelos.Models;
+using Modelos.Request.Pagos;
 
 namespace Business.Implementation.Catalogos
 {

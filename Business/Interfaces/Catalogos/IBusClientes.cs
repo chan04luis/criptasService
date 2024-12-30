@@ -1,6 +1,7 @@
-﻿using Entities.Models;
-using Entities;
-using Entities.JsonRequest.Clientes;
+﻿using Utils;
+using Modelos.Models;
+using Modelos.Request.Clientes;
+using Modelos.Request;
 
 namespace Business.Interfaces.Catalogos
 {

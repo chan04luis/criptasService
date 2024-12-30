@@ -1,6 +1,6 @@
-﻿using Entities.Models;
-using Entities.Request.Criptas;
-using Entities;
+﻿using Utils;
+using Modelos.Models;
+using Modelos.Request.Criptas;
 
 namespace Business.Interfaces.Catalogos
 {

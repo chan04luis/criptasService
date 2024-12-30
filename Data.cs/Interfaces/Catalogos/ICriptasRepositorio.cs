@@ -1,7 +1,6 @@
-﻿
-using Entities.Models;
-using Entities.Request.Criptas;
-using Entities;
+﻿using Modelos.Models;
+using Modelos.Request.Criptas;
+using Utils;
 
 namespace Business.Data
 {

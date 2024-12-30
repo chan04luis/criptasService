@@ -1,6 +1,6 @@
-﻿using Entities.JsonRequest.Zonas;
-using Entities.Models;
-using Entities;
+﻿using Modelos.Models;
+using Modelos.Request.Zonas;
+using Utils;
 
 namespace Business.Data
 {

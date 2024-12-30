@@ -1,7 +1,7 @@
-﻿
-using Entities;
-using Entities.JsonRequest.Usuarios;
-using Entities.Request.Usuarios;
+﻿using Modelos.Models;
+using Modelos.Request.Usuarios;
+using Utils;
+using Utils.Interfaces;
 
 namespace Business.Data
 {
@@ -18,5 +18,6 @@ namespace Business.Data
         Task<Response<List<EntUsuarios>>> DGetList();
         Task<Response<List<EntUsuarios>>> DGetByFilters(EntUsuarioSearchRequest search);
         Task<Response<EntUsuarios>> DLogin(EntUsuarioLoginRequest loginRequest);
+        Task<Response<EntUsuarios>> DGet(string correo, string sPassword);
     }
 }

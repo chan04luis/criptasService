@@ -1,7 +1,6 @@
-﻿
-using Entities.Models;
-using Entities.Request.Pagos;
-using Entities;
+﻿using Modelos.Models;
+using Modelos.Request.Pagos;
+using Utils;
 
 namespace Business.Data
 {

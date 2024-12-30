@@ -1,10 +1,10 @@
 ﻿using Business.Interfaces.Seguridad;
-using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Modelos.Seguridad;
+using Utils;
 
 namespace Api.Controllers.Seguridad
 {

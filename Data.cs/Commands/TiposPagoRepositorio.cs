@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
-using Entities;
-using Entities.Request.TipoPagos;
 using Microsoft.EntityFrameworkCore;
+using Modelos.Request.TipoPagos;
 using System.Net;
+using Utils;
 
 namespace Data.cs.Commands
 {

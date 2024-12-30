@@ -3,6 +3,7 @@ using Data.cs.Entities.Catalogos;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Mapping;
 using Data.cs.Mapping.Seguridad;
+using Data.cs.Mapping.Catalogos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.cs
