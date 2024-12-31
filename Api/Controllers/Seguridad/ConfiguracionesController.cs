@@ -1,6 +1,6 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using Utils;
 
 namespace Api.Controllers.Seguridad

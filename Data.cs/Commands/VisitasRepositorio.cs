@@ -4,8 +4,8 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Visitas;
+using Models.Models;
+using Models.Request.Visitas;
 
 public class VisitasRepositorio : IVisitasRepositorio
 {

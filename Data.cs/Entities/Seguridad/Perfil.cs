@@ -13,9 +13,9 @@ namespace Data.cs.Entities.Seguridad
         public string NombrePerfil { get; set; }
         public bool Eliminable { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public string UsuarioCreacion { get; set; }
+        public Guid UsuarioCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
-        public string UsuarioModificacion { get; set; }
+        public Guid UsuarioModificacion { get; set; }
         public bool Activo { get; set; }
     }
 }

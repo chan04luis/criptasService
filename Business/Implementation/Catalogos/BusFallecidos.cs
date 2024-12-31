@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Business.Interfaces.Catalogos;
-using Modelos.Models;
-using Modelos.Request.Fallecidos;
+using Models.Models;
+using Models.Request.Fallecidos;
 using Utils;
 
 namespace Business.Implementation.Catalogos

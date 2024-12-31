@@ -2,7 +2,7 @@
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Request.TipoPagos;
+using Models.Request.TipoPagos;
 using System.Net;
 using Utils;
 

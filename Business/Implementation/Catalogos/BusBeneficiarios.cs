@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Business.Interfaces.Catalogos;
 using Microsoft.Extensions.Logging;
-using Modelos.Models;
+using Models.Models;
+using Models.Request.Beneficiarios;
 using Utils;
 
 

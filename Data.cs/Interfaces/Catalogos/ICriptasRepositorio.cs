@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request.Criptas;
+﻿using Models.Models;
+using Models.Request.Criptas;
 using Utils;
 
 namespace Business.Data

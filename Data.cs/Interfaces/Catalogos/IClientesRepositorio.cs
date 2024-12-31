@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request;
+﻿using Models.Models;
+using Models.Request.Clientes;
 using Utils;
 
 public interface IClientesRepositorio

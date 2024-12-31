@@ -3,8 +3,8 @@ using AutoMapper;
 using Data.cs;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Models;
-using Modelos.Request;
+using Models.Models;
+using Models.Request.Clientes;
 using Utils;
 
 public class ClientesRepositorio : IClientesRepositorio

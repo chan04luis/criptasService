@@ -1,6 +1,6 @@
 ﻿using Utils;
-using Modelos.Request.Zonas;
-using Modelos.Models;
+using Models.Request.Zonas;
+using Models.Models;
 namespace Business.Interfaces.Catalogos
 {
     public interface IBusZonas

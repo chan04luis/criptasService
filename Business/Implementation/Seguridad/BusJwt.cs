@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

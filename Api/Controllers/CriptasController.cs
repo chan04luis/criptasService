@@ -1,10 +1,11 @@
 ﻿using Business.Interfaces.Catalogos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modelos.Models;
-using Modelos.Request.Criptas;
-using Modelos.Request.Fallecidos;
-using Modelos.Request.Visitas;
+using Models.Models;
+using Models.Request.Beneficiarios;
+using Models.Request.Criptas;
+using Models.Request.Fallecidos;
+using Models.Request.Visitas;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 

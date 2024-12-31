@@ -1,4 +1,5 @@
-﻿using Modelos.Models;
+﻿using Models.Models;
+using Models.Request.Beneficiarios;
 using Utils;
 
 namespace Business.Interfaces.Catalogos

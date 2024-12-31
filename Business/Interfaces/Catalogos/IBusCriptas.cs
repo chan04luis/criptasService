@@ -1,6 +1,6 @@
 ﻿using Utils;
-using Modelos.Models;
-using Modelos.Request.Criptas;
+using Models.Models;
+using Models.Request.Criptas;
 
 namespace Business.Interfaces.Catalogos
 {

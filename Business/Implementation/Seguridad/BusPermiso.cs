@@ -3,7 +3,7 @@ using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Http;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

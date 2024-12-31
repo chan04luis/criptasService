@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 using Utils.Interfaces;
 using Business.Interfaces.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Iglesias;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Iglesias;
+using Models.Responses.Iglesia;
 
 namespace Business.Implementation.Catalogos
 {

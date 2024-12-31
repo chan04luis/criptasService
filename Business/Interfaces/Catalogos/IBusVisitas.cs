@@ -1,6 +1,6 @@
 ﻿using Utils;
-using Modelos.Models;
-using Modelos.Request.Visitas;
+using Models.Models;
+using Models.Request.Visitas;
 namespace Business.Interfaces.Catalogos
 {
     public interface IBusVisitas

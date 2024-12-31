@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request.Secciones;
+﻿using Models.Models;
+using Models.Request.Secciones;
 using Utils;
 
 namespace Business.Data

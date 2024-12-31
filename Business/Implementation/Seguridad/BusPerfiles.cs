@@ -3,7 +3,7 @@ using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.Extensions.Logging;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Linq;

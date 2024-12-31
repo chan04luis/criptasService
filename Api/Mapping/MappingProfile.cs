@@ -1,17 +1,21 @@
 ﻿using AutoMapper;
 using Data.cs.Entities.Catalogos;
 using Data.cs.Entities.Seguridad;
-using Modelos.Models;
-using Modelos.Request;
-using Modelos.Request.Criptas;
-using Modelos.Request.Fallecidos;
-using Modelos.Request.Iglesias;
-using Modelos.Request.Pagos;
-using Modelos.Request.Secciones;
-using Modelos.Request.TipoPagos;
-using Modelos.Request.Usuarios;
-using Modelos.Request.Zonas;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request;
+using Models.Request.Beneficiarios;
+using Models.Request.Clientes;
+using Models.Request.Criptas;
+using Models.Request.Fallecidos;
+using Models.Request.Iglesias;
+using Models.Request.Pagos;
+using Models.Request.Secciones;
+using Models.Request.TipoPagos;
+using Models.Request.Usuarios;
+using Models.Request.Zonas;
+using Models.Responses.Iglesia;
+using Models.Responses.Usuarios;
+using Models.Responses.Zonas;
 
 
 public class MappingProfile : Profile

@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 using Utils.Interfaces;
 using Business.Interfaces.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Secciones;
+using Models.Models;
+using Models.Request.Secciones;
 
 namespace Business.Implementation.Catalogos
 {

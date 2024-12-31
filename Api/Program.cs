@@ -19,8 +19,8 @@ using Business.Interfaces.Seguridad;
 using Business.Implementation.Seguridad;
 using Business.Implementation.Catalogos;
 using Business.Interfaces.Catalogos;
-using Modelos.Models;
-using Modelos.Validations.Seguridad;
+using Models.Models;
+using Models.Validations.Seguridad;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT

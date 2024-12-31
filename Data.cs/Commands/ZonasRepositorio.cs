@@ -2,8 +2,8 @@
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Models;
-using Modelos.Request.Zonas;
+using Models.Models;
+using Models.Request.Zonas;
 using Utils;
 
 namespace Data.cs.Commands

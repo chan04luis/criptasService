@@ -1,6 +1,6 @@
 ﻿using Utils;
-using Modelos.Models;
-using Modelos.Request.Secciones;
+using Models.Models;
+using Models.Request.Secciones;
 
 namespace Business.Interfaces.Catalogos
 {

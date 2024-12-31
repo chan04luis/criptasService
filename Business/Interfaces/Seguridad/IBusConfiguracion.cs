@@ -1,4 +1,4 @@
-﻿using Modelos.Seguridad;
+﻿using Models.Seguridad;
 using Utils;
 
 namespace Business.Interfaces.Seguridad

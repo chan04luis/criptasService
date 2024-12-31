@@ -1,11 +1,11 @@
 ﻿using Business.Interfaces.Catalogos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modelos.Models;
-using Modelos.Request.Iglesias;
-using Modelos.Request.Secciones;
-using Modelos.Request.Zonas;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Iglesias;
+using Models.Request.Secciones;
+using Models.Request.Zonas;
+using Models.Responses.Iglesia;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 

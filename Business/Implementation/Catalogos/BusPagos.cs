@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 using System.Net;
 using Business.Interfaces.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Pagos;
+using Models.Models;
+using Models.Request.Pagos;
 
 namespace Business.Implementation.Catalogos
 {

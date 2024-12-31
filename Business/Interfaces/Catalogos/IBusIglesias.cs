@@ -1,7 +1,7 @@
 ﻿using Utils;
-using Modelos.Models;
-using Modelos.Request.Iglesias;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Iglesias;
+using Models.Responses.Iglesia;
 
 namespace Business.Interfaces.Catalogos
 {

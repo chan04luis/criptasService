@@ -1,4 +1,4 @@
-﻿using Modelos.Request.TipoPagos;
+﻿using Models.Request.TipoPagos;
 using Utils;
 
 namespace Business.Data

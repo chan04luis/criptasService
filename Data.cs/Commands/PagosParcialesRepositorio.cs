@@ -2,7 +2,7 @@
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Models;
+using Models.Models;
 using Utils;
 
 namespace Data.cs.Commands

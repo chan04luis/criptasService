@@ -3,9 +3,9 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Business.Interfaces.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Clientes;
-using Modelos.Request;
+using Models.Models;
+using Models.Request.Clientes;
+using Models.Request;
 
 namespace Business.Implementation.Catalogos
 {

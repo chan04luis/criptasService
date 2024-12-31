@@ -1,7 +1,7 @@
 ﻿using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using Utils;
 
 namespace Data.cs.Commands.Seguridad

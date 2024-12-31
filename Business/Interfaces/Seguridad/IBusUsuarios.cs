@@ -1,7 +1,8 @@
 ﻿using Utils;
-using Modelos.Models;
-using Modelos.Request.Usuarios;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Usuarios;
+using Models.Responses.Iglesia;
+using Models.Responses.Usuarios;
 
 namespace Business.Interfaces.Seguridad
 {

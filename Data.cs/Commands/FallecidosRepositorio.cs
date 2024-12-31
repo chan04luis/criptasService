@@ -4,8 +4,8 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Catalogos;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Fallecidos;
+using Models.Models;
+using Models.Request.Fallecidos;
 
 public class FallecidosRepositorio : IFallecidosRepositorio
 {

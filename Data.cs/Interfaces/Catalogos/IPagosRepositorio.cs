@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request.Pagos;
+﻿using Models.Models;
+using Models.Request.Pagos;
 using Utils;
 
 namespace Business.Data

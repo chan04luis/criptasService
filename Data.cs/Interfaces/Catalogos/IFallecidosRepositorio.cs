@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request.Fallecidos;
+﻿using Models.Models;
+using Models.Request.Fallecidos;
 using Utils;
 
 public interface IFallecidosRepositorio

@@ -1,5 +1,5 @@
-﻿using Modelos.Models;
-using Modelos.Request.Visitas;
+﻿using Models.Models;
+using Models.Request.Visitas;
 using Utils;
 
 public interface IVisitasRepositorio

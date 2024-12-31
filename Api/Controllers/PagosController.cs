@@ -1,9 +1,9 @@
 ﻿using Business.Interfaces.Catalogos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Modelos.Models;
-using Modelos.Request.Pagos;
-using Modelos.Request.TipoPagos;
+using Models.Models;
+using Models.Request.Pagos;
+using Models.Request.TipoPagos;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 

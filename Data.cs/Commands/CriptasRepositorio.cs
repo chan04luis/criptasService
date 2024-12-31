@@ -3,8 +3,8 @@ using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Models;
-using Modelos.Request.Criptas;
+using Models.Models;
+using Models.Request.Criptas;
 using System.Net;
 using Utils;
 

@@ -15,10 +15,11 @@ using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
 using Business.Interfaces.Seguridad;
 using Utils;
-using Modelos.Models;
-using Modelos.Request.Usuarios;
-using Modelos.Validations.Seguridad;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Usuarios;
+using Models.Validations.Seguridad;
+using Models.Responses.Iglesia;
+using Models.Responses.Usuarios;
 
 namespace Business.Implementation.Seguridad
 {

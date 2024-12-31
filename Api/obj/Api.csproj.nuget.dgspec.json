@@ -36,8 +36,8 @@
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Business.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Business.csproj"
               },
-              "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj": {
-                "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj"
+              "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj"
               },
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj"
@@ -177,9 +177,6 @@
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Entities\\Modelos.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Entities\\Modelos.csproj"
               },
-              "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj": {
-                "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj"
-              },
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj"
               }
@@ -278,8 +275,8 @@
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Entities\\Modelos.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Entities\\Modelos.csproj"
               },
-              "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj": {
-                "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj"
+              "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj"
               },
               "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj": {
                 "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Utils\\Utils.csproj"
@@ -436,14 +433,14 @@
         }
       }
     },
-    "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj": {
+    "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj",
-        "projectName": "Modelos",
-        "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\Modelos.csproj",
+        "projectUniqueName": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Luis Herrera\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Modelos\\obj\\",
+        "outputPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -482,10 +479,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.11.0, )"

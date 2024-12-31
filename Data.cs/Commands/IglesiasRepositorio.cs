@@ -3,9 +3,9 @@ using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
-using Modelos.Models;
-using Modelos.Request.Iglesias;
-using Modelos.Responses.Iglesia;
+using Models.Models;
+using Models.Request.Iglesias;
+using Models.Responses.Iglesia;
 using Utils;
 
 namespace Data.cs.Commands

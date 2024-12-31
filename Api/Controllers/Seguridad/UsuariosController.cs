@@ -1,7 +1,7 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
-using Modelos.Models;
-using Modelos.Request.Usuarios;
+using Models.Models;
+using Models.Request.Usuarios;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 namespace Api.Controllers.Seguridad

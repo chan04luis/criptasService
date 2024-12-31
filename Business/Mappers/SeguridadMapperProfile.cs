@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Data.cs.Entities.Seguridad;
-using Modelos.Seguridad;
+using Models.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Linq;

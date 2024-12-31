@@ -32,7 +32,7 @@ namespace Data.cs.Mapping.Seguridad
                 .HasColumnName("nombre_perfil");
 
             builder.Property(c => c.Eliminable)
-                .HasColumnType("VARCHAR")
+                .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("eliminable");
 
@@ -62,7 +62,7 @@ namespace Data.cs.Mapping.Seguridad
                .HasColumnName("usuario_modificacion");
 
             builder.Property(c => c.Activo)
-                .HasColumnType("bolean")
+                .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("activo");
         }
