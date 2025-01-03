@@ -58,7 +58,7 @@ namespace Data.cs.Commands.Seguridad
                     };
 
                     var entry = dbContext.Modulo.Attach(entModulo);
-                    dbContext.Entry(entModulo).Property(x => x.bBaja).IsModified = true;
+                    dbContext.Entry(entModulo).Property(x => x.bActivo).IsModified = true;
                     bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
                     if (IsModified)
                     {
@@ -113,7 +113,6 @@ namespace Data.cs.Commands.Seguridad
         public async Task<Response<bool>> DUpdate(Modulo entity)
         {
             var response = new Response<bool>();
-            bool success = false;
             try
             {
                 var modulo = await DGet(entity.uIdModulo);
@@ -131,17 +130,18 @@ namespace Data.cs.Commands.Seguridad
                     if (IsModified)
                     {
                         int i = await dbContext.SaveChangesAsync();
+                        if (i == 0)
+                            response.SetError("Datos no eliminados");
+                        else
+                            response.SetSuccess(true);
                     }
                 }
-
-                response.SetSuccess(true);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            response.SetSuccess(success);
             return response;
         }
     }

@@ -147,6 +147,21 @@ builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 builder.Services.AddScoped<IPerfilesRepositorio, PerfilesRepositorio>();
 builder.Services.AddScoped<IBusPerfiles, BusPerfiles>();
 
+builder.Services.AddScoped<IConfiguracionesRepositorio, ConfiguracionesRepositorio>();
+builder.Services.AddScoped<IBusConfiguracion, BusConfiguracion>();
+
+builder.Services.AddScoped<IBotonesRepositorio, BotonesRepositorio>();
+builder.Services.AddScoped<IBusBoton, BusBoton>();
+
+builder.Services.AddScoped<IPaginasRespositorio, PaginasRepositorio>();
+builder.Services.AddScoped<IBusPagina, BusPagina>();
+
+builder.Services.AddScoped<IModulosRepositorio, ModulosRepositorio>();
+builder.Services.AddScoped<IBusModulo, BusModulo>();
+
+builder.Services.AddScoped<IPermisosRepositorio, PermisosRepositorio>();
+builder.Services.AddScoped<IBusPermiso, BusPermiso>();
+
 #endregion
 
 #region Hosted Background Services

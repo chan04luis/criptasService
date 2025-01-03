@@ -32,7 +32,7 @@ namespace Data.cs.Commands.Seguridad
                                  from PerPag in permisoPagina.DefaultIfEmpty()
                                  join perb in dbContext.PermisoBotones.Where(x => x.bActivo == true && x.uIdPerfil == piIdPerfil) on pb.uIdBoton equals perb.uIdBoton into permisoBoton
                                  from PerBot in permisoBoton.DefaultIfEmpty()
-                                 where mod.bActivo == true && mod.bBaja == false
+                                 where mod.bActivo == true
                                  orderby mod.sNombreModulo, mp.sNombrePagina, pb.sNombreBoton
 
                                  select new

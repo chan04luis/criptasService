@@ -21,9 +21,9 @@ namespace Api.Controllers.Seguridad
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpPut("{idModulo}")]
-        public async Task<ActionResult<Response<ModuloModelo>>> ActualizarModulo(ModuloModelo entBDModulo)
+        public async Task<ActionResult<Response<bool>>> ActualizarModulo(ModuloModelo entBDModulo)
         {
-            Response<ModuloModelo> response = await busModulo.BUpdate(entBDModulo);
+            Response<bool> response = await busModulo.BUpdate(entBDModulo);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpDelete("{idModulo}")]

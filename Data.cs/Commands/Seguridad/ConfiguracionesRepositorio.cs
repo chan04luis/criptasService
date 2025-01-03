@@ -23,7 +23,7 @@ namespace Data.cs.Commands.Seguridad
                                  from mp in moduloPagina.DefaultIfEmpty()
                                  join bot in dbContext.Boton.Where(x => x.bActivo == true) on mp.uIdPagina equals bot.uIdPagina into paginaBoton
                                  from pb in paginaBoton.DefaultIfEmpty()
-                                 where mod.bActivo == true && mod.bBaja == false
+                                 where mod.bActivo == true
                                  orderby mod.sPathModulo, mp.sPathPagina, pb.sNombreBoton
 
                                  select new
@@ -123,7 +123,6 @@ namespace Data.cs.Commands.Seguridad
 
                 var entry = dbContext.Configuracion.Attach(entity);
                 dbContext.Entry(entity).Property(x => x.sTituloNavegador).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sTitulo).IsModified = true;
                 dbContext.Entry(entity).Property(x => x.sMetaDescripcion).IsModified = true;
                 dbContext.Entry(entity).Property(x => x.sColorPrimario).IsModified = true;
                 dbContext.Entry(entity).Property(x => x.sColorSecundario).IsModified = true;

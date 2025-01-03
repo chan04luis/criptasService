@@ -15,7 +15,7 @@ namespace Data.cs.Mapping.Seguridad
         public void Configure(EntityTypeBuilder<Configuracion> builder)
         {
             // table
-            builder.ToTable("Configuracion");
+            builder.ToTable("configuracion");
 
             // key
             builder.HasKey(e => e.uIdConfiguracion).HasName("PK_Configuracion");
@@ -23,81 +23,94 @@ namespace Data.cs.Mapping.Seguridad
             // properties
             builder.Property(e => e.uIdConfiguracion)
                 .HasColumnType("uuid")
-                .HasColumnName("Id");
+                .HasColumnName("id");
 
             builder.Property(e => e.sTituloNavegador)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("TituloNavegador");
+                .HasColumnName("titulo_navegador");
 
             builder.Property(e => e.sMetaDescripcion)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("MetaDescription");
+                .HasColumnName("meta_descripcion");
 
             builder.Property(e => e.sColorPrimario)
                 .HasColumnType("VARCHAR(7)")
                 .IsUnicode(false)
-                .HasColumnName("ColorPrimario");
+                .HasColumnName("color_primario");
 
             builder.Property(e => e.sColorSecundario)
                 .HasColumnType("VARCHAR(7)")
                 .IsUnicode(false)
-                .HasColumnName("ColorSecundario");
+                .HasColumnName("color_secundario");
 
             builder.Property(e => e.sContrastePrimario)
                 .HasColumnType("VARCHAR(7)")
                 .IsUnicode(false)
-                .HasColumnName("ContrastePrimario");
+                .HasColumnName("contraste_primario");
 
             builder.Property(e => e.sContrasteSecundario)
                 .HasColumnType("VARCHAR(7)")
                 .IsUnicode(false)
-                .HasColumnName("ContrasteSecundario");
+                .HasColumnName("contraste_secundario");
 
             builder.Property(e => e.sUrlFuente)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("UrlFuente");
+                .HasColumnName("url_fuente");
 
             builder.Property(e => e.sNombreFuente)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("NombreFuente");
+                .HasColumnName("nombre_fuente");
 
             builder.Property(e => e.sRutaImagenFondo)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("RutaImagenFondo");
+                .HasColumnName("ruta_imagen_fondo");
 
             builder.Property(e => e.sRutaImagenLogo)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("RutaImagenLogo");
+                .HasColumnName("ruta_imagen_logo");
 
             builder.Property(e => e.sRutaImagenPortal)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("RutaImagenPortal");
+                .HasColumnName("ruta_imagen_portal");
 
             builder.Property(e => e.dtFechaCreacion)
-                .HasColumnType("datetime")
+                .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
-                .HasColumnName("FechaCreacion");
+                .HasColumnName("fecha_creacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
+            builder.Property(e => e.uIdUsuarioCreacion)
+              .HasColumnType("datetime")
+              .IsUnicode(false)
+              .HasColumnName("usuario_creacion");
 
             builder.Property(e => e.dtFechaModificacion)
-               .HasColumnType("datetime")
-               .IsUnicode(false)
-               .HasColumnName("FechaModificacion");
+                .HasColumnType("timestamp without time zone")
+                .IsUnicode(false)
+                .HasColumnName("fecha_modificacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
             builder.Property(e => e.uIdUsuarioModificacion)
                 .HasColumnType("uniqueidentifier")
-                .HasColumnName("IdUsuarioModificacion");
+                .HasColumnName("usuario_modificacion");
 
             builder.Property(e => e.bActivo)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("bActivo");
+                .HasColumnName("activo");
 
         }
     }

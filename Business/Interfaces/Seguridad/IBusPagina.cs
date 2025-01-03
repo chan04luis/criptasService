@@ -9,6 +9,6 @@ namespace Business.Interfaces.Seguridad
         Task<Response<bool>> BDelete(Guid iKey);
         Task<Response<PaginaModelo>> BGet(Guid iKey);
         Task<Response<List<PaginaModelo>>> BGetAll();
-        Task<Response<PaginaModelo>> BUpdate(PaginaModelo updateModel);
+        Task<Response<bool>> BUpdate(PaginaModelo updateModel);
     }
 }

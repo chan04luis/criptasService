@@ -105,9 +105,9 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<ModuloModelo>> BUpdate(ModuloModelo updateModel)
+        public async Task<Response<bool>> BUpdate(ModuloModelo updateModel)
         {
-            Response<ModuloModelo> response = new Response<ModuloModelo>();
+            Response<bool> response = new Response<bool>();
             try
             {
                 Response<List<Modulo>> obtenerModulo = await _datModulo.DGet();
@@ -132,8 +132,7 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
-                    ModuloModelo EntModuloActualizado = mapeador.Map<ModuloModelo>(resp.Result);
-                    response.SetSuccess(EntModuloActualizado);
+                    response.SetSuccess(resp.Result);
                 }
             }
             catch (Exception ex)

@@ -123,15 +123,17 @@ namespace Data.cs.Commands.Seguridad
                     if (IsModified)
                     {
                         int i = await dbContext.SaveChangesAsync();
+                        if (i == 0)
+                            response.SetError("Datos no actualizados");
+                        else
+                            response.SetSuccess(true);
                     }
                 }
-                response.SetSuccess(true);
             }
             catch (Exception)
             {
                 throw;
             }
-            response.SetSuccess(false);
             return response;
         }
     }

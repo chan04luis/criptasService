@@ -14,6 +14,6 @@ namespace Business.Interfaces.Seguridad
         Task<Response<bool>> BDelete(Guid iKey);
         Task<Response<BotonModelo>> BGet(Guid iKey);
         Task<Response<List<BotonModelo>>> BGetAll();
-        Task<Response<BotonModelo>> BUpdate(BotonModelo updateModel);
+        Task<Response<bool>> BUpdate(BotonModelo updateModel);
     }
 }

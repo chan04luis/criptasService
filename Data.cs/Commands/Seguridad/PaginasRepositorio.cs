@@ -109,7 +109,6 @@ namespace Data.cs.Commands.Seguridad
         public async Task<Response<bool>> DUpdate(Pagina entity)
         {
             var response = new Response<bool>();
-            bool success = false;
             try
             {
                 var pagina = await DGet(entity.uIdPagina);
@@ -130,16 +129,17 @@ namespace Data.cs.Commands.Seguridad
                     if (IsModified)
                     {
                         int i = await dbContext.SaveChangesAsync();
+                        if (i == 0)
+                            response.SetError("Datos no eliminados");
+                        else
+                            response.SetSuccess(true);
                     }
                 }
-                response.SetSuccess(success);
             }
             catch (Exception)
             {
-
                 throw;
             }
-            response.SetSuccess(success);
             return response;
         }
     }

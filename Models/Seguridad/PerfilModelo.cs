@@ -9,7 +9,6 @@ namespace Models.Seguridad
 {
     public class PerfilModelo
     {
-        [JsonPropertyName("idPerfil")]
         public Guid? IdPerfil { get; set; }
 
         [JsonPropertyName("clavePerfil")]

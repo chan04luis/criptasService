@@ -107,9 +107,9 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<PaginaModelo>> BUpdate(PaginaModelo updateModel)
+        public async Task<Response<bool>> BUpdate(PaginaModelo updateModel)
         {
-            Response<PaginaModelo> response = new Response<PaginaModelo>();
+            Response<bool> response = new();
             try
             {
                 Response<List<Pagina>> obtenerPagina = await _datPagina.DGet();
@@ -135,8 +135,7 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
-                    PaginaModelo EntPaginaActualizado = mapeador.Map<PaginaModelo>(resp.Result);
-                    response.SetSuccess(EntPaginaActualizado);
+                    response.SetSuccess(resp.Result);
                 }
             }
             catch (Exception ex)

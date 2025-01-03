@@ -5,7 +5,7 @@ using Utils;
 
 namespace Api.Controllers.Seguridad
 {
-    [Route("api/seguridad/modulos/{idModulo}/paginas")]
+    [Route("api/seguridad/modulos/paginas")]
     [ApiController]
     public class PaginasController : ControllerBase
     {
@@ -22,9 +22,9 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpPut("{idPagina}")]
-        public async Task<ActionResult<Response<PaginaModelo>>> ActualizarPagina(PaginaModelo entBDPagina)
+        public async Task<ActionResult<Response<bool>>> ActualizarPagina(PaginaModelo entBDPagina)
         {
-            Response<PaginaModelo> response = await busPagina.BUpdate(entBDPagina);
+            Response<bool> response = await busPagina.BUpdate(entBDPagina);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpDelete("{idPagina}")]

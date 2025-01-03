@@ -108,9 +108,9 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<BotonModelo>> BUpdate(BotonModelo updateModel)
+        public async Task<Response<bool>> BUpdate(BotonModelo updateModel)
         {
-            Response<BotonModelo> response = new Response<BotonModelo>();
+            Response<bool> response = new Response<bool>();
             try
             {
                 Response<List<Boton>> obtenerBoton = await botonesRepositorio.DGet();
@@ -136,8 +136,8 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
-                    BotonModelo entBotonActualizado = mapeador.Map<BotonModelo>(resp.Result);
-                    response.SetSuccess(entBotonActualizado);
+                    
+                    response.SetSuccess(resp.Result);
                 }
             }
             catch (Exception ex)

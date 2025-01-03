@@ -5,7 +5,7 @@ using Utils;
 
 namespace Api.Controllers.Seguridad
 {
-    [Route("api/seguridad/modulos/{idModulo}/paginas/{idPagina}/botones")]
+    [Route("api/seguridad/botones")]
     [ApiController]
     public class BotonesController : ControllerBase
     {
@@ -22,9 +22,9 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpPut("{idBoton}")]
-        public async Task<ActionResult<Response<BotonModelo>>> ActualizarBoton(BotonModelo entBDBoton)
+        public async Task<ActionResult<Response<bool>>> ActualizarBoton(BotonModelo entBDBoton)
         {
-            Response<BotonModelo> response = await busBoton.BUpdate(entBDBoton);
+            Response<bool> response = await busBoton.BUpdate(entBDBoton);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpDelete("{idBoton}")]

@@ -8,7 +8,7 @@ namespace Data.cs.Entities.Seguridad
 {
     public class Perfil
     {
-        public Guid id { get; set; }
+        public Guid? id { get; set; }
         public string ClavePerfil { get; set; }
         public string NombrePerfil { get; set; }
         public bool Eliminable { get; set; }

@@ -14,33 +14,33 @@ namespace Data.cs.Mapping.Seguridad
         public void Configure(EntityTypeBuilder<Boton> builder)
         {
 
-            builder.ToTable("Botones");
+            builder.ToTable("botones");
 
             builder.HasKey(e => e.uIdBoton).HasName("PK_Botones");
 
             builder.Property(e => e.uIdBoton)
                 .HasColumnType("uuid")
-                .HasColumnName("Id");
+                .HasColumnName("id");
 
             builder.Property(e => e.uIdPagina)
                 .HasColumnType("uuid")
                 .IsUnicode(false)
-                .HasColumnName("iIdPagina");
+                .HasColumnName("id_pagina");
 
             builder.Property(e => e.sClaveBoton)
                 .HasColumnType("VARCHAR(50)")
                 .IsUnicode(false)
-                .HasColumnName("sClaveBoton");
+                .HasColumnName("clave_boton");
 
             builder.Property(e => e.sNombreBoton)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("sNombreBoton");
+                .HasColumnName("nombre_boton");
 
             builder.Property(e => e.bActivo)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("Activo");
+                .HasColumnName("activo");
 
         }
     }

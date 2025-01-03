@@ -14,6 +14,6 @@ namespace Models.Seguridad
         public string sPathModulo { get; set; }
         public bool? bMostrarEnMenu { get; set; }
         public bool bActivo { get; set; }
-        public List<PaginaModelo> Paginas { get; set; }
+        public List<PaginaModelo>? Paginas { get; set; }
     }
 }

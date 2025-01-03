@@ -14,7 +14,7 @@ namespace Data.cs.Mapping.Seguridad
         public void Configure(EntityTypeBuilder<Modulo> builder)
         {
             // table
-            builder.ToTable("Modulos");
+            builder.ToTable("modulos");
 
             // key
             builder.HasKey(e => e.uIdModulo).HasName("PK_Modulos");
@@ -23,32 +23,32 @@ namespace Data.cs.Mapping.Seguridad
 
             builder.Property(e => e.uIdModulo)
                 .HasColumnType("uuid")
-                .HasColumnName("Id");
+                .HasColumnName("id");
 
             builder.Property(e => e.sClaveModulo)
                 .HasColumnType("VARCHAR(50)")
                 .IsUnicode(false)
-                .HasColumnName("ClaveModulo");
+                .HasColumnName("clave_modulo");
 
             builder.Property(e => e.sNombreModulo)
                 .HasColumnType("VARCHAR(500)")
                 .IsUnicode(false)
-                .HasColumnName("NombreModulo");
+                .HasColumnName("nombre_modulo");
 
             builder.Property(e => e.sPathModulo)
                 .HasColumnType("VARCHAR(250)")
                 .IsUnicode(false)
-                .HasColumnName("PathModulo");
+                .HasColumnName("path_modulo");
 
             builder.Property(e => e.bMostrarEnMenu)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("MostrarEnMenu");
+                .HasColumnName("mostrar_en_menu");
 
             builder.Property(e => e.bActivo)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("Activo");
+                .HasColumnName("activo");
         }
     }
 }

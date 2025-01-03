@@ -20,13 +20,12 @@ namespace Business.Mappers
         {
 
             CreateMap<Boton, BotonModelo>().ReverseMap();
-            CreateMap<Perfil, PerfilModelo>().ReverseMap();
+            CreateMap<Perfil, PerfilModelo>()
+                   .ForMember(dest => dest.IdPerfil, opt => opt.MapFrom(src => src.id)).ReverseMap(); 
 
             CreateMap<Usuarios, UsuarioModelo>().ReverseMap();
 
             CreateMap<Boton, BotonModelo>().ReverseMap();
-
-            CreateMap<Perfil, PerfilModelo>().ReverseMap();
 
             CreateMap<Pagina, PaginaModelo>().ReverseMap();
 
