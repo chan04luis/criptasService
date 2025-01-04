@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Data.cs.Entities.Seguridad;
+using Models.Models;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Business.Mappers
                    .ForMember(dest => dest.IdPerfil, opt => opt.MapFrom(src => src.id)).ReverseMap(); 
 
             CreateMap<Usuarios, UsuarioModelo>().ReverseMap();
+            CreateMap<EntUsuarios, UsuarioModelo>().ReverseMap();
 
             CreateMap<Boton, BotonModelo>().ReverseMap();
 

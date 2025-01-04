@@ -4,6 +4,7 @@ using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Models.Models;
 using Models.Seguridad;
 using System;
@@ -122,7 +123,7 @@ namespace Business.Implementation.Seguridad
                   {
                       new Claim(ClaimTypes.NameIdentifier, usuario.sCorreo),
                       new Claim("Correo", usuario.sCorreo),
-                      new Claim("userid", usuario.uId.ToString()),
+                      new Claim("userId", usuario.uId.ToString()),
                       new Claim("ProfileId", usuario.uIdPerfil.ToString()),
                   };
 

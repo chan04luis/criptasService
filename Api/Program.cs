@@ -114,6 +114,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseNpgsql(CONNECTION_STRING);
 });
 
+string ISSUER = builder.Configuration["JwtSettings:Issuer"];
+string JWT_SECRET_KEY = builder.Configuration["JwtSettings:SecretKey"];
+builder.Services.AddScoped<BusJwt>(provider =>
+{
+    return new BusJwt(JWT_SECRET_KEY, ISSUER);
+});
+
 #region Inyeccion de dependencias
 builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
 builder.Services.AddScoped<IBusClientes, BusClientes>();
@@ -137,12 +144,12 @@ builder.Services.AddScoped<IFallecidosRepositorio, FallecidosRepositorio>();
 builder.Services.AddScoped<IBusFallecidos, BusFallecidos>();
 builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>();
 builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
-builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
-builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
 #endregion
 
 #region Inyeccion de dependencias Seguridad
+
+builder.Services.AddScoped<IBusAutenticacion, BusAutenticacion>();
 
 builder.Services.AddScoped<IPerfilesRepositorio, PerfilesRepositorio>();
 builder.Services.AddScoped<IBusPerfiles, BusPerfiles>();
@@ -161,6 +168,9 @@ builder.Services.AddScoped<IBusModulo, BusModulo>();
 
 builder.Services.AddScoped<IPermisosRepositorio, PermisosRepositorio>();
 builder.Services.AddScoped<IBusPermiso, BusPermiso>();
+
+builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
+builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
 #endregion
 

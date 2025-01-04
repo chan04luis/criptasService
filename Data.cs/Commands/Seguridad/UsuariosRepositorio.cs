@@ -2,6 +2,7 @@
 using Business.Data;
 using Data.cs;
 using Data.cs.Entities.Seguridad;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request.Usuarios;
@@ -304,9 +305,9 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         try
         {
             var usuario = await dbContext.Usuarios
-                        .SingleOrDefaultAsync(u => u.sCorreo == correo && u.sContra == sPassword);
+                        .SingleOrDefaultAsync(u => u.sCorreo == correo && u.sContra == sPassword && u.bActivo == true);
 
-            response.SetSuccess(_mapper.Map<EntUsuarios>(usuario));
+            response.SetSuccess(_mapper.Map<EntUsuarios>(usuario), "Usuario existente");
         }
         catch (Exception ex)
         {
