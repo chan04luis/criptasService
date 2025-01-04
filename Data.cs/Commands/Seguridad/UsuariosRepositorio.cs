@@ -264,41 +264,6 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         return response;
     }
-
-    public async Task<Response<EntUsuarios>> DLogin(EntUsuarioLoginRequest loginRequest)
-    {
-        var response = new Response<EntUsuarios>();
-        try
-        {
-            var user = await dbContext.Usuarios.AsNoTracking()
-                .FirstOrDefaultAsync(u => u.sCorreo == loginRequest.sCorreo && u.sContra==loginRequest.sContra && u.bEliminado == false);
-
-            if (user == null)
-            {
-                response.SetError("No existe usuario");
-                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
-                return response;
-            }else if (user.sContra != loginRequest.sContra)
-            {
-                response.SetError("Contraseña incorrecta");
-                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
-                return response;
-            }
-            else if (!user.bActivo)
-            {
-                response.SetError("Usuario desactivado");
-                response.HttpCode = System.Net.HttpStatusCode.Unauthorized;
-                return response;
-            }
-            response.SetSuccess(_mapper.Map<EntUsuarios>(user), "Login exitoso");
-            
-        }
-        catch (Exception ex)
-        {
-            response.SetError(ex);
-        }
-        return response;
-    }
     public async Task<Response<EntUsuarios>> DGet(string correo, string sPassword)
     {
         var response = new Response<EntUsuarios>();

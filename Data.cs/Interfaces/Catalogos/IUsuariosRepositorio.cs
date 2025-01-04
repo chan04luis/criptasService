@@ -17,7 +17,6 @@ namespace Business.Data
         Task<Response<EntUsuarios>> DGetById(Guid iKey);
         Task<Response<List<EntUsuarios>>> DGetList();
         Task<Response<List<EntUsuarios>>> DGetByFilters(EntUsuarioSearchRequest search);
-        Task<Response<EntUsuarios>> DLogin(EntUsuarioLoginRequest loginRequest);
         Task<Response<EntUsuarios>> DGet(string correo, string sPassword);
     }
 }
