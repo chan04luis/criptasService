@@ -13,46 +13,48 @@ namespace Data.cs.Mapping.Seguridad
     {
         public void Configure(EntityTypeBuilder<PermisoModulos> builder)
         {
-            builder.ToTable("PermisosModulos");
+            builder.ToTable("permisos_modulos");
 
             builder.HasKey(e => e.uIdPermisoModulo).HasName("PK_PermisosModulos");
 
             builder.Property(e => e.uIdPermisoModulo)
                 .HasColumnType("uuid")
-                .HasColumnName("IdPermisoModulo");
+                .HasColumnName("id");
 
             builder.Property(e => e.uIdPerfil)
                 .HasColumnType("uuid")
-                .HasColumnName("IdPerfil");
+                .HasColumnName("id_perfil");
 
             builder.Property(e => e.uIdModulo)
                 .HasColumnType("uuid")
                 .IsUnicode(false)
-                .HasColumnName("IdModulo");
+                .HasColumnName("id_modulo");
 
             builder.Property(e => e.bTienePermiso)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("TienePermiso");
+                .HasColumnName("tiene_permiso");
 
             builder.Property(e => e.dtFechaCreacion)
-                .HasColumnType("datetime")
-                .IsUnicode(false)
-                .HasColumnName("FechaCreacion");
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_creacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
             builder.Property(e => e.dtFechaModificacion)
-               .HasColumnType("datetime")
-               .IsUnicode(false)
-               .HasColumnName("FechaModificacion");
-
-            builder.Property(e => e.uIdUsuarioModificacion)
-                .HasColumnType("uuid")
-                .HasColumnName("IdUsuarioModificacion");
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_modificacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
             builder.Property(e => e.bActivo)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("Activo");
+                .HasColumnName("activo");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Data.cs.Mapping.Seguridad
         public void Configure(EntityTypeBuilder<PermisoBotones> builder)
         {
             // table
-            builder.ToTable("PermisosBotones");
+            builder.ToTable("permisos_botones");
 
             // key
             builder.HasKey(e => e.uIdPermisoBoton).HasName("PK_PermisosBotones");
@@ -22,40 +22,46 @@ namespace Data.cs.Mapping.Seguridad
             // properties
             builder.Property(e => e.uIdPermisoBoton)
                 .HasColumnType("uuid")
-                .HasColumnName("IdPermisoBoton");
+                .HasColumnName("id");
 
             builder.Property(e => e.uIdPerfil)
                 .HasColumnType("uuid")
-                .HasColumnName("IdPerfil");
+                .HasColumnName("id_perfil");
 
             builder.Property(e => e.uIdBoton)
                 .HasColumnType("uuid")
                 .IsUnicode(false)
-                .HasColumnName("IdBoton");
+                .HasColumnName("id_boton");
 
             builder.Property(e => e.bTienePermiso)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("TienePermiso");
+                .HasColumnName("tiene_permiso");
 
             builder.Property(e => e.dtFechaCreacion)
-                .HasColumnType("datetime")
-                .IsUnicode(false)
-                .HasColumnName("FechaCreacion");
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_creacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
             builder.Property(e => e.dtFechaModificacion)
-               .HasColumnType("datetime")
-               .IsUnicode(false)
-               .HasColumnName("FechaModificacion");
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_modificacion")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
 
             builder.Property(e => e.uIdUsuarioModificacion)
                 .HasColumnType("uuid")
-                .HasColumnName("IdUsuarioModificacion");
+                .HasColumnName("usuario_modificacion");
 
             builder.Property(e => e.bActivo)
                 .HasColumnType("boolean")
                 .IsUnicode(false)
-                .HasColumnName("Activo");
+                .HasColumnName("activo");
         }
     }
 }

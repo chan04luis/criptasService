@@ -107,13 +107,12 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<bool>> GuardarPermisos(IFormCollection form)
+        public async Task<Response<bool>> GuardarPermisos(GuardarPermisosModelo lstPermisosElementos)
         {
             Response<bool> response = new();
             try
             {
 
-                GuardarPermisosModelo lstPermisosElementos = JsonConvert.DeserializeObject<GuardarPermisosModelo>(form["body"]);
                 if (lstPermisosElementos.permisos is null)
                 {
                     return response.GetBadRequest("No se ingresó información");

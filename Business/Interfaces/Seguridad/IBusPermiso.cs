@@ -7,7 +7,7 @@ namespace Business.Interfaces.Seguridad
     public interface IBusPermiso
     {
         Task<Response<PerfilPermisosModelo>> ObtenerPermisos(Guid idPerfil);
-        Task<Response<bool>> GuardarPermisos(IFormCollection form);
+        Task<Response<bool>> GuardarPermisos(GuardarPermisosModelo lstPermisosElementos);
         Task<Response<object>> ObtenerPermisosMenu(Guid idPerfil);
     }
 }

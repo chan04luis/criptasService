@@ -22,9 +22,9 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpPost("permisos")]
-        public async Task<ActionResult<Response<bool>>> GuardarPermisos(IFormCollection form)
+        public async Task<ActionResult<Response<bool>>> GuardarPermisos(GuardarPermisosModelo lstPermisosElementos)
         {
-            Response<bool> response = await busPermisos.GuardarPermisos(form);
+            Response<bool> response = await busPermisos.GuardarPermisos(lstPermisosElementos);
             return StatusCode((int)response.HttpCode, response);
         }
     }
