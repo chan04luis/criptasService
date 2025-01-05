@@ -3,6 +3,7 @@ using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.Extensions.Logging;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Business.Implementation.Seguridad
             this.perfilesRepositorio = perfilesRepositorio;
         }
 
-        public async Task<Response<PerfilModelo>> BCreate(PerfilModelo createModel)
+        public async Task<Response<PerfilModelo>> BCreate(PerfilRequest createModel)
         {
             Response<PerfilModelo> response = new Response<PerfilModelo>();
 
@@ -108,9 +109,9 @@ namespace Business.Implementation.Seguridad
             return response;
         }
 
-        public async Task<Response<PerfilModelo>> BUpdate(PerfilModelo updateModel)
+        public async Task<Response<bool>> BUpdate(PerfilRequest updateModel)
         {
-            Response<PerfilModelo> response = new Response<PerfilModelo>();
+            Response<bool> response = new Response<bool>();
             try
             {
                 Perfil entPerfil = mapeador.Map<Perfil>(updateModel);
@@ -125,7 +126,8 @@ namespace Business.Implementation.Seguridad
 
                 if (result.Result)
                 {
-                    response.SetSuccess(updateModel, result.Message);
+
+                    response.SetSuccess(result.Result, result.Message);
                 }
                 else
                 {

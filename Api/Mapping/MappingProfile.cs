@@ -14,7 +14,6 @@ using Models.Request.TipoPagos;
 using Models.Request.Usuarios;
 using Models.Request.Zonas;
 using Models.Responses.Iglesia;
-using Models.Responses.Usuarios;
 using Models.Responses.Zonas;
 
 
@@ -110,7 +109,6 @@ public class MappingProfile : Profile
         #region Usuarios
 
         CreateMap<EntUsuarios, Usuarios>().ReverseMap();
-        CreateMap<EntUsuarios, AuthLogin>().ReverseMap();
         CreateMap<EntUsuarios, EntUsuarioRequest>().ReverseMap();
         CreateMap<EntUsuarioUpdateRequest, EntUsuarios>().ReverseMap();
         CreateMap<EntUsuarioUpdateEstatusRequest, EntUsuarios>().ReverseMap();

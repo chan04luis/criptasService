@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.cs.Entities.Seguridad;
 using Models.Models;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace Business.Mappers
 
             CreateMap<Boton, BotonModelo>().ReverseMap();
             CreateMap<Perfil, PerfilModelo>()
-                   .ForMember(dest => dest.IdPerfil, opt => opt.MapFrom(src => src.id)).ReverseMap(); 
+                .ForMember(dest => dest.IdPerfil, opt => opt.MapFrom(src => src.id)).ReverseMap();
+
+            CreateMap<PerfilRequest, Perfil>()
+                .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.IdPerfil)).ReverseMap();
 
             CreateMap<Usuarios, UsuarioModelo>().ReverseMap();
             CreateMap<EntUsuarios, UsuarioModelo>().ReverseMap();

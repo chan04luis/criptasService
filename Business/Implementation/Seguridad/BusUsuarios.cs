@@ -18,8 +18,6 @@ using Utils;
 using Models.Models;
 using Models.Request.Usuarios;
 using Models.Validations.Seguridad;
-using Models.Responses.Iglesia;
-using Models.Responses.Usuarios;
 
 namespace Business.Implementation.Seguridad
 {

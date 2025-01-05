@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using Utils;
 
@@ -16,16 +17,16 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<PerfilModelo>>> CrearPerfil(PerfilModelo entPerfilCreacion)
+        public async Task<ActionResult<Response<PerfilModelo>>> CrearPerfil(PerfilRequest entPerfilCreacion)
         {
             Response<PerfilModelo> response = await busPerfiles.BCreate(entPerfilCreacion);
             return StatusCode((int)response.HttpCode, response);
         }
 
         [HttpPut("{idPerfil}")]
-        public async Task<ActionResult<Response<PerfilModelo>>> ActualizarPerfil(Guid idPerfil, PerfilModelo entPerfilCreacion)
+        public async Task<ActionResult<Response<bool>>> ActualizarPerfil(Guid idPerfil, PerfilRequest entPerfilCreacion)
         {
-            Response<PerfilModelo> response = await busPerfiles.BUpdate(entPerfilCreacion);
+            Response<bool> response = await busPerfiles.BUpdate(entPerfilCreacion);
             return StatusCode((int)response.HttpCode, response);
         }
 

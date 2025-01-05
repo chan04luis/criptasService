@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Request.Seguridad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +8,8 @@ using System.Threading.Tasks;
 
 namespace Models.Seguridad
 {
-    public class PerfilModelo
+    public class PerfilModelo:PerfilRequest
     {
-        public Guid? IdPerfil { get; set; }
-
-        [JsonPropertyName("clavePerfil")]
-        public string? ClavePerfil { get; set; }
-
-        [JsonPropertyName("nombrePerfil")]
-        public string? NombrePerfil { get; set; }
-
-        [JsonPropertyName("eliminable")]
-        public bool? Eliminable { get; set; }
 
         [JsonPropertyName("fechaCreacion")]
         public DateTime? FechaCreacion { get; set; }
