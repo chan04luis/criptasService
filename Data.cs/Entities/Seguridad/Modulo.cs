@@ -14,6 +14,8 @@ namespace Data.cs.Entities.Seguridad
         public string? sNombreModulo { get; set; }
         public string? sPathModulo { get; set; }
         public bool bMostrarEnMenu { get; set; }
-        public bool? bActivo { get; set; }
+        public bool bActivo { get; set; }
+        public ICollection<Pagina> lstPaginas { get; set; }
+        public ICollection<PermisoModulos> lstPermisosModulos { get; set; }
     }
 }

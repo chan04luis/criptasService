@@ -1,4 +1,5 @@
-﻿using Models.Seguridad;
+﻿using Models.Request.Seguridad;
+using Models.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Business.Interfaces.Seguridad
 {
     public interface IBusBoton
     {
-        Task<Response<BotonModelo>> BCreate(BotonModelo createModel);
+        Task<Response<BotonModelo>> BCreate(BotonRequest createModel);
         Task<Response<bool>> BDelete(Guid iKey);
         Task<Response<BotonModelo>> BGet(Guid iKey);
         Task<Response<List<BotonModelo>>> BGetAll();
-        Task<Response<bool>> BUpdate(BotonModelo updateModel);
+        Task<Response<bool>> BUpdate(BotonRequest updateModel);
     }
 }

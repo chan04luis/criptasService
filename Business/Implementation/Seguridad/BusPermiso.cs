@@ -48,48 +48,46 @@ namespace Business.Implementation.Seguridad
                     return response.GetNotFound("El perfil no existe");
                 }
 
-                Response<List<PermisoElementoSrcModelo>> obtenerElementos = await datPermisos.GetPermisosElementos(idPerfil);
+                Response<List<Modulo>> obtenerElementos = await datPermisos.GetPermisosElementos(idPerfil);
                 if (obtenerElementos.HasError)
                 {
                     return response.GetResponse(obtenerElementos);
                 }
 
                 List<PermisoModuloModelo> lstElementos = obtenerElementos.Result
-                    .GroupBy(x => x.IdModulo)
-                    .Select(x => new PermisoModuloModelo
-                    {
-                        idPermisoModulo = x.First().idPermisoModulo,
-                        idModulo = x.Key,
-                        claveModulo = x.FirstOrDefault().ClaveModulo,
-                        nombreModulo = x.FirstOrDefault().NombreModulo,
-                        tienePermiso = x.FirstOrDefault().TienePermisoModulo,
-                        permisosPagina = x
-                            .GroupBy(y => y.IdPagina)
-                            .Select(y => new PermisoPaginaModelo
-                            {
-                                idPermisoPagina = y.FirstOrDefault().idPermisoPagina,
-                                idPagina = y.Key ?? Guid.Empty,
-                                clavePagina = y.FirstOrDefault().ClavePagina,
-                                nombrePagina = y.FirstOrDefault().NombrePagina,
-                                tienePermiso = y.FirstOrDefault().TienePermisoPagina,
-                                permisosBoton = y
-                                    .GroupBy(z => z.IdBoton)
-                                    .Select(z => new PermisoBotonModelo
-                                    {
-                                        idPermisoBoton = z.FirstOrDefault().idPermisoBoton,
-                                        idBoton = z.Key ?? Guid.Empty,
-                                        claveBoton = z.FirstOrDefault().ClaveBoton,
-                                        nombreBoton = z.FirstOrDefault().NombreBoton,
-                                        tienePermiso = z.FirstOrDefault().TienePermisoBoton
-                                    })
-                                    .Where(z => z.idBoton != Guid.Empty)
-                                    .ToList()
-                            })
-                            .Where(y => y.idPagina != Guid.Empty)
-                            .ToList()
-                    })
-                    .Where(x => x.idModulo != Guid.Empty)
-                    .ToList();
+                .Select(x => new PermisoModuloModelo
+                {
+                    idPermisoModulo = x.lstPermisosModulos.FirstOrDefault()?.uIdPermisoModulo??Guid.Empty,
+                    idModulo = x.uIdModulo,
+                    claveModulo = x.sClaveModulo,
+                    nombreModulo = x.sNombreModulo,
+                    tienePermiso = x.lstPermisosModulos.FirstOrDefault()?.bTienePermiso??false,
+                    permisosPagina = x.lstPaginas.GroupBy(y => y.uIdPagina)
+                        .Select(y => new PermisoPaginaModelo
+                        {
+                            idPermisoPagina = y.FirstOrDefault()?.lstPermisosPaginas.FirstOrDefault()?.uIdPermisoPagina??Guid.Empty,
+                            idPagina = y.FirstOrDefault().uIdPagina,
+                            clavePagina = y.FirstOrDefault().sClavePagina,
+                            nombrePagina = y.FirstOrDefault().sNombrePagina,
+                            tienePermiso = y.FirstOrDefault()?.lstPermisosPaginas.FirstOrDefault()?.bTienePermiso??false,
+                            permisosBoton = y.FirstOrDefault()?.lstBotones
+                                .GroupBy(z => z.uIdBoton)
+                                .Select(z => new PermisoBotonModelo
+                                {
+                                    idPermisoBoton = z.FirstOrDefault()?.lstPermisosBotones.FirstOrDefault()?.uIdPermisoBoton??Guid.Empty,
+                                    idBoton = z.FirstOrDefault().uIdBoton,
+                                    claveBoton = z.FirstOrDefault().sClaveBoton,
+                                    nombreBoton = z.FirstOrDefault().sNombreBoton,
+                                    tienePermiso = z.FirstOrDefault().lstPermisosBotones.FirstOrDefault()?.bTienePermiso??false
+                                })
+                                .Where(z => z.idBoton != Guid.Empty)
+                                .ToList()
+                        })
+                        .Where(y => y.idPagina != Guid.Empty)
+                        .ToList()
+                })
+                .Where(x => x.idModulo != Guid.Empty)
+                .ToList();
 
                 PerfilModelo entPerfil = mapeador.Map<PerfilModelo>(obtenerPerfiles.Result);
 
@@ -139,7 +137,7 @@ namespace Business.Implementation.Seguridad
 
                 }).ToList();
 
-                List<PermisoPaginaModelo> lstPaginas = lstPermisosElementos.permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
+               /* List<PermisoPaginaModelo> lstPaginas = lstPermisosElementos.permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
                 {
                     idPermisoPagina = x.idPermisoPagina,
                     idPagina = x.idPagina,
@@ -151,7 +149,7 @@ namespace Business.Implementation.Seguridad
                     idPermisoBoton = x.idPermisoBoton,
                     idBoton = x.idBoton,
                     tienePermiso = x.tienePermiso
-                }).ToList();
+                }).ToList();*/
 
                 foreach (PermisoModuloModelo modulo in lstModulos)
                 {
@@ -166,7 +164,7 @@ namespace Business.Implementation.Seguridad
                     }
                 }
 
-                foreach (PermisoPaginaModelo pagina in lstPaginas)
+                /*foreach (PermisoPaginaModelo pagina in lstPaginas)
                 {
                     if (pagina.idPermisoPagina == Guid.Empty)
                     {
@@ -188,7 +186,7 @@ namespace Business.Implementation.Seguridad
                     {
                         await datPermisos.ActualizarPermisosBotones(boton.idPermisoBoton, boton.idBoton, idPerfil, boton.tienePermiso, idUsuario);
                     }
-                }
+                }*/
 
                 response.SetSuccess(true, "Se han guardado los permisos");
             }

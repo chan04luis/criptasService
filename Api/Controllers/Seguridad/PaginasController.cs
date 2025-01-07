@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using Utils;
 
@@ -15,16 +16,16 @@ namespace Api.Controllers.Seguridad
             this.busPagina = busPagina;
         }
         [HttpPost]
-        public async Task<ActionResult<Response<PaginaModelo>>> CrearPagina(PaginaModelo entBDPagina)
+        public async Task<ActionResult<Response<PaginaModelo>>> CrearPagina(PaginaRequest entPagina)
         {
-            Response<PaginaModelo> response = await busPagina.BCreate(entBDPagina);
+            Response<PaginaModelo> response = await busPagina.BCreate(entPagina);
             return StatusCode((int)response.HttpCode, response);
         }
 
         [HttpPut("{idPagina}")]
-        public async Task<ActionResult<Response<bool>>> ActualizarPagina(PaginaModelo entBDPagina)
+        public async Task<ActionResult<Response<bool>>> ActualizarPagina(PaginaRequest entPagina)
         {
-            Response<bool> response = await busPagina.BUpdate(entBDPagina);
+            Response<bool> response = await busPagina.BUpdate(entPagina);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpDelete("{idPagina}")]

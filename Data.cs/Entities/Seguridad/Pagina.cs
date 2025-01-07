@@ -14,6 +14,9 @@ namespace Data.cs.Entities.Seguridad
         public string? sNombrePagina { get; set; }
         public string? sPathPagina { get; set; }
         public bool? bMostrarEnMenu { get; set; }
-        public bool? bActivo { get; set; }
+        public bool bActivo { get; set; }
+        public Modulo Modulo { get; set; }
+        public ICollection<Boton> lstBotones { get; set; }
+        public ICollection<PermisosPagina> lstPermisosPaginas { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Business.Implementation.Seguridad
             this.mapeador = mapeador;
             this._datPagina = _datPagina;
         }
-        public async Task<Response<PaginaModelo>> BCreate(PaginaModelo createModel)
+        public async Task<Response<PaginaModelo>> BCreate(PaginaRequest createModel)
         {
             Response<PaginaModelo> response = new Response<PaginaModelo>();
 
@@ -107,7 +108,7 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<bool>> BUpdate(PaginaModelo updateModel)
+        public async Task<Response<bool>> BUpdate(PaginaRequest updateModel)
         {
             Response<bool> response = new();
             try

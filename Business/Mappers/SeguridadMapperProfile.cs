@@ -20,8 +20,6 @@ namespace Business.Mappers
 
         private void MapearSeguridad()
         {
-
-            CreateMap<Boton, BotonModelo>().ReverseMap();
             CreateMap<Perfil, PerfilModelo>()
                 .ForMember(dest => dest.IdPerfil, opt => opt.MapFrom(src => src.id)).ReverseMap();
 
@@ -32,10 +30,13 @@ namespace Business.Mappers
             CreateMap<EntUsuarios, UsuarioModelo>().ReverseMap();
 
             CreateMap<Boton, BotonModelo>().ReverseMap();
+            CreateMap<Boton, BotonRequest>().ReverseMap();
 
             CreateMap<Pagina, PaginaModelo>().ReverseMap();
+            CreateMap<Pagina, PaginaRequest>().ReverseMap();
 
             CreateMap<Modulo, ModuloModelo>().ReverseMap();
+            CreateMap<Modulo, ModuloRequest>().ReverseMap();
 
             CreateMap<Configuracion, ConfiguracionModelo>().ReverseMap();
 

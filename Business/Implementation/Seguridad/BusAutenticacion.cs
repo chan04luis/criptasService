@@ -92,14 +92,14 @@ namespace Business.Implementation.Seguridad
                         nombreModulo = x.nombreModulo,
                         tienePermiso = x.tienePermiso
                     }).ToList(),
-                    PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
+                    /*PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
                     {
                         clavePagina = x.clavePagina,
                         idPagina = x.idPagina,
                         nombrePagina = x.nombrePagina,
                         tienePermiso = x.tienePermiso
-                    }).ToList(),
-                    PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).SelectMany(x => x.permisosBoton).ToList(),
+                    }).ToList(),*/
+                    //PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).SelectMany(x => x.permisosBoton).ToList(),
 
                     Token = token,
                     Usuario = usuarioMapeado,

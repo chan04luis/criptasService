@@ -14,68 +14,75 @@ namespace Data.cs.Commands.Seguridad
         {
             this.dbContext = dbContext;
         }
-
-        public async Task<Response<List<PermisoElementoSrcModelo>>> GetPermisosElementos(Guid piIdPerfil)
+        public async Task<Response<List<PermisoModulos>>> GetPermisosModulos(Guid piIdPerfil)
         {
-
-            Response<List<PermisoElementoSrcModelo>> response = new();
+            Response<List<PermisoModulos>> response = new();
             try
             {
-                var elementos = (from mod in dbContext.Modulo
-                                 join pag in dbContext.Pagina.Where(x => x.bActivo == true) on mod.uIdModulo equals pag.uIdModulo into moduloPagina
-                                 from mp in moduloPagina.DefaultIfEmpty()
-                                 join bot in dbContext.Boton.Where(x => x.bActivo == true) on mp.uIdPagina equals bot.uIdPagina into paginaBoton
-                                 from pb in paginaBoton.DefaultIfEmpty()
-                                 join pm in dbContext.PermisosModulos.Where(x => x.bActivo == true && x.uIdPerfil == piIdPerfil) on mod.uIdModulo equals pm.uIdModulo into permisoModulo
-                                 from PerMod in permisoModulo.DefaultIfEmpty()
-                                 join pp in dbContext.PermisosPagina.Where(x => x.bActivo == true && x.uIdPerfil == piIdPerfil) on mp.uIdPagina equals pp.uIdPagina into permisoPagina
-                                 from PerPag in permisoPagina.DefaultIfEmpty()
-                                 join perb in dbContext.PermisoBotones.Where(x => x.bActivo == true && x.uIdPerfil == piIdPerfil) on pb.uIdBoton equals perb.uIdBoton into permisoBoton
-                                 from PerBot in permisoBoton.DefaultIfEmpty()
-                                 where mod.bActivo == true
-                                 orderby mod.sNombreModulo, mp.sNombrePagina, pb.sNombreBoton
+                var permisosModulos = await dbContext.PermisosModulos.Where(mod => mod.bActivo)
+                .Where(p => p.uIdPerfil == piIdPerfil && p.modulo.bActivo)
+                .Include(pag => pag.modulo)
+                .ToListAsync();
 
-                                 select new
-                                 {
-                                     idPermisoModulo = PerMod.uIdPermisoModulo,
-                                     IdModulo = mod.uIdModulo,
-                                     ClaveModulo = mod.sClaveModulo,
-                                     NombreModulo = mod.sNombreModulo,
-                                     TienePermisoModulo = string.IsNullOrEmpty(PerMod.bTienePermiso.ToString()) ? false : PerMod.bTienePermiso,
+                response.SetSuccess(permisosModulos);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
+            }
+            return response;
+        }
+        public async Task<Response<List<PermisosPagina>>> GetPermisosPaginas(Guid piIdPerfil)
+        {
+            Response<List<PermisosPagina>> response = new();
+            try
+            {
+                var permisosPagina = await dbContext.PermisosPagina.Where(mod => mod.bActivo)
+                .Where(p => p.uIdPerfil == piIdPerfil && p.pagina.bActivo)
+                .Include(pag => pag.pagina)
+                .ToListAsync();
 
-                                     idPermisoPagina = PerPag.uIdPermisoPagina,
-                                     IdPagina = mp.uIdPagina,
-                                     ClavePagina = mp.sClavePagina,
-                                     NombrePagina = mp.sNombrePagina,
-                                     TienePermisoPagina = string.IsNullOrEmpty(PerPag.bTienePermiso.ToString()) ? false : PerPag.bTienePermiso,
+                response.SetSuccess(permisosPagina);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
+            }
+            return response;
+        }
+        public async Task<Response<List<PermisoBotones>>> GetPermisosBotones(Guid piIdPerfil)
+        {
+            Response<List<PermisoBotones>> response = new();
+            try
+            {
+                var permisosBoton = await dbContext.PermisoBotones.Where(mod => mod.bActivo)
+                .Where(p => p.uIdPerfil == piIdPerfil && p.boton.bActivo)
+                .Include(pag => pag.boton)
+                .ToListAsync();
 
-                                     idPermisoBoton = PerBot.uIdPermisoBoton,
-                                     IdBoton = pb.uIdBoton,
-                                     ClaveBoton = pb.sClaveBoton,
-                                     NombreBoton = pb.sNombreBoton,
-                                     TienePermisBoton = string.IsNullOrEmpty(PerBot.bTienePermiso.ToString()) ? false : PerBot.bTienePermiso,
-                                 }
-                    ).ToListAsync();
-                List<PermisoElementoSrcModelo> lstPermisos = elementos.Result.Select(o => new PermisoElementoSrcModelo
-                {
-                    idPermisoModulo = o.idPermisoModulo,
-                    IdModulo = o.IdModulo,
-                    ClaveModulo = o.ClaveModulo,
-                    NombreModulo = o.NombreModulo,
-                    TienePermisoModulo = o.TienePermisoModulo,
+                response.SetSuccess(permisosBoton);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
+            }
+            return response;
+        }
+        public async Task<Response<List<Modulo>>> GetPermisosElementos(Guid piIdPerfil)
+        {
 
-                    idPermisoPagina = o.idPermisoPagina,
-                    IdPagina = o.IdPagina,
-                    ClavePagina = o.ClavePagina,
-                    NombrePagina = o.NombrePagina,
-                    TienePermisoPagina = o.TienePermisoPagina,
+            Response<List<Modulo>> response = new();
+            try
+            {
 
-                    idPermisoBoton = o.idPermisoBoton,
-                    IdBoton = o.IdBoton,
-                    ClaveBoton = o.ClaveBoton,
-                    NombreBoton = o.NombreBoton,
-                    TienePermisoBoton = o.TienePermisBoton,
-                }).ToList();
+                var lstPermisos = await dbContext.Modulo.Where(mod => mod.bActivo)
+                .Include(pag => pag.lstPermisosModulos.Where(x=>x.uIdPerfil== piIdPerfil))
+                .Include(x=>x.lstPaginas.Where(mod => mod.bActivo))
+                .ThenInclude(x=>x.lstPermisosPaginas.Where(x => x.uIdPerfil == piIdPerfil))
+                .Include(x => x.lstPaginas.Where(mod => mod.bActivo))
+                .ThenInclude(x=>x.lstBotones.Where(x=>x.bActivo))
+                .ThenInclude(x=>x.lstPermisosBotones.Where(x => x.uIdPerfil == piIdPerfil))
+                .ToListAsync();
 
                 response.SetSuccess(lstPermisos);
             }
@@ -86,7 +93,7 @@ namespace Data.cs.Commands.Seguridad
             return response;
         }
 
-        public async Task<Response<bool>> GuardarPermisosModulos(Guid uIdModulo, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> GuardarPermisosModulos(Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario)
         {
             var response = new Response<bool>();
             try
@@ -117,7 +124,7 @@ namespace Data.cs.Commands.Seguridad
             return response;
         }
 
-        public async Task<Response<bool>> ActualizarPermisosModulos(Guid idPermisoModulo, Guid uIdModulo, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> ActualizarPermisosModulos(Guid idPermisoModulo, Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario)
         {
             var response = new Response<bool>();
             try
@@ -151,7 +158,7 @@ namespace Data.cs.Commands.Seguridad
             return response;
         }
 
-        public async Task<Response<bool>> GuardarPermisoPaginas(Guid uIdPagina, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> GuardarPermisoPaginas(Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario)
         {
             var response = new Response<bool>();
             try
@@ -181,7 +188,7 @@ namespace Data.cs.Commands.Seguridad
             return response;
         }
 
-        public async Task<Response<bool>> ActualizarPermisosPaginas(Guid idPermisoPagina, Guid uIdPagina, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> ActualizarPermisosPaginas(Guid idPermisoPagina, Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario)
         {
             var response = new Response<bool>();
             try

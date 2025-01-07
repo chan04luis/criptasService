@@ -15,6 +15,8 @@ namespace Data.cs.Entities.Seguridad
         public DateTime dtFechaCreacion { get; set; }
         public DateTime dtFechaModificacion { get; set; }
         public Guid? uIdUsuarioModificacion { get; set; }
-        public bool? bActivo { get; set; }
+        public bool bActivo { get; set; }
+        public Boton boton { get; set; }
+        public Perfil perfil { get; set; }
     }
 }

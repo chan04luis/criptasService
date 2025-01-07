@@ -12,7 +12,7 @@ namespace Models.Seguridad
         public Guid idPagina { get; set; }
         public string? clavePagina { get; set; }
         public string? nombrePagina { get; set; }
-        public bool? tienePermiso { get; set; }
+        public bool tienePermiso { get; set; }
         public List<PermisoBotonModelo>? permisosBoton { get; set; }
     }
 }

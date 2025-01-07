@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Mvc;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using Utils;
 
@@ -15,15 +16,15 @@ namespace Api.Controllers.Seguridad
             this.busModulo = busModulo;
         }
         [HttpPost]
-        public async Task<ActionResult<Response<ModuloModelo>>> CrearModulo(ModuloModelo entBDModulo)
+        public async Task<ActionResult<Response<ModuloModelo>>> CrearModulo(ModuloRequest moduloRequest)
         {
-            Response<ModuloModelo> response = await busModulo.BCreate(entBDModulo);
+            Response<ModuloModelo> response = await busModulo.BCreate(moduloRequest);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpPut("{idModulo}")]
-        public async Task<ActionResult<Response<bool>>> ActualizarModulo(ModuloModelo entBDModulo)
+        public async Task<ActionResult<Response<bool>>> ActualizarModulo(ModuloRequest moduloRequest)
         {
-            Response<bool> response = await busModulo.BUpdate(entBDModulo);
+            Response<bool> response = await busModulo.BUpdate(moduloRequest);
             return StatusCode((int)response.HttpCode, response);
         }
         [HttpDelete("{idModulo}")]

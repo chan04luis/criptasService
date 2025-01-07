@@ -2,6 +2,7 @@
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
+using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Business.Implementation.Seguridad
             this.mapeador = mapeador;
             this.botonesRepositorio = botonesRepositorio;
         }
-        public async Task<Response<BotonModelo>> BCreate(BotonModelo createModel)
+        public async Task<Response<BotonModelo>> BCreate(BotonRequest createModel)
         {
             Response<BotonModelo> response = new Response<BotonModelo>();
 
@@ -108,7 +109,7 @@ namespace Business.Implementation.Seguridad
             }
             return response;
         }
-        public async Task<Response<bool>> BUpdate(BotonModelo updateModel)
+        public async Task<Response<bool>> BUpdate(BotonRequest updateModel)
         {
             Response<bool> response = new Response<bool>();
             try

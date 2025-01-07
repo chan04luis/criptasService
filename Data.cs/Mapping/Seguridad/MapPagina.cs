@@ -53,6 +53,18 @@ namespace Data.cs.Mapping.Seguridad
                 .HasColumnType("boolean")
                 .IsUnicode(false)
                 .HasColumnName("activo");
+
+            builder.HasOne(c => c.Modulo)
+              .WithMany(e => e.lstPaginas)
+              .HasForeignKey(c => c.uIdModulo)
+              .HasConstraintName("fk_modulos");
+
+            //relaciones
+            builder
+                .HasOne(c => c.Modulo)
+                .WithMany(e => e.lstPaginas)
+                .HasForeignKey(c => c.uIdModulo)
+                .HasConstraintName("fk_modulos");
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Data.cs.Entities.Seguridad
         public Guid uIdPagina { get; set; }
         public string? sClaveBoton { get; set; }
         public string? sNombreBoton { get; set; }
-        public bool? bActivo { get; set; }
+        public bool bActivo { get; set; }
+        public Pagina pagina { get; set; }  
+        public ICollection<PermisoBotones> lstPermisosBotones { get; set; }
     }
 }

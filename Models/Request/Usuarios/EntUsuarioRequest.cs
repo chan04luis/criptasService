@@ -19,7 +19,5 @@ namespace Models.Request.Usuarios
         [JsonProperty("Telefono")]
         public string sTelefono { get; set; }
 
-        [JsonProperty("Activo")]
-        public bool bActivo { get; set; }
     }
 }

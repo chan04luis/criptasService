@@ -5,7 +5,7 @@ namespace Models.Request.Usuarios
     public class EntUsuarioUpdateRequest
     {
         [JsonProperty("Id")]
-        public Guid uId { get; set; }
+        public Guid uId { get; set; } 
 
         [JsonProperty("Nombres")]
         public string sNombres { get; set; }

@@ -12,11 +12,13 @@ namespace Data.cs.Entities.Seguridad
         public Guid uIdPermisoModulo { get; set; }
         public Guid uIdPerfil { get; set; }
         public Guid uIdModulo { get; set; }
-        public bool? bTienePermiso { get; set; }
+        public bool bTienePermiso { get; set; }
         public DateTime dtFechaCreacion { get; set; }
         public DateTime dtFechaModificacion { get; set; }
         [NotMapped]
         public Guid? uIdUsuarioModificacion { get; set; }
-        public bool? bActivo { get; set; }
+        public bool bActivo { get; set; }
+        public Modulo modulo { get; set; }
+        public Perfil perfil { get; set; }
     }
 }

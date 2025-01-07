@@ -12,7 +12,7 @@ namespace Models.Seguridad
         public string ClaveModulo { get; set; }
         public string NombreModulo { get; set; }
         public string PathModulo { get; set; }
-        public bool? MostrarModuloEnMenu { get; set; }
+        public bool MostrarModuloEnMenu { get; set; }
         public Guid? IdPagina { get; set; }
         public string? ClavePagina { get; set; }
         public string? NombrePagina { get; set; }
