@@ -11,19 +11,19 @@ namespace Models.Seguridad
     public class PerfilModelo:PerfilRequest
     {
 
-        [JsonPropertyName("fechaCreacion")]
+        [JsonPropertyName("FechaCreacion")]
         public DateTime? FechaCreacion { get; set; }
 
-        [JsonPropertyName("usuarioCreacion")]
+        [JsonPropertyName("UsuarioCreacion")]
         public string? IdUsuarioCreacion { get; set; }
 
-        [JsonPropertyName("fechaModificacio")]
+        [JsonPropertyName("FechaModificacion")]
         public DateTime? FechaModificacion { get; set; }
 
-        [JsonPropertyName("usuarioModificacion")]
+        [JsonPropertyName("UsuarioModificacion")]
         public string? IdUsuarioModificacion { get; set; }
 
-        [JsonPropertyName("activo")]
+        [JsonPropertyName("Activo")]
         public bool? Activo { get; set; }
     }
 }

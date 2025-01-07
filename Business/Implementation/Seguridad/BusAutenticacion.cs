@@ -87,10 +87,10 @@ namespace Business.Implementation.Seguridad
                     Configuracion = obtenerConfiguracionMapeado,
                     PermisosModulos = obtenerPermisos.Result.Permisos.Select(x => new PermisoModuloModelo
                     {
-                        idModulo = x.idModulo,
-                        claveModulo = x.claveModulo,
-                        nombreModulo = x.nombreModulo,
-                        tienePermiso = x.tienePermiso
+                        IdModulo = x.IdModulo,
+                        ClaveModulo = x.ClaveModulo,
+                        NombreModulo = x.NombreModulo,
+                        TienePermiso = x.TienePermiso
                     }).ToList(),
                     /*PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
                     {

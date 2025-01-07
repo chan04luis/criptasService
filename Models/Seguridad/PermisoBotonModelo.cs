@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,15 @@ namespace Models.Seguridad
 {
     public class PermisoBotonModelo
     {
-        public Guid idPermisoBoton { get; set; }
-        public Guid idBoton { get; set; }
-        public string? claveBoton { get; set; }
-        public string? nombreBoton { get; set; }
-        public bool? tienePermiso { get; set; }
+        [JsonProperty("IdPermisoBoton")]
+        public Guid IdPermisoBoton { get; set; }
+        [JsonProperty("IdBoton")]
+        public Guid IdBoton { get; set; }
+        [JsonProperty("ClaveBoton")]
+        public string? ClaveBoton { get; set; }
+        [JsonProperty("NombreBoton")]
+        public string? NombreBoton { get; set; }
+        [JsonProperty("TienePermiso")]
+        public bool? TienePermiso { get; set; }
     }
 }

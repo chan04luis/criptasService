@@ -9,8 +9,9 @@ namespace Models.Seguridad
 {
     public class UsuarioModelo
     {
-        [JsonProperty("Id")]
+        [JsonProperty("IdUsuario")]
         public Guid? uIdUsuario { get; set; }
+        [JsonProperty("IdPerfil")]
         public Guid? uIdPerfil { get; set; }
         [JsonProperty("Correo")]
         public string sCorreo { get; set; }

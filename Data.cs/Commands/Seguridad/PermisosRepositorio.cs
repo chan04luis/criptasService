@@ -240,31 +240,26 @@ namespace Data.cs.Commands.Seguridad
 
             try
             {
-                var elementos = (from pmod in dbContext.PermisosModulos
-                                 join mod in dbContext.Modulo on pmod.uIdModulo equals mod.uIdModulo
+                var lstelementos = await dbContext.PermisosModulos.Where(mod => mod.bActivo && mod.bTienePermiso && mod.uIdPerfil== piIdPerfil)
+                 .Include(pag => pag.modulo)
+                 .ThenInclude(x => x.lstPaginas.Where(mod => mod.bActivo))
+                 .ThenInclude(x => x.lstPermisosPaginas.Where(x => x.uIdPerfil == piIdPerfil && x.bActivo && x.bTienePermiso))
+                 .Select(o => new
+                 {
+                     iIdModulo = o.uIdModulo,
+                     sClaveModulo = o.modulo.sClaveModulo,
+                     sNombreModulo = o.modulo.sNombreModulo,
+                     sPathModulo = o.modulo.sPathModulo,
+                     bMostrarModuloEnMenu = o.modulo.bMostrarEnMenu,
+                     iIdPagina =o.modulo.lstPaginas.FirstOrDefault().uIdPagina,
+                     sClavePagina = o.modulo.lstPaginas.FirstOrDefault().sClavePagina,
+                     sNombrePagina = o.modulo.lstPaginas.FirstOrDefault().sNombrePagina,
+                     sPathPagina = o.modulo.lstPaginas.FirstOrDefault().sPathPagina,
+                     bMostrarPaginaEnMenu = o.modulo.lstPaginas.FirstOrDefault().bMostrarEnMenu,
+                 })
+                 .ToListAsync();
 
-                                 join pag in dbContext.Pagina.Where(p => p.bActivo == true) on mod.uIdModulo equals pag.uIdModulo into leftPagina
-                                 from psginsaLeft in leftPagina.DefaultIfEmpty()
-                                 join ppag in dbContext.PermisosPagina.Where(pp => pp.bActivo == true && pp.bTienePermiso == true) on new { pmod.uIdPerfil, psginsaLeft.uIdPagina } equals new { ppag.uIdPerfil, ppag.uIdPagina } into permisoPaginaLeft
-                                 from permisoPagLeft in permisoPaginaLeft.DefaultIfEmpty()
-                                 where pmod.bTienePermiso == true && pmod.uIdPerfil == piIdPerfil && pmod.bActivo == true && mod.bActivo == true
-                                 orderby mod.sNombreModulo, psginsaLeft.sNombrePagina
-
-                                 select new
-                                 {
-                                     iIdModulo = mod.uIdModulo,
-                                     sClaveModulo = mod.sClaveModulo,
-                                     sNombreModulo = mod.sNombreModulo,
-                                     sPathModulo = mod.sPathModulo,
-                                     bMostrarModuloEnMenu = mod.bMostrarEnMenu,
-                                     iIdPagina = psginsaLeft.uIdPagina,
-                                     sClavePagina = psginsaLeft.sClavePagina,
-                                     sNombrePagina = psginsaLeft.sNombrePagina,
-                                     sPathPagina = psginsaLeft.sPathPagina,
-                                     bMostrarPaginaEnMenu = psginsaLeft.bMostrarEnMenu
-                                 }
-              ).ToListAsync();
-                List<PerfilPermisoMenuModelo> lstPermisos = elementos.Result.Select(o => new PerfilPermisoMenuModelo
+                List<PerfilPermisoMenuModelo> lstPermisos = lstelementos.Select(o => new PerfilPermisoMenuModelo
                 {
                     MostrarModuloEnMenu = o.bMostrarModuloEnMenu,
                     MostrarPaginaEnMenu = o.bMostrarPaginaEnMenu,
