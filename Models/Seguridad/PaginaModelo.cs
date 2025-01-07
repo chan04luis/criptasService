@@ -15,6 +15,5 @@ namespace Models.Seguridad
         public string? sPathPagina { get; set; }
         public bool? bMostrarEnMenu { get; set; }
         public List<BotonModelo>? Botones { get; set; }
-        public bool bActivo { get; set; }
     }
 }

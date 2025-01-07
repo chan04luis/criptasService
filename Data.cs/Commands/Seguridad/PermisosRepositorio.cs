@@ -14,60 +14,6 @@ namespace Data.cs.Commands.Seguridad
         {
             this.dbContext = dbContext;
         }
-        public async Task<Response<List<PermisoModulos>>> GetPermisosModulos(Guid piIdPerfil)
-        {
-            Response<List<PermisoModulos>> response = new();
-            try
-            {
-                var permisosModulos = await dbContext.PermisosModulos.Where(mod => mod.bActivo)
-                .Where(p => p.uIdPerfil == piIdPerfil && p.modulo.bActivo)
-                .Include(pag => pag.modulo)
-                .ToListAsync();
-
-                response.SetSuccess(permisosModulos);
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
-            }
-            return response;
-        }
-        public async Task<Response<List<PermisosPagina>>> GetPermisosPaginas(Guid piIdPerfil)
-        {
-            Response<List<PermisosPagina>> response = new();
-            try
-            {
-                var permisosPagina = await dbContext.PermisosPagina.Where(mod => mod.bActivo)
-                .Where(p => p.uIdPerfil == piIdPerfil && p.pagina.bActivo)
-                .Include(pag => pag.pagina)
-                .ToListAsync();
-
-                response.SetSuccess(permisosPagina);
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
-            }
-            return response;
-        }
-        public async Task<Response<List<PermisoBotones>>> GetPermisosBotones(Guid piIdPerfil)
-        {
-            Response<List<PermisoBotones>> response = new();
-            try
-            {
-                var permisosBoton = await dbContext.PermisoBotones.Where(mod => mod.bActivo)
-                .Where(p => p.uIdPerfil == piIdPerfil && p.boton.bActivo)
-                .Include(pag => pag.boton)
-                .ToListAsync();
-
-                response.SetSuccess(permisosBoton);
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
-            }
-            return response;
-        }
         public async Task<Response<List<Modulo>>> GetPermisosElementos(Guid piIdPerfil)
         {
 

@@ -11,7 +11,7 @@ namespace Data.cs.Interfaces.Seguridad
 {
     public interface IConfiguracionesRepositorio
     {
-        Task<Response<List<ElementoSrcModelo>>> ObtenerElementosSistema();
+        Task<Response<List<Modulo>>> ObtenerElementosSistema();
         Task<Response<Configuracion>> DSave(Configuracion newItem);
         Task<Response<Configuracion>> DObtenerConfiguracion();
         Task<Response<bool>> DUpdate(Configuracion entity);

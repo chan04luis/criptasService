@@ -13,53 +13,15 @@ namespace Data.cs.Commands.Seguridad
         {
             this.dbContext = dbContext;
         }
-        public async Task<Response<List<ElementoSrcModelo>>> ObtenerElementosSistema()
+        public async Task<Response<List<Modulo>>> ObtenerElementosSistema()
         {
-            Response<List<ElementoSrcModelo>> response = new();
+            Response<List<Modulo>> response = new();
             try
             {
-                var elementos = (from mod in dbContext.Modulo
-                                 join pag in dbContext.Pagina.Where(x => x.bActivo == true) on mod.uIdModulo equals pag.uIdModulo into moduloPagina
-                                 from mp in moduloPagina.DefaultIfEmpty()
-                                 join bot in dbContext.Boton.Where(x => x.bActivo == true) on mp.uIdPagina equals bot.uIdPagina into paginaBoton
-                                 from pb in paginaBoton.DefaultIfEmpty()
-                                 where mod.bActivo == true
-                                 orderby mod.sPathModulo, mp.sPathPagina, pb.sNombreBoton
-
-                                 select new
-                                 {
-                                     IdModulo = mod.uIdModulo,
-                                     ClaveModulo = mod.sClaveModulo,
-                                     NombreModulo = mod.sNombreModulo,
-                                     PathModulo = mod.sPathModulo,
-                                     MostrarModuloEnMenu = mod.bMostrarEnMenu,
-                                     IdPagina = mp.uIdPagina,
-
-                                     ClavePagina = mp.sClavePagina,
-                                     NombrePagina = mp.sNombrePagina,
-                                     PathPagina = mp.sPathPagina,
-                                     MostrarPaginaEnMenu = mp.bMostrarEnMenu,
-                                     IdBoton = pb.uIdBoton,
-                                     ClaveBoton = pb.sClaveBoton,
-                                     NombreBoton = pb.sNombreBoton
-                                 }
-                    ).ToListAsync();
-                List<ElementoSrcModelo> lstElementos = elementos.Result.Select(o => new ElementoSrcModelo
-                {
-                    IdModulo = o.IdModulo,
-                    ClaveModulo = o.ClaveModulo,
-                    NombreModulo = o.NombreModulo,
-                    PathModulo = o.PathModulo,
-                    MostrarModuloEnMenu = o.MostrarModuloEnMenu,
-                    IdPagina = o.IdPagina,
-                    ClavePagina = o.ClavePagina,
-                    NombrePagina = o.NombrePagina,
-                    PathPagina = o.PathPagina,
-                    MostrarPaginaEnMenu = o.MostrarPaginaEnMenu,
-                    IdBoton = o.IdBoton,
-                    ClaveBoton = o.ClaveBoton,
-                    NombreBoton = o.NombreBoton
-                }).ToList();
+                var lstElementos = await dbContext.Modulo.Where(y=>y.bActivo)
+                    .Include(x=>x.lstPaginas.Where(y=>y.bActivo))
+                    .ThenInclude(x=>x.lstBotones.Where(y=>y.bActivo))
+                    .ToListAsync();
 
                 response.SetSuccess(lstElementos);
             }

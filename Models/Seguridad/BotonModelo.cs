@@ -12,6 +12,5 @@ namespace Models.Seguridad
         public Guid? uIdPagina { get; set; }
         public string sClaveBoton { get; set; }
         public string sNombreBoton { get; set; }
-        public bool bActivo { get; set; }
     }
 }

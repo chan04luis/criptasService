@@ -26,37 +26,37 @@ namespace Business.Implementation.Seguridad
             Response<List<ModuloModelo>> response = new();
             try
             {
-                Response<List<ElementoSrcModelo>> obtenerElementos = await configuracionRepositorio.ObtenerElementosSistema();
+                Response<List<Modulo>> obtenerElementos = await configuracionRepositorio.ObtenerElementosSistema();
                 if (obtenerElementos.HasError)
                 {
                     return response.GetResponse(obtenerElementos);
                 }
 
                 List<ModuloModelo> lstElementos = obtenerElementos.Result
-                    .GroupBy(x => x.IdModulo)
+                    .GroupBy(x => x.uIdModulo)
                     .Select(x => new ModuloModelo
                     {
                         uIdModulo = x.Key,
-                        sClaveModulo = x.FirstOrDefault().ClaveModulo,
-                        sNombreModulo = x.FirstOrDefault().NombreModulo,
-                        sPathModulo = x.FirstOrDefault().PathModulo,
-                        bMostrarEnMenu = x.FirstOrDefault().MostrarModuloEnMenu,
-                        Paginas = x
-                            .GroupBy(y => y.IdPagina)
+                        sClaveModulo = x.FirstOrDefault().sClaveModulo,
+                        sNombreModulo = x.FirstOrDefault().sNombreModulo,
+                        sPathModulo = x.FirstOrDefault().sPathModulo,
+                        bMostrarEnMenu = x.FirstOrDefault().bMostrarEnMenu,
+                        Paginas = x.FirstOrDefault()?.lstPaginas
+                            .GroupBy(y => y.uIdPagina)
                             .Select(y => new PaginaModelo
                             {
                                 uIdPagina = y.Key,
-                                sClavePagina = y.FirstOrDefault().ClavePagina,
-                                sNombrePagina = y.FirstOrDefault().NombrePagina,
-                                sPathPagina = y.FirstOrDefault().PathPagina,
-                                bMostrarEnMenu = y.FirstOrDefault().MostrarPaginaEnMenu,
-                                Botones = y
-                                    .GroupBy(z => z.IdBoton)
+                                sClavePagina = y.FirstOrDefault().sClavePagina,
+                                sNombrePagina = y.FirstOrDefault().sNombrePagina,
+                                sPathPagina = y.FirstOrDefault().sPathPagina,
+                                bMostrarEnMenu = y.FirstOrDefault().bMostrarEnMenu,
+                                Botones = y.FirstOrDefault()?.lstBotones
+                                    .GroupBy(z => z.uIdBoton)
                                     .Select(z => new BotonModelo
                                     {
                                         uIdBoton = z.Key,
-                                        sClaveBoton = z.FirstOrDefault().ClaveBoton,
-                                        sNombreBoton = z.FirstOrDefault().NombreBoton,
+                                        sClaveBoton = z.FirstOrDefault().sClaveBoton,
+                                        sNombreBoton = z.FirstOrDefault().sNombreBoton,
                                     })
                                     .Where(x => x.uIdBoton != Guid.Empty)
                                     .ToList()
