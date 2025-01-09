@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //builder.WebHost.UseUrls("http://127.0.0.1:5001");
 // Add services to the container.
 
-builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -64,7 +64,14 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
-        options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+    {
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver
+        {
+            NamingStrategy = null // Mantiene PascalCase
+        };
+    }); 
+
+
 
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioUpdateValidator>();

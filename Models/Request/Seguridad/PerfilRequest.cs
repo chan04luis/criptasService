@@ -10,16 +10,13 @@ namespace Models.Request.Seguridad
 {
     public class PerfilRequest
     {
-        [JsonProperty("idPerfil")]
+        [JsonPropertyName("IdPerfil")]
         public Guid? IdPerfil { get; set; }
-
-        [JsonPropertyName("clavePerfil")]
+        [JsonPropertyName("ClavePerfil")]
         public string ClavePerfil { get; set; }
-
-        [JsonPropertyName("nombrePerfil")]
+        [JsonPropertyName("NombrePerfil")]
         public string NombrePerfil { get; set; }
-
-        [JsonPropertyName("eliminable")]
+        [JsonPropertyName("Eliminable")]
         public bool Eliminable { get; set; }
     }
 }
