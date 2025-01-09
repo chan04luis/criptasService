@@ -15,5 +15,6 @@ namespace Data.cs.Interfaces.Seguridad
         Task<Response<Configuracion>> DSave(Configuracion newItem);
         Task<Response<Configuracion>> DObtenerConfiguracion();
         Task<Response<bool>> DUpdate(Configuracion entity);
+        Task<Response<bool>> AnyExistKey(Guid pKey);
     }
 }

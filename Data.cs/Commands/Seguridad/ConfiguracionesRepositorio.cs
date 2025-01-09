@@ -1,6 +1,7 @@
 ﻿using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Models.Seguridad;
 using Utils;
 
@@ -9,31 +10,45 @@ namespace Data.cs.Commands.Seguridad
     public class ConfiguracionesRepositorio:IConfiguracionesRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        public ConfiguracionesRepositorio(ApplicationDbContext dbContext)
+        private readonly ILogger<ConfiguracionesRepositorio> _logger;
+        public ConfiguracionesRepositorio(ApplicationDbContext dbContext, ILogger<ConfiguracionesRepositorio> _logger)
         {
             this.dbContext = dbContext;
+            this._logger = _logger;
         }
+
         public async Task<Response<List<Modulo>>> ObtenerElementosSistema()
         {
-            Response<List<Modulo>> response = new();
+            Response<List<Modulo>> response = new Response<List<Modulo>>();
+
             try
             {
-                var lstElementos = await dbContext.Modulo.Where(y=>y.bActivo)
-                    .Include(x=>x.lstPaginas.Where(y=>y.bActivo))
-                    .ThenInclude(x=>x.lstBotones.Where(y=>y.bActivo))
+                var lstElementos = await dbContext.Modulo.Where(y => y.bActivo)
+                    .Include(x => x.lstPaginas.Where(y => y.bActivo))
+                    .ThenInclude(x => x.lstBotones.Where(y => y.bActivo))
                     .ToListAsync();
 
-                response.SetSuccess(lstElementos);
+                if (lstElementos.Count > 0)
+                {
+                    response.SetSuccess(lstElementos);
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
             }
             catch (Exception ex)
             {
-                throw;
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ObtenerElementosSistema));
+                response.SetError(ex.Message);
             }
             return response;
         }
         public async Task<Response<Configuracion>> DSave(Configuracion newItem)
         {
-            var response = new Response<Configuracion>();
+            Response<Configuracion> response = new Response<Configuracion>();
+
             try
             {
                 newItem.uIdConfiguracion = Guid.NewGuid();
@@ -41,74 +56,115 @@ namespace Data.cs.Commands.Seguridad
                 newItem.bActivo = true;
 
                 dbContext.Configuracion.Add(newItem);
+                var exec = await dbContext.SaveChangesAsync();
 
-                int i = await dbContext.SaveChangesAsync();
-
-                if (i == 0)
+                if (exec > 0)
                 {
-                    return default;
+                    response.SetSuccess(newItem, "Agregado correctamente");
                 }
-
-                response.SetSuccess(newItem);
+                else
+                {
+                    response.SetError("Registro no agregado");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSave));
+                response.SetError(ex.Message);
             }
             return response;
         }
+
         public async Task<Response<Configuracion>> DObtenerConfiguracion()
         {
-            var response = new Response<Configuracion>();
+            Response<Configuracion> response = new Response<Configuracion>();
+
             try
             {
-                var configuracion = await dbContext.Configuracion.AsNoTracking()
-                            .SingleOrDefaultAsync();
-                response.SetSuccess(configuracion);
+                var configuracion = await dbContext.Configuracion.AsNoTracking().SingleOrDefaultAsync();
 
+                if (configuracion == null)
+                {
+                    response.SetSuccess(new Configuracion(), "No se encontraron resultados");
+                }
+                else
+                {
+                    response.SetSuccess(configuracion, "Consultado Correctamente");
+                }
             }
             catch (Exception ex)
             {
-
-                throw;
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DObtenerConfiguracion));
+                response.SetError(ex.Message);
             }
             return response;
         }
         public async Task<Response<bool>> DUpdate(Configuracion entity)
         {
-            var response = new Response<bool>();
-            bool success = false;
+            Response<bool> response = new Response<bool>();
+
             try
             {
-                entity.dtFechaModificacion = DateTime.Now;
-                entity.uIdUsuarioModificacion = new Guid("006F2E2B-5C9F-DEFA-E063-0400000A4139");
-
-                var entry = dbContext.Configuracion.Attach(entity);
-                dbContext.Entry(entity).Property(x => x.sTituloNavegador).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sMetaDescripcion).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sColorPrimario).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sColorSecundario).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sContrastePrimario).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sContrasteSecundario).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sUrlFuente).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sNombreFuente).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sRutaImagenFondo).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sRutaImagenLogo).IsModified = true;
-                dbContext.Entry(entity).Property(x => x.sRutaImagenPortal).IsModified = true;
-                bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                if (IsModified)
+                var bEntity = await dbContext.Configuracion.FindAsync(entity.uIdConfiguracion);
+                if (bEntity == null)
                 {
-                    int i = await dbContext.SaveChangesAsync();
+                    response.SetError("La configuracion no fue encontrada.");
+                    return response;
                 }
 
-                success = true;
-            }
-            catch (Exception)
-            {
+                bEntity.sTituloNavegador = entity.sTituloNavegador;
+                bEntity.sMetaDescripcion = entity.sMetaDescripcion;
+                bEntity.sColorPrimario = entity.sColorPrimario;
+                bEntity.sColorSecundario = entity.sColorSecundario;
+                bEntity.sContrastePrimario = entity.sContrastePrimario;
+                bEntity.sContrasteSecundario = entity.sContrasteSecundario;
+                bEntity.sUrlFuente = entity.sUrlFuente;
+                bEntity.sNombreFuente = entity.sNombreFuente;
+                bEntity.sRutaImagenFondo = entity.sRutaImagenFondo;
+                bEntity.sRutaImagenLogo = entity.sRutaImagenLogo;
+                bEntity.sRutaImagenPortal = entity.sRutaImagenPortal;
+                dbContext.Update(bEntity);
 
-                success = false;
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Actualizado correctamente");
+                }
+
+                else
+                {
+                    response.SetError("Registro no actualizado");
+                }
             }
-            response.SetSuccess(success);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DUpdate));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> AnyExistKey(Guid pKey)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsKey = await dbContext.Configuracion.AnyAsync(i => i.uIdConfiguracion == pKey && i.bActivo == true);
+                if (exitsKey)
+                {
+                    response.SetSuccess(exitsKey, "Configuración ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe la configuración");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExistKey));
+                response.SetError(ex.Message);
+            }
             return response;
         }
     }

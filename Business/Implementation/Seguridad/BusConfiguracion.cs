@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Business.Interfaces.Seguridad;
+using Data.cs.Commands.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
+using Microsoft.Extensions.Logging;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,12 @@ namespace Business.Implementation.Seguridad
     {
         private readonly IConfiguracionesRepositorio configuracionRepositorio;
         private readonly IMapper mapeador;
-        public BusConfiguracion(IMapper mapeador, IConfiguracionesRepositorio configuracionRepositorio)
+        private readonly ILogger<BusPerfiles> _logger;
+        public BusConfiguracion(IMapper mapeador, IConfiguracionesRepositorio configuracionRepositorio, ILogger<BusPerfiles> _logger)
         {
             this.mapeador = mapeador;
             this.configuracionRepositorio = configuracionRepositorio;
+            this._logger = _logger;
         }
         public async Task<Response<List<ModuloModelo>>> ObtenerElementosSistema()
         {
@@ -73,6 +77,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ObtenerElementosSistema));
                 response.SetError("Ocurrió un error en la base de datos al consultar la configuración");
             }
             return response;
@@ -84,21 +89,42 @@ namespace Business.Implementation.Seguridad
             {
                 Configuracion entConfiguracion = mapeador.Map<Configuracion>(createModel);
 
-                Response<Configuracion> EntConfiguracionGuardada = await configuracionRepositorio.DObtenerConfiguracion();
-                if (EntConfiguracionGuardada.Result == null)
+                Response<bool> existeConfiguracion = await configuracionRepositorio.AnyExistKey(createModel.uIdConfiguracion);
+
+                if (!existeConfiguracion.Result)
                 {
-                    await configuracionRepositorio.DSave(entConfiguracion);
+                    var result = await configuracionRepositorio.DSave(entConfiguracion);
+                    if (result.Result!=null)
+                    {
+
+                        response.SetSuccess(true, result.Message);
+                    }
+                    else
+                    {
+                        response.SetError(result.Message);
+                    }
                 }
                 else
                 {
-                    entConfiguracion.uIdConfiguracion = EntConfiguracionGuardada.Result.uIdConfiguracion;
-                    await configuracionRepositorio.DUpdate(entConfiguracion);
+
+                    var result = await configuracionRepositorio.DUpdate(entConfiguracion);
+
+                    if (result.Result)
+                    {
+
+                        response.SetSuccess(result.Result, result.Message);
+                    }
+                    else
+                    {
+                        response.SetError(result.Message);
+                    }
+
                 }
-                response.SetSuccess(true);
             }
             catch (Exception ex)
             {
-                response.SetError("No se guardó el perfil");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(bCrearConfiguracion));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -113,7 +139,8 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BObtenerConfiguracion));
+                response.SetError(ex.Message);
             }
             return response;
         }
