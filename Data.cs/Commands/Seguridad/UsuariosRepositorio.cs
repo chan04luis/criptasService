@@ -41,6 +41,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExistKey));
             response.SetError(ex);
         }
         return response;
@@ -65,6 +66,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitMailAndKey));
             response.SetError(ex);
         }
         return response;
@@ -88,6 +90,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DAnyExistEmail));
             response.SetError(ex);
         }
         return response;
@@ -117,6 +120,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSave));
             response.SetError(ex);
         }
         return response;
@@ -129,6 +133,11 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         try
         {
             var bEntity = await dbContext.Usuarios.FindAsync(entity.uId);
+            if (bEntity == null)
+            {
+                response.SetError("El usuario no fue encontrado.");
+                return response;
+            }
             bEntity.sNombres = entity.sNombres;
             bEntity.sApellidos = entity.sApellidos;
             bEntity.sTelefono = entity.sTelefono;
@@ -146,6 +155,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DUpdate));
             response.SetError(ex);
         }
         return response;
@@ -173,6 +183,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DUpdateEstatus));
             response.SetError(ex);
         }
         return response;
@@ -200,6 +211,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DDelete));
             response.SetError(ex);
         }
         return response;
@@ -221,6 +233,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetById));
             response.SetError(ex.Message);
         }
         return response;
@@ -242,6 +255,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetList));
             response.SetError(ex.Message);
         }
         return response;
@@ -263,6 +277,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetByFilters));
             response.SetError(ex.Message);
         }
         return response;
@@ -279,8 +294,8 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
-
-            throw;
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGet));
+            response.SetError(ex.Message);
         }
         return response;
     }
@@ -304,10 +319,8 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         catch (Exception ex)
         {
-            // Registra el error
-            // Logger.LogError(ex, "Error al obtener el usuario por Id y perfil.");
-
-            response.SetError(ex);
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetByIdAndPerfilAsync));
+            response.SetError(ex.Message);
         }
 
         return response;

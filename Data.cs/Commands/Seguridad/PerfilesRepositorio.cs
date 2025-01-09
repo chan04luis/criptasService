@@ -2,15 +2,18 @@
 using Data.cs.Entities.Seguridad;
 using Microsoft.EntityFrameworkCore;
 using Utils;
+using Microsoft.Extensions.Logging;
 
 namespace Data.cs.Commands.Seguridad
 {
     public class PerfilesRepositorio: IPerfilesRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        public PerfilesRepositorio(ApplicationDbContext dbContext)
+        private readonly ILogger<PerfilesRepositorio> _logger;
+        public PerfilesRepositorio(ApplicationDbContext dbContext, ILogger<PerfilesRepositorio> _logger)
         {
             this.dbContext = dbContext;
+            this._logger = _logger;
         }
         public async Task<Response<bool>> AnyExistKey(Guid pKey)
         {
@@ -19,12 +22,19 @@ namespace Data.cs.Commands.Seguridad
             try
             {
                 var exitsKey = await dbContext.Perfiles.AnyAsync(i => i.id == pKey && i.Activo == true);
-
-                response.SetSuccess(exitsKey, "Perfil ya existente");
+                if (exitsKey)
+                {
+                    response.SetSuccess(exitsKey, "Perfil ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el perfil");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExistKey));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -37,11 +47,19 @@ namespace Data.cs.Commands.Seguridad
                 var exitsName = await dbContext.Perfiles.AnyAsync(i => (i.id != pEntity.id)
                                                                         && (i.NombrePerfil.Equals(pEntity.NombrePerfil)) && i.Activo == true);
 
-                response.SetSuccess(exitsName, "Pefiles ya existente");
+                if (exitsName)
+                {
+                    response.SetSuccess(exitsName, "Pefiles ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el perfil");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitNameAndKey));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -52,12 +70,19 @@ namespace Data.cs.Commands.Seguridad
             try
             {
                 var exitsName = await dbContext.Perfiles.AnyAsync(i => i.NombrePerfil.Equals(pName) && i.Activo == true);
-
-                response.SetSuccess(exitsName, "Perfil ya existente");
+                if (exitsName)
+                {
+                    response.SetSuccess(exitsName, "Perfil ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el perfil");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitName));
+                response.SetError(ex.Message);
             }
             return response;
         }
