@@ -3,40 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\request\\seguridad\\perfilrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\seguridad\\perfilrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\api\\controllers\\seguridad\\perfilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\perfilescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\commands\\seguridad\\perfilesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\perfilesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\entities\\seguridad\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\seguridad\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\mapping\\seguridad\\mapperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\seguridad\\mapperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\api\\controllers\\seguridad\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\implementation\\seguridad\\busconfiguracion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busconfiguracion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\seguridad\\configuracionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\configuracionmodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\api\\controllers\\seguridad\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\configuracionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,123 +18,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PerfilesRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
-              "ViewState": "AQIAAK4AAAAAAAAAAAAAALgAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:16:30.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Perfil.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\Perfil.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Entities\\Seguridad\\Perfil.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\Perfil.cs",
-              "RelativeToolTip": "Data.cs\\Entities\\Seguridad\\Perfil.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAUwAsAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:16:18.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MapPerfiles.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Mapping\\Seguridad\\MapPerfiles.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Seguridad\\MapPerfiles.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Mapping\\Seguridad\\MapPerfiles.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Seguridad\\MapPerfiles.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAYwBcAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:16:13.351Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Program.cs",
-              "RelativeDocumentMoniker": "Api\\Program.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Program.cs",
-              "RelativeToolTip": "Api\\Program.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAnwDsAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:07:54.532Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PerfilRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Request\\Seguridad\\PerfilRequest.cs",
-              "RelativeDocumentMoniker": "Models\\Request\\Seguridad\\PerfilRequest.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Request\\Seguridad\\PerfilRequest.cs",
-              "RelativeToolTip": "Models\\Request\\Seguridad\\PerfilRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBIAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:02:09.34Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PerfilesController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Controllers\\Seguridad\\PerfilesController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\PerfilesController.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Controllers\\Seguridad\\PerfilesController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\PerfilesController.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBoAAABlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T06:01:58.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ConfiguracionModelo.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Seguridad\\ConfiguracionModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\ConfiguracionModelo.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Seguridad\\ConfiguracionModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\ConfiguracionModelo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T05:54:39.105Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "BusConfiguracion.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusConfiguracion.cs",
               "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusConfiguracion.cs",
               "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusConfiguracion.cs",
               "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusConfiguracion.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAswFwAAAAUAAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAAADkAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T05:12:00.771Z",
+              "WhenOpened": "2025-01-09T06:38:11.456Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "ConfiguracionesController.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Controllers\\Seguridad\\ConfiguracionesController.cs",
               "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\ConfiguracionesController.cs",
               "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Controllers\\Seguridad\\ConfiguracionesController.cs",
               "RelativeToolTip": "Api\\Controllers\\Seguridad\\ConfiguracionesController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAABhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T05:53:28.312Z",
+              "WhenOpened": "2025-01-09T06:38:02.108Z",
               "EditorCaption": ""
             }
           ]

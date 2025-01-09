@@ -46,6 +46,7 @@ namespace Business.Implementation.Seguridad
                             .Select(y => new PaginaModelo
                             {
                                 uIdPagina = y.Key,
+                                uIdModulo=y.FirstOrDefault().uIdModulo,
                                 sClavePagina = y.FirstOrDefault().sClavePagina,
                                 sNombrePagina = y.FirstOrDefault().sNombrePagina,
                                 sPathPagina = y.FirstOrDefault().sPathPagina,
@@ -54,6 +55,7 @@ namespace Business.Implementation.Seguridad
                                     .GroupBy(z => z.uIdBoton)
                                     .Select(z => new BotonModelo
                                     {
+                                        uIdPagina=z.FirstOrDefault().uIdPagina,
                                         uIdBoton = z.Key,
                                         sClaveBoton = z.FirstOrDefault().sClaveBoton,
                                         sNombreBoton = z.FirstOrDefault().sNombreBoton,
