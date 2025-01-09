@@ -89,6 +89,7 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
+                    entConfiguracion.uIdConfiguracion = EntConfiguracionGuardada.Result.uIdConfiguracion;
                     await configuracionRepositorio.DUpdate(entConfiguracion);
                 }
                 response.SetSuccess(true);
