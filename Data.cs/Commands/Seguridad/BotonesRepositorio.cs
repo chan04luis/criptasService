@@ -1,6 +1,7 @@
 ﻿using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Utils;
 
 namespace Data.cs.Commands.Seguridad
@@ -8,131 +9,177 @@ namespace Data.cs.Commands.Seguridad
     public class BotonesRepositorio:IBotonesRepositorio
     {
         private readonly ApplicationDbContext dbContext;
-        public BotonesRepositorio(ApplicationDbContext dbContext)
+        private readonly ILogger<BotonesRepositorio> _logger;
+        public BotonesRepositorio(ApplicationDbContext dbContext, ILogger<BotonesRepositorio> _logger)
         {
             this.dbContext = dbContext;
+            this._logger = _logger;
         }
-
-        public async Task<Response<Boton>> DSave(Boton newItem)
+        public async Task<Response<bool>> AnyExistKey(Guid pKey)
         {
-            var response = new Response<Boton>();
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsKey = await dbContext.Boton.AnyAsync(i => i.uIdBoton == pKey && i.bActivo == true);
+                if (exitsKey)
+                {
+                    response.SetSuccess(exitsKey, "Boton ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el boton");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExistKey));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> AnyExitNameAndKey(Boton pEntity)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsName = await dbContext.Boton.AnyAsync(i => (i.uIdBoton != pEntity.uIdBoton)
+                                                                        && (i.sClaveBoton.Equals(pEntity.sClaveBoton)) && i.bActivo == true);
+
+                if (exitsName)
+                {
+                    response.SetSuccess(exitsName, "Boton ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el boton");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitNameAndKey));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> AnyExitName(string pName)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsClave = await dbContext.Boton.AnyAsync(i => i.sClaveBoton.Equals(pName) && i.bActivo == true);
+                if (exitsClave)
+                {
+                    response.SetSuccess(exitsClave, "Boton ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe el boton");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitName));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> Delete(Guid iKey)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var entity = await dbContext.Boton.FindAsync(iKey);
+
+                entity.bActivo = false;
+
+                dbContext.Update(entity);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Eliminado correctamente");
+                }
+                else
+                {
+                    response.SetError("Registro no eliminado");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Delete));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<Boton>> Save(Boton newItem)
+        {
+            Response<Boton> response = new Response<Boton>();
+
             try
             {
                 newItem.uIdBoton = Guid.NewGuid();
                 newItem.bActivo = true;
 
                 dbContext.Boton.Add(newItem);
+                var exec = await dbContext.SaveChangesAsync();
 
-                int i = await dbContext.SaveChangesAsync();
-
-                if (i == 0)
+                if (exec > 0)
                 {
-                    return default;
+                    response.SetSuccess(newItem, "Agregado correctamente");
                 }
-                response.SetSuccess(newItem);
+                else
+                {
+                    response.SetError("Registro no agregado");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Save));
+                response.SetError(ex.Message);
             }
             return response;
         }
-        public async Task<Response<bool>> DDelete(Guid iKey)
+        public async Task<Response<bool>> Update(Boton entity)
         {
-            var response = new Response<bool>();
+            Response<bool> response = new Response<bool>();
+
             try
             {
-                var boton = await DGet(iKey);
-
-                if (boton != null)
+                var bEntity = await dbContext.Boton.FindAsync(entity.uIdBoton);
+                if (bEntity == null)
                 {
-                    Boton entBoton = new()
-                    {
-                        uIdBoton = iKey,
-                        bActivo = false
-                    };
-
-                    var entry = dbContext.Boton.Attach(entBoton);
-
-                    dbContext.Entry(entBoton).Property(x => x.bActivo).IsModified = true;
-
-                    bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                    if (IsModified)
-                    {
-                        int i = await dbContext.SaveChangesAsync();
-                        if (i == 0)
-                            response.SetError("Datos no guardados");
-                        else
-                            response.SetSuccess(true);
-                    }
+                    response.SetError("El boton no fue encontrado.");
+                    return response;
                 }
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
-            return response;
-        }
-        public async Task<Response<List<Boton>>> DGet()
-        {
-            var response = new Response<List<Boton>>();
-            try
-            {
-                var listaBotones = await dbContext.Boton.AsNoTracking().Where(x => x.bActivo == true).OrderBy(x => x.sNombreBoton).ToListAsync();
-                response.SetSuccess(listaBotones);
+                bEntity.sNombreBoton = entity.sNombreBoton;
+                bEntity.sClaveBoton = entity.sClaveBoton;
+                bEntity.uIdPagina = entity.uIdPagina;
+
+                dbContext.Update(bEntity);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Actualizado correctamente");
+                }
+
+                else
+                {
+                    response.SetError("Registro no actualizado");
+                }
             }
             catch (Exception ex)
             {
-                throw;
-            }
-            return response;
-        }
-        public async Task<Response<Boton>> DGet(Guid iKey)
-        {
-            var response = new Response<Boton>();
-            try
-            {
-                var boton = await dbContext.Boton.AsNoTracking()
-                            .SingleOrDefaultAsync(u => u.uIdBoton == iKey);
-                response.SetSuccess(boton);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            return response;
-        }
-        public async Task<Response<bool>> DUpdate(Boton entity)
-        {
-            var response = new Response<bool>();
-            try
-            {
-                var boton = await DGet(entity.uIdBoton);
-
-                if (boton != null)
-                {
-                    var entry = dbContext.Boton.Attach(entity);
-
-                    dbContext.Entry(entity).Property(x => x.sClaveBoton).IsModified = true;
-                    dbContext.Entry(entity).Property(x => x.sNombreBoton).IsModified = true;
-
-                    bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                    if (IsModified)
-                    {
-                        int i = await dbContext.SaveChangesAsync();
-                        if (i == 0)
-                            response.SetError("Datos no actualizados");
-                        else
-                            response.SetSuccess(true);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Update));
+                response.SetError(ex.Message);
             }
             return response;
         }

@@ -32,7 +32,7 @@ namespace Business.Implementation.Seguridad
 
             try
             {
-                Response<bool> existName = await _datModulo.AnyExitName(createModel.sNombreModulo);
+                Response<bool> existName = await _datModulo.AnyExitName(createModel.sClaveModulo);
 
                 if (existName.Result)
                 {

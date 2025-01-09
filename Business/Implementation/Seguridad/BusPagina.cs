@@ -34,7 +34,7 @@ namespace Business.Implementation.Seguridad
 
             try
             {
-                Response<bool> existName = await _datPagina.AnyExitName(createModel.sNombrePagina);
+                Response<bool> existName = await _datPagina.AnyExitName(createModel.sClavePagina);
 
                 if (existName.Result)
                 {

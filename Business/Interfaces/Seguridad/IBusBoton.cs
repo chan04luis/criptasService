@@ -13,8 +13,6 @@ namespace Business.Interfaces.Seguridad
     {
         Task<Response<BotonModelo>> BCreate(BotonRequest createModel);
         Task<Response<bool>> BDelete(Guid iKey);
-        Task<Response<BotonModelo>> BGet(Guid iKey);
-        Task<Response<List<BotonModelo>>> BGetAll();
         Task<Response<bool>> BUpdate(BotonRequest updateModel);
     }
 }

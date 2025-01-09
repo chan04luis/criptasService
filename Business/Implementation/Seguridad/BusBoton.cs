@@ -2,6 +2,7 @@
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
+using Microsoft.Extensions.Logging;
 using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
@@ -17,11 +18,13 @@ namespace Business.Implementation.Seguridad
     {
         private readonly IBotonesRepositorio botonesRepositorio;
         private readonly IMapper mapeador;
+        private readonly ILogger<BusBoton> _logger;
 
-        public BusBoton(IMapper mapeador, IBotonesRepositorio botonesRepositorio)
+        public BusBoton(IMapper mapeador, IBotonesRepositorio botonesRepositorio, ILogger<BusBoton> _logger)
         {
             this.mapeador = mapeador;
             this.botonesRepositorio = botonesRepositorio;
+            this._logger = _logger;
         }
         public async Task<Response<BotonModelo>> BCreate(BotonRequest createModel)
         {
@@ -29,35 +32,32 @@ namespace Business.Implementation.Seguridad
 
             try
             {
-                Response<List<Boton>> obtenerBoton = await botonesRepositorio.DGet();
-                if (obtenerBoton.HasError)
+                Response<bool> existName = await botonesRepositorio.AnyExitName(createModel.sClaveBoton);
+
+                if (existName.Result)
                 {
-                    return response.GetResponse(obtenerBoton);
-                }
-                foreach (Boton boton in obtenerBoton.Result)
-                {
-                    if (boton.sClaveBoton.ToUpper() == createModel.sClaveBoton.ToUpper())
-                    {
-                        return response.GetBadRequest("La clave del botón ya existe, intente con otra clave");
-                    }
+                    response.SetError(existName.Message);
+                    return response;
                 }
 
-                Boton entBoton = mapeador.Map<Boton>(createModel);
 
-                var resp = await botonesRepositorio.DSave(entBoton);
+                Boton botonEntidad = mapeador.Map<Boton>(createModel);
 
-                if (resp.HasError)
+                var botonCreado = await botonesRepositorio.Save(botonEntidad);
+
+                if (botonCreado.HasError)
                 {
-                    response.SetError("No se guardó el botón");
+                    response.SetError(botonCreado.Message);
                 }
                 else
                 {
-                    BotonModelo entBotonCreado = mapeador.Map<BotonModelo>(resp.Result);
+                    BotonModelo entBotonCreado = mapeador.Map<BotonModelo>(botonCreado.Result);
                     response.SetCreated(entBotonCreado);
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BCreate));
                 response.SetError(ex);
             }
             return response;
@@ -67,84 +67,54 @@ namespace Business.Implementation.Seguridad
             Response<bool> response = new();
             try
             {
-                var resData = await botonesRepositorio.DDelete(iKey);
+                var existKey = await botonesRepositorio.AnyExistKey(iKey);
+                if (!existKey.Result)
+                {
+                    response.SetError(existKey.Message);
+                    return response;
+                }
+                var resData = await botonesRepositorio.Delete(iKey);
                 response.SetSuccess(resData.Result);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BDelete));
                 response.SetError(ex);
             }
             return response;
 
-        }
-        public async Task<Response<BotonModelo>> BGet(Guid iKey)
-        {
-            Response<BotonModelo> response = new Response<BotonModelo>();
-
-            try
-            {
-                var resData = await botonesRepositorio.DGet(iKey);
-                BotonModelo entBoton = mapeador.Map<BotonModelo>(resData.Result);
-                response.SetSuccess(entBoton);
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex);
-            }
-
-            return response;
-        }
-        public async Task<Response<List<BotonModelo>>> BGetAll()
-        {
-            Response<List<BotonModelo>> response = new Response<List<BotonModelo>>();
-            try
-            {
-                var resData = await botonesRepositorio.DGet();
-                var listadoMapeador = mapeador.Map<List<BotonModelo>>(resData.Result);
-                response.SetSuccess(listadoMapeador);
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex);
-            }
-            return response;
         }
         public async Task<Response<bool>> BUpdate(BotonRequest updateModel)
         {
             Response<bool> response = new Response<bool>();
             try
             {
-                Response<List<Boton>> obtenerBoton = await botonesRepositorio.DGet();
-                if (obtenerBoton.HasError)
-                {
-                    return response.GetResponse(obtenerBoton);
-                }
-                foreach (Boton boton in obtenerBoton.Result)
-                {
-                    if (boton.sClaveBoton.ToUpper() == updateModel.sClaveBoton.ToUpper() && boton.uIdBoton != updateModel.uIdBoton)
-                    {
-                        return response.GetBadRequest("La clave del botón ya existe, intente con otra clave");
-                    }
-                }
-
                 Boton entBoton = mapeador.Map<Boton>(updateModel);
-
-                var resp = await botonesRepositorio.DUpdate(entBoton);
-
-                if (resp.HasError)
+                var paginaExistente = await botonesRepositorio.AnyExitNameAndKey(entBoton);
+                if (paginaExistente.Result)
                 {
-                    response.SetError("No se modificó");
+                    response.SetError("Boton ya existente.");
+                    return response;
+                }
+
+                var result = await botonesRepositorio.Update(entBoton);
+
+                if (result.Result)
+                {
+
+                    response.SetSuccess(result.Result, result.Message);
                 }
                 else
                 {
-                    
-                    response.SetSuccess(resp.Result);
+                    response.SetError(result.Message);
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BUpdate));
                 response.SetError(ex);
             }
+
             return response;
         }
     }

@@ -10,7 +10,7 @@ namespace Data.cs.Entities.Seguridad
     public class Modulo
     {
         public Guid uIdModulo { get; set; }
-        public string? sClaveModulo { get; set; }
+        public string sClaveModulo { get; set; }
         public string sNombreModulo { get; set; }
         public string? sPathModulo { get; set; }
         public bool bMostrarEnMenu { get; set; }

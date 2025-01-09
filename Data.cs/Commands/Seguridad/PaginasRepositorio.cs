@@ -45,7 +45,7 @@ namespace Data.cs.Commands.Seguridad
             try
             {
                 var exitsName = await dbContext.Pagina.AnyAsync(i => (i.uIdPagina != pEntity.uIdPagina)
-                                                                        && (i.sNombrePagina.Equals(pEntity.sNombrePagina)) && i.bActivo == true);
+                                                                        && (i.sClavePagina.Equals(pEntity.sClavePagina)) && i.bActivo == true);
 
                 if (exitsName)
                 {
@@ -69,7 +69,7 @@ namespace Data.cs.Commands.Seguridad
 
             try
             {
-                var exitsName = await dbContext.Pagina.AnyAsync(i => i.sNombrePagina.Equals(pName) && i.bActivo == true);
+                var exitsName = await dbContext.Pagina.AnyAsync(i => i.sClavePagina.Equals(pName) && i.bActivo == true);
                 if (exitsName)
                 {
                     response.SetSuccess(exitsName, "Pagina ya existente");
@@ -117,56 +117,6 @@ namespace Data.cs.Commands.Seguridad
             }
             return response;
         }
-        public async Task<Response<List<Pagina>>> GetAll()
-        {
-            Response<List<Pagina>> response = new Response<List<Pagina>>();
-
-            try
-            {
-                List<Pagina> result = await dbContext.Pagina.AsNoTracking().Where(i => i.bActivo == true).OrderBy(i => i.sNombrePagina).ToListAsync();
-
-                if (result.Count > 0)
-                {
-                    response.SetSuccess(result);
-                }
-                else
-                {
-                    response.SetError("Sin registros");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetAll));
-                response.SetError(ex.Message);
-            }
-            return response;
-        }
-        public async Task<Response<Pagina>> Get(Guid iKey)
-        {
-            Response<Pagina> response = new Response<Pagina>();
-
-            try
-            {
-                var result = await dbContext.Pagina.AsNoTracking().FirstOrDefaultAsync(i => i.uIdPagina == iKey && i.bActivo == true);
-
-                if (result == null)
-                {
-                    response.SetSuccess(new Pagina(), "No se encontraron resultados");
-                }
-                else
-                {
-                    response.SetSuccess(result, "Consultado Correctamente");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Get));
-                response.SetError(ex.Message);
-            }
-            return response;
-
-        }
         public async Task<Response<Pagina>> Save(Pagina newItem)
         {
             Response<Pagina> response = new Response<Pagina>();
@@ -210,9 +160,9 @@ namespace Data.cs.Commands.Seguridad
 
                 bEntity.sNombrePagina = entity.sNombrePagina;
                 bEntity.sClavePagina = entity.sClavePagina;
-                bEntity.sNombrePagina = entity.sNombrePagina;
                 bEntity.sPathPagina = entity.sPathPagina;
                 bEntity.uIdModulo = entity.uIdModulo;
+                bEntity.bMostrarEnMenu = entity.bMostrarEnMenu;
 
                 dbContext.Update(bEntity);
 

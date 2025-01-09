@@ -45,7 +45,7 @@ namespace Data.cs.Commands.Seguridad
             try
             {
                 var exitsName = await dbContext.Modulo.AnyAsync(i => (i.uIdModulo != pEntity.uIdModulo)
-                                                                        && (i.sNombreModulo.Equals(pEntity.sNombreModulo)) && i.bActivo == true);
+                                                                        && (i.sClaveModulo.Equals(pEntity.sClaveModulo)) && i.bActivo == true);
 
                 if (exitsName)
                 {
@@ -69,10 +69,10 @@ namespace Data.cs.Commands.Seguridad
 
             try
             {
-                var exitsName = await dbContext.Modulo.AnyAsync(i => i.sNombreModulo.Equals(pName) && i.bActivo == true);
+                var exitsName = await dbContext.Modulo.AnyAsync(i => i.sClaveModulo.Equals(pName) && i.bActivo == true);
                 if (exitsName)
                 {
-                    response.SetSuccess(exitsName, "Modul ya existente");
+                    response.SetSuccess(exitsName, "Modulo ya existente");
                 }
                 else
                 {
@@ -116,56 +116,6 @@ namespace Data.cs.Commands.Seguridad
                 response.SetError(ex.Message);
             }
             return response;
-        }
-        public async Task<Response<List<Modulo>>> GetAll()
-        {
-            Response<List<Modulo>> response = new Response<List<Modulo>>();
-
-            try
-            {
-                List<Modulo> result = await dbContext.Modulo.AsNoTracking().Where(i => i.bActivo == true).OrderBy(i => i.sNombreModulo).ToListAsync();
-
-                if (result.Count > 0)
-                {
-                    response.SetSuccess(result);
-                }
-                else
-                {
-                    response.SetError("Sin registros");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetAll));
-                response.SetError(ex.Message);
-            }
-            return response;
-        }
-        public async Task<Response<Modulo>> Get(Guid iKey)
-        {
-            Response<Modulo> response = new Response<Modulo>();
-
-            try
-            {
-                var result = await dbContext.Modulo.AsNoTracking().FirstOrDefaultAsync(i => i.uIdModulo == iKey && i.bActivo == true);
-
-                if (result == null)
-                {
-                    response.SetSuccess(new Modulo(), "No se encontraron resultados");
-                }
-                else
-                {
-                    response.SetSuccess(result, "Consultado Correctamente");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Get));
-                response.SetError(ex.Message);
-            }
-            return response;
-
         }
         public async Task<Response<Modulo>> Save(Modulo newItem)
         {

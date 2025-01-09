@@ -9,8 +9,6 @@ namespace Data.cs.Interfaces.Seguridad
         Task<Response<bool>> AnyExitNameAndKey(Pagina pEntity);
         Task<Response<bool>> AnyExitName(string pName);
         Task<Response<bool>> Delete(Guid iKey);
-        Task<Response<List<Pagina>>> GetAll();
-        Task<Response<Pagina>> Get(Guid iKey);
         Task<Response<Pagina>> Save(Pagina newItem);
         Task<Response<bool>> Update(Pagina entity);
     }
