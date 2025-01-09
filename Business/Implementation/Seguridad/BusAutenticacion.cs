@@ -5,34 +5,41 @@ using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Models.Models;
 using Models.Seguridad;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Utils;
+using Utils.Interfaces;
 
 namespace Business.Implementation.Seguridad
 {
     public class BusAutenticacion:IBusAutenticacion
     {
-        private readonly BusJwt _busJwt;
         private readonly IUsuariosRepositorio _datUsuario;
         private readonly IConfiguracionesRepositorio datConfiguracion;
         private readonly IHttpContextAccessor httpContext;
         private readonly IBusPermiso busPermisos;
         private readonly IMapper mapeador;
-        public BusAutenticacion(IMapper mapeador, BusJwt _busJwt, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, IBusPermiso busPermisos)
+        private readonly IConfiguration configuration;
+
+        public BusAutenticacion(IMapper mapeador, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, IBusPermiso busPermisos, IConfiguration configuration)
         {
             this.mapeador = mapeador;
-            this._busJwt = _busJwt;
             this._datUsuario = _datUsuario;
             this.datConfiguracion = datConfiguracion;
             this.httpContext = httpContext;
             this.busPermisos = busPermisos;
+            this.configuration = configuration;
         }
         public async Task<Response<LoginResponseModelo>> Login(LoginModelo loginModel)
         {
@@ -56,7 +63,7 @@ namespace Business.Implementation.Seguridad
 
                 if (obtenerUsuario.Result != null)
                 {
-                    token = GenerarToken(usuario);
+                    token = GenerateJwtToken(usuario);
                 }
                 else
                 {
@@ -92,14 +99,14 @@ namespace Business.Implementation.Seguridad
                         NombreModulo = x.NombreModulo,
                         TienePermiso = x.TienePermiso
                     }).ToList(),
-                    /*PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).Select(x => new PermisoPaginaModelo
+                    PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.PermisosPagina).Select(x => new PermisoPaginaModelo
                     {
-                        clavePagina = x.clavePagina,
-                        idPagina = x.idPagina,
-                        nombrePagina = x.nombrePagina,
-                        tienePermiso = x.tienePermiso
-                    }).ToList(),*/
-                    //PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.permisosPagina).SelectMany(x => x.permisosBoton).ToList(),
+                        ClavePagina = x.ClavePagina,
+                        IdPagina = x.IdPagina,
+                        NombrePagina = x.NombrePagina,
+                        TienePermiso = x.TienePermiso
+                    }).ToList(),
+                    PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.PermisosPagina).SelectMany(x => x.PermisosBoton).ToList(),
 
                     Token = token,
                     Usuario = usuarioMapeado,
@@ -117,19 +124,90 @@ namespace Business.Implementation.Seguridad
             return response;
 
         }
-        private string GenerarToken(EntUsuarios usuario)
+        public async Task<Response<LoginResponseModelo>> Refresh()
         {
-            var authClaims = new List<Claim>
-                  {
-                      new Claim(ClaimTypes.NameIdentifier, usuario.sCorreo),
-                      new Claim("Correo", usuario.sCorreo),
-                      new Claim("userId", usuario.uId.ToString()),
-                      new Claim("ProfileId", usuario.uIdPerfil.ToString()),
-                  };
+            var response = new Response<LoginResponseModelo>();
+            string token = string.Empty;
+            try
+            {
 
-            var entAutenticacion = _busJwt.GenerateJwtToken(authClaims, "");
+                var claimsPrincipal = httpContext.HttpContext?.User;
 
-            return entAutenticacion.sToken;
+                var emailClaim = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                string idUsuario = httpContext.HttpContext.User.FindFirstValue("userId");
+                string idPerfil = httpContext.HttpContext.User.FindFirstValue("ProfileId");
+                Guid uIdPerfil = Guid.Parse(idPerfil);
+                Guid uIdUsuario = Guid.Parse(idUsuario);
+
+                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGetByIdAndPerfilAsync(uIdUsuario, uIdPerfil);
+
+                EntUsuarios usuario = obtenerUsuario.Result;
+
+                UsuarioModelo usuarioMapeado = mapeador.Map<UsuarioModelo>(usuario);
+
+                if (obtenerUsuario.Result != null)
+                {
+                    token = GenerateJwtToken(usuario);
+                }
+                else
+                {
+                    return response = response.GetError("Credenciales no validadas");
+                }
+
+
+                Response<Configuracion> obtenerConfiguracion = await datConfiguracion.DObtenerConfiguracion();
+                if (obtenerConfiguracion.HasError)
+                {
+                    return response.GetError("Credenciales no validadas");
+                }
+
+                Response<PerfilPermisosModelo> obtenerPermisos = await busPermisos.ObtenerPermisos(uIdPerfil);
+                if (obtenerPermisos.HasError)
+                {
+                    return response.GetError("Credenciales no validadas");
+                }
+
+                Response<object> obtenerMenu = await busPermisos.ObtenerPermisosMenu(uIdPerfil);
+                if (obtenerMenu.HasError)
+                {
+                    return response.GetError("Credenciales no validadas");
+                }
+
+                ConfiguracionModelo obtenerConfiguracionMapeado = mapeador.Map<ConfiguracionModelo>(obtenerConfiguracion.Result);
+
+                LoginResponseModelo entLoginResponse = new()
+                {
+                    Configuracion = obtenerConfiguracionMapeado,
+                    PermisosModulos = obtenerPermisos.Result.Permisos.Select(x => new PermisoModuloModelo
+                    {
+                        IdModulo = x.IdModulo,
+                        ClaveModulo = x.ClaveModulo,
+                        NombreModulo = x.NombreModulo,
+                        TienePermiso = x.TienePermiso
+                    }).ToList(),
+                    PermisosPaginas = obtenerPermisos.Result.Permisos.SelectMany(x => x.PermisosPagina).Select(x => new PermisoPaginaModelo
+                    {
+                        ClavePagina = x.ClavePagina,
+                        IdPagina = x.IdPagina,
+                        NombrePagina = x.NombrePagina,
+                        TienePermiso = x.TienePermiso
+                    }).ToList(),
+                    PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.PermisosPagina).SelectMany(x => x.PermisosBoton).ToList(),
+
+                    Token = token,
+                    Usuario = usuarioMapeado,
+                    Menu = obtenerMenu.Result
+                };
+
+                response.SetSuccess(entLoginResponse);
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Credenciales no validadas");
+            }
+            return response;
+
         }
         private Response<bool> ValidarDatosLogin(LoginModelo entLoginRequest)
         {
@@ -150,6 +228,30 @@ namespace Business.Implementation.Seguridad
             }
 
             return response.GetSuccess(true);
+        }
+
+        private string GenerateJwtToken(EntUsuarios usuario)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.uId.ToString()),
+                new Claim(ClaimTypes.Name, usuario.sContra),
+                new Claim("Correo", usuario.sCorreo),
+                new Claim("userId", usuario.uId.ToString()),
+                new Claim("ProfileId", usuario.uIdPerfil.ToString()),
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: configuration["JwtSettings:Issuer"],
+                audience: configuration["JwtSettings:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

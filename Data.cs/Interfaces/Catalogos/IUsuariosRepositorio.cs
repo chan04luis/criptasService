@@ -18,5 +18,6 @@ namespace Business.Data
         Task<Response<List<EntUsuarios>>> DGetList();
         Task<Response<List<EntUsuarios>>> DGetByFilters(EntUsuarioSearchRequest search);
         Task<Response<EntUsuarios>> DGet(string correo, string sPassword);
+        Task<Response<EntUsuarios>> DGetByIdAndPerfilAsync(Guid usuarioId, Guid perfilId);
     }
 }

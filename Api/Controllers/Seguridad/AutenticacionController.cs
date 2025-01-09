@@ -1,10 +1,12 @@
 ﻿using Business.Interfaces.Seguridad;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Models.Seguridad;
 using Utils;
+using Utils.Interfaces;
 
 namespace Api.Controllers.Seguridad
 {
@@ -22,6 +24,15 @@ namespace Api.Controllers.Seguridad
         public async Task<ActionResult<Response<LoginResponseModelo>>> Login(LoginModelo entLogin)
         {
             Response<LoginResponseModelo> response = await _busAutenticacion.Login(entLogin);
+            return StatusCode((int)response.HttpCode, response);
+
+        }
+
+        [HttpGet]
+        [Route("actualizarToken")]
+        public async Task<ActionResult<Response<LoginResponseModelo>>> Refresh()
+        {
+            Response<LoginResponseModelo> response = await _busAutenticacion.Refresh();
             return StatusCode((int)response.HttpCode, response);
 
         }

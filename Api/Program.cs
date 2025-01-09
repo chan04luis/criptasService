@@ -121,12 +121,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseNpgsql(CONNECTION_STRING);
 });
 
-string ISSUER = builder.Configuration["JwtSettings:Issuer"];
+/*string ISSUER = builder.Configuration["JwtSettings:Issuer"];
 string JWT_SECRET_KEY = builder.Configuration["JwtSettings:SecretKey"];
 builder.Services.AddScoped<BusJwt>(provider =>
 {
     return new BusJwt(JWT_SECRET_KEY, ISSUER);
-});
+});*/
 
 #region Inyeccion de dependencias
 builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();

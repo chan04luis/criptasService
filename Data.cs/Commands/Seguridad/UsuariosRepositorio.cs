@@ -281,4 +281,33 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         return response;
     }
+    public async Task<Response<EntUsuarios>> DGetByIdAndPerfilAsync(Guid usuarioId, Guid perfilId)
+    {
+        var response = new Response<EntUsuarios>();
+
+        try
+        {
+            var usuario = await dbContext.Usuarios
+                .AsNoTracking()
+                .SingleOrDefaultAsync(u => u.uId == usuarioId && u.uIdPerfil == perfilId);
+
+            if (usuario == null)
+            {
+                response.SetError("El usuario no fue encontrado.");
+                return response;
+            }
+
+            response.SetSuccess(_mapper.Map<EntUsuarios>(usuario));
+        }
+        catch (Exception ex)
+        {
+            // Registra el error
+            // Logger.LogError(ex, "Error al obtener el usuario por Id y perfil.");
+
+            response.SetError(ex);
+        }
+
+        return response;
+    }
+
 }
