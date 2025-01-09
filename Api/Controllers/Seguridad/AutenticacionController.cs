@@ -29,6 +29,7 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpGet]
+        [Authorize]
         [Route("actualizarToken")]
         public async Task<ActionResult<Response<LoginResponseModelo>>> Refresh()
         {

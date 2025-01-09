@@ -131,10 +131,6 @@ namespace Business.Implementation.Seguridad
             try
             {
 
-                var claimsPrincipal = httpContext.HttpContext?.User;
-
-                var emailClaim = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
                 string idUsuario = httpContext.HttpContext.User.FindFirstValue("userId");
                 string idPerfil = httpContext.HttpContext.User.FindFirstValue("ProfileId");
                 Guid uIdPerfil = Guid.Parse(idPerfil);
