@@ -1,4 +1,5 @@
 ﻿using Business.Interfaces.Seguridad;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Models.Request.Usuarios;
@@ -7,6 +8,7 @@ using Utils;
 namespace Api.Controllers.Seguridad
 {
     [Route("api/Usuarios")]
+    [Authorize]
     [ApiController]
     public class UsuariosController : ControllerBase
     {

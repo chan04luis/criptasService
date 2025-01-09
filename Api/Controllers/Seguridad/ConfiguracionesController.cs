@@ -1,4 +1,5 @@
 ﻿using Business.Interfaces.Seguridad;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Seguridad;
 using Utils;
@@ -7,6 +8,7 @@ namespace Api.Controllers.Seguridad
 {
     [Route("api/seguridad/configuraciones")]
     [ApiController]
+    [Authorize]
     public class ConfiguracionesController : ControllerBase
     {
         private readonly IBusConfiguracion busConfiguracion;

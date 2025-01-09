@@ -1,4 +1,5 @@
 ﻿using Business.Interfaces.Seguridad;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Seguridad;
 using Utils;
@@ -6,6 +7,7 @@ using Utils;
 namespace Api.Controllers.Seguridad
 {
     [Route("api/seguridad")]
+    [Authorize]
     [ApiController]
     public class PermisosController : ControllerBase
     {

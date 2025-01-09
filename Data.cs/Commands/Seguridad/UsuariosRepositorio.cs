@@ -4,6 +4,7 @@ using Data.cs;
 using Data.cs.Entities.Seguridad;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Models.Models;
 using Models.Request.Usuarios;
 using Utils;
@@ -13,11 +14,13 @@ public class UsuariosRepositorio : IUsuariosRepositorio
 {
     private readonly ApplicationDbContext dbContext;
     private readonly IMapper _mapper;
+    private readonly ILogger<UsuariosRepositorio> _logger;
 
-    public UsuariosRepositorio(ApplicationDbContext dbContext, IMapper mapper)
+    public UsuariosRepositorio(ApplicationDbContext dbContext, IMapper mapper, ILogger<UsuariosRepositorio> _logger)
     {
         this.dbContext = dbContext;
         _mapper = mapper;
+        this._logger = _logger;
     }
 
     public async Task<Response<bool>> AnyExistKey(Guid pKey)

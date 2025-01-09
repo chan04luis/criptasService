@@ -1,4 +1,5 @@
 ﻿using Business.Interfaces.Seguridad;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Request.Seguridad;
 using Models.Seguridad;
@@ -7,6 +8,7 @@ using Utils;
 namespace Api.Controllers.Seguridad
 {
     [Route("api/seguridad/perfiles")]
+    [Authorize]
     [ApiController]
     public class PerfilesController : ControllerBase
     {
