@@ -16,7 +16,7 @@ namespace Models.Seguridad
         [JsonProperty("ClavePagina")]
         public string? sClavePagina { get; set; }
         [JsonProperty("NombrePagina")]
-        public string? sNombrePagina { get; set; }
+        public string sNombrePagina { get; set; }
         [JsonProperty("PathPagina")]
         public string? sPathPagina { get; set; }
         [JsonProperty("MostrarEnMenu")]

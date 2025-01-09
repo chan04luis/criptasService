@@ -1,6 +1,7 @@
 ﻿using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Utils;
 
 namespace Data.cs.Commands.Seguridad
@@ -8,137 +9,225 @@ namespace Data.cs.Commands.Seguridad
     public class PaginasRepositorio:IPaginasRespositorio
     {
         private readonly ApplicationDbContext dbContext;
-        public PaginasRepositorio(ApplicationDbContext dbContext)
+        private readonly ILogger<PaginasRepositorio> _logger;
+        public PaginasRepositorio(ApplicationDbContext dbContext, ILogger<PaginasRepositorio> _logger)
         {
             this.dbContext = dbContext;
+            this._logger = _logger;
         }
-        public async Task<Response<Pagina>> DSave(Pagina newItem)
+        public async Task<Response<bool>> AnyExistKey(Guid pKey)
         {
-            var response = new Response<Pagina>();
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsKey = await dbContext.Pagina.AnyAsync(i => i.uIdPagina == pKey && i.bActivo == true);
+                if (exitsKey)
+                {
+                    response.SetSuccess(exitsKey, "Pagina ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe la pagina");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExistKey));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> AnyExitNameAndKey(Pagina pEntity)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsName = await dbContext.Pagina.AnyAsync(i => (i.uIdPagina != pEntity.uIdPagina)
+                                                                        && (i.sNombrePagina.Equals(pEntity.sNombrePagina)) && i.bActivo == true);
+
+                if (exitsName)
+                {
+                    response.SetSuccess(exitsName, "Pefiles ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe la pagina");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitNameAndKey));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> AnyExitName(string pName)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var exitsName = await dbContext.Pagina.AnyAsync(i => i.sNombrePagina.Equals(pName) && i.bActivo == true);
+                if (exitsName)
+                {
+                    response.SetSuccess(exitsName, "Pagina ya existente");
+                }
+                else
+                {
+                    response.SetError("No existe la pagina");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(AnyExitName));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> Delete(Guid iKey)
+        {
+            Response<bool> response = new Response<bool>();
+
+            try
+            {
+                var entity = await dbContext.Pagina.FindAsync(iKey);
+
+                entity.bActivo = false;
+
+                dbContext.Update(entity);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Eliminado correctamente");
+                }
+                else
+                {
+                    response.SetError("Registro no eliminado");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Delete));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<List<Pagina>>> GetAll()
+        {
+            Response<List<Pagina>> response = new Response<List<Pagina>>();
+
+            try
+            {
+                List<Pagina> result = await dbContext.Pagina.AsNoTracking().Where(i => i.bActivo == true).OrderBy(i => i.sNombrePagina).ToListAsync();
+
+                if (result.Count > 0)
+                {
+                    response.SetSuccess(result);
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetAll));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<Pagina>> Get(Guid iKey)
+        {
+            Response<Pagina> response = new Response<Pagina>();
+
+            try
+            {
+                var result = await dbContext.Pagina.AsNoTracking().FirstOrDefaultAsync(i => i.uIdPagina == iKey && i.bActivo == true);
+
+                if (result == null)
+                {
+                    response.SetSuccess(new Pagina(), "No se encontraron resultados");
+                }
+                else
+                {
+                    response.SetSuccess(result, "Consultado Correctamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Get));
+                response.SetError(ex.Message);
+            }
+            return response;
+
+        }
+        public async Task<Response<Pagina>> Save(Pagina newItem)
+        {
+            Response<Pagina> response = new Response<Pagina>();
+
             try
             {
                 newItem.uIdPagina = Guid.NewGuid();
                 newItem.bActivo = true;
 
                 dbContext.Pagina.Add(newItem);
+                var exec = await dbContext.SaveChangesAsync();
 
-                int i = await dbContext.SaveChangesAsync();
-
-                if (i == 0)
+                if (exec > 0)
                 {
-                    return default;
+                    response.SetSuccess(newItem, "Agregado correctamente");
                 }
-
-                response.SetSuccess(newItem);
+                else
+                {
+                    response.SetError("Registro no agregado");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Save));
+                response.SetError(ex.Message);
             }
             return response;
         }
-
-        public async Task<Response<bool>> DDelete(Guid iKey)
+        public async Task<Response<bool>> Update(Pagina entity)
         {
-            var response = new Response<bool>();
+            Response<bool> response = new Response<bool>();
+
             try
             {
-                var pagina = await DGet(iKey);
-
-                if (pagina != null)
+                var bEntity = await dbContext.Pagina.FindAsync(entity.uIdPagina);
+                if (bEntity == null)
                 {
-                    Pagina entPagina = new()
-                    {
-                        uIdPagina = iKey,
-                        bActivo = false
-                    };
-
-                    var entry = dbContext.Pagina.Attach(entPagina);
-                    dbContext.Entry(entPagina).Property(x => x.bActivo).IsModified = true;
-
-                    bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                    if (IsModified)
-                    {
-                        int i = await dbContext.SaveChangesAsync();
-                        if (i == 0)
-                            response.SetError("Datos no guardados");
-                        else
-                            response.SetSuccess(true);
-                    }
+                    response.SetError("La pagina no fue encontrada.");
+                    return response;
                 }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return response;
-        }
 
-        public async Task<Response<List<Pagina>>> DGet()
-        {
-            var response = new Response<List<Pagina>>();
-            try
-            {
-                var listaPaginas = await dbContext.Pagina.AsNoTracking().Where(x => x.bActivo == true).OrderBy(x => x.sNombrePagina).ToListAsync();
-                response.SetSuccess(listaPaginas);
+                bEntity.sNombrePagina = entity.sNombrePagina;
+                bEntity.sClavePagina = entity.sClavePagina;
+                dbContext.Update(bEntity);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Actualizado correctamente");
+                }
+
+                else
+                {
+                    response.SetError("Registro no actualizado");
+                }
             }
             catch (Exception ex)
             {
-                throw;
-            }
-            return response;
-        }
-
-        public async Task<Response<Pagina>> DGet(Guid iKey)
-        {
-            var response = new Response<Pagina>();
-            try
-            {
-                var pagina = await dbContext.Pagina.AsNoTracking().SingleOrDefaultAsync(u => u.uIdPagina == iKey);
-                response.SetSuccess(pagina);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            return response;
-        }
-
-        public async Task<Response<bool>> DUpdate(Pagina entity)
-        {
-            var response = new Response<bool>();
-            try
-            {
-                var pagina = await DGet(entity.uIdPagina);
-
-                if (pagina != null)
-                {
-
-                    entity.bActivo = true;
-
-                    var entry = dbContext.Pagina.Attach(entity);
-
-                    dbContext.Entry(entity).Property(x => x.sClavePagina).IsModified = true;
-                    dbContext.Entry(entity).Property(x => x.sNombrePagina).IsModified = true;
-                    dbContext.Entry(entity).Property(x => x.sPathPagina).IsModified = true;
-                    dbContext.Entry(entity).Property(x => x.bMostrarEnMenu).IsModified = true;
-
-                    bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                    if (IsModified)
-                    {
-                        int i = await dbContext.SaveChangesAsync();
-                        if (i == 0)
-                            response.SetError("Datos no eliminados");
-                        else
-                            response.SetSuccess(true);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Update));
+                response.SetError(ex.Message);
             }
             return response;
         }

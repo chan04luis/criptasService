@@ -5,10 +5,13 @@ namespace Data.cs.Interfaces.Seguridad
 {
     public interface IPaginasRespositorio
     {
-        Task<Response<Pagina>> DSave(Pagina newItem);
-        Task<Response<bool>> DDelete(Guid iKey);
-        Task<Response<List<Pagina>>> DGet();
-        Task<Response<Pagina>> DGet(Guid iKey);
-        Task<Response<bool>> DUpdate(Pagina entity);
+        Task<Response<bool>> AnyExistKey(Guid pKey);
+        Task<Response<bool>> AnyExitNameAndKey(Pagina pEntity);
+        Task<Response<bool>> AnyExitName(string pName);
+        Task<Response<bool>> Delete(Guid iKey);
+        Task<Response<List<Pagina>>> GetAll();
+        Task<Response<Pagina>> Get(Guid iKey);
+        Task<Response<Pagina>> Save(Pagina newItem);
+        Task<Response<bool>> Update(Pagina entity);
     }
 }

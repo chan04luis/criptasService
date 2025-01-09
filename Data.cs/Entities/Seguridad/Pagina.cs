@@ -11,7 +11,7 @@ namespace Data.cs.Entities.Seguridad
         public Guid uIdPagina { get; set; }
         public Guid uIdModulo { get; set; }
         public string? sClavePagina { get; set; }
-        public string? sNombrePagina { get; set; }
+        public string sNombrePagina { get; set; }
         public string? sPathPagina { get; set; }
         public bool? bMostrarEnMenu { get; set; }
         public bool bActivo { get; set; }

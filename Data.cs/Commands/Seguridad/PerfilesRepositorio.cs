@@ -3,6 +3,7 @@ using Data.cs.Entities.Seguridad;
 using Microsoft.EntityFrameworkCore;
 using Utils;
 using Microsoft.Extensions.Logging;
+using Models.Models;
 
 namespace Data.cs.Commands.Seguridad
 {
@@ -102,17 +103,18 @@ namespace Data.cs.Commands.Seguridad
 
                 if (exec > 0)
                 {
-                    response.SetSuccess(false, "Eliminado correctamente");
+                    response.SetSuccess(true, "Eliminado correctamente");
                 }
-
                 else
                 {
                     response.SetError("Registro no eliminado");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                 }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Delete));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -124,18 +126,20 @@ namespace Data.cs.Commands.Seguridad
             {
                 List<Perfil> result = await dbContext.Perfiles.AsNoTracking().Where(i => i.Activo == true).OrderBy(i => i.NombrePerfil).ToListAsync();
 
-                if (result.Count <= 0)
+                if (result.Count > 0)
                 {
-                    response.SetSuccess(new List<Perfil>(), "No se encontraron resultados");
+                    response.SetSuccess(result);
                 }
                 else
                 {
-                    response.SetSuccess(result, "Consultado correctamente");
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetAll));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -158,7 +162,8 @@ namespace Data.cs.Commands.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Get));
+                response.SetError(ex.Message);
             }
             return response;
 
@@ -186,7 +191,8 @@ namespace Data.cs.Commands.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Save));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -214,7 +220,8 @@ namespace Data.cs.Commands.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError(ex);
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(Update));
+                response.SetError(ex.Message);
             }
             return response;
         }

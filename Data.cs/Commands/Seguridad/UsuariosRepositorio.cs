@@ -212,7 +212,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DDelete));
-            response.SetError(ex);
+            response.SetError(ex.Message);
         }
         return response;
     }
@@ -291,6 +291,15 @@ public class UsuariosRepositorio : IUsuariosRepositorio
                         .SingleOrDefaultAsync(u => u.sCorreo == correo && u.sContra == sPassword && u.bActivo == true);
 
             response.SetSuccess(_mapper.Map<EntUsuarios>(usuario), "Usuario existente");
+
+            if (usuario == null)
+            {
+                response.SetError("Sin registros");
+            }
+            else
+            {
+                response.SetSuccess(_mapper.Map<EntUsuarios>(usuario), "Usuario existente");
+            }
         }
         catch (Exception ex)
         {

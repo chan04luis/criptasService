@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Interfaces.Seguridad;
+using Data.cs.Commands.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.Extensions.Logging;
@@ -18,11 +19,13 @@ namespace Business.Implementation.Seguridad
     {
         private readonly IPerfilesRepositorio perfilesRepositorio;
         private readonly IMapper mapeador;
+        private readonly ILogger<BusPerfiles> _logger;
 
-        public BusPerfiles(IMapper mapeador, IPerfilesRepositorio perfilesRepositorio)
+        public BusPerfiles(IMapper mapeador, IPerfilesRepositorio perfilesRepositorio, ILogger<BusPerfiles> _logger)
         {
             this.mapeador = mapeador;
             this.perfilesRepositorio = perfilesRepositorio;
+            this._logger = _logger;
         }
 
         public async Task<Response<PerfilModelo>> BCreate(PerfilRequest createModel)
@@ -50,12 +53,13 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
-                    PerfilModelo entInvitadoCreado = mapeador.Map<PerfilModelo>(perfilCreado.Result);
-                    response.SetCreated(entInvitadoCreado);
+                    PerfilModelo entPerfilCreado = mapeador.Map<PerfilModelo>(perfilCreado.Result);
+                    response.SetCreated(entPerfilCreado);
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BCreate));
                 response.SetError(ex);
             }
             return response;
@@ -70,6 +74,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BDelete));
                 response.SetError(ex);
             }
             return response;
@@ -88,6 +93,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BGet));
                 response.SetError(ex);
             }
             return response;
@@ -104,6 +110,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BGetAll));
                 response.SetError(ex);
             }
             return response;
@@ -136,6 +143,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BUpdate));
                 response.SetError(ex);
             }
 
