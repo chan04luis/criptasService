@@ -210,6 +210,10 @@ namespace Data.cs.Commands.Seguridad
 
                 bEntity.sNombrePagina = entity.sNombrePagina;
                 bEntity.sClavePagina = entity.sClavePagina;
+                bEntity.sNombrePagina = entity.sNombrePagina;
+                bEntity.sPathPagina = entity.sPathPagina;
+                bEntity.uIdModulo = entity.uIdModulo;
+
                 dbContext.Update(bEntity);
 
                 var exec = await dbContext.SaveChangesAsync();

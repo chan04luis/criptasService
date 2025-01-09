@@ -2,6 +2,7 @@
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
+using Microsoft.Extensions.Logging;
 using Models.Request.Seguridad;
 using Models.Seguridad;
 using System;
@@ -17,48 +18,48 @@ namespace Business.Implementation.Seguridad
     {
         private readonly IModulosRepositorio _datModulo;
         private readonly IMapper mapeador;
-        public BusModulo(IMapper mapeador, IModulosRepositorio _datModulo)
+        private readonly ILogger<BusModulo> _logger;
+        public BusModulo(IMapper mapeador, IModulosRepositorio _datModulo, ILogger<BusModulo> _logger)
         {
             this.mapeador = mapeador;
             this._datModulo = _datModulo;
+            this._logger = _logger;
         }
+
         public async Task<Response<ModuloModelo>> BCreate(ModuloRequest createModel)
         {
             Response<ModuloModelo> response = new Response<ModuloModelo>();
+
             try
             {
-                Response<List<Modulo>> obtenerModulo = await _datModulo.DGet();
-                if (obtenerModulo.HasError)
+                Response<bool> existName = await _datModulo.AnyExitName(createModel.sNombreModulo);
+
+                if (existName.Result)
                 {
-                    return response.GetResponse(obtenerModulo);
-                }
-                foreach (Modulo modulo in obtenerModulo.Result)
-                {
-                    if (modulo.sClaveModulo.ToUpper() == createModel.sClaveModulo.ToUpper())
-                    {
-                        return response.GetBadRequest("La clave del módulo ya existe, intente con otra clave");
-                    }
+                    response.SetError(existName.Message);
+                    return response;
                 }
 
-                Modulo entModulo = mapeador.Map<Modulo>(createModel);
 
-                var resp = await _datModulo.DSave(entModulo);
+                Modulo moduloEntidad = mapeador.Map<Modulo>(createModel);
 
-                if (resp.HasError)
+                var moduloCreada = await _datModulo.Save(moduloEntidad);
+
+                if (moduloCreada.HasError)
                 {
-                    response.SetError("Not Created");
+                    response.SetError(moduloCreada.Message);
                 }
                 else
                 {
-                    ModuloModelo EntModuloCreado = mapeador.Map<ModuloModelo>(resp.Result);
-                    response.SetCreated(EntModuloCreado);
+                    ModuloModelo entModuloCreado = mapeador.Map<ModuloModelo>(moduloCreada.Result);
+                    response.SetCreated(entModuloCreado);
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BCreate));
                 response.SetError(ex);
             }
-
             return response;
         }
         public async Task<Response<bool>> BDelete(Guid iKey)
@@ -66,78 +67,51 @@ namespace Business.Implementation.Seguridad
             Response<bool> response = new();
             try
             {
-                var resData = await _datModulo.DDelete(iKey);
+                var existKey = await _datModulo.AnyExistKey(iKey);
+                if (!existKey.Result)
+                {
+                    response.SetError(existKey.Message);
+                    return response;
+                }
+                var resData = await _datModulo.Delete(iKey);
                 response.SetSuccess(resData.Result);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BDelete));
                 response.SetError(ex);
             }
             return response;
 
-        }
-        public async Task<Response<ModuloModelo>> BGet(Guid iKey)
-        {
-            Response<ModuloModelo> response = new Response<ModuloModelo>();
-            try
-            {
-                var resData = await _datModulo.DGet(iKey);
-                ModuloModelo EntModulo = mapeador.Map<ModuloModelo>(resData.Result);
-                response.SetSuccess(EntModulo);
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex);
-            }
-            return response;
-        }
-        public async Task<Response<List<ModuloModelo>>> BGetAll()
-        {
-            Response<List<ModuloModelo>> response = new Response<List<ModuloModelo>>();
-            try
-            {
-                var resData = await _datModulo.DGet();
-                var listadoMapeador = mapeador.Map<List<ModuloModelo>>(resData.Result);
-                response.SetSuccess(listadoMapeador);
-            }
-            catch (Exception ex)
-            {
-                response.SetError(ex);
-            }
-            return response;
         }
         public async Task<Response<bool>> BUpdate(ModuloRequest updateModel)
         {
             Response<bool> response = new Response<bool>();
             try
             {
-                Response<List<Modulo>> obtenerModulo = await _datModulo.DGet();
-                if (obtenerModulo.HasError)
-                {
-                    return response.GetResponse(obtenerModulo);
-                }
-                foreach (Modulo modulo in obtenerModulo.Result)
-                {
-                    if (modulo.sClaveModulo.ToUpper() == updateModel.sClaveModulo.ToUpper() && modulo.uIdModulo != updateModel.uIdModulo)
-                    {
-                        return response.GetBadRequest("La clave del módulo ya existe, intente con otra clave");
-                    }
-                }
-
                 Modulo entModulo = mapeador.Map<Modulo>(updateModel);
-
-                var resp = await _datModulo.DUpdate(entModulo);
-                if (resp.HasError)
+                var moduloExistente = await _datModulo.AnyExitNameAndKey(entModulo);
+                if (moduloExistente.Result)
                 {
-                    response.SetError("No se modificó");
+                    response.SetError("Modulo ya existente.");
+                    return response;
+                }
+
+                var result = await _datModulo.Update(entModulo);
+
+                if (result.Result)
+                {
+
+                    response.SetSuccess(result.Result, result.Message);
                 }
                 else
                 {
-                    response.SetSuccess(resp.Result);
+                    response.SetError(result.Message);
                 }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BUpdate));
                 response.SetError(ex);
             }
 

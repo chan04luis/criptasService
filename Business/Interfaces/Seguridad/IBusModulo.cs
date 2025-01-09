@@ -8,8 +8,6 @@ namespace Business.Interfaces.Seguridad
     {
         Task<Response<ModuloModelo>> BCreate(ModuloRequest createModel);
         Task<Response<bool>> BDelete(Guid iKey);
-        Task<Response<ModuloModelo>> BGet(Guid iKey);
-        Task<Response<List<ModuloModelo>>> BGetAll();
         Task<Response<bool>> BUpdate(ModuloRequest updateModel);
     }
 }

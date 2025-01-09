@@ -5,10 +5,13 @@ namespace Data.cs.Interfaces.Seguridad
 {
     public interface IModulosRepositorio
     {
-        Task<Response<Modulo>> DSave(Modulo newItem);
-        Task<Response<bool>> DDelete(Guid iKey);
-        Task<Response<List<Modulo>>> DGet();
-        Task<Response<Modulo>> DGet(Guid iKey);
-        Task<Response<bool>> DUpdate(Modulo entity);
+        Task<Response<bool>> AnyExistKey(Guid pKey);
+        Task<Response<bool>> AnyExitNameAndKey(Modulo pEntity);
+        Task<Response<bool>> AnyExitName(string pName);
+        Task<Response<bool>> Delete(Guid iKey);
+        Task<Response<List<Modulo>>> GetAll();
+        Task<Response<Modulo>> Get(Guid iKey);
+        Task<Response<Modulo>> Save(Modulo newItem);
+        Task<Response<bool>> Update(Modulo entity);
     }
 }

@@ -8,8 +8,6 @@ namespace Business.Interfaces.Seguridad
     {
         Task<Response<PaginaModelo>> BCreate(PaginaRequest createModel);
         Task<Response<bool>> BDelete(Guid iKey);
-        Task<Response<PaginaModelo>> BGet(Guid iKey);
-        Task<Response<List<PaginaModelo>>> BGetAll();
         Task<Response<bool>> BUpdate(PaginaRequest updateModel);
     }
 }

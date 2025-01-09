@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Data;
 using Business.Interfaces.Seguridad;
 using Data.cs.Commands.Seguridad;
 using Data.cs.Entities.Seguridad;
@@ -68,6 +69,12 @@ namespace Business.Implementation.Seguridad
             Response<bool> response = new();
             try
             {
+                var existKey = await _datPagina.AnyExistKey(iKey);
+                if (!existKey.Result)
+                {
+                    response.SetError(existKey.Message);
+                    return response;
+                }
                 var resData = await _datPagina.Delete(iKey);
                 response.SetSuccess(resData.Result);
             }
@@ -78,40 +85,6 @@ namespace Business.Implementation.Seguridad
             }
             return response;
 
-        }
-        public async Task<Response<PaginaModelo>> BGet(Guid iKey)
-        {
-            Response<PaginaModelo> response = new Response<PaginaModelo>();
-            try
-            {
-                var resData = await _datPagina.Get(iKey);
-
-                PaginaModelo paginaModelo = mapeador.Map<PaginaModelo>(resData.Result);
-
-                response.SetSuccess(paginaModelo);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BGet));
-                response.SetError(ex);
-            }
-            return response;
-        }
-        public async Task<Response<List<PaginaModelo>>> BGetAll()
-        {
-            Response<List<PaginaModelo>> response = new Response<List<PaginaModelo>>();
-            try
-            {
-                var resData = await _datPagina.GetAll();
-                var listadoMapeador = mapeador.Map<List<PaginaModelo>>(resData.Result);
-                response.SetSuccess(listadoMapeador);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(BGetAll));
-                response.SetError(ex);
-            }
-            return response;
         }
         public async Task<Response<bool>> BUpdate(PaginaRequest updateModel)
         {

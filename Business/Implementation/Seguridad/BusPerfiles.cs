@@ -69,6 +69,12 @@ namespace Business.Implementation.Seguridad
             Response<bool> response = new();
             try
             {
+                var existKey = await perfilesRepositorio.AnyExistKey(iKey);
+                if (!existKey.Result)
+                {
+                    response.SetError(existKey.Message);
+                    return response;
+                }
                 var resData = await perfilesRepositorio.Delete(iKey);
                 response.SetSuccess(resData.Result);
             }
