@@ -9,6 +9,8 @@ namespace Models.Seguridad
 {
     public class ConfiguracionModelo
     {
+        [JsonProperty("IdConfiguracion")]
+        public Guid uIdConfiguracion { get; set; }
         [JsonProperty("TituloNavegador")]
         public string? sTituloNavegador { get; set; }
         [JsonProperty("Titulo")]

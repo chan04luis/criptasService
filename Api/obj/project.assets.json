@@ -1784,7 +1784,7 @@
           "FluentValidation": "11.11.0",
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
-          "Modelos": "1.0.0",
+          "Models": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "System.IdentityModel.Tokens.Jwt": "8.2.0",
           "Utils": "1.0.0"
@@ -1804,7 +1804,6 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.11",
           "Microsoft.EntityFrameworkCore": "8.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.11",
-          "Modelos": "1.0.0",
           "Models": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.10",
@@ -1817,20 +1816,6 @@
         },
         "runtime": {
           "bin/placeholder/Data.cs.dll": {}
-        }
-      },
-      "Modelos/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Newtonsoft.Json": "13.0.3"
-        },
-        "compile": {
-          "bin/placeholder/Modelos.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Modelos.dll": {}
         }
       },
       "Models/1.0.0": {
@@ -4802,11 +4787,6 @@
       "type": "project",
       "path": "../Data.cs/Data.cs.csproj",
       "msbuildProject": "../Data.cs/Data.cs.csproj"
-    },
-    "Modelos/1.0.0": {
-      "type": "project",
-      "path": "../Entities/Modelos.csproj",
-      "msbuildProject": "../Entities/Modelos.csproj"
     },
     "Models/1.0.0": {
       "type": "project",
