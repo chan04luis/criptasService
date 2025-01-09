@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data.cs\Data.cs.csproj" />
-    <ProjectReference Include="..\Entities\Modelos.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
