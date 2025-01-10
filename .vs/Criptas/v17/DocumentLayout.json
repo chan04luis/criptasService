@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\request\\usuarios\\entusuariorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entusuariorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\validations\\seguridad\\usuariovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\validations\\seguridad\\usuariovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\request\\usuarios\\entusuariorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entusuariorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\models\\request\\usuarios\\entusuarioupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,11 +102,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UsuarioUpdateValidator.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Validations\\Seguridad\\UsuarioUpdateValidator.cs",
               "RelativeDocumentMoniker": "Models\\Validations\\Seguridad\\UsuarioUpdateValidator.cs",
@@ -119,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsuarioValidator.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Validations\\Seguridad\\UsuarioValidator.cs",
               "RelativeDocumentMoniker": "Models\\Validations\\Seguridad\\UsuarioValidator.cs",
@@ -171,20 +171,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "EntUsuarioRequest.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Request\\Usuarios\\EntUsuarioRequest.cs",
               "RelativeDocumentMoniker": "Models\\Request\\Usuarios\\EntUsuarioRequest.cs",
               "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Models\\Request\\Usuarios\\EntUsuarioRequest.cs",
               "RelativeToolTip": "Models\\Request\\Usuarios\\EntUsuarioRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAArAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-10T13:05:50.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UsuariosController.cs",
               "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\UsuariosController.cs",

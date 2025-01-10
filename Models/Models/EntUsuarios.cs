@@ -6,7 +6,7 @@ namespace Models.Models
         [JsonProperty("Id")]
         public Guid uId { get; set; }
 
-        [JsonProperty("idPerfil")]
+        [JsonProperty("IdPerfil")]
         public Guid uIdPerfil { get; set; }
 
         [JsonProperty("Nombres")]
