@@ -4,8 +4,8 @@ namespace Models.Request.Usuarios
 {
     public class EntUsuarioRequest
     {
-        [JsonProperty("Id")]
-        public string uId { get; set; }
+
+
         [JsonProperty("Nombres")]
         public string sNombres { get; set; }
         [JsonProperty("IdPerfil")]
