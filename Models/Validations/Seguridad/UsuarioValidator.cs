@@ -22,6 +22,10 @@ namespace Models.Validations.Seguridad
             RuleFor(x => x.sCorreo)
                 .NotEmpty().WithMessage("El campo Correo es obligatorio.")
                 .EmailAddress().WithMessage("El formato del correo electrónico es inválido.");
+            RuleFor(x => x.sCorreo);
+
+            RuleFor(x => x.uIdPerfil)
+                .NotEmpty().WithMessage("El campo IdPerfil es obligatorio.");
 
             RuleFor(x => x.sTelefono)
                 .NotEmpty().WithMessage("El campo Teléfono es obligatorio.")

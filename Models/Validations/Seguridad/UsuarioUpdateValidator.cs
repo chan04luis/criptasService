@@ -21,6 +21,9 @@ namespace Models.Validations.Seguridad
             RuleFor(x => x.sTelefono)
                 .NotEmpty().WithMessage("El campo Teléfono es obligatorio.")
                 .Matches(@"^\d{10}$").WithMessage("El número de teléfono debe tener 10 dígitos numéricos.");
+
+            RuleFor(x => x.uIdPerfil)
+               .NotEmpty().WithMessage("El campo IdPerfil es obligatorio.");
         }
     }
 }
