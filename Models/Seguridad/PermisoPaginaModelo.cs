@@ -3,23 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Models.Seguridad
 {
     public class PermisoPaginaModelo
     {
-        [JsonProperty("IdPermisoPagina")]
+        [JsonPropertyName("IdPermisoPagina")]
         public Guid IdPermisoPagina { get; set; }
-        [JsonProperty("IdPagina")]
+        [JsonPropertyName("IdPagina")]
         public Guid IdPagina { get; set; }
-        [JsonProperty("ClavePagina")]
+        [JsonPropertyName("ClavePagina")]
         public string? ClavePagina { get; set; }
-        [JsonProperty("NombrePagina")]
+        [JsonPropertyName("NombrePagina")]
         public string? NombrePagina { get; set; }
-        [JsonProperty("TienePermiso")]
+        [JsonPropertyName("TienePermiso")]
         public bool TienePermiso { get; set; }
-        [JsonProperty("PermisosBoton")]
+        [JsonPropertyName("PermisosBoton")]
         public List<PermisoBotonModelo>? PermisosBoton { get; set; }
     }
 }
