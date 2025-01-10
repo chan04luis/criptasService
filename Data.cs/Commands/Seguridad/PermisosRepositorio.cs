@@ -1,7 +1,9 @@
 ﻿using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Models.Seguridad;
+using System.Linq;
 using Utils;
 
 namespace Data.cs.Commands.Seguridad
@@ -9,10 +11,12 @@ namespace Data.cs.Commands.Seguridad
     public class PermisosRepositorio:IPermisosRepositorio
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly ILogger<PermisosRepositorio> _logger;
 
-        public PermisosRepositorio(ApplicationDbContext dbContext)
+        public PermisosRepositorio(ApplicationDbContext dbContext, ILogger<PermisosRepositorio> _logger)
         {
             this.dbContext = dbContext;
+            this._logger = _logger;
         }
         public async Task<Response<List<Modulo>>> GetPermisosElementos(Guid piIdPerfil)
         {
@@ -30,205 +34,234 @@ namespace Data.cs.Commands.Seguridad
                 .ThenInclude(x=>x.lstPermisosBotones.Where(x => x.uIdPerfil == piIdPerfil))
                 .ToListAsync();
 
-                response.SetSuccess(lstPermisos);
+                if (lstPermisos.Count > 0)
+                {
+                    response.SetSuccess(lstPermisos);
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetPermisosElementos));
+                response.SetError(ex.Message);
             }
             return response;
         }
 
-        public async Task<Response<bool>> GuardarPermisosModulos(Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> GuardarPermisosModulos(IEnumerable<PermisoModuloModelo> permisosModulosModelo, Guid idPerfil)
         {
             var response = new Response<bool>();
             try
             {
-                PermisoModulos permisosModulos = new PermisoModulos();
-                permisosModulos.uIdPermisoModulo = Guid.NewGuid();
-                permisosModulos.uIdModulo = uIdModulo;
-                permisosModulos.bTienePermiso = btienePermiso;
-                permisosModulos.uIdPerfil = idPerfil;
-
-                permisosModulos.dtFechaCreacion = DateTime.Now;
-                permisosModulos.uIdUsuarioModificacion = idUsuario;
-                permisosModulos.bActivo = true;
-
-                dbContext.PermisosModulos.Add(permisosModulos);
-
-                int i = await dbContext.SaveChangesAsync();
-                if (i == 0)
+                var permisosModulos = permisosModulosModelo.Select(modelo => new PermisoModulos
                 {
-                    return default;
+                    uIdPermisoModulo = Guid.NewGuid(),
+                    uIdModulo = modelo.IdModulo,
+                    bTienePermiso = modelo.TienePermiso,
+                    uIdPerfil = idPerfil,
+                    dtFechaCreacion = DateTime.Now,
+                    bActivo = true
+                }).ToList();
+
+                dbContext.PermisosModulos.AddRange(permisosModulos);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Agregados correctamente");
                 }
-                response.SetSuccess(true);
+                else
+                {
+                    response.SetError("Registros no agregados");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GuardarPermisosModulos));
                 response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
             }
             return response;
         }
 
-        public async Task<Response<bool>> ActualizarPermisosModulos(Guid idPermisoModulo, Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> ActualizarPermisosModulos(IEnumerable<PermisoModuloModelo> permisosModulosModelo, Guid idPerfil)
         {
             var response = new Response<bool>();
             try
             {
-                PermisoModulos permisosModulos = new PermisoModulos();
-                permisosModulos.uIdPermisoModulo = idPermisoModulo;
-                permisosModulos.uIdModulo = uIdModulo;
-                permisosModulos.bTienePermiso = btienePermiso;
-                permisosModulos.uIdPerfil = idPerfil;
-                permisosModulos.dtFechaModificacion = DateTime.Now;
-                permisosModulos.uIdUsuarioModificacion = idUsuario;
-                permisosModulos.bActivo = true;
+                var permisosModeloDiccionario = permisosModulosModelo.ToDictionary(modelo => modelo.IdPermisoModulo, modelo => modelo.TienePermiso);
 
-                var entry = dbContext.PermisosModulos.Attach(permisosModulos);
-                dbContext.Entry(permisosModulos).Property(x => x.bTienePermiso).IsModified = true;
-                dbContext.Entry(permisosModulos).Property(x => x.dtFechaModificacion).IsModified = true;
-                dbContext.Entry(permisosModulos).Property(x => x.uIdUsuarioModificacion).IsModified = true;
+                var ids = permisosModeloDiccionario.Keys;
 
-                bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                if (IsModified)
+                var permisos = await dbContext.PermisosModulos.Where(pm => ids.Contains(pm.uIdPermisoModulo)).ToListAsync();
+
+                permisos.ForEach(p =>
+                    p.bTienePermiso = permisosModeloDiccionario.TryGetValue(p.uIdPermisoModulo, out var tienePermiso) ? tienePermiso : p.bTienePermiso
+                );
+
+                dbContext.PermisosModulos.UpdateRange(permisos);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
                 {
-                    int i = await dbContext.SaveChangesAsync();
+                    response.SetSuccess(true, "Permisos de modulos actualizados correctamente");
                 }
-
-                response.SetSuccess(true);
+                else
+                {
+                    response.SetError("No se actualizaron los permisos");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ActualizarPermisosModulos));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+
+        public async Task<Response<bool>> GuardarPermisoPaginas(IEnumerable<PermisoPaginaModelo> permisosPaginaModelo, Guid idPerfil)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                var permisosPaginas = permisosPaginaModelo.Select(modelo => new PermisosPagina
+                {
+                    uIdPermisoPagina = Guid.NewGuid(),
+                    uIdPagina=modelo.IdPagina,
+                    bTienePermiso = modelo.TienePermiso,
+                    uIdPerfil = idPerfil,
+                    dtFechaCreacion = DateTime.Now,
+                    bActivo = true
+                }).ToList();
+
+                dbContext.PermisosPagina.AddRange(permisosPaginas);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Permisos paginas agregados correctamente");
+                }
+                else
+                {
+                    response.SetError("Permisos paginas no agregados");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GuardarPermisoPaginas));
                 response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
             }
             return response;
         }
 
-        public async Task<Response<bool>> GuardarPermisoPaginas(Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> ActualizarPermisosPaginas(IEnumerable<PermisoPaginaModelo> permisosPaginasModelo, Guid idPerfil)
         {
             var response = new Response<bool>();
             try
             {
-                PermisosPagina permisosPagina = new PermisosPagina();
-                permisosPagina.uIdPermisoPagina = Guid.NewGuid();
-                permisosPagina.uIdPagina = uIdPagina;
-                permisosPagina.bTienePermiso = btienePermiso;
-                permisosPagina.uIdPerfil = idPerfil;
-                permisosPagina.dtFechaCreacion = DateTime.Now;
-                permisosPagina.uIdUsuarioModificacion = idUsuario;
-                permisosPagina.bActivo = true;
+                var permisosModeloDiccionario = permisosPaginasModelo.ToDictionary(modelo => modelo.IdPermisoPagina, modelo => modelo.TienePermiso);
 
-                dbContext.PermisosPagina.Add(permisosPagina);
+                var ids = permisosModeloDiccionario.Keys;
 
-                int i = await dbContext.SaveChangesAsync();
-                if (i == 0)
+                var permisos = await dbContext.PermisosPagina.Where(pm => ids.Contains(pm.uIdPermisoPagina)).ToListAsync();
+
+                permisos.ForEach(p =>
+                    p.bTienePermiso = permisosModeloDiccionario.TryGetValue(p.uIdPermisoPagina, out var tienePermiso) ? tienePermiso : p.bTienePermiso
+                );
+
+                dbContext.PermisosPagina.UpdateRange(permisos);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
                 {
-                    return default;
+                    response.SetSuccess(true, "Permisos de paginas actualizados correctamente");
                 }
-                response.SetSuccess(true);
+                else
+                {
+                    response.SetError("No se actualizaron los permisos");
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ActualizarPermisosPaginas));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<bool>> GuardarPermisoBotones(IEnumerable<PermisoBotonModelo> permisosBotonModelo, Guid idPerfil)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                var permisosBotones = permisosBotonModelo.Select(modelo => new PermisoBotones
+                {
+                    uIdPermisoBoton = Guid.NewGuid(),
+                    uIdBoton = modelo.IdBoton,
+                    bTienePermiso = modelo.TienePermiso,
+                    uIdPerfil = idPerfil,
+                    dtFechaCreacion = DateTime.Now,
+                    bActivo = true
+                }).ToList();
+
+                dbContext.PermisoBotones.AddRange(permisosBotones);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                {
+                    response.SetSuccess(true, "Permisos botones agregados correctamente");
+                }
+                else
+                {
+                    response.SetError("Permisos botones no agregados");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GuardarPermisoBotones));
                 response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
             }
             return response;
         }
-
-        public async Task<Response<bool>> ActualizarPermisosPaginas(Guid idPermisoPagina, Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario)
+        public async Task<Response<bool>> ActualizarPermisosBotones(IEnumerable<PermisoBotonModelo> permisosBotonesModelo, Guid idPerfil)
         {
             var response = new Response<bool>();
             try
             {
-                PermisosPagina permisosPagina = new PermisosPagina();
-                permisosPagina.uIdPermisoPagina = idPermisoPagina;
-                permisosPagina.uIdPagina = uIdPagina;
-                permisosPagina.bTienePermiso = btienePermiso;
-                permisosPagina.uIdPerfil = idPerfil;
-                permisosPagina.dtFechaModificacion = DateTime.Now;
-                permisosPagina.uIdUsuarioModificacion = idUsuario;
-                permisosPagina.bActivo = true;
+                var permisosModeloDiccionario = permisosBotonesModelo.ToDictionary(modelo => modelo.IdPermisoBoton, modelo => modelo.TienePermiso);
 
-                var entry = dbContext.PermisosPagina.Attach(permisosPagina);
-                dbContext.Entry(permisosPagina).Property(x => x.bTienePermiso).IsModified = true;
-                dbContext.Entry(permisosPagina).Property(x => x.dtFechaModificacion).IsModified = true;
-                dbContext.Entry(permisosPagina).Property(x => x.uIdUsuarioModificacion).IsModified = true;
+                var ids = permisosModeloDiccionario.Keys;
 
-                bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                if (IsModified)
+                var permisos = await dbContext.PermisoBotones.Where(pm => ids.Contains(pm.uIdPermisoBoton)).ToListAsync();
+
+                permisos.ForEach(p =>
+                    p.bTienePermiso = permisosModeloDiccionario.TryGetValue(p.uIdPermisoBoton, out var tienePermiso) ? tienePermiso : p.bTienePermiso
+                );
+
+                dbContext.PermisoBotones.UpdateRange(permisos);
+
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
                 {
-                    int i = await dbContext.SaveChangesAsync();
+                    response.SetSuccess(true, "Permisos de botones actualizados correctamente");
                 }
-
-                response.SetSuccess(true);
+                else
+                {
+                    response.SetError("No se actualizaron los permisos");
+                }
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
-            }
-            return response;
-        }
-
-        public async Task<Response<bool>> GuardarPermisoBotones(Guid uIdBoton, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
-        {
-            var response = new Response<bool>();
-            try
-            {
-                PermisoBotones permisoBotones = new PermisoBotones();
-                permisoBotones.uIdPermisoBoton = Guid.NewGuid();
-                permisoBotones.uIdBoton = uIdBoton;
-                permisoBotones.bTienePermiso = btienePermiso;
-                permisoBotones.uIdPerfil = idPerfil;
-                permisoBotones.dtFechaCreacion = DateTime.Now;
-                permisoBotones.uIdUsuarioModificacion = idUsuario;
-                permisoBotones.bActivo = true;
-
-                dbContext.PermisoBotones.Add(permisoBotones);
-
-                int i = await dbContext.SaveChangesAsync();
-                if (i == 0)
-                {
-                    return default;
-                }
-                response.SetSuccess(true);
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
-            }
-            return response;
-        }
-
-        public async Task<Response<bool>> ActualizarPermisosBotones(Guid idPermisoBoton, Guid uIdBoton, Guid idPerfil, bool? btienePermiso, Guid idUsuario)
-        {
-            var response = new Response<bool>();
-            try
-            {
-                PermisoBotones permisoBotones = new PermisoBotones();
-                permisoBotones.uIdPermisoBoton = idPermisoBoton;
-                permisoBotones.uIdBoton = uIdBoton;
-                permisoBotones.bTienePermiso = btienePermiso;
-                permisoBotones.uIdPerfil = idPerfil;
-
-                permisoBotones.dtFechaModificacion = DateTime.Now;
-                permisoBotones.uIdUsuarioModificacion = idUsuario;
-                permisoBotones.bActivo = true;
-
-                var entry = dbContext.PermisoBotones.Attach(permisoBotones);
-                dbContext.Entry(permisoBotones).Property(x => x.bTienePermiso).IsModified = true;
-                dbContext.Entry(permisoBotones).Property(x => x.dtFechaModificacion).IsModified = true;
-                dbContext.Entry(permisoBotones).Property(x => x.uIdUsuarioModificacion).IsModified = true;
-
-                bool IsModified = entry.Properties.Where(e => e.IsModified).Count() > 0;
-                if (IsModified)
-                {
-                    int i = await dbContext.SaveChangesAsync();
-                }
-
-                response.SetSuccess(true);
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Ocurrió un error en la base de datos al guardar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ActualizarPermisosBotones));
+                response.SetError(ex.Message);
             }
             return response;
         }
@@ -273,11 +306,20 @@ namespace Data.cs.Commands.Seguridad
                     PathPagina = o.sPathPagina
                 }).ToList();
 
-                response.SetSuccess(lstPermisos);
+                if (lstPermisos.Count > 0)
+                {
+                    response.SetSuccess(lstPermisos);
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error en la base de datos al consultar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GetPermisosMenu));
+                response.SetError(ex.Message);
             }
             return response;
         }

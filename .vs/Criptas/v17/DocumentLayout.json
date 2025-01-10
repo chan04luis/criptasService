@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\interfaces\\seguridad\\ibusboton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\seguridad\\ibusboton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\implementation\\seguridad\\busboton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busboton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\implementation\\seguridad\\busperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busperfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\business\\implementation\\seguridad\\buspagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\buspagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\commands\\seguridad\\botonesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\botonesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\commands\\seguridad\\perfilesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\perfilesrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\commands\\seguridad\\paginasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\paginasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\interfaces\\seguridad\\ipermisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\seguridad\\ipermisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\entities\\seguridad\\pagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\seguridad\\pagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptas\\data.cs\\entities\\seguridad\\permisospagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\seguridad\\permisospagina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IBusBoton.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Interfaces\\Seguridad\\IBusBoton.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\Seguridad\\IBusBoton.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Interfaces\\Seguridad\\IBusBoton.cs",
-              "RelativeToolTip": "Business\\Interfaces\\Seguridad\\IBusBoton.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAwAAAA",
+              "DocumentIndex": 5,
+              "Title": "PermisosPagina.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\PermisosPagina.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\Seguridad\\PermisosPagina.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\PermisosPagina.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\Seguridad\\PermisosPagina.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA4AAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T22:22:09.135Z",
+              "WhenOpened": "2025-01-09T23:35:40.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BusBoton.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusBoton.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusBoton.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusBoton.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusBoton.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAswBAAAAAjAAAA",
+              "Title": "BusPerfiles.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPerfiles.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusPerfiles.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPerfiles.cs",
+              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusPerfiles.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAowD0AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T22:17:15.94Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusPagina.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPagina.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusPagina.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPagina.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusPagina.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAwwFgAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T22:13:52.145Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Pagina.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\Pagina.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Entities\\Seguridad\\Pagina.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Entities\\Seguridad\\Pagina.cs",
-              "RelativeToolTip": "Data.cs\\Entities\\Seguridad\\Pagina.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T22:13:20.887Z",
+              "WhenOpened": "2025-01-09T22:45:24.552Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "PaginasRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PaginasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PaginasRepositorio.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PaginasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PaginasRepositorio.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAASwKAAAAAzAAAA",
+              "Title": "IPermisosRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Interfaces\\Seguridad\\IPermisosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Seguridad\\IPermisosRepositorio.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Interfaces\\Seguridad\\IPermisosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Interfaces\\Seguridad\\IPermisosRepositorio.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAABXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T21:59:22.867Z",
+              "WhenOpened": "2025-01-09T22:39:07.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BusPermiso.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
+              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAqwHoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T22:32:44.296Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "BotonesRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\BotonesRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\BotonesRepositorio.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\BotonesRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\BotonesRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAlwLsAAAAAAAAA",
+              "Title": "PerfilesRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PerfilesRepositorio.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAawIAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T21:41:03.135Z",
+              "WhenOpened": "2025-01-09T22:29:19.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PermisosRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
+              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptas\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
+              "ViewState": "AQIAAPwAAAAAAAAAAAAiwEMBAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T22:26:52.713Z",
               "EditorCaption": ""
             }
           ]

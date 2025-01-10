@@ -3,6 +3,8 @@ using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Logging;
 using Models.Seguridad;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -22,14 +24,16 @@ namespace Business.Implementation.Seguridad
         private readonly IPermisosRepositorio datPermisos;
         private readonly IBusPerfiles busPerfil;
         private readonly IPerfilesRepositorio datPerfil;
+        private readonly ILogger<BusPermiso> _logger;
 
-        public BusPermiso(IMapper mapeador, IHttpContextAccessor httpContext, IPermisosRepositorio datPermisos, IBusPerfiles busPerfil, IPerfilesRepositorio datPerfil)
+        public BusPermiso(IMapper mapeador, IHttpContextAccessor httpContext, IPermisosRepositorio datPermisos, IBusPerfiles busPerfil, IPerfilesRepositorio datPerfil, ILogger<BusPermiso> _logger)
         {
             this.mapeador = mapeador;
             this.httpContext = httpContext;
             this.datPermisos = datPermisos;
             this.busPerfil = busPerfil;
             this.datPerfil = datPerfil;
+            this._logger = _logger;
         }
 
         public async Task<Response<PerfilPermisosModelo>> ObtenerPermisos(Guid idPerfil)
@@ -101,7 +105,8 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error al consultar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ObtenerPermisos));
+                response.SetError(ex);
             }
             return response;
         }
@@ -116,7 +121,6 @@ namespace Business.Implementation.Seguridad
                     return response.GetBadRequest("No se ingresó información");
                 }
 
-                Guid idUsuario = new Guid();
                 Guid idPerfil = lstPermisosElementos.IdPerfil;
                 Response<Perfil> obtenerPerfiles = await datPerfil.Get(idPerfil);
                 if (obtenerPerfiles.HasError)
@@ -151,48 +155,54 @@ namespace Business.Implementation.Seguridad
                     TienePermiso = x.TienePermiso
                 }).ToList();
 
-                foreach (PermisoModuloModelo modulo in lstModulos)
-                {
-                    if (modulo.IdPermisoModulo == Guid.Empty)
-                    {
-                        await datPermisos.GuardarPermisosModulos(modulo.IdModulo, idPerfil, modulo.TienePermiso, idUsuario);
-                    }
-                    else
-                    {
-                        await datPermisos.ActualizarPermisosModulos(modulo.IdPermisoModulo, modulo.IdModulo, idPerfil, modulo.TienePermiso, idUsuario);
+                var lstModulosSinPermisosSinGuardar = lstModulos.Where(x=>x.IdPermisoModulo==Guid.Empty);
 
-                    }
+                if (lstModulosSinPermisosSinGuardar.Any())
+                {
+                    await datPermisos.GuardarPermisosModulos(lstModulosSinPermisosSinGuardar, idPerfil);
                 }
 
-                foreach (PermisoPaginaModelo pagina in lstPaginas)
+                var lstModulosPermisosGuardados = lstModulos.Where(x => x.IdPermisoModulo != Guid.Empty);
+
+                if (lstModulosPermisosGuardados.Any())
                 {
-                    if (pagina.IdPermisoPagina == Guid.Empty)
-                    {
-                        await datPermisos.GuardarPermisoPaginas(pagina.IdPagina, idPerfil, pagina.TienePermiso, idUsuario);
-                    }
-                    else
-                    {
-                        await datPermisos.ActualizarPermisosPaginas(pagina.IdPermisoPagina, pagina.IdPagina, idPerfil, pagina.TienePermiso, idUsuario);
-                    }
+                    await datPermisos.ActualizarPermisosModulos(lstModulosPermisosGuardados, idPerfil);
                 }
 
-                foreach (PermisoBotonModelo boton in lstBotones)
+                var lstPaginasSinPermisosSinGuardar = lstPaginas.Where(x => x.IdPermisoPagina == Guid.Empty);
+
+                if (lstPaginasSinPermisosSinGuardar.Any())
                 {
-                    if (boton.IdPermisoBoton == Guid.Empty)
-                    {
-                        await datPermisos.GuardarPermisoBotones(boton.IdBoton, idPerfil, boton.TienePermiso, idUsuario);
-                    }
-                    else
-                    {
-                        await datPermisos.ActualizarPermisosBotones(boton.IdPermisoBoton, boton.IdBoton, idPerfil, boton.TienePermiso, idUsuario);
-                    }
+                    await datPermisos.GuardarPermisoPaginas(lstPaginasSinPermisosSinGuardar, idPerfil);
+                }
+
+                var lstPaginasPermisosGuardados = lstPaginas.Where(x => x.IdPermisoPagina != Guid.Empty);
+
+                if (lstPaginasPermisosGuardados.Any())
+                {
+                    await datPermisos.ActualizarPermisosPaginas(lstPaginasPermisosGuardados, idPerfil);
+                }
+
+                var lstBotonesSinPermisosSinGuardar = lstBotones.Where(x => x.IdPermisoBoton == Guid.Empty);
+
+                if (lstBotonesSinPermisosSinGuardar.Any())
+                {
+                    await datPermisos.GuardarPermisoBotones(lstBotonesSinPermisosSinGuardar, idPerfil);
+                }
+
+                var lstBotonesPermisosGuardados = lstBotones.Where(x => x.IdPermisoBoton != Guid.Empty);
+
+                if (lstBotonesPermisosGuardados.Any())
+                {
+                    await datPermisos.ActualizarPermisosBotones(lstBotonesPermisosGuardados, idPerfil);
                 }
 
                 response.SetSuccess(true, "Se han guardado los permisos");
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error al guardar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(GuardarPermisos));
+                response.SetError(ex);
             }
             return response;
         }
@@ -274,7 +284,8 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError("Ocurrió un error al consultar los permisos");
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(ObtenerPermisosMenu));
+                response.SetError(ex);
             }
             return response;
         }

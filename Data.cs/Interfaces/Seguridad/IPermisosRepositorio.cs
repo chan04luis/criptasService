@@ -7,15 +7,13 @@ namespace Data.cs.Interfaces.Seguridad
     public interface IPermisosRepositorio
     {
         Task<Response<List<Modulo>>> GetPermisosElementos(Guid piIdPerfil);
-        Task<Response<bool>> GuardarPermisosModulos(Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario);
-        Task<Response<bool>> ActualizarPermisosModulos(Guid idPermisoModulo, Guid uIdModulo, Guid idPerfil, bool btienePermiso, Guid idUsuario);
-        Task<Response<bool>> GuardarPermisoPaginas(Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario);
-        Task<Response<bool>> ActualizarPermisosPaginas(Guid idPermisoPagina, Guid uIdPagina, Guid idPerfil, bool btienePermiso, Guid idUsuario);
-        Task<Response<bool>> GuardarPermisoBotones(Guid uIdBoton, Guid idPerfil, bool? btienePermiso, Guid idUsuario);
-        Task<Response<bool>> ActualizarPermisosBotones(Guid idPermisoBoton, Guid uIdBoton, Guid idPerfil, bool? btienePermiso, Guid idUsuario);
+        Task<Response<bool>> GuardarPermisosModulos(IEnumerable<PermisoModuloModelo> permisosModulosModelo, Guid idPerfil);
+        Task<Response<bool>> ActualizarPermisosModulos(IEnumerable<PermisoModuloModelo> permisosModulosModelo, Guid idPerfil);
+        Task<Response<bool>> GuardarPermisoPaginas(IEnumerable<PermisoPaginaModelo> permisosPaginaModelo, Guid idPerfil);
+        Task<Response<bool>> ActualizarPermisosPaginas(IEnumerable<PermisoPaginaModelo> permisosPaginasModelo, Guid idPerfil);
+        Task<Response<bool>> GuardarPermisoBotones(IEnumerable<PermisoBotonModelo> permisosBotonModelo, Guid idPerfil);
+        Task<Response<bool>> ActualizarPermisosBotones(IEnumerable<PermisoBotonModelo> permisosBotonesModelo, Guid idPerfil);
         Task<Response<List<PerfilPermisoMenuModelo>>> GetPermisosMenu(Guid piIdPerfil);
-        /*Task<Response<List<PermisoModulos>>> GetPermisosModulos(Guid piIdPerfil);
-        Task<Response<List<PermisosPagina>>> GetPermisosPaginas(Guid piIdPerfil);
-        Task<Response<List<PermisoBotones>>> GetPermisosBotones(Guid piIdPerfil);*/
+
     }
 }
