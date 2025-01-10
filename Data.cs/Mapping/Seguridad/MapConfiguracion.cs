@@ -12,10 +12,16 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapConfiguracion : IEntityTypeConfiguration<Configuracion>
     {
+        private readonly string Esquema;
+
+        public MapConfiguracion(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Configuracion> builder)
         {
             // table
-            builder.ToTable("configuracion");
+            builder.ToTable("configuracion", Esquema);
 
             // key
             builder.HasKey(e => e.uIdConfiguracion).HasName("PK_Configuracion");

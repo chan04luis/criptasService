@@ -54,35 +54,31 @@ namespace Data.cs
         }
         private void PrepararIgleisas(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(EsquemaIglesia);
-
-            modelBuilder.ApplyConfiguration(new MapClientes());
-            modelBuilder.ApplyConfiguration(new MapIglesias());
-            modelBuilder.ApplyConfiguration(new MapZonas());
-            modelBuilder.ApplyConfiguration(new MapSecciones());
-            modelBuilder.ApplyConfiguration(new MapCriptas());
-            modelBuilder.ApplyConfiguration(new MapBeneficiarios());
-            modelBuilder.ApplyConfiguration(new MapFallecidos());
-            modelBuilder.ApplyConfiguration(new MapPagos());
-            modelBuilder.ApplyConfiguration(new MapPagosParciales());
-            modelBuilder.ApplyConfiguration(new MapVisitas());
-            modelBuilder.ApplyConfiguration(new MapTiposDePago());
+            modelBuilder.ApplyConfiguration(new MapClientes(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapIglesias(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapZonas(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapSecciones(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapCriptas(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapBeneficiarios(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapFallecidos(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapPagos(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapPagosParciales(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapVisitas(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapTiposDePago(EsquemaIglesia));
 
             OnModelCreatingPartial(modelBuilder);
         }
         private void PrepararSeguridad(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema(EsquemaSeguridad);
-
-            modelBuilder.ApplyConfiguration(new MapUsuarios());
-            modelBuilder.ApplyConfiguration(new MapPerfiles());
-            modelBuilder.ApplyConfiguration(new MapConfiguracion());
-            modelBuilder.ApplyConfiguration(new MapModulo());
-            modelBuilder.ApplyConfiguration(new MapPagina());
-            modelBuilder.ApplyConfiguration(new MapBoton());
-            modelBuilder.ApplyConfiguration(new MapPermisoModulos());
-            modelBuilder.ApplyConfiguration(new MapPermisosPaginas());
-            modelBuilder.ApplyConfiguration(new MapPermisosBotones());
+            modelBuilder.ApplyConfiguration(new MapUsuarios(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapPerfiles(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapConfiguracion(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapModulo(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapPagina(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapBoton(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapPermisoModulos(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapPermisosPaginas(EsquemaSeguridad));
+            modelBuilder.ApplyConfiguration(new MapPermisosBotones(EsquemaSeguridad));
 
             OnModelCreatingPartial(modelBuilder);
 

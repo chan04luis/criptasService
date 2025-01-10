@@ -11,10 +11,16 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapPagina : IEntityTypeConfiguration<Pagina>
     {
+        private readonly string Esquema;
+
+        public MapPagina(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Pagina> builder)
         {
             // table
-            builder.ToTable("paginas");
+            builder.ToTable("paginas", Esquema);
 
             // key
             builder.HasKey(e => e.uIdPagina).HasName("PK_Paginas");

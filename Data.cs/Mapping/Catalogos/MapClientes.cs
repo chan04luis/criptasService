@@ -4,11 +4,18 @@ using Data.cs.Entities.Catalogos;
 
 namespace Data.cs.Mapping.Catalogos
 {
+
     public partial class MapClientes : IEntityTypeConfiguration<Clientes>
     {
+        private readonly string Esquema;
+
+        public MapClientes(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Clientes> builder)
         {
-            builder.ToTable("clientes");
+            builder.ToTable("clientes", Esquema);
             builder.HasKey(c => c.uId).HasName("PK_Cliente");
 
             builder.Property(c => c.uId)

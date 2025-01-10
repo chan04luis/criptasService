@@ -11,10 +11,16 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapBoton : IEntityTypeConfiguration<Boton>
     {
+        private readonly string Esquema;
+
+        public MapBoton(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Boton> builder)
         {
 
-            builder.ToTable("botones");
+            builder.ToTable("botones", Esquema);
 
             builder.HasKey(e => e.uIdBoton).HasName("PK_Botones");
 

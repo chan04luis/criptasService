@@ -11,9 +11,15 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapPermisosPaginas : IEntityTypeConfiguration<PermisosPagina>
     {
+        private readonly string Esquema;
+
+        public MapPermisosPaginas(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<PermisosPagina> builder)
         {
-            builder.ToTable("permisos_paginas");
+            builder.ToTable("permisos_paginas", Esquema);
 
             builder.HasKey(e => e.uIdPermisoPagina).HasName("PK_PermisosPagina");
 

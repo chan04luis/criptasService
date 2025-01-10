@@ -6,9 +6,15 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapUsuarios : IEntityTypeConfiguration<Usuarios>
     {
+        private readonly string Esquema;
+
+        public MapUsuarios(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Usuarios> builder)
         {
-            builder.ToTable("usuarios");
+            builder.ToTable("usuarios", Esquema);
             builder.HasKey(u => u.uId).HasName("PK_Usuario");
 
             builder.Property(u => u.uId)

@@ -11,9 +11,15 @@ namespace Data.cs.Mapping.Catalogos
 {
     public partial class MapVisitas : IEntityTypeConfiguration<Visitas>
     {
+        private readonly string Esquema;
+
+        public MapVisitas(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Visitas> builder)
         {
-            builder.ToTable("visitas");
+            builder.ToTable("visitas", Esquema);
 
             builder.HasKey(z => z.uId).HasName("PK_Visitas");
 

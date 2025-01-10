@@ -12,9 +12,15 @@ namespace Data.cs.Mapping.Seguridad
 {
     public partial class MapPerfiles : IEntityTypeConfiguration<Perfil>
     {
+        private readonly string Esquema;
+
+        public MapPerfiles(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Perfil> builder)
         {
-            builder.ToTable("perfiles");
+            builder.ToTable("perfiles", Esquema);
             builder.HasKey(c => c.id).HasName("perfiles_pkey");
 
             builder.Property(c => c.id)

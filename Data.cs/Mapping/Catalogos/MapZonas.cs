@@ -6,9 +6,15 @@ namespace Data.cs.Mapping.Catalogos
 {
     public partial class MapZonas : IEntityTypeConfiguration<Zonas>
     {
+        private readonly string Esquema;
+
+        public MapZonas(string Esquema)
+        {
+            this.Esquema = Esquema;
+        }
         public void Configure(EntityTypeBuilder<Zonas> builder)
         {
-            builder.ToTable("zonas");
+            builder.ToTable("zonas", Esquema);
             builder.HasKey(z => z.uId).HasName("PK_Zona");
 
             builder.Property(z => z.uId)
