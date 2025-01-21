@@ -284,11 +284,11 @@ namespace Data.cs.Commands.Seguridad
                      sNombreModulo = o.modulo.sNombreModulo,
                      sPathModulo = o.modulo.sPathModulo,
                      bMostrarModuloEnMenu = o.modulo.bMostrarEnMenu,
-                     iIdPagina =o.modulo.lstPaginas.FirstOrDefault().uIdPagina,
-                     sClavePagina = o.modulo.lstPaginas.FirstOrDefault().sClavePagina,
-                     sNombrePagina = o.modulo.lstPaginas.FirstOrDefault().sNombrePagina,
-                     sPathPagina = o.modulo.lstPaginas.FirstOrDefault().sPathPagina,
-                     bMostrarPaginaEnMenu = o.modulo.lstPaginas.FirstOrDefault().bMostrarEnMenu,
+                     iIdPagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().uIdPagina : Guid.Empty,
+                     sClavePagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sClavePagina : string.Empty,
+                     sNombrePagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sNombrePagina : string.Empty,
+                     sPathPagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sPathPagina : string.Empty,
+                     bMostrarPaginaEnMenu = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().bMostrarEnMenu : false,
                  })
                  .ToListAsync();
 
