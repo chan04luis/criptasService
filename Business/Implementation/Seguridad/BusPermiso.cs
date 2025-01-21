@@ -228,26 +228,9 @@ namespace Business.Implementation.Seguridad
                     return response.GetResponse(obtnerPermisos);
                 }
 
-                var groupMenu = obtnerPermisos.Result.GroupBy(x => x.IdModulo).Select(x => new
-                {
-                    IdModulo = x.Key,
-                    x.FirstOrDefault()?.ClaveModulo,
-                    x.FirstOrDefault()?.NombreModulo,
-                    x.FirstOrDefault()?.PathModulo,
-                    x.FirstOrDefault()?.MostrarModuloEnMenu,
-                    Paginas = x.Select(y => new
-                    {
-                        y.IdPagina,
-                        y.ClavePagina,
-                        y.NombrePagina,
-                        y.PathPagina,
-                        y.MostrarPaginaEnMenu
-                    }).Where(c => c.IdPagina is not null)
-                }); ;
-
                 JObject modulosObject = new();
                 JObject routeMap = new();
-                foreach (var modulo in groupMenu)
+                foreach (var modulo in obtnerPermisos.Result)
                 {
                     JObject paginasObject = new();
                     if (modulo.Paginas is not null)
@@ -255,16 +238,16 @@ namespace Business.Implementation.Seguridad
 
                         foreach (var pagina in modulo.Paginas)
                         {
-                            string route = modulo.PathModulo + pagina.PathPagina;
+                            string route = modulo.PathModulo + pagina.sPathPagina;
 
-                            paginasObject[pagina.ClavePagina] = new JObject
+                            paginasObject[pagina.sClavePagina] = new JObject
                             {
-                                ["nombre"] = pagina.NombrePagina,
+                                ["nombre"] = pagina.sNombrePagina,
                                 ["path"] = route,
-                                ["mostrar"] = pagina.MostrarPaginaEnMenu
+                                ["mostrar"] = pagina.bMostrarEnMenu
                             };
 
-                            routeMap[pagina.ClavePagina] = route;
+                            routeMap[pagina.sClavePagina] = route;
                         }
 
                     }

@@ -19,15 +19,7 @@ namespace Models.Seguridad
         public string? PathModulo { get; set; }
         [JsonProperty("MostrarModuloEnMenu")]
         public bool MostrarModuloEnMenu { get; set; }
-        [JsonProperty("IdPagina")]
-        public Guid? IdPagina { get; set; }
-        [JsonProperty("ClavePagina")]
-        public string? ClavePagina { get; set; }
-        [JsonProperty("NombrePagina")]
-        public string? NombrePagina { get; set; }
-        [JsonProperty("PathPagina")]
-        public string? PathPagina { get; set; }
-        [JsonProperty("MostrarPaginaEnMenu")]
-        public bool? MostrarPaginaEnMenu { get; set; }
+
+        public List<PaginaModelo>? Paginas { get; set; }    
     }
 }

@@ -1,4 +1,5 @@
-﻿using Data.cs.Entities.Seguridad;
+﻿using AutoMapper;
+using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -12,9 +13,11 @@ namespace Data.cs.Commands.Seguridad
     {
         private readonly ApplicationDbContext dbContext;
         private readonly ILogger<PermisosRepositorio> _logger;
+        private readonly IMapper mapeador;
 
-        public PermisosRepositorio(ApplicationDbContext dbContext, ILogger<PermisosRepositorio> _logger)
+        public PermisosRepositorio(IMapper mapeador, ApplicationDbContext dbContext, ILogger<PermisosRepositorio> _logger)
         {
+            this.mapeador = mapeador;
             this.dbContext = dbContext;
             this._logger = _logger;
         }
@@ -273,6 +276,7 @@ namespace Data.cs.Commands.Seguridad
 
             try
             {
+
                 var lstelementos = await dbContext.PermisosModulos.Where(mod => mod.bActivo && mod.bTienePermiso && mod.uIdPerfil== piIdPerfil)
                  .Include(pag => pag.modulo)
                  .ThenInclude(x => x.lstPaginas.Where(mod => mod.bActivo))
@@ -284,26 +288,19 @@ namespace Data.cs.Commands.Seguridad
                      sNombreModulo = o.modulo.sNombreModulo,
                      sPathModulo = o.modulo.sPathModulo,
                      bMostrarModuloEnMenu = o.modulo.bMostrarEnMenu,
-                     iIdPagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().uIdPagina : Guid.Empty,
-                     sClavePagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sClavePagina : string.Empty,
-                     sNombrePagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sNombrePagina : string.Empty,
-                     sPathPagina = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().sPathPagina : string.Empty,
-                     bMostrarPaginaEnMenu = o.modulo.lstPaginas.Count() > 0 ? o.modulo.lstPaginas.FirstOrDefault().bMostrarEnMenu : false,
+                     lstPaginas=o.modulo.lstPaginas.ToList(),
                  })
                  .ToListAsync();
+
 
                 List<PerfilPermisoMenuModelo> lstPermisos = lstelementos.Select(o => new PerfilPermisoMenuModelo
                 {
                     MostrarModuloEnMenu = o.bMostrarModuloEnMenu,
-                    MostrarPaginaEnMenu = o.bMostrarPaginaEnMenu,
                     IdModulo = o.iIdModulo,
-                    IdPagina = o.iIdPagina,
                     ClaveModulo = o.sClaveModulo,
-                    ClavePagina = o.sClavePagina,
                     NombreModulo = o.sNombreModulo,
-                    NombrePagina = o.sNombrePagina,
                     PathModulo = o.sPathModulo,
-                    PathPagina = o.sPathPagina
+                    Paginas = mapeador.Map<List<PaginaModelo>>(o.lstPaginas),
                 }).ToList();
 
                 if (lstPermisos.Count > 0)
