@@ -123,6 +123,22 @@ namespace Business.Implementation.Catalogos
             }
         }
 
+        public async Task<Response<EntIglesias>> UpdateIglesiaMaps(EntIglesiaMaps iglesia)
+        {
+            try
+            {
+                return await _iglesiasRepositorio.DUpdateMaps(iglesia);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar la iglesia");
+                var response = new Response<EntIglesias>();
+                response.SetError("Hubo un error al actualizar la iglesia.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
         public async Task<Response<EntIglesias>> UpdateIglesiaStatus(EntIglesiaUpdateEstatusRequest iglesia)
         {
             try

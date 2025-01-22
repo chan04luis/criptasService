@@ -10,6 +10,10 @@ namespace Models.Models
         public string sNombre { get; set; }
         [JsonProperty("Direccion")]
         public string sDireccion { get; set; }
+        [JsonProperty("Latitud")]
+        public string? sLatitud { get; set; }
+        [JsonProperty("Longitud")]
+        public string? sLongitud { get; set; }
         [JsonProperty("Ciudad")]
         public string sCiudad { get; set; }
         [JsonProperty("FechaRegistro")]

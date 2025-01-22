@@ -9,6 +9,7 @@ namespace Business.Data
     {
         Task<Response<EntIglesias>> DSave(EntIglesias entity);
         Task<Response<EntIglesias>> DUpdate(EntIglesias entity);
+        Task<Response<EntIglesias>> DUpdateMaps(EntIglesiaMaps entity);
         Task<Response<EntIglesias>> DUpdateBoolean(EntIglesias entity);
         Task<Response<bool>> DUpdateEliminado(Guid uId);
         Task<Response<EntIglesiaResponse>> DGetById(Guid iKey);

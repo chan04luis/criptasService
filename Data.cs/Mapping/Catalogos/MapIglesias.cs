@@ -29,6 +29,15 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("TEXT")
                 .HasColumnName("direccion");
 
+            builder.Property(i => i.sLatitud)
+                .HasColumnType("VARCHAR(255)")
+                .IsUnicode(false)
+                .HasColumnName("latitud");
+
+            builder.Property(i => i.sLongitud)
+                .HasColumnType("TEXT")
+                .HasColumnName("longitud");
+
             builder.Property(i => i.sCiudad)
                 .HasColumnType("VARCHAR(100)")
                 .HasColumnName("ciudad");

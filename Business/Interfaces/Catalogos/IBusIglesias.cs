@@ -11,6 +11,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntIglesias>> SaveIglesia(EntIglesias iglesia);
         Task<Response<EntIglesias>> ValidateAndUpdateIglesia(EntIglesiaUpdateRequest iglesia);
         Task<Response<EntIglesias>> UpdateIglesia(EntIglesias iglesia);
+        Task<Response<EntIglesias>> UpdateIglesiaMaps(EntIglesiaMaps iglesia);
         Task<Response<EntIglesias>> UpdateIglesiaStatus(EntIglesiaUpdateEstatusRequest iglesia);
         Task<Response<bool>> DeleteIglesiaById(Guid id);
         Task<Response<EntIglesiaResponse>> GetIglesiaById(Guid id);

@@ -77,6 +77,34 @@ namespace Data.cs.Commands
             return response;
         }
 
+        public async Task<Response<EntIglesias>> DUpdateMaps(EntIglesiaMaps entity)
+        {
+            Response<EntIglesias> response = new Response<EntIglesias>();
+
+            try
+            {
+                var bEntity = dbContext.Iglesias.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                bEntity.sLatitud = entity.sLatitud;
+                bEntity.sLongitud = entity.sLongitud;
+                bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                dbContext.Update(bEntity);
+                var exec = await dbContext.SaveChangesAsync();
+
+                if (exec > 0)
+                    response.SetSuccess(_mapper.Map<EntIglesias>(bEntity), "Actualizado correctamente");
+                else
+                {
+                    response.SetError("Registro no actualizado");
+                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex);
+            }
+            return response;
+        }
+
         public async Task<Response<EntIglesias>> DUpdateBoolean(EntIglesias entity)
         {
             Response<EntIglesias> response = new Response<EntIglesias>();

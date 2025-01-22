@@ -63,6 +63,23 @@ namespace Api.Controllers
             return response;
         }
 
+        [HttpPut("UpdateMaps")]
+        [SwaggerOperation(Summary = "Actualiza la ubicación una iglesia", Description = "Valida y actualiza la ubicación de una iglesia existente.")]
+        public async Task<Response<EntIglesias>> UpdateIglesiaMaps([FromBody] EntIglesiaMaps iglesia)
+        {
+            _logger.LogInformation("Iniciando actualización de iglesia con ID: {Id}", iglesia.uId);
+            var response = await _busIglesias.UpdateIglesiaMaps(iglesia);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar la ubicación de la iglesia con ID {Id}: {Error}", iglesia.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Ubicación de iglesia actualizada exitosamente con ID: {Id}", iglesia.uId);
+            }
+            return response;
+        }
+
         [HttpPut("UpdateStatus")]
         [SwaggerOperation(Summary = "Actualiza el estado de una iglesia", Description = "Actualiza el estado booleano de una iglesia.")]
         public async Task<Response<EntIglesias>> UpdateIglesiaStatus([FromBody] EntIglesiaUpdateEstatusRequest iglesia)
