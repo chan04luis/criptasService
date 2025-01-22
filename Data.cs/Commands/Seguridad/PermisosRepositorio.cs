@@ -277,30 +277,33 @@ namespace Data.cs.Commands.Seguridad
             try
             {
 
-                var lstelementos = await dbContext.PermisosModulos.Where(mod => mod.bActivo && mod.bTienePermiso && mod.uIdPerfil== piIdPerfil)
+                var lstPermisosModulos = await dbContext.PermisosModulos.Where(mod => mod.bActivo && mod.bTienePermiso && mod.uIdPerfil== piIdPerfil)
                  .Include(pag => pag.modulo)
-                 .ThenInclude(x => x.lstPaginas.Where(mod => mod.bActivo))
-                 .ThenInclude(x => x.lstPermisosPaginas.Where(x => x.uIdPerfil == piIdPerfil && x.bActivo && x.bTienePermiso))
                  .Select(o => new
                  {
                      iIdModulo = o.uIdModulo,
+                     bActivoModulo=o.modulo.bActivo,
                      sClaveModulo = o.modulo.sClaveModulo,
                      sNombreModulo = o.modulo.sNombreModulo,
                      sPathModulo = o.modulo.sPathModulo,
                      bMostrarModuloEnMenu = o.modulo.bMostrarEnMenu,
-                     lstPaginas=o.modulo.lstPaginas.ToList(),
-                 })
+                     TienePermiso=o.bTienePermiso,
+                 }).Where(x=>x.bActivoModulo)
                  .ToListAsync();
 
+                var lstPermisosPaginas = await dbContext.PermisosPagina.Where(pp => pp.bActivo && pp.bTienePermiso && pp.uIdPerfil == piIdPerfil)
+               .Include(pag => pag.pagina)
+               .Where(x => x.pagina.bActivo)
+               .ToListAsync();
 
-                List<PerfilPermisoMenuModelo> lstPermisos = lstelementos.Select(o => new PerfilPermisoMenuModelo
+                List<PerfilPermisoMenuModelo> lstPermisos = lstPermisosModulos.Select(o => new PerfilPermisoMenuModelo
                 {
                     MostrarModuloEnMenu = o.bMostrarModuloEnMenu,
                     IdModulo = o.iIdModulo,
                     ClaveModulo = o.sClaveModulo,
                     NombreModulo = o.sNombreModulo,
                     PathModulo = o.sPathModulo,
-                    Paginas = mapeador.Map<List<PaginaModelo>>(o.lstPaginas),
+                    Paginas = mapeador.Map<List<PaginaModelo>>(lstPermisosPaginas.Select(x=>x.pagina).ToList().Where(x=>x.uIdModulo==o.iIdModulo)),
                 }).ToList();
 
                 if (lstPermisos.Count > 0)
