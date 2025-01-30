@@ -24,4 +24,11 @@ namespace Models.Seguridad
         [JsonProperty("Menu")]
         public object Menu { get; set; }
     }
+    public class LoginClienteResponseModelo
+    {
+        [JsonProperty("Token")]
+        public string Token { get; set; }
+        [JsonProperty("Id")]
+        public string uId { get; set; }
+    }
 }

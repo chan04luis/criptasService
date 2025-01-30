@@ -25,7 +25,6 @@ namespace Api.Controllers.Seguridad
         {
             Response<LoginResponseModelo> response = await _busAutenticacion.Login(entLogin);
             return StatusCode((int)response.HttpCode, response);
-
         }
 
         [HttpGet]
@@ -35,7 +34,6 @@ namespace Api.Controllers.Seguridad
         {
             Response<LoginResponseModelo> response = await _busAutenticacion.Refresh();
             return StatusCode((int)response.HttpCode, response);
-
         }
     }
 }

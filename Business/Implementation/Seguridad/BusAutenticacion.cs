@@ -31,8 +31,11 @@ namespace Business.Implementation.Seguridad
         private readonly IBusPermiso busPermisos;
         private readonly IMapper mapeador;
         private readonly IConfiguration configuration;
+        private readonly IClientesRepositorio clientesRepositorio;
+        private readonly IFiltros _filtros;
 
-        public BusAutenticacion(IMapper mapeador, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, IBusPermiso busPermisos, IConfiguration configuration)
+        public BusAutenticacion(IMapper mapeador, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, 
+            IBusPermiso busPermisos, IConfiguration configuration, IClientesRepositorio clientesRepositorio, IFiltros filtros)
         {
             this.mapeador = mapeador;
             this._datUsuario = _datUsuario;
@@ -40,6 +43,47 @@ namespace Business.Implementation.Seguridad
             this.httpContext = httpContext;
             this.busPermisos = busPermisos;
             this.configuration = configuration;
+            this.clientesRepositorio = clientesRepositorio;
+            _filtros = filtros;
+        }
+        public async Task<Response<LoginClienteResponseModelo>> LoginMovil(LoginModelo loginModel)
+        {
+            var response = new Response<LoginClienteResponseModelo>();
+            string token = string.Empty;
+            try
+            {
+                Response<bool> validarLogin = ValidarDatosLogin(loginModel);
+                if (validarLogin.HasError)
+                {
+                    return response.GetResponse(validarLogin);
+                }
+
+                Response<EntClientes> obtenerUsuario = await clientesRepositorio.DGetByEmail(loginModel.sCorreo, loginModel.sPassword);
+                if (obtenerUsuario.HasError)
+                {
+                    response.SetError("No se encontro correo");
+                    return response;
+                }else if(!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, loginModel.sPassword))
+                {
+                    response.SetError("Contraseña incorrecta");
+                }
+                else
+                {
+                    var sToken = new LoginClienteResponseModelo{
+                        Token = GenerateJwtToken(obtenerUsuario.Result),
+                        uId = obtenerUsuario.Result.uId.ToString(),
+                    };
+                    response.SetSuccess(sToken);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError("Credenciales no validadas");
+            }
+
+
+            return response;
+
         }
         public async Task<Response<LoginResponseModelo>> Login(LoginModelo loginModel)
         {
@@ -235,6 +279,28 @@ namespace Business.Implementation.Seguridad
                 new Claim("Correo", usuario.sCorreo),
                 new Claim("userId", usuario.uId.ToString()),
                 new Claim("ProfileId", usuario.uIdPerfil.ToString()),
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: configuration["JwtSettings:Issuer"],
+                audience: configuration["JwtSettings:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        private string GenerateJwtToken(EntClientes usuario)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.uId.ToString()),
+                new Claim(ClaimTypes.Name, usuario.sContra),
+                new Claim("Correo", usuario.sEmail),
+                new Claim("userId", usuario.uId.ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]));

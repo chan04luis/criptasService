@@ -68,7 +68,7 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
                 var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
-                if (!item.HasError && item.Result.Count > 0)
+                if (!item.HasError && item.Result != null)
                 {
                     response.SetError("Email ya registrado.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
@@ -161,7 +161,7 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
                 var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
-                if (!item.HasError && item.Result.Where(x => x.uId != cliente.uId).ToList().Count > 0)
+                if (!item.HasError && item.Result != null && item.Result.uId != cliente.uId)
                 {
                     response.SetError("Email ya registrado.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;

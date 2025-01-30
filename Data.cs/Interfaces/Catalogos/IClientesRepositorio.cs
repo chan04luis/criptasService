@@ -11,5 +11,5 @@ public interface IClientesRepositorio
     Task<Response<EntClientes>> DUpdate(EntClientes entity);
     Task<Response<EntClientes>> DUpdateBoolean(EntClientes entity);
     Task<Response<bool>> DUpdateEliminado(Guid uId);
-    Task<Response<List<EntClientes>>> DGetByEmail(string sEmail);
+    Task<Response<EntClientes>> DGetByEmail(string sEmail, string? Contra = null);
 }

@@ -25,7 +25,8 @@ public class MappingProfile : Profile
         CreateMap<EntClientes, Clientes>();
         CreateMap<Clientes, EntClientes>()
             .ForMember(dest => dest.sFechaNacimiento, opt => opt.MapFrom(src => string.IsNullOrWhiteSpace(src.sFechaNacimiento) ? "1900-01-01" : src.sFechaNacimiento))
-            .ForMember(dest => dest.iEdad, opt => opt.MapFrom(src => CalcularEdad(src.sFechaNacimiento)));
+            .ForMember(dest => dest.iEdad, opt => opt.MapFrom(src => CalcularEdad(src.sFechaNacimiento)))
+            .ForMember(dest => dest.sContra, opt => opt.MapFrom(src => string.Empty));
         CreateMap<EntClienteUpdateRequest, EntClientes>();
         CreateMap<EntClienteUpdateEstatusRequest, EntClientes>();
         #endregion

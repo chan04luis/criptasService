@@ -157,21 +157,24 @@ public class ClientesRepositorio : IClientesRepositorio
         var response = new Response<List<EntClientes>>();
         try
         {
-            var items = await dbContext.Clientes.AsNoTracking().Where(c => c.bEliminado == false).ToListAsync();
-            if(items.Count >0 && filtros.sNombre != null) 
+            var items = dbContext.Clientes.AsNoTracking().Where(c => c.bEliminado == false);
+            if (filtros.sNombre != null)
             {
-                items = items.Where(x => x.sNombre.ToLower().Contains(filtros.sNombre.ToLower())).ToList();
+                items = items.Where(x => x.sNombre.ToLower().Contains(filtros.sNombre.ToLower()));
             }
-            if (items.Count > 0 && filtros.sApellido != null)
+            if (filtros.sApellido != null)
             {
-                items = items.Where(x => x.sApellidos.ToLower().Contains(filtros.sApellido.ToLower())).ToList();
+                items = items.Where(x => x.sApellidos.ToLower().Contains(filtros.sApellido.ToLower()));
             }
-            if (items.Count >0 && filtros.bEstatus != null) 
+            if (filtros.bEstatus != null)
             {
-                items = items.Where(x => x.bEstatus==filtros.bEstatus).ToList();
+                items = items.Where(x => x.bEstatus == filtros.bEstatus);
             }
-            if (items.Count > 0)
-                response.SetSuccess(_mapper.Map<List<EntClientes>>(items));
+            if (await items.CountAsync() > 0)
+            {
+                var result = await items.ToListAsync();
+                response.SetSuccess(_mapper.Map<List<EntClientes>>(result));
+            }
             else
             {
                 response.SetError("Registro no encontrado");
@@ -186,14 +189,19 @@ public class ClientesRepositorio : IClientesRepositorio
 
     }
 
-    public async Task<Response<List<EntClientes>>> DGetByEmail(string sEmail)
+    public async Task<Response<EntClientes>> DGetByEmail(string sEmail, string? Contra=null)
     {
-        var response = new Response<List<EntClientes>>();
+        var response = new Response<EntClientes>();
         try
         {
-            var items = await dbContext.Clientes.AsNoTracking().Where(c => c.sEmail==sEmail && c.bEliminado==false).ToListAsync();
-            if (items.Count > 0)
-                response.SetSuccess(_mapper.Map<List<EntClientes>>(items));
+            var items = await dbContext.Clientes.AsNoTracking().FirstAsync(c => c.sEmail==sEmail && c.bEliminado==false);
+            if (items != null)
+            {
+                var email = _mapper.Map<EntClientes>(items);
+                if (Contra != null)
+                    email.sContra = items.sContra;
+                response.SetSuccess(email);
+            }
             else
             {
                 response.SetError("Registro no encontrado");
