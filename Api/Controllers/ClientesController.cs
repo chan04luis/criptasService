@@ -6,7 +6,6 @@ using Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using Models.Request;
 
 namespace Api.Controllers
 {

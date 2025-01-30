@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Models
 {
@@ -26,6 +21,8 @@ namespace Models.Models
         public int? iEdad { get; set; }
         [JsonProperty("Telefono")]
         public string sTelefono { get; set; }
+        [JsonProperty("Contra")]
+        public string? sContra { get; set; }
         [JsonProperty("Email")]
         public string sEmail { get; set; }
         [JsonProperty("FechaRegistro")]

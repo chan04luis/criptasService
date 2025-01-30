@@ -1,5 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Text.RegularExpressions;
 using Utils.Interfaces;
+
 
 namespace Utils.Implementation
 {
@@ -29,6 +31,19 @@ namespace Utils.Implementation
                 return true;
             }
             return false;
+        }
+
+        private readonly PasswordHasher<string> _passwordHasher = new PasswordHasher<string>();
+
+        public string? HashPassword(string? password)
+        {
+            return _passwordHasher.HashPassword(null, password);
+        }
+
+        public bool VerifyPassword(string hashedPassword, string providedPassword)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(null, hashedPassword, providedPassword);
+            return result == PasswordVerificationResult.Success;
         }
     }
 }

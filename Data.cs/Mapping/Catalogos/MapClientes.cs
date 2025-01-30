@@ -49,6 +49,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(10)")
                 .HasColumnName("sexo");
 
+            builder.Property(c => c.sContra)
+                .HasColumnType("VARCHAR(200)")
+                .HasColumnName("contra");
+
             builder.Property(c => c.sFechaNacimiento)
                 .HasColumnType("VARCHAR(20)")
                 .HasColumnName("fecha_nac");

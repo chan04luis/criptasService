@@ -85,6 +85,7 @@ namespace Business.Implementation.Catalogos
                     sSexo = cliente.sSexo,
                     sFechaNacimiento = cliente.sFechaNac,
                     bEstatus = true,
+                    sContra = _filtros.HashPassword(cliente.sContra),
                     dtFechaActualizacion = DateTime.Now.ToLocalTime(),
                     dtFechaRegistro = DateTime.Now.ToLocalTime()
                 };

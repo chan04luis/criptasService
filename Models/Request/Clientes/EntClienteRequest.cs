@@ -17,6 +17,8 @@ namespace Models.Request.Clientes
         public string sDireccion { get; set; }
         [JsonProperty("Telefono")]
         public string sTelefono { get; set; }
+        [JsonProperty("Contra")]
+        public string? sContra { get; set; }
         [JsonProperty("Email")]
         public string sEmail { get; set; }
         [JsonProperty("FechaNac")]
