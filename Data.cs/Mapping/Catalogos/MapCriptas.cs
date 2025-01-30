@@ -33,6 +33,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(50)")
                 .HasColumnName("numero");
 
+            builder.Property(c => c.dPrecio)
+                .HasColumnType("Numeric")
+                .HasColumnName("precio");
+
             builder.Property(c => c.sUbicacionEspecifica)
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("ubicacion_especifica");

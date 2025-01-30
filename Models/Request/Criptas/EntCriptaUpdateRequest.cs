@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Request.Criptas
 {
@@ -17,6 +12,9 @@ namespace Models.Request.Criptas
 
         [JsonProperty("IdCliente")]
         public Guid uIdCliente { get; set; }
+
+        [JsonProperty("Precio")]
+        public decimal dPrecio { get; set; }
 
         [JsonProperty("Numero")]
         public string sNumero { get; set; }
