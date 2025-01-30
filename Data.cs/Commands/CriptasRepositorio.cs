@@ -77,6 +77,7 @@ namespace Data.cs.Commands
                     bEntity.uIdSeccion = entity.uIdSeccion;
                     bEntity.uIdCliente = entity.uIdCliente;
                     bEntity.sNumero = entity.sNumero;
+                    bEntity.dPrecio = entity.dPrecio;
                     bEntity.sUbicacionEspecifica = entity.sUbicacionEspecifica;
                     bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                     dbContext.Update(bEntity);
