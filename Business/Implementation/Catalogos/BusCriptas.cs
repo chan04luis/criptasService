@@ -51,6 +51,7 @@ namespace Business.Implementation.Catalogos
                     uIdCliente = cripta.uIdCliente,
                     uIdSeccion = cripta.uIdSeccion,
                     sNumero = cripta.sNumero,
+                    dPrecio = cripta.dPrecio,
                     sUbicacionEspecifica = cripta.sUbicacionEspecifica,
                     bEstatus = true,
                     dtFechaRegistro = DateTime.Now.ToLocalTime(),
