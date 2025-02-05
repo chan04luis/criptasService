@@ -10,6 +10,7 @@
         public string sEmail { get; set; }
         public string sSexo { get; set; }
         public string? sContra { get; set; }
+        public int iOrigen { get; set; }
         public string sFechaNacimiento { get; set; }
         public DateTime dtFechaRegistro { get; set; }
         public DateTime dtFechaActualizacion { get; set; }

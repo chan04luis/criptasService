@@ -30,5 +30,8 @@ namespace Models.Models
 
         [JsonProperty("Estatus")]
         public bool bEstatus { get; set; }
+
+        [JsonProperty("Disponible")]
+        public bool bDisponible { get; set; }
     }
 }

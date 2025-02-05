@@ -47,6 +47,7 @@ namespace Data.cs.Commands
             {
                 var newItem = _mapper.Map<Criptas>(entity);
                 newItem.bEliminado = false;
+                newItem.bDisponible = true;
                 dbContext.Criptas.Add(newItem);
                 int i = await dbContext.SaveChangesAsync();
                 if (i == 0)

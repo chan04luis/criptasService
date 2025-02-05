@@ -40,7 +40,7 @@ namespace Api.Controllers
         {
             var respuesta = new Response<bool>();
             _logger.LogInformation("Iniciando creación de cliente.");
-            var response = await _busClientes.ValidateAndSaveClient(cliente);
+            var response = await _busClientes.ValidateAndSaveClientA(cliente);
             if (response.HasError)
             {
                 respuesta.SetError(response.Message);

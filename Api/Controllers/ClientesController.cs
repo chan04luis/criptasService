@@ -28,7 +28,7 @@ namespace Api.Controllers
         public async Task<Response<EntClientes>> CreateClient([FromBody] EntClienteRequest cliente)
         {
             _logger.LogInformation("Iniciando creación de cliente.");
-            var response = await _busClientes.ValidateAndSaveClient(cliente);
+            var response = await _busClientes.ValidateAndSaveClientW(cliente);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al crear cliente: {Error}", response.Message);

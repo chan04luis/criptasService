@@ -69,6 +69,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("boolean")
                 .HasColumnName("estatus");
 
+            builder.Property(c => c.bDisponible)
+                .HasColumnType("boolean")
+                .HasColumnName("disponible");
+
             builder.Property(c => c.bEliminado)
                 .HasColumnType("boolean")
                 .HasColumnName("eliminado");

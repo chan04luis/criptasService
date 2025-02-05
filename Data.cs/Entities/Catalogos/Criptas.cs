@@ -13,6 +13,7 @@
         public DateTime dtFechaEliminado { get; set; }
         public bool bEstatus { get; set; }
         public bool bEliminado { get; set; }
+        public bool bDisponible { get; set; }
         public Secciones? Seccion { get; set; }
         public Clientes? Cliente { get; set; }
         public List<Pagos>? listPagos { get; set; }

@@ -5,7 +5,6 @@ using Business.Interfaces.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Clientes;
-using Models.Request;
 
 namespace Business.Implementation.Catalogos
 {
@@ -23,8 +22,16 @@ namespace Business.Implementation.Catalogos
             _logger = logger;
             _mapper = mapper;
         }
+        public async Task<Response<EntClientes>> ValidateAndSaveClientW(EntClienteRequest cliente)
+        {
+            return await ValidateAndSaveClient(cliente, 1);
+        }
+        public async Task<Response<EntClientes>> ValidateAndSaveClientA(EntClienteRequest cliente)
+        {
+            return await ValidateAndSaveClient(cliente, 2);
+        }
 
-        public async Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente)
+        public async Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente, int iOrigen)
         {
             var response = new Response<EntClientes>();
 
@@ -87,7 +94,8 @@ namespace Business.Implementation.Catalogos
                     bEstatus = true,
                     sContra = _filtros.HashPassword(cliente.sContra),
                     dtFechaActualizacion = DateTime.Now.ToLocalTime(),
-                    dtFechaRegistro = DateTime.Now.ToLocalTime()
+                    dtFechaRegistro = DateTime.Now.ToLocalTime(),
+                    iOrigen = iOrigen
                 };
                 return await SaveClient(nCliente);
             }

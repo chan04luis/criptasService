@@ -15,6 +15,8 @@ namespace Models.Models
         public string sDireccion { get; set; }
         [JsonProperty("FechaNac")]
         public string sFechaNacimiento { get; set; }
+        [JsonProperty("Origen")]
+        public int iOrigen { get; set; }
         [JsonProperty("Sexo")]
         public string sSexo { get; set; }
         [JsonProperty("Edad")]
