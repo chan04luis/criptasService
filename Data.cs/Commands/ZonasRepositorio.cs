@@ -232,7 +232,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntZonas>>();
             try
             {
-                var items = await dbContext.Zonas.AsNoTracking().Where(x => x.bEliminado == false && x.uIdIglesia == uIdIglesia).ToListAsync();
+                var items = await dbContext.Zonas.AsNoTracking().Where(x => x.bEliminado == false && x.uIdIglesia == uIdIglesia).OrderBy(x=>x.sNombre).ToListAsync();
                 if (items.Count > 0)
                     response.SetSuccess(_mapper.Map<List<EntZonas>>(items));
                 else
@@ -254,7 +254,7 @@ namespace Data.cs.Commands
             try
             {
                 var items = await dbContext.Zonas.AsNoTracking()
-                    .Where(z => z.uIdIglesia == iglesiaId && !z.bEliminado)
+                    .Where(z => z.uIdIglesia == iglesiaId && !z.bEliminado).OrderBy(x => x.sNombre)
                     .ToListAsync();
 
                 if (items.Count > 0)

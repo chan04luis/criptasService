@@ -225,7 +225,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntSecciones>>();
             try
             {
-                var items = await dbContext.Secciones.AsNoTracking().Where(x => !x.bEliminado && x.uIdZona == uIdZona).ToListAsync();
+                var items = await dbContext.Secciones.AsNoTracking().Where(x => !x.bEliminado && x.uIdZona == uIdZona).OrderBy(x=>x.sNombre).ToListAsync();
                 if (items.Any())
                     response.SetSuccess(_mapper.Map<List<EntSecciones>>(items));
                 else

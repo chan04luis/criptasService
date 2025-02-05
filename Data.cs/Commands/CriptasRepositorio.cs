@@ -235,7 +235,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntCriptas>>();
             try
             {
-                var items = await dbContext.Criptas.AsNoTracking().Where(x => !x.bEliminado && x.uIdSeccion == uIdSeccion).ToListAsync();
+                var items = await dbContext.Criptas.AsNoTracking().Where(x => !x.bEliminado && x.uIdSeccion == uIdSeccion).OrderBy(x=>x.sNumero).ToListAsync();
                 if (items.Any())
                     response.SetSuccess(_mapper.Map<List<EntCriptas>>(items));
                 else
