@@ -6,22 +6,26 @@ using Business.Interfaces.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Pagos;
+using Models.Responses.Pagos;
+using Data.cs.Entities.Catalogos;
 
 namespace Business.Implementation.Catalogos
 {
     public class BusPagos : IBusPagos
     {
         private readonly IPagosRepositorio _pagosRepositorio;
+        private readonly ICriptasRepositorio _criptasRepositorio;   
         private readonly IPagosParcialesRepositorio _parcialesRepositorio;
         private readonly ILogger<BusPagos> _logger;
         private readonly IMapper _mapper;
 
-        public BusPagos(IPagosRepositorio pagosRepositorio, ILogger<BusPagos> logger, IMapper mapper, IPagosParcialesRepositorio parcialesRepositorio)
+        public BusPagos(IPagosRepositorio pagosRepositorio, ILogger<BusPagos> logger, IMapper mapper, IPagosParcialesRepositorio parcialesRepositorio, ICriptasRepositorio criptasRepositorio)
         {
             _pagosRepositorio = pagosRepositorio;
             _logger = logger;
             _mapper = mapper;
             _parcialesRepositorio = parcialesRepositorio;
+            _criptasRepositorio = criptasRepositorio;
         }
 
         public async Task<Response<EntPagos>> ValidateAndSavePago(EntPagosRequest pago)
@@ -74,7 +78,17 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _pagosRepositorio.DSave(_mapper.Map<EntPagos>(pago));
+                var respuesta = await _pagosRepositorio.DSave(_mapper.Map<EntPagos>(pago));
+                if(!respuesta.HasError)
+                {
+                    EntCriptas entity = new EntCriptas()
+                    {
+                        uId = pago.uIdCripta,
+                        bEstatus = false,
+                    };
+                    await _criptasRepositorio.DUpdateBoolean(entity);
+                }
+                return respuesta;
             }
             catch (Exception ex)
             {
@@ -184,6 +198,16 @@ namespace Business.Implementation.Catalogos
                                 await _parcialesRepositorio.DSave(entPagosParciales);
                             }
                             response = await _pagosRepositorio.DUpdatePagado(entidad);
+                            if (entidad.bPagado && !response.HasError)
+                            {
+                                EntCriptas entity = new EntCriptas()
+                                {
+                                    uId = pagoBD.uIdCripta,
+                                    bDisponible = false,
+                                    uIdCliente = pagoBD.uIdClientes
+                                };
+                                await _criptasRepositorio.DUpdateDisponible(entity);
+                            }
                         }
                     }
                     else
@@ -230,6 +254,13 @@ namespace Business.Implementation.Catalogos
                 {
                     await _parcialesRepositorio.DUpdateEliminadoByIdPago(uIdPago);
                     response = await _pagosRepositorio.DUpdatePagado(entidad);
+                    EntCriptas entity = new EntCriptas()
+                    {
+                        uId = pagoBD.uIdCripta,
+                        bDisponible = true,
+                        uIdCliente = new Guid("2c8e4ed9-d81c-4d0c-a30f-1a8e96e73fc6")
+                    };
+                    await _criptasRepositorio.DUpdateBoolean(entity);
                 }
 
                 return response;
@@ -264,7 +295,8 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _pagosRepositorio.DUpdateEliminado(id);
+                var response = await _pagosRepositorio.DUpdateEliminado(id);
+                return response;
             }
             catch (Exception ex)
             {
@@ -318,7 +350,7 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntPagos>>> GetPagosByFilters(EntPagosSearchRequest filtros)
+        public async Task<Response<PagedResult<EntPagosLista>>> GetPagosByFilters(EntPagosSearchRequest filtros)
         {
             try
             {
@@ -327,7 +359,7 @@ namespace Business.Implementation.Catalogos
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener los pagos por filtros");
-                var response = new Response<List<EntPagos>>();
+                var response = new Response<PagedResult<EntPagosLista>>();
                 response.SetError("Hubo un error al obtener los pagos.");
                 response.HttpCode = HttpStatusCode.InternalServerError;
                 return response;

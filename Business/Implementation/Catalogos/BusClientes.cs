@@ -256,7 +256,7 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest filtros)
+        public async Task<Response<PagedResult<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest filtros)
         {
             try
             {
@@ -265,7 +265,7 @@ namespace Business.Implementation.Catalogos
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener los clientes por filtros");
-                var response = new Response<List<EntClientes>>();
+                var response = new Response<PagedResult<EntClientes>>();
                 response.SetError("Hubo un error al obtener los clientes.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;

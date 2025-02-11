@@ -6,6 +6,7 @@ using Business.Interfaces.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Criptas;
+using Models.Responses.Pagos;
 
 namespace Business.Implementation.Catalogos
 {
@@ -187,7 +188,7 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntCriptas>>> GetCriptasByFilters(EntCriptaSearchRequest filtros)
+        public async Task<Response<PagedResult<EntCriptasLista>>> GetCriptasByFilters(EntCriptaSearchRequest filtros)
         {
             try
             {
@@ -196,7 +197,7 @@ namespace Business.Implementation.Catalogos
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener las criptas por filtros");
-                var response = new Response<List<EntCriptas>>();
+                var response = new Response<PagedResult<EntCriptasLista>>();
                 response.SetError("Hubo un error al obtener las criptas.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
@@ -208,6 +209,21 @@ namespace Business.Implementation.Catalogos
             try
             {
                 return await _criptasRepositorio.DGetList(uIdSeccion);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de criptas");
+                var response = new Response<List<EntCriptas>>();
+                response.SetError("Hubo un error al obtener la lista de criptas.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+        public async Task<Response<List<EntCriptas>>> GetCriptaListDisponible(Guid uIdSeccion)
+        {
+            try
+            {
+                return await _criptasRepositorio.DGetListDisponible(uIdSeccion);
             }
             catch (Exception ex)
             {

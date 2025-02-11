@@ -29,5 +29,9 @@ namespace Models.Request.Clientes
         public string? sApellido { get; set; }
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+        [JsonProperty("NumPag")]
+        public int iNumPag { get; set; }
+        [JsonProperty("NumReg")]
+        public int iNumReg { get; set; }
     }
 }

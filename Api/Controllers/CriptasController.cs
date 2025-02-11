@@ -6,6 +6,7 @@ using Models.Request.Beneficiarios;
 using Models.Request.Criptas;
 using Models.Request.Fallecidos;
 using Models.Request.Visitas;
+using Models.Responses.Pagos;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 
@@ -121,7 +122,7 @@ namespace Api.Controllers
 
         [HttpPost("ByFilters")]
         [SwaggerOperation(Summary = "Obtiene criptas por filtros", Description = "Recupera una lista de criptas que coincidan con los filtros proporcionados.")]
-        public async Task<Response<List<EntCriptas>>> GetCriptasByFilters([FromBody] EntCriptaSearchRequest filtros)
+        public async Task<Response<PagedResult<EntCriptasLista>>> GetCriptasByFilters([FromBody] EntCriptaSearchRequest filtros)
         {
             _logger.LogInformation("Iniciando búsqueda de criptas con los filtros: {filtros}", filtros);
             var response = await _busCriptas.GetCriptasByFilters(filtros);
@@ -142,6 +143,22 @@ namespace Api.Controllers
         {
             _logger.LogInformation("Iniciando recuperación de lista de criptas.");
             var response = await _busCriptas.GetCriptaList(IdSeccion);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de criptas: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de criptas recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+        [HttpGet("ListDisponible/{IdSeccion}")]
+        [SwaggerOperation(Summary = "Obtiene la lista de criptas", Description = "Recupera una lista de todas las criptas.")]
+        public async Task<Response<List<EntCriptas>>> GetCriptaListDisponible(Guid IdSeccion)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de criptas.");
+            var response = await _busCriptas.GetCriptaListDisponible(IdSeccion);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al recuperar lista de criptas: {Error}", response.Message);

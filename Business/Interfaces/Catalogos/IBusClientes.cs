@@ -13,7 +13,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntClientes>> UpdateClientStatus(EntClienteUpdateEstatusRequest cliente);
         Task<Response<bool>> DeleteClientById(Guid id);
         Task<Response<EntClientes>> GetClientById(Guid id);
-        Task<Response<List<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest cliente);
+        Task<Response<PagedResult<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest cliente);
         Task<Response<List<EntClientes>>> GetClientList();
     }
 }

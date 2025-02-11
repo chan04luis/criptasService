@@ -8,11 +8,17 @@ namespace Models.Request.Pagos
         [JsonProperty("Id")]
         public Guid? uId { get; set; }
 
-        [JsonProperty("IdCliente")]
-        public Guid? uIdClientes { get; set; }
+        [JsonProperty("Cliente")]
+        public string? sCliente { get; set; }
 
         [JsonProperty("IdCripta")]
         public Guid? uIdCripta { get; set; }
+        [JsonProperty("IdSeccion")]
+        public Guid? uIdSeccion { get; set; }
+        [JsonProperty("IdZona")]
+        public Guid? uIdZona { get; set; }
+        [JsonProperty("IdIglesia")]
+        public Guid? uIdIglesia { get; set; }
 
         [JsonProperty("IdTipoPago")]
         public Guid? uIdTipoPago { get; set; }
@@ -22,5 +28,9 @@ namespace Models.Request.Pagos
 
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+        [JsonProperty("NumPag")]
+        public int iNumPag { get; set; }
+        [JsonProperty("NumReg")]
+        public int iNumReg { get; set; }
     }
 }

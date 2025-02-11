@@ -11,6 +11,10 @@ namespace Models.Request.Criptas
     {
         [JsonProperty("Id")]
         public Guid? uId { get; set; }
+        [JsonProperty("IdIglesia")]
+        public Guid? uIdIglesia { get; set; }
+        [JsonProperty("IdZona")]
+        public Guid? uIdZona { get; set; }
 
         [JsonProperty("IdSeccion")]
         public Guid? uIdSeccion { get; set; }
@@ -26,5 +30,9 @@ namespace Models.Request.Criptas
 
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+        [JsonProperty("NumPag")]
+        public int iNumPag { get; set; }
+        [JsonProperty("NumReg")]
+        public int iNumReg { get; set; }
     }
 }

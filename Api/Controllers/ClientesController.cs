@@ -110,7 +110,7 @@ namespace Api.Controllers
 
         [HttpPost("ByFilters")]
         [SwaggerOperation(Summary = "Obtiene clientes por filtros", Description = "Recupera una lista de clientes que coincidan con los filtros proporcionado.")]
-        public async Task<Response<List<EntClientes>>> GetClientsByFilters([FromBody] EntClienteSearchRequest cliente)
+        public async Task<Response<PagedResult<EntClientes>>> GetClientsByFilters([FromBody] EntClienteSearchRequest cliente)
         {
             _logger.LogInformation("Iniciando búsqueda de clientes con los filtros: {cliente}", cliente);
             var response = await _busClientes.GetClientsByFilters(cliente);

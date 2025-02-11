@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Models.Request.Pagos;
 using Models.Request.TipoPagos;
+using Models.Responses.Pagos;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 
@@ -182,7 +183,7 @@ namespace Api.Controllers
 
         [HttpPost("ByFilters")]
         [SwaggerOperation(Summary = "Obtiene pagos por filtros", Description = "Recupera una lista de pagos que coincidan con los filtros proporcionados.")]
-        public async Task<Response<List<EntPagos>>> GetPagosByFilters([FromBody] EntPagosSearchRequest filtros)
+        public async Task<Response<PagedResult<EntPagosLista>>> GetPagosByFilters([FromBody] EntPagosSearchRequest filtros)
         {
             _logger.LogInformation("Iniciando búsqueda de pagos con los filtros: {filtros}", filtros);
             var response = await _busPagos.GetPagosByFilters(filtros);

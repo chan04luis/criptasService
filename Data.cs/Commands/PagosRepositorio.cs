@@ -5,6 +5,7 @@ using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request.Pagos;
+using Models.Responses.Pagos;
 using System.Net;
 using Utils;
 
@@ -232,36 +233,91 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntPagos>>> DGetByFilters(EntPagosSearchRequest filtros)
+        public async Task<Response<PagedResult<EntPagosLista>>> DGetByFilters(EntPagosSearchRequest filtros)
         {
-            var response = new Response<List<EntPagos>>();
+            var response = new Response<PagedResult<EntPagosLista>>();
             try
             {
-                var query = dbContext.Pagos.AsNoTracking().Where(x => !x.bEliminado);
+                var query = (from p in dbContext.Pagos.AsNoTracking()
+                             join tp in dbContext.TiposDePagos.AsNoTracking() on p.uIdTipoPago equals tp.uId
+                             join c in dbContext.Clientes.AsNoTracking() on p.uIdClientes equals c.uId
+                             join cr in dbContext.Criptas.AsNoTracking() on p.uIdCripta equals cr.uId
+                             join s in dbContext.Secciones.AsNoTracking() on cr.uIdSeccion equals s.uId
+                             join z in dbContext.Zonas.AsNoTracking() on s.uIdZona equals z.uId
+                             join i in dbContext.Iglesias.AsNoTracking() on z.uIdIglesia equals i.uId
+                             where !p.bEliminado
+                             select new EntPagosLista
+                             {
+                                 uId = p.uId,
+                                 uIdClientes = c.uId,
+                                 sNombreCliente = c.sNombre,
+                                 sApellidosCliente = c.sApellidos ?? "",
+                                 uIdCripta = cr.uId,
+                                 sNumeroCripta = cr.sNumero,
+                                 uIdSeccion = s.uId,
+                                 sNombreSeccion = s.sNombre,
+                                 uIdZona = z.uId,
+                                 sNombreZona = z.sNombre,
+                                 uIdIglesia = i.uId,
+                                 sNombreIglesia = i.sNombre,
+                                 uIdTipoPago = p.uIdTipoPago,
+                                 dMontoTotal = p.dMontoTotal,
+                                 dMontoPagado = p.dMontoPagado,
+                                 dtFechaLimite = p.dtFechaLimite,
+                                 dtFechaPagado = p.dtFechaPago,
+                                 bPagado = p.bPagado,
+                                 dtFechaRegistro = p.dtFechaRegistro,
+                                 dtFechaActualizacion = p.dtFechaActualizacion,
+                                 bEstatus = p.bEstatus,
+                                 sClavePago = tp.sNombre
+                             });
 
-                if (filtros.uIdClientes.HasValue)
-                    query = query.Where(x => x.uIdClientes == filtros.uIdClientes);
+                // Aplicar filtros dinámicos
+                if (filtros.sCliente != null)
+                    query = query.Where(p => ($"{p.sNombreCliente} {p.sApellidosCliente}").Contains(filtros.sCliente));
 
                 if (filtros.uIdCripta.HasValue)
-                    query = query.Where(x => x.uIdCripta == filtros.uIdCripta);
+                    query = query.Where(p => p.uIdCripta == filtros.uIdCripta);
+
+                if (filtros.uIdSeccion.HasValue)
+                    query = query.Where(p => p.uIdSeccion == filtros.uIdSeccion);
+
+                if (filtros.uIdZona.HasValue)
+                    query = query.Where(p => p.uIdZona == filtros.uIdZona);
+
+                if (filtros.uIdIglesia.HasValue)
+                    query = query.Where(p => p.uIdIglesia == filtros.uIdIglesia);
 
                 if (filtros.uIdTipoPago.HasValue)
-                    query = query.Where(x => x.uIdTipoPago == filtros.uIdTipoPago);
+                    query = query.Where(p => p.uIdTipoPago == filtros.uIdTipoPago);
 
                 if (filtros.bPagado.HasValue)
-                    query = query.Where(x => x.bPagado == filtros.bPagado);
+                    query = query.Where(p => p.bPagado == filtros.bPagado);
 
                 if (filtros.bEstatus.HasValue)
-                    query = query.Where(x => x.bEstatus == filtros.bEstatus);
+                    query = query.Where(p => p.bEstatus == filtros.bEstatus);
 
-                var items = await query.ToListAsync();
+                // Paginación
+                int totalRecords = await query.CountAsync();
+                var resultList = await query
+                    .OrderBy(p => p.sNombreIglesia)
+                    .ThenBy(p => p.sNombreZona)
+                    .ThenBy(p => p.sNombreSeccion)
+                    .ThenBy(p => p.sNumeroCripta)
+                    .Skip((filtros.iNumPag - 1) * filtros.iNumReg)
+                    .Take(filtros.iNumReg)
+                    .ToListAsync();
 
-                if (items.Any())
-                    response.SetSuccess(_mapper.Map<List<EntPagos>>(items));
+                // Verificar si hay registros
+                if (resultList.Any())
+                {
+                    var resultado = new PagedResult<EntPagosLista>(resultList, totalRecords, filtros.iNumPag, filtros.iNumReg);
+                    response.SetSuccess(resultado);
+                }
                 else
                 {
                     response.SetError("No se encontraron registros");
-                    response.HttpCode = HttpStatusCode.NotFound;
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
                 }
             }
             catch (Exception ex)
@@ -270,5 +326,6 @@ namespace Data.cs.Commands
             }
             return response;
         }
+
     }
 }

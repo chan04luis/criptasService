@@ -37,6 +37,7 @@ namespace Utils.Implementation
 
         public string? HashPassword(string? password)
         {
+            if(password == null) return string.Empty;
             return _passwordHasher.HashPassword(null, password);
         }
 

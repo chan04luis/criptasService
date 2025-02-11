@@ -5,6 +5,7 @@ using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request.Criptas;
+using Models.Responses.Pagos;
 using System.Net;
 using Utils;
 
@@ -138,6 +139,40 @@ namespace Data.cs.Commands
             }
             return response;
         }
+        public async Task<Response<EntCriptas>> DUpdateDisponible(EntCriptas entity)
+        {
+            var response = new Response<EntCriptas>();
+            try
+            {
+                var bEntity = dbContext.Criptas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                if (bEntity != null)
+                {
+                    bEntity.bDisponible = entity.bDisponible;
+                    bEntity.uIdCliente = entity.uIdCliente;
+                    bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                    dbContext.Update(bEntity);
+                    var exec = await dbContext.SaveChangesAsync();
+
+                    if (exec > 0)
+                        response.SetSuccess(_mapper.Map<EntCriptas>(bEntity), "Actualizado correctamente");
+                    else
+                    {
+                        response.SetError("Registro no actualizado");
+                        response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    }
+                }
+                else
+                {
+                    response.SetError("Cripta no encontrada");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex);
+            }
+            return response;
+        }
 
         public async Task<Response<bool>> DUpdateEliminado(Guid uId)
         {
@@ -194,29 +229,78 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntCriptas>>> DGetByFilters(EntCriptaSearchRequest filtros)
+        public async Task<Response<PagedResult<EntCriptasLista>>> DGetByFilters(EntCriptaSearchRequest filtros)
         {
-            var response = new Response<List<EntCriptas>>();
+            var response = new Response<PagedResult<EntCriptasLista>>();
             try
             {
-                var query = dbContext.Criptas.AsNoTracking().Where(x => !x.bEliminado);
+                var query = (from c in dbContext.Criptas
+                             join s in dbContext.Secciones on c.uIdSeccion equals s.uId
+                             join z in dbContext.Zonas on s.uIdZona equals z.uId
+                             join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
+                             join cl in dbContext.Clientes on c.uIdCliente equals cl.uId into ClienteJoin
+                             from cl in ClienteJoin.DefaultIfEmpty() // LEFT JOIN con Clientes
+                             where !c.bEliminado
+                             select new EntCriptasLista
+                             {
+                                 uId = c.uId,
+                                 uIdSeccion = s.uId,
+                                 sNombreSeccion = s.sNombre,
+                                 uIdZona = z.uId,
+                                 sNombreZona = z.sNombre,
+                                 uIdIglesia = i.uId,
+                                 sNombreIglesia = i.sNombre,
+                                 uIdCliente = c.uIdCliente,
+                                 sNombreCliente = cl != null ? cl.sNombre : "Sin Cliente",
+                                 sApellidosCliente = cl != null ? cl.sApellidos ?? "" : "",
+                                 sNumero = c.sNumero,
+                                 dPrecio = c.dPrecio,
+                                 sUbicacionEspecifica = c.sUbicacionEspecifica,
+                                 dtFechaRegistro = c.dtFechaRegistro,
+                                 dtFechaActualizacion = c.dtFechaActualizacion,
+                                 bEstatus = c.bEstatus,
+                                 bDisponible = c.bDisponible
+                             });
 
+                // Aplicar filtros dinámicos
                 if (filtros.uIdCliente.HasValue)
-                    query = query.Where(x => x.uIdCliente == filtros.uIdCliente);
+                    query = query.Where(c => c.uIdCliente == filtros.uIdCliente);
 
                 if (filtros.uIdSeccion.HasValue)
-                    query = query.Where(x => x.uIdSeccion == filtros.uIdSeccion);
+                    query = query.Where(c => c.uIdSeccion == filtros.uIdSeccion);
+
+                if (filtros.uIdZona.HasValue)
+                    query = query.Where(c => c.uIdZona == filtros.uIdZona);
+
+                if (filtros.uIdIglesia.HasValue)
+                    query = query.Where(c => c.uIdIglesia == filtros.uIdIglesia);
 
                 if (!string.IsNullOrWhiteSpace(filtros.sNumero))
-                    query = query.Where(x => x.sNumero.Contains(filtros.sNumero));
+                    query = query.Where(c => c.sNumero.Contains(filtros.sNumero));
+
+                if (!string.IsNullOrWhiteSpace(filtros.sUbicacionEspecifica))
+                    query = query.Where(c => c.sUbicacionEspecifica.Contains(filtros.sUbicacionEspecifica));
 
                 if (filtros.bEstatus.HasValue)
-                    query = query.Where(x => x.bEstatus == filtros.bEstatus);
+                    query = query.Where(c => c.bEstatus == filtros.bEstatus);
 
-                var items = await query.ToListAsync();
+                // Paginación
+                int totalRecords = await query.CountAsync();
+                var resultList = await query
+                    .OrderBy(c => c.sNombreIglesia)
+                    .ThenBy(c => c.sNombreZona)
+                    .ThenBy(c => c.sNombreSeccion)
+                    .ThenBy(c => c.sNumero)
+                    .Skip((filtros.iNumPag - 1) * filtros.iNumReg)
+                    .Take(filtros.iNumReg)
+                    .ToListAsync();
 
-                if (items.Any())
-                    response.SetSuccess(_mapper.Map<List<EntCriptas>>(items));
+                // Verificar si hay registros
+                if (resultList.Any())
+                {
+                    var resultado = new PagedResult<EntCriptasLista>(resultList, totalRecords, filtros.iNumPag, filtros.iNumReg);
+                    response.SetSuccess(resultado);
+                }
                 else
                 {
                     response.SetError("No se encontraron registros");
@@ -236,6 +320,26 @@ namespace Data.cs.Commands
             try
             {
                 var items = await dbContext.Criptas.AsNoTracking().Where(x => !x.bEliminado && x.uIdSeccion == uIdSeccion).OrderBy(x=>x.sNumero).ToListAsync();
+                if (items.Any())
+                    response.SetSuccess(_mapper.Map<List<EntCriptas>>(items));
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<List<EntCriptas>>> DGetListDisponible(Guid uIdSeccion)
+        {
+            var response = new Response<List<EntCriptas>>();
+            try
+            {
+                var items = await dbContext.Criptas.AsNoTracking().Where(x => !x.bEliminado && x.uIdSeccion == uIdSeccion && x.bDisponible && x.bEstatus).OrderBy(x => x.sNumero).ToListAsync();
                 if (items.Any())
                     response.SetSuccess(_mapper.Map<List<EntCriptas>>(items));
                 else

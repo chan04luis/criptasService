@@ -1,5 +1,6 @@
 ﻿using Models.Models;
 using Models.Request.Pagos;
+using Models.Responses.Pagos;
 using Utils;
 
 namespace Business.Data
@@ -13,6 +14,6 @@ namespace Business.Data
         Task<Response<EntPagos>> DUpdateStatus(EntPagosUpdateEstatusRequest entity);
         Task<Response<bool>> DUpdateEliminado(Guid uId);
         Task<Response<EntPagos>> DGetById(Guid uId);
-        Task<Response<List<EntPagos>>> DGetByFilters(EntPagosSearchRequest filtros);
+        Task<Response<PagedResult<EntPagosLista>>> DGetByFilters(EntPagosSearchRequest filtros);
     }
 }

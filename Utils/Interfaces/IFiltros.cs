@@ -6,7 +6,7 @@
         bool IsValidEmail(string email);
         bool IsValidFecha(string fecha);
         bool IsValidSexo(string sexo);
-        string? HashPassword(string password);
+        string? HashPassword(string? password);
         bool VerifyPassword(string hashedPassword, string providedPassword);
     }
 }

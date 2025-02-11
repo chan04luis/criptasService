@@ -1,6 +1,7 @@
 ﻿using Models.Models;
 using Utils;
 using Models.Request.Pagos;
+using Models.Responses.Pagos;
 
 namespace Business.Interfaces.Catalogos
 {
@@ -14,7 +15,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<bool>> DeletePagoById(Guid uId);
         Task<Response<bool>> DeletePagoParcialById(Guid uId);
         Task<Response<EntPagos>> GetPagoById(Guid uId);
-        Task<Response<List<EntPagos>>> GetPagosByFilters(EntPagosSearchRequest filtros);
+        Task<Response<PagedResult<EntPagosLista>>> GetPagosByFilters(EntPagosSearchRequest filtros);
         Task<Response<List<EntPagosParciales>>> GetParcialidadesByIdPago(Guid id);
     }
 }

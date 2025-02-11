@@ -1,6 +1,7 @@
 ﻿using Utils;
 using Models.Models;
 using Models.Request.Criptas;
+using Models.Responses.Pagos;
 
 namespace Business.Interfaces.Catalogos
 {
@@ -11,8 +12,9 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntCriptas>> UpdateCriptaStatus(EntCriptaUpdateEstatusRequest cripta);
         Task<Response<bool>> DeleteCriptaById(Guid id);
         Task<Response<EntCriptas>> GetCriptaById(Guid id);
-        Task<Response<List<EntCriptas>>> GetCriptasByFilters(EntCriptaSearchRequest filtros);
+        Task<Response<PagedResult<EntCriptasLista>>> GetCriptasByFilters(EntCriptaSearchRequest filtros);
         Task<Response<List<EntCriptas>>> GetCriptaList(Guid uIdSeccion);
+        Task<Response<List<EntCriptas>>> GetCriptaListDisponible(Guid uIdSeccion);
     }
 
 }
