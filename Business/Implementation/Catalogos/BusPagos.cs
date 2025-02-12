@@ -8,6 +8,7 @@ using Models.Models;
 using Models.Request.Pagos;
 using Models.Responses.Pagos;
 using Data.cs.Entities.Catalogos;
+using Models.Enums;
 
 namespace Business.Implementation.Catalogos
 {
@@ -81,12 +82,15 @@ namespace Business.Implementation.Catalogos
                 var respuesta = await _pagosRepositorio.DSave(_mapper.Map<EntPagos>(pago));
                 if(!respuesta.HasError)
                 {
-                    EntCriptas entity = new EntCriptas()
+                    if(pago.uIdCripta  != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
                     {
-                        uId = pago.uIdCripta,
-                        bEstatus = false,
-                    };
-                    await _criptasRepositorio.DUpdateBoolean(entity);
+                        EntCriptas entity = new EntCriptas()
+                        {
+                            uId = pago.uIdCripta,
+                            bEstatus = false,
+                        };
+                        await _criptasRepositorio.DUpdateBoolean(entity);
+                    }
                 }
                 return respuesta;
             }
@@ -200,13 +204,16 @@ namespace Business.Implementation.Catalogos
                             response = await _pagosRepositorio.DUpdatePagado(entidad);
                             if (entidad.bPagado && !response.HasError)
                             {
-                                EntCriptas entity = new EntCriptas()
+                                if (pagoBD.uIdCripta != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
                                 {
-                                    uId = pagoBD.uIdCripta,
-                                    bDisponible = false,
-                                    uIdCliente = pagoBD.uIdClientes
-                                };
-                                await _criptasRepositorio.DUpdateDisponible(entity);
+                                    EntCriptas entity = new EntCriptas()
+                                    {
+                                        uId = pagoBD.uIdCripta,
+                                        bDisponible = false,
+                                        uIdCliente = pagoBD.uIdClientes
+                                    };
+                                    await _criptasRepositorio.DUpdateDisponible(entity);
+                                }
                             }
                         }
                     }
@@ -254,13 +261,16 @@ namespace Business.Implementation.Catalogos
                 {
                     await _parcialesRepositorio.DUpdateEliminadoByIdPago(uIdPago);
                     response = await _pagosRepositorio.DUpdatePagado(entidad);
-                    EntCriptas entity = new EntCriptas()
+                    if (pagoBD.uIdCripta != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
                     {
-                        uId = pagoBD.uIdCripta,
-                        bDisponible = true,
-                        uIdCliente = new Guid("2c8e4ed9-d81c-4d0c-a30f-1a8e96e73fc6")
-                    };
-                    await _criptasRepositorio.DUpdateBoolean(entity);
+                        EntCriptas entity = new EntCriptas()
+                        {
+                            uId = pagoBD.uIdCripta,
+                            bDisponible = true,
+                            uIdCliente = new Guid(IdPermanentes.clienteGeneral.GetDescription())
+                        };
+                        await _criptasRepositorio.DUpdateBoolean(entity);
+                    }
                 }
 
                 return response;

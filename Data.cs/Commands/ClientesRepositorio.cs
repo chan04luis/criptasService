@@ -167,6 +167,10 @@ public class ClientesRepositorio : IClientesRepositorio
             {
                 items = items.Where(x => x.sApellidos.ToLower().Contains(filtros.sApellido.ToLower()));
             }
+            if (filtros.sCorreo != null)
+            {
+                items = items.Where(x => x.sEmail.ToLower().Contains(filtros.sCorreo.ToLower()));
+            }
             if (filtros.bEstatus != null)
             {
                 items = items.Where(x => x.bEstatus == filtros.bEstatus);

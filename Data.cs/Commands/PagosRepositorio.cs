@@ -3,6 +3,8 @@ using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Extensions;
+using Models.Enums;
 using Models.Models;
 using Models.Request.Pagos;
 using Models.Responses.Pagos;
@@ -186,17 +188,34 @@ namespace Data.cs.Commands
                 var bEntity = dbContext.Pagos.AsNoTracking().FirstOrDefault(x => x.uId == uId);
                 if (bEntity != null)
                 {
-                    bEntity.bEliminado = true;
-                    bEntity.dtFechaEliminado = DateTime.Now.ToLocalTime();
-                    dbContext.Update(bEntity);
-                    var exec = await dbContext.SaveChangesAsync();
-
-                    if (exec > 0)
-                        response.SetSuccess(true, "Eliminado correctamente");
+                    if (bEntity.bPagado)
+                    {
+                        response.SetError("No se puede eliminar una venta ya pagada");
+                        response.HttpCode = HttpStatusCode.BadRequest;
+                    }
                     else
                     {
-                        response.SetError("Registro no eliminado");
-                        response.HttpCode = HttpStatusCode.BadRequest;
+                        bEntity.bEliminado = true;
+                        bEntity.dtFechaEliminado = DateTime.Now.ToLocalTime();
+                        dbContext.Update(bEntity);
+                        if(bEntity.uIdCripta != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
+                        {
+                            var cripta = await dbContext.Criptas.AsNoTracking().FirstOrDefaultAsync(x => x.uId == bEntity.uIdCripta);
+                            cripta.bDisponible = true;
+                            cripta.bEstatus = true;
+                            cripta.uIdCliente = new Guid(IdPermanentes.clienteGeneral.GetDescription());
+                            cripta.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                            dbContext.Update(cripta);
+                        }
+                        var exec = await dbContext.SaveChangesAsync();
+
+                        if (exec > 0)
+                            response.SetSuccess(true, "Eliminado correctamente");
+                        else
+                        {
+                            response.SetError("Registro no eliminado");
+                            response.HttpCode = HttpStatusCode.BadRequest;
+                        }
                     }
                 }
                 else
