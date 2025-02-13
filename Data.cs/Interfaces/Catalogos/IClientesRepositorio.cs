@@ -1,5 +1,6 @@
 ﻿using Models.Models;
 using Models.Request.Clientes;
+using Models.Responses.Criptas;
 using Utils;
 
 public interface IClientesRepositorio
@@ -12,4 +13,5 @@ public interface IClientesRepositorio
     Task<Response<EntClientes>> DUpdateBoolean(EntClientes entity);
     Task<Response<bool>> DUpdateEliminado(Guid uId);
     Task<Response<EntClientes>> DGetByEmail(string sEmail, string? Contra = null);
+    Task<Response<List<MisCriptas>>> DGetMisCriptas(Guid uIdCliente);
 }

@@ -6,6 +6,7 @@ using Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Models.Responses.Criptas;
 
 namespace Api.Controllers
 {
@@ -134,6 +135,22 @@ namespace Api.Controllers
             if (response.HasError)
             {
                 _logger.LogWarning("Error al recuperar lista de clientes: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de clientes recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+        [HttpGet("MisCriptas/{uIdCliente}")]
+        [SwaggerOperation(Summary ="Obtiene la lista de criptas compradas por el cliente", Description = "Recuperar listado de criptas compradas")]
+        public async Task<Response<List<MisCriptas>>> GetCriptas(Guid uIdCliente)
+        {
+            _logger.LogInformation("Inicia obtención de criptas");
+            var response = await _busClientes.GetMisCriptas(uIdCliente);
+            if(response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de criptas por cliente: {Error}", response.Message);
             }
             else
             {

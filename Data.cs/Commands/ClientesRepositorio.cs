@@ -5,6 +5,7 @@ using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request.Clientes;
+using Models.Responses.Criptas;
 using System.Drawing.Printing;
 using Utils;
 
@@ -252,5 +253,52 @@ public class ClientesRepositorio : IClientesRepositorio
         }
         return response;
 
+    }
+
+    public async Task<Response<List<MisCriptas>>> DGetMisCriptas(Guid uIdCliente)
+    {
+        var response = new Response<List<MisCriptas>>();
+        try
+        {
+            var items = await (
+                from c in dbContext.Criptas
+                join s in dbContext.Secciones on c.uIdSeccion equals s.uId
+                join z in dbContext.Zonas on s.uIdZona equals z.uId
+                join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
+                where c.uIdCliente == uIdCliente && !c.bEliminado 
+                select new MisCriptas
+                {
+                    uId = c.uId.ToString(),
+                    sNombre = c.sNumero,
+                    sIglesia = i.sNombre,
+                    sNombreSeccion = s.sNombre,
+                    sNombreZona = z.sNombre,
+                    sLatitud = i.sLatitud,
+                    sLongitud = i.sLongitud,
+                    iFallecidos = dbContext.Fallecidos
+                        .Count(f => f.uIdCripta == c.uId && !f.bEliminado), 
+                    iBeneficiarios = dbContext.Beneficiarios
+                        .Count(b => b.uId == c.uIdCliente),
+                    dtFechaCompra = dbContext.Pagos
+                        .Where(p => p.uIdCripta == c.uId && p.bPagado)
+                        .OrderBy(p => p.dtFechaPago)
+                        .Select(p => p.dtFechaPago ?? DateTime.MinValue)
+                        .FirstOrDefault()
+                }
+            ).ToListAsync();
+
+            if (items.Any())
+                response.SetSuccess(items);
+            else
+            {
+                response.SetError("Sin registros");
+                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex.Message);
+        }
+        return response;
     }
 }

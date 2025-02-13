@@ -1,7 +1,7 @@
 ﻿using Utils;
 using Models.Models;
 using Models.Request.Clientes;
-using Models.Request;
+using Models.Responses.Criptas;
 
 namespace Business.Interfaces.Catalogos
 {
@@ -15,5 +15,6 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntClientes>> GetClientById(Guid id);
         Task<Response<PagedResult<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest cliente);
         Task<Response<List<EntClientes>>> GetClientList();
+        Task<Response<List<MisCriptas>>> GetMisCriptas(Guid uIdCliente);
     }
 }

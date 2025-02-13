@@ -5,6 +5,7 @@ using Business.Interfaces.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Clientes;
+using Models.Responses.Criptas;
 
 namespace Business.Implementation.Catalogos
 {
@@ -283,6 +284,22 @@ namespace Business.Implementation.Catalogos
                 _logger.LogError(ex, "Error al obtener la lista de clientes");
                 var response = new Response<List<EntClientes>>();
                 response.SetError("Hubo un error al obtener la lista de clientes.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<List<MisCriptas>>> GetMisCriptas(Guid uIdCliente)
+        {
+            try
+            {
+                return await _clientesRepositorio.DGetMisCriptas(uIdCliente);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de criptas por cliente");
+                var response = new Response<List<MisCriptas>>();
+                response.SetError("Hubo un error al obtener la lista de criptas por cliente.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
             }
