@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Request.Fallecidos
 {
@@ -14,6 +9,15 @@ namespace Models.Request.Fallecidos
 
         [JsonProperty("Nombre")]
         public string sNombre { get; set; }
+
+        [JsonProperty("Apellidos")]
+        public string sApellidos { get; set; }
+
+        [JsonProperty("Nacimiento")]
+        public DateTime dtFechaNacimiento { get; set; }
+
+        [JsonProperty("Fallecimiento")]
+        public DateTime dtFechaFallecimiento { get; set; }
 
         [JsonProperty("IdCripta")]
         public Guid? uIdCripta { get; set; }

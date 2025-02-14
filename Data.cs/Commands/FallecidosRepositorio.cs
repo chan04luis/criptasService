@@ -61,6 +61,8 @@ public class FallecidosRepositorio : IFallecidosRepositorio
             {
                 existingEntity.sNombre = entity.sNombre;
                 existingEntity.uIdCripta = entity.uIdCripta;
+                existingEntity.dtFechaNacimiento = entity.dtFechaNacimiento;
+                existingEntity.dtFechaFallecimiento = entity.dtFechaFallecimiento;
                 existingEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Fallecidos.Update(existingEntity);
                 int result = await dbContext.SaveChangesAsync();

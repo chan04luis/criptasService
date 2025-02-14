@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Models
 {
@@ -17,6 +12,12 @@ namespace Models.Models
 
         [JsonProperty("Nombre")]
         public string sNombre { get; set; }
+
+        [JsonProperty("IneFrente")]
+        public string? sIneFrente { get; set; }
+
+        [JsonProperty("IneReverso")]
+        public string? sIneReverso { get; set; }
 
         [JsonProperty("FechaRegistro")]
         public DateTime dtFechaRegistro { get; set; }

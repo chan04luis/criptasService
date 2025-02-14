@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Request.Fallecidos
 {
@@ -11,6 +6,9 @@ namespace Models.Request.Fallecidos
     {
         [JsonProperty("Nombre")]
         public string sNombre { get; set; }
+
+        [JsonProperty("Apellidos")]
+        public string sApellidos { get; set; }
 
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }

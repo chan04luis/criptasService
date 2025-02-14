@@ -31,9 +31,17 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre");
 
+            builder.Property(e => e.sApellidos)
+                .HasColumnType("VARCHAR(255)")
+                .HasColumnName("apellidos");
+
             builder.Property(e => e.dtFechaFallecimiento)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("date")
                 .HasColumnName("fecha_fallecimiento");
+
+            builder.Property(e => e.dtFechaNacimiento)
+                .HasColumnType("date")
+                .HasColumnName("fecha_nacimiento");
 
             builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("timestamp without time zone")

@@ -60,6 +60,8 @@ public class BeneficiariosRepositorio : IBeneficiariosRepositorio
             if (existingEntity != null)
             {
                 existingEntity.sNombre = entity.sNombre;
+                existingEntity.sIneFrente = entity.sIneFrente;
+                existingEntity.sIneReverso = entity.sIneReverso;
                 existingEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Beneficiarios.Update(existingEntity);
                 int result = await dbContext.SaveChangesAsync();

@@ -10,6 +10,18 @@ namespace Models.Models
         [JsonProperty("Nombre")]
         public string sNombre { get; set; }
 
+        [JsonProperty("Apellidos")]
+        public string sApellidos { get; set; }
+
+        [JsonProperty("Edad")]
+        public int iEdad { get; set; }
+
+        [JsonProperty("Nacimiento")]
+        public DateTime dtFechaNacimiento { get; set; }
+
+        [JsonProperty("Fallecimiento")]
+        public DateTime dtFechaFallecimiento { get; set; }
+
         [JsonProperty("Estatus")]
         public bool bEstatus { get; set; }
 

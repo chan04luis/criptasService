@@ -147,8 +147,7 @@ namespace Data.cs.Commands
                 bEntity.Descripcion = entity.Descripcion;
                 bEntity.Estatus = entity.Estatus;
                 bEntity.Costo = entity.Costo;
-                if(entity.Img!=null)
-                    bEntity.Img = entity.Img;
+                bEntity.Img = entity.Img;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Update(bEntity);
                 var exec = await dbContext.SaveChangesAsync();

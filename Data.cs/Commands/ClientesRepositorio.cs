@@ -265,7 +265,7 @@ public class ClientesRepositorio : IClientesRepositorio
                 join s in dbContext.Secciones on c.uIdSeccion equals s.uId
                 join z in dbContext.Zonas on s.uIdZona equals z.uId
                 join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
-                where c.uIdCliente == uIdCliente && !c.bEliminado 
+                where c.uIdCliente == uIdCliente && !c.bEliminado && !s.bEliminado && !z.bEliminado && !i.bEliminado
                 select new MisCriptas
                 {
                     uId = c.uId.ToString(),
@@ -278,7 +278,7 @@ public class ClientesRepositorio : IClientesRepositorio
                     iFallecidos = dbContext.Fallecidos
                         .Count(f => f.uIdCripta == c.uId && !f.bEliminado), 
                     iBeneficiarios = dbContext.Beneficiarios
-                        .Count(b => b.uId == c.uIdCliente),
+                        .Count(b => b.uIdCripta == c.uId && !f.bEliminado),
                     dtFechaCompra = dbContext.Pagos
                         .Where(p => p.uIdCripta == c.uId && p.bPagado)
                         .OrderBy(p => p.dtFechaPago)

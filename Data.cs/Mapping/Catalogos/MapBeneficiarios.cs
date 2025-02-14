@@ -30,6 +30,14 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre");
 
+            builder.Property(e => e.sIneFrente)
+                .HasColumnType("text")
+                .HasColumnName("ine_frente");
+
+            builder.Property(e => e.sIneReverso)
+                .HasColumnType("text")
+                .HasColumnName("ine_reverso");
+
             builder.Property(e => e.dtFechaRegistro)
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)

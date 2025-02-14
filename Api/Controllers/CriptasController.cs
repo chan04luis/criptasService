@@ -281,7 +281,7 @@ namespace Api.Controllers
 
         [HttpGet("Fallecidos/{id}")]
         [SwaggerOperation(Summary = "Obtiene un fallecido por ID", Description = "Recupera un fallecido específico utilizando su ID.")]
-        public async Task<Response<EntFallecidos>> GetFallecidoById(Guid id)
+        public async Task<Response<List<EntFallecidos>>> GetFallecidoById(Guid id)
         {
             _logger.LogInformation("Iniciando búsqueda de fallecido con ID: {Id}", id);
             var response = await _busFallecidos.GetDeceasedById(id);
@@ -353,7 +353,7 @@ namespace Api.Controllers
 
         [HttpGet("Beneficiarios/{id}")]
         [SwaggerOperation(Summary = "Obtiene un beneficiario por ID", Description = "Recupera un beneficiario específico utilizando su ID.")]
-        public async Task<Response<EntBeneficiarios>> GetBeneficiarioById(Guid id)
+        public async Task<Response<List<EntBeneficiarios>>> GetBeneficiarioById(Guid id)
         {
             _logger.LogInformation("Iniciando búsqueda de beneficiario con ID: {Id}", id);
             var response = await _busBeneficiarios.GetBeneficiaryById(id);

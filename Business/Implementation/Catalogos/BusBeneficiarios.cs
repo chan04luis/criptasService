@@ -57,16 +57,16 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<EntBeneficiarios>> GetBeneficiaryById(Guid uId)
+        public async Task<Response<List<EntBeneficiarios>>> GetBeneficiaryById(Guid uId)
         {
             try
             {
-                return await _beneficiariosRepositorio.DGetById(uId);
+                return await _beneficiariosRepositorio.DGetList(uId);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener el beneficiario por ID");
-                var response = new Response<EntBeneficiarios>();
+                var response = new Response<List<EntBeneficiarios>>();
                 response.SetError("Hubo un error al obtener el beneficiario.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;

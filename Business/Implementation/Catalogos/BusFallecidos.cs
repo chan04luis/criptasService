@@ -56,16 +56,16 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<EntFallecidos>> GetDeceasedById(Guid uId)
+        public async Task<Response<List<EntFallecidos>>> GetDeceasedById(Guid uId)
         {
             try
             {
-                return await _fallecidosRepositorio.DGetById(uId);
+                return await _fallecidosRepositorio.DGetList(uId);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al obtener el fallecido por ID");
-                var response = new Response<EntFallecidos>();
+                var response = new Response<List<EntFallecidos>>();
                 response.SetError("Hubo un error al obtener el fallecido.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
