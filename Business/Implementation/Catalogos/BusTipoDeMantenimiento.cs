@@ -48,10 +48,7 @@ namespace Business.Implementation.Catalogos
                     response.SetError(existName.Message);
                     return response;
                 }
-
-                var tipoDeMantenimientoMapeado = _mapper.Map<TipoDeMantenimiento>(tipoDeMantenimiento);
-
-                var usuarioCreado = await tipoDeMantenimientoRepositorio.DSave(tipoDeMantenimientoMapeado);
+                var usuarioCreado = await tipoDeMantenimientoRepositorio.DSave(tipoDeMantenimiento);
 
                 response.SetSuccess(usuarioCreado.Result);
             }
@@ -92,7 +89,7 @@ namespace Business.Implementation.Catalogos
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al actualizar el estado del tipo de mantenimiento");
-                var response = new Response<EntUsuarios>();
+                var response = new Response<EntTipoDeMantenimiento>();
                 response.SetError("Hubo un error al actualizar el estado del usuario.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
@@ -135,5 +132,21 @@ namespace Business.Implementation.Catalogos
             }
         }
 
+
+        public async Task<Response<List<EntTipoDeMantenimiento>>> GetListActive()
+        {
+            try
+            {
+                return await tipoDeMantenimientoRepositorio.DGetListActive();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de tipo de mantenimiento");
+                var response = new Response<List<EntTipoDeMantenimiento>>();
+                response.SetError("Hubo un error al obtener la lista de tipos de mantenimiento.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
     }
 }

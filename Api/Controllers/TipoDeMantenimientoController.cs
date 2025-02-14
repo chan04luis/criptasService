@@ -9,9 +9,9 @@ using Models.Request.Usuarios;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 
-namespace Api.Controllers.Seguridad
+namespace Api.Controllers
 {
-   {
+   
     [Route("api/tipoDeMantenimiento")]
     [Authorize]
     [ApiController]
@@ -27,7 +27,7 @@ namespace Api.Controllers.Seguridad
 
 
         [HttpPost("Create")]
-        
+
         public async Task<Response<EntTipoDeMantenimiento>> CreateTipoDeMantenimiento([FromBody] EntTipoDeMantenimiento entTipoDeMantenimiento)
         {
             _logger.LogInformation("Iniciando creación de tipo de mantenimiento.");
@@ -43,7 +43,7 @@ namespace Api.Controllers.Seguridad
             return response;
         }
         [HttpPut("Update")]
-       
+
         public async Task<Response<EntTipoDeMantenimiento>> UpdateTipoDeMantenimiento([FromBody] EntTipoDeMantenimiento entTipoDeMantenimiento)
         {
             _logger.LogInformation("Iniciando actualización de tipo de mantenimiento con ID: {Id}", entTipoDeMantenimiento.Id);
@@ -52,7 +52,7 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpPut("UpdateStatus")]
-      
+
         public async Task<Response<EntTipoDeMantenimiento>> UpdateStatus([FromBody] EntTipoDeMantenimiento entTipoDeMantenimiento)
         {
             _logger.LogInformation("Iniciando actualización de estado para el tipo de mantenimiento con ID: {Id}", entTipoDeMantenimiento.Id);
@@ -69,7 +69,7 @@ namespace Api.Controllers.Seguridad
         }
 
         [HttpDelete("{id}")]
-      
+
         public async Task<Response<bool>> DeleteTipoDeMantenimientoById(Guid id)
         {
             _logger.LogInformation("Iniciando eliminado de tipo de mantenimiento con ID: {Id}", id);
@@ -85,11 +85,27 @@ namespace Api.Controllers.Seguridad
             return response;
         }
         [HttpGet("List")]
-       
+
         public async Task<Response<List<EntTipoDeMantenimiento>>> GetUserList()
         {
             _logger.LogInformation("Iniciando recuperación de lista de usuarios.");
             var response = await busTipoDeMantenimiento.GetTipoDeMantenimientoList();
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de tipo de mantenimiento: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de  tipo de mantenimiento recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+        [HttpGet("ListActive")]
+
+        public async Task<Response<List<EntTipoDeMantenimiento>>> GetUserListActtive()
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de usuarios.");
+            var response = await busTipoDeMantenimiento.GetListActive();
             if (response.HasError)
             {
                 _logger.LogWarning("Error al recuperar lista de tipo de mantenimiento: {Error}", response.Message);

@@ -3,76 +3,36 @@
   "WorkspaceRootPath": "C:\\workspace\\criptasService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\mapping\\catalogos\\mapiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\commands\\tipodemantenimientorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\tipodemantenimientorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\entities\\catalogos\\iglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\iglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\models\\enttipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\enttipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\implementation\\catalogos\\busiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\busiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\mapping\\catalogos\\maptiposmantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\maptiposmantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\request\\iglesias\\entiglesiamaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\iglesias\\entiglesiamaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\interfaces\\catalogos\\ibusiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\catalogos\\ibusiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\mapping\\catalogos\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\criptasservice\\api\\controllers\\iglesiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\iglesiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\entities\\catalogos\\tipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\tipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\interfaces\\catalogos\\iiglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\iiglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\implementation\\catalogos\\bustipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\bustipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\commands\\iglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\iglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\models\\entiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\entiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\seguridad\\perfilpermisomenumodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\perfilpermisomenumodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\criptasservice\\api\\controllers\\seguridad\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\criptasservice\\api\\controllers\\seguridad\\autenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\autenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\seguridad\\usuariomodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\usuariomodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\models\\entusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\entusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\seguridad\\permisopaginamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\permisopaginamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\criptasservice\\api\\controllers\\tipodemantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\tipodemantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,238 +42,111 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MapIglesias.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAgwB8AAAAsAAAA",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data.cs\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data.cs\\ApplicationDbContext.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAADgv0QAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:29:34.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IglesiasController.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Api\\Controllers\\IglesiasController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\IglesiasController.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Api\\Controllers\\IglesiasController.cs",
-              "RelativeToolTip": "Api\\Controllers\\IglesiasController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAUwE0AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:24:37.735Z",
+              "WhenOpened": "2025-02-14T01:53:49.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "IBusIglesias.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "RelativeToolTip": "Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABOAAAA",
+              "Title": "MapBeneficiarios.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:23:50.579Z",
+              "WhenOpened": "2025-02-14T01:32:23.202Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EntIglesiaMaps.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "RelativeDocumentMoniker": "Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "RelativeToolTip": "Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAfAAAA",
+              "DocumentIndex": 0,
+              "Title": "TipoDeMantenimientoRepositorio.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAiwG4AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:22:02.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusIglesias.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAvwFgAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:20:53.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IIglesiasRepositorio.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:20:45.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "EntIglesias.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Models\\EntIglesias.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\EntIglesias.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Models\\EntIglesias.cs",
-              "RelativeToolTip": "Models\\Models\\EntIglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAYAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:19:29.741Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IglesiasRepositorio.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAUwFgAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:18:13.167Z",
+              "WhenOpened": "2025-02-14T01:31:50.483Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Iglesias.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAWAAAA",
+              "Title": "EntTipoDeMantenimiento.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Models\\EntTipoDeMantenimiento.cs",
+              "RelativeDocumentMoniker": "Models\\Models\\EntTipoDeMantenimiento.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Models\\Models\\EntTipoDeMantenimiento.cs",
+              "RelativeToolTip": "Models\\Models\\EntTipoDeMantenimiento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:17:35.321Z",
+              "WhenOpened": "2025-02-14T01:29:28.676Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PermisosRepositorio.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "ViewState": "AQIAADoBAAAAAAAAAAAAAEcBAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "MapTiposMantenimiento.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA1wCsAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T23:55:37.361Z",
+              "WhenOpened": "2025-02-14T01:27:48.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PerfilPermisoMenuModelo.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAIAywBYAAAAjAAAA",
+              "DocumentIndex": 5,
+              "Title": "TipoDeMantenimiento.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAD4vw8AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T23:18:00.413Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PermisosController.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwB8AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:54:09.337Z",
+              "WhenOpened": "2025-02-14T01:27:27.472Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "BusPermiso.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "ViewState": "AQIAAOoAAAAAAAAAAADwv+AAAABqAAAA",
+              "DocumentIndex": 6,
+              "Title": "BusTipoDeMantenimiento.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
+              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
+              "ViewState": "AQIAAGcAAAAAAAAAAIAwwFsAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:43:22.467Z"
+              "WhenOpened": "2025-02-14T01:25:36.915Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "BusAutenticacion.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAswDAAAAANAAAA",
+              "DocumentIndex": 7,
+              "Title": "TipoDeMantenimientoController.cs",
+              "DocumentMoniker": "C:\\workspace\\criptasService\\Api\\Controllers\\TipoDeMantenimientoController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\TipoDeMantenimientoController.cs",
+              "ToolTip": "C:\\workspace\\criptasService\\Api\\Controllers\\TipoDeMantenimientoController.cs",
+              "RelativeToolTip": "Api\\Controllers\\TipoDeMantenimientoController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:17:43.268Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "AutenticacionController.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABkAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:14:10.736Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "EntUsuarios.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Models\\EntUsuarios.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\EntUsuarios.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Models\\EntUsuarios.cs",
-              "RelativeToolTip": "Models\\Models\\EntUsuarios.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T13:13:13.213Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UsuarioModelo.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Seguridad\\UsuarioModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\UsuarioModelo.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Seguridad\\UsuarioModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\UsuarioModelo.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T13:31:17.361Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "PermisoPaginaModelo.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T00:28:03.989Z"
+              "WhenOpened": "2025-02-14T01:24:21.812Z",
+              "EditorCaption": ""
             }
           ]
         }

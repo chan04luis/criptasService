@@ -33,7 +33,7 @@ namespace Data.cs.Commands
 
             try
             {
-                var exitsKey = await dbContext.TipoDeMantenimiento.AnyAsync(i => i.Id == pKey);
+                var exitsKey = await dbContext.TipoDeMantenimiento.AnyAsync(i => i.Id == pKey && !i.bEliminado);
                 if (exitsKey)
                 {
                     response.SetSuccess(exitsKey, "Tipo de mantenimiento ya existente");
@@ -80,7 +80,7 @@ namespace Data.cs.Commands
 
             try
             {
-                var existMail = await dbContext.TipoDeMantenimiento.AnyAsync(i => i.Nombre.Equals(nombre));
+                var existMail = await dbContext.TipoDeMantenimiento.AnyAsync(i => i.Nombre.Equals(nombre) && !i.bEliminado);
 
                 if (existMail)
                 {
@@ -108,9 +108,9 @@ namespace Data.cs.Commands
                 newItem.Nombre = entity.Nombre;
                 newItem.Descripcion = entity.Descripcion;
                 newItem.Costo = entity.Costo;
-                newItem.Estatus = entity.Estatus;
+                newItem.Estatus = true;
                 newItem.Img = entity.Img;
-                newItem.Activo = true;
+                newItem.bEliminado = false;
                 newItem.FechaRegistro = DateTime.Now.ToLocalTime();
                 dbContext.TipoDeMantenimiento.Add(newItem);
                 int i = await dbContext.SaveChangesAsync();
@@ -147,7 +147,8 @@ namespace Data.cs.Commands
                 bEntity.Descripcion = entity.Descripcion;
                 bEntity.Estatus = entity.Estatus;
                 bEntity.Costo = entity.Costo;
-                bEntity.Img = entity.Img;
+                if(entity.Img!=null)
+                    bEntity.Img = entity.Img;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Update(bEntity);
                 var exec = await dbContext.SaveChangesAsync();
@@ -201,7 +202,7 @@ namespace Data.cs.Commands
             try
             {
                 var bEntity = await dbContext.TipoDeMantenimiento.FindAsync(uId);
-                bEntity.Activo = false;
+                bEntity.bEliminado = true;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Attach(bEntity);
                 var exec = await dbContext.SaveChangesAsync();
@@ -226,7 +227,7 @@ namespace Data.cs.Commands
             var response = new Response<EntTipoDeMantenimiento>();
             try
             {
-                var entity = await dbContext.TipoDeMantenimiento.AsNoTracking().FirstOrDefaultAsync(x => x.Id == iKey && x.Activo == true);
+                var entity = await dbContext.TipoDeMantenimiento.AsNoTracking().FirstOrDefaultAsync(x => x.Id == iKey && !x.bEliminado);
                 if (entity != null)
                     response.SetSuccess(_mapper.Map<EntTipoDeMantenimiento>(entity));
                 else
@@ -247,7 +248,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntTipoDeMantenimiento>>();
             try
             {
-                var items = await dbContext.TipoDeMantenimiento.AsNoTracking().Where(x => x.Activo == true).OrderBy(x => x.Nombre).ToListAsync();
+                var items = await dbContext.TipoDeMantenimiento.AsNoTracking().Where(x => !x.bEliminado).OrderBy(x => x.Nombre).ToListAsync();
                 if (items.Count > 0)
                     response.SetSuccess(_mapper.Map<List<EntTipoDeMantenimiento>>(items));
                 else
@@ -259,6 +260,27 @@ namespace Data.cs.Commands
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetList));
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+        public async Task<Response<List<EntTipoDeMantenimiento>>> DGetListActive()
+        {
+            var response = new Response<List<EntTipoDeMantenimiento>>();
+            try
+            {
+                var items = await dbContext.TipoDeMantenimiento.AsNoTracking().Where(x => !x.bEliminado && x.Estatus).OrderBy(x => x.Nombre).ToListAsync();
+                if (items.Count > 0)
+                    response.SetSuccess(_mapper.Map<List<EntTipoDeMantenimiento>>(items));
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListActive));
                 response.SetError(ex.Message);
             }
             return response;

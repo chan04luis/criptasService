@@ -2,12 +2,6 @@
 using Data.cs.Entities.Seguridad;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Data.cs.Mapping.Catalogos
 {
     public partial class MapTiposMantenimiento : IEntityTypeConfiguration<TipoDeMantenimiento>
@@ -23,15 +17,15 @@ namespace Data.cs.Mapping.Catalogos
             builder.HasKey(u => u.Id).HasName("tipos_mantenimiento_pk");
 
             builder.Property(u => u.Id)
-           .HasColumnType("VARCHAR(100)")
-           .HasColumnName("nombre");
+           .HasColumnType("uuid")
+           .HasColumnName("id");
 
             builder.Property(u => u.Nombre)
            .HasColumnType("VARCHAR(100)")
            .HasColumnName("nombre");
 
             builder.Property(u => u.Descripcion)
-            .HasColumnType("VARCHAR(300)")
+            .HasColumnType("text")
             .HasColumnName("descripcion");
 
             builder.Property(u => u.Costo)
@@ -39,12 +33,12 @@ namespace Data.cs.Mapping.Catalogos
            .HasColumnName("costo");
 
             builder.Property(u => u.Estatus)
-           .HasColumnType("numeric(1)")
+           .HasColumnType("boolean")
            .HasColumnName("estatus");
 
-            builder.Property(u => u.Activo)
+            builder.Property(u => u.bEliminado)
             .HasColumnType("boolean")
-            .HasColumnName("activo");
+            .HasColumnName("eliminado");
 
             builder.Property(u => u.Img)
            .HasColumnType("text")

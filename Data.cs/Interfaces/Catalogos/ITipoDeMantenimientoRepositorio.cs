@@ -1,9 +1,4 @@
 ﻿using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils;
 
 namespace Data.cs.Interfaces.Catalogos
@@ -19,5 +14,6 @@ namespace Data.cs.Interfaces.Catalogos
         Task<Response<bool>> DDelete(Guid uId);
         Task<Response<EntTipoDeMantenimiento>> DGetById(Guid iKey);
         Task<Response<List<EntTipoDeMantenimiento>>> DGetList();
+        Task<Response<List<EntTipoDeMantenimiento>>> DGetListActive();
     }
 }

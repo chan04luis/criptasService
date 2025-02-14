@@ -12,9 +12,9 @@ namespace Data.cs.Entities.Catalogos
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Costo { get; set; }
-        public byte Estatus { get; set; }
-        public string Img { get; set; }
-        public bool Activo { get; set; }
+        public bool Estatus { get; set; }
+        public string? Img { get; set; }
+        public bool bEliminado { get; set; }
         public DateTime FechaRegistro { get; set; }
         public DateTime FechaActualizacion { get; set; }
     }
