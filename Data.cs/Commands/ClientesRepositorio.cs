@@ -278,7 +278,7 @@ public class ClientesRepositorio : IClientesRepositorio
                     iFallecidos = dbContext.Fallecidos
                         .Count(f => f.uIdCripta == c.uId && !f.bEliminado), 
                     iBeneficiarios = dbContext.Beneficiarios
-                        .Count(b => b.uIdCripta == c.uId && !f.bEliminado),
+                        .Count(b => b.uIdCripta == c.uId && !b.bEliminado),
                     dtFechaCompra = dbContext.Pagos
                         .Where(p => p.uIdCripta == c.uId && p.bPagado)
                         .OrderBy(p => p.dtFechaPago)
