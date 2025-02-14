@@ -154,6 +154,8 @@ builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>(
 builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
 builder.Services.AddScoped<ITipoDeMantenimientoRepositorio, TipoDeMantenimientoRepositorio>();
 builder.Services.AddScoped<IBusTipoDeMantenimiento, BusTipoDeMantenimiento>();
+builder.Services.AddScoped<IServiciosRepositorio, ServiciosRepositorio>();
+builder.Services.AddScoped<IBusServicios, BusServicios>();
 
 #endregion
 

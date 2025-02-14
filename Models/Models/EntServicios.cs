@@ -1,7 +1,12 @@
-﻿
-namespace Data.cs.Entities.Catalogos
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models.Models
 {
-    public class Servicios
+    public class EntServicios
     {
         public Guid Id { get; set; }
 
@@ -10,11 +15,6 @@ namespace Data.cs.Entities.Catalogos
         public string? Descripcion { get; set; }
 
         public bool Estatus { get; set; } = true;
-        public bool Eliminado { get; set; } = false;
-
-        public DateTime FechaRegistro { get; set; }
-
-        public DateTime FechaActualizacion { get; set; }
 
         public string? Img { get; set; }
     }
