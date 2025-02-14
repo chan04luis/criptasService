@@ -116,6 +116,12 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region Tipo de mantenimiento
+
+        CreateMap<EntTipoDeMantenimiento, TipoDeMantenimiento>().ReverseMap();
+
+        #endregion
+
 
     }
 

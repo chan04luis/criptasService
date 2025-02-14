@@ -21,6 +21,7 @@ using Business.Implementation.Catalogos;
 using Business.Interfaces.Catalogos;
 using Models.Models;
 using Models.Validations.Seguridad;
+using Data.cs.Interfaces.Catalogos;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -151,6 +152,8 @@ builder.Services.AddScoped<IFallecidosRepositorio, FallecidosRepositorio>();
 builder.Services.AddScoped<IBusFallecidos, BusFallecidos>();
 builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>();
 builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
+builder.Services.AddScoped<ITipoDeMantenimientoRepositorio, TipoDeMantenimientoRepositorio>();
+builder.Services.AddScoped<IBusTipoDeMantenimiento, BusTipoDeMantenimiento>();
 
 #endregion
 

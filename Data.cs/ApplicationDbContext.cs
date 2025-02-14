@@ -21,6 +21,7 @@ namespace Data.cs
         public virtual DbSet<Fallecidos> Fallecidos { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<PagosParciales> PagosParciales { get; set; }
+        public virtual DbSet<TipoDeMantenimiento> TipoDeMantenimiento { get; set; }
         public virtual DbSet<TiposDePago> TiposDePagos { get; set; }
         public virtual DbSet<Zonas> Zonas { get; set; }
         public virtual DbSet<Secciones> Secciones { get; set; }
@@ -65,6 +66,7 @@ namespace Data.cs
             modelBuilder.ApplyConfiguration(new MapPagosParciales(EsquemaIglesia));
             modelBuilder.ApplyConfiguration(new MapVisitas(EsquemaIglesia));
             modelBuilder.ApplyConfiguration(new MapTiposDePago(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapTiposMantenimiento(EsquemaIglesia));
 
             OnModelCreatingPartial(modelBuilder);
         }
