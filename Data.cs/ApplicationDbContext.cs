@@ -26,6 +26,8 @@ namespace Data.cs
         public virtual DbSet<Zonas> Zonas { get; set; }
         public virtual DbSet<Secciones> Secciones { get; set; }
         public virtual DbSet<Visitas> Visitas { get; set; }
+        public virtual DbSet<Servicios> Servicios { get; set; }
+        public virtual DbSet<SolicitudesInfo> SolicitudesInfo { get; set; }
 
 
         #region entities seguridad
@@ -67,6 +69,8 @@ namespace Data.cs
             modelBuilder.ApplyConfiguration(new MapVisitas(EsquemaIglesia));
             modelBuilder.ApplyConfiguration(new MapTiposDePago(EsquemaIglesia));
             modelBuilder.ApplyConfiguration(new MapTiposMantenimiento(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapServicios(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapSolicitudesInfo(EsquemaIglesia));
 
             OnModelCreatingPartial(modelBuilder);
         }
