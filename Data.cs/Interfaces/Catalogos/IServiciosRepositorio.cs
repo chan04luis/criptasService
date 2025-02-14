@@ -1,0 +1,24 @@
+﻿using Models.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Utils;
+
+namespace Data.cs.Interfaces.Catalogos
+{
+    public interface IServiciosRepositorio
+    {
+        Task<Response<bool>> AnyExistKey(Guid pKey);
+        Task<Response<bool>> AnyExitNameAndKey(EntServicios pEntity);
+        Task<Response<bool>> DAnyExistName(string nombre);
+        Task<Response<EntServicios>> DSave(EntServicios entity);
+        Task<Response<EntServicios>> DUpdate(EntServicios entity);
+        Task<Response<EntServicios>> DUpdateEstatus(EntServicios entity);
+        Task<Response<bool>> DDelete(Guid uId);
+        Task<Response<EntServicios>> DGetById(Guid iKey);
+        Task<Response<List<EntServicios>>> DGetList();
+        Task<Response<List<EntServicios>>> DGetListActive();
+    }
+}

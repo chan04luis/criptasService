@@ -1,40 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\workspace\\criptasService\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\commands\\tipodemantenimientorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\tipodemantenimientorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\criptasservice\\models\\models\\enttipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\enttipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\mapping\\catalogos\\maptiposmantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\maptiposmantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\mapping\\catalogos\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapbeneficiarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\criptasservice\\data.cs\\entities\\catalogos\\tipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\tipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\criptasservice\\business\\implementation\\catalogos\\bustipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\bustipodemantenimiento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\criptasservice\\api\\controllers\\tipodemantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\tipodemantenimientocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -42,111 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data.cs\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data.cs\\ApplicationDbContext.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAADgv0QAAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:53:49.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MapBeneficiarios.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapBeneficiarios.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:32:23.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TipoDeMantenimientoRepositorio.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\TipoDeMantenimientoRepositorio.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAAAiwG4AAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:31:50.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EntTipoDeMantenimiento.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Models\\Models\\EntTipoDeMantenimiento.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\EntTipoDeMantenimiento.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Models\\Models\\EntTipoDeMantenimiento.cs",
-              "RelativeToolTip": "Models\\Models\\EntTipoDeMantenimiento.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:29:28.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapTiposMantenimiento.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapTiposMantenimiento.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA1wCsAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:27:48.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TipoDeMantenimiento.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
-              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\TipoDeMantenimiento.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAD4vw8AAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:27:27.472Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BusTipoDeMantenimiento.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
-              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusTipoDeMantenimiento.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAIAwwFsAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:25:36.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TipoDeMantenimientoController.cs",
-              "DocumentMoniker": "C:\\workspace\\criptasService\\Api\\Controllers\\TipoDeMantenimientoController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\TipoDeMantenimientoController.cs",
-              "ToolTip": "C:\\workspace\\criptasService\\Api\\Controllers\\TipoDeMantenimientoController.cs",
-              "RelativeToolTip": "Api\\Controllers\\TipoDeMantenimientoController.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:24:21.812Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
