@@ -147,7 +147,6 @@ namespace Data.cs.Commands
                 }
                 bEntity.Nombre = entity.Nombre;
                 bEntity.Descripcion = entity.Descripcion;
-                bEntity.Estatus = entity.Estatus;
                 if (entity.Img != null)
                     bEntity.Img = entity.Img;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
@@ -177,7 +176,7 @@ namespace Data.cs.Commands
             try
             {
                 var bEntity = await dbContext.Servicios.FindAsync(entity.Id);
-                bEntity.Estatus = entity.Estatus;
+                bEntity.Estatus = entity.Estatus.Value;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Attach(bEntity);
                 var exec = await dbContext.SaveChangesAsync();

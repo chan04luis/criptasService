@@ -35,6 +35,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("boolean")
                 .HasColumnName("estatus");
 
+            builder.Property(u => u.Eliminado)
+                .HasColumnType("boolean")
+                .HasColumnName("eliminado");
+
             builder.Property(u => u.FechaRegistro)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_registro")

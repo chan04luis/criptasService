@@ -123,6 +123,17 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region Servicios
+
+        CreateMap<EntServicios, Servicios>().ReverseMap();
+
+        #endregion
+
+        #region Solicitud Información
+
+        CreateMap<EntSolicitudesInfo, SolicitudesInfo>().ReverseMap();
+
+        #endregion
 
     }
 

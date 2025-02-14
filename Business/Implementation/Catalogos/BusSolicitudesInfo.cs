@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using Business.Interfaces.Catalogos;
-using Data.cs.Commands;
 using Data.cs.Interfaces.Catalogos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils;
 
 namespace Business.Implementation.Catalogos
