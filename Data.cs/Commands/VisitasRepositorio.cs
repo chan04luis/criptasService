@@ -161,8 +161,21 @@ public class VisitasRepositorio : IVisitasRepositorio
 
         try
         {
-            var query = dbContext.Visitas.AsNoTracking()
-                .Where(v => !v.bEliminado);
+            var query = from v in dbContext.Visitas.AsNoTracking()
+                        join f in dbContext.Fallecidos.AsNoTracking()
+                            on v.uIdCriptas equals f.uId
+                        where !v.bEliminado && !f.bEliminado 
+                        select new EntVisitas
+                        {
+                            uId = v.uId,
+                            sNombreVisitante= v.sNombreVisitante,
+                            sMensaje=v.sMensaje,
+                            uIdCriptas=f.uIdCripta,
+                            dtFechaRegistro=v.dtFechaRegistro,
+                            dtFechaActualizacion=v.dtFechaActualizacion,
+                            bEstatus=v.bEstatus,
+                            sNombreFallecido = f.sNombre+" "+f.sApellidos,
+                        };
 
             if (!string.IsNullOrWhiteSpace(filtros.sNombreVisitante))
                 query = query.Where(v => v.sNombreVisitante.Contains(filtros.sNombreVisitante));
@@ -170,11 +183,12 @@ public class VisitasRepositorio : IVisitasRepositorio
             if (filtros.uIdCriptas.HasValue)
                 query = query.Where(v => v.uIdCriptas == filtros.uIdCriptas);
 
+
             var items = await query.ToListAsync();
 
             if (items.Any())
             {
-                response.SetSuccess(_mapper.Map<List<EntVisitas>>(items));
+                response.SetSuccess(items);
             }
             else
             {

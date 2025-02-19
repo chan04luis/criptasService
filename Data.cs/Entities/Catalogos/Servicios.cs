@@ -11,6 +11,7 @@ namespace Data.cs.Entities.Catalogos
 
         public bool Estatus { get; set; } = true;
         public bool Eliminado { get; set; } = false;
+        public Guid? IdIglesia { get; set; }
 
         public DateTime FechaRegistro { get; set; }
 

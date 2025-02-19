@@ -11,6 +11,7 @@ public interface IClientesRepositorio
     Task<Response<List<EntClientes>>> DGetList();
     Task<Response<EntClientes>> DUpdate(EntClientes entity);
     Task<Response<EntClientes>> DUpdateBoolean(EntClientes entity);
+    Task<Response<EntClientes>> DUpdateToken(Guid uId, String? sTokenFireBase);
     Task<Response<bool>> DUpdateEliminado(Guid uId);
     Task<Response<EntClientes>> DGetByEmail(string sEmail, string? Contra = null);
     Task<Response<List<MisCriptas>>> DGetMisCriptas(Guid uIdCliente);

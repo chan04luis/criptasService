@@ -1,13 +1,10 @@
-using Api.HostedService;
 using Data.cs;
 using Microsoft.EntityFrameworkCore;
 using Utils.Implementation;
 using Utils.Interfaces;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
 using Business.Data;
 using Data.cs.Commands;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -22,6 +19,7 @@ using Business.Interfaces.Catalogos;
 using Models.Models;
 using Models.Validations.Seguridad;
 using Data.cs.Interfaces.Catalogos;
+using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -186,10 +184,20 @@ builder.Services.AddScoped<IBusPermiso, BusPermiso>();
 builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
 builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
+builder.Services.AddHttpClient<FirebaseNotificationService>();
+builder.Services.AddScoped<FirebaseNotificationService>();
+
+
 #endregion
 
 #region Hosted Background Services
 //builder.Services.AddHostedService<TestDat>();
+#endregion
+
+
+#region Mail Setting
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<EmailService>();
 #endregion
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

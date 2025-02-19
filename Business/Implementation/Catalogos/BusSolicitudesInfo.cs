@@ -33,7 +33,7 @@ namespace Business.Implementation.Catalogos
 
             try
             {
-                var existSolicitud = await _solicitudesInfoRepositorio.AnyExistSolicitud(solicitud.IdCliente, solicitud.IdServicio);
+                var existSolicitud = await _solicitudesInfoRepositorio.AnyExistSolicitud(solicitud.IdCliente, solicitud.IdServicio, solicitud.Mensaje);
                 if (existSolicitud.Result)
                 {
                     response.SetError(existSolicitud.Message);

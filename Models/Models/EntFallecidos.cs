@@ -17,10 +17,20 @@ namespace Models.Models
         public int iEdad { get; set; }
 
         [JsonProperty("Nacimiento")]
-        public DateTime dtFechaNacimiento { get; set; }
+        public string? dtFechaNacimiento { get; set; }
 
         [JsonProperty("Fallecimiento")]
-        public DateTime dtFechaFallecimiento { get; set; }
+        public string? dtFechaFallecimiento { get; set; }
+
+        [JsonProperty("ActaDefuncion")]
+
+        public string? sActaDefuncion { get; set; }
+
+        [JsonProperty("AutorizacionIncineracion")]
+        public string? sAutorizacionIncineracion { get; set; }
+
+        [JsonProperty("AutorizacionTraslado")]
+        public string? sAutorizacionTraslado { get; set; }
 
         [JsonProperty("Estatus")]
         public bool bEstatus { get; set; }

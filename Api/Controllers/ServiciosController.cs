@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
+using Models.Responses.Servicio;
 using Utils;
 
 namespace Api.Controllers
@@ -85,6 +86,22 @@ namespace Api.Controllers
             return response;
         }
 
+        [HttpGet("{id}")]
+        public async Task<Response<EntServicios>> GetById(Guid id)
+        {
+            _logger.LogInformation("Iniciando selección de servicio con ID: {Id}", id);
+            var response = await _busServicios.BGetById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Servicio no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Servicio selección exitosamente con ID: {Id}", id);
+            }
+            return response;
+        }
+
         [HttpGet("List")]
         public async Task<Response<List<EntServicios>>> GetServicioList()
         {
@@ -106,6 +123,22 @@ namespace Api.Controllers
         {
             _logger.LogInformation("Iniciando recuperación de lista de servicios activos.");
             var response = await _busServicios.GetListActive();
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de servicios activos: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de servicios activos recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+
+        [HttpGet("ListActive/{uIdIglesia}")]
+        public async Task<Response<List<EntServiceItem>>> GetServicioListActive(Guid uIdIglesia)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de servicios activos.");
+            var response = await _busServicios.GetListActive(uIdIglesia);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al recuperar lista de servicios activos: {Error}", response.Message);

@@ -222,7 +222,7 @@ namespace Data.cs.Commands
             var response = new Response<List<EntIglesias>>();
             try
             {
-                var items = await dbContext.Iglesias.AsNoTracking().Where(x => x.bEliminado == false).ToListAsync();
+                var items = await dbContext.Iglesias.AsNoTracking().Where(x => !x.bEliminado && x.bEstatus.Value).ToListAsync();
                 if (items.Count > 0)
                     response.SetSuccess(_mapper.Map<List<EntIglesias>>(items));
                 else

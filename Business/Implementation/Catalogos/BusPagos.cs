@@ -9,24 +9,32 @@ using Models.Request.Pagos;
 using Models.Responses.Pagos;
 using Data.cs.Entities.Catalogos;
 using Models.Enums;
+using Utils.Implementation;
 
 namespace Business.Implementation.Catalogos
 {
     public class BusPagos : IBusPagos
     {
+        private readonly IClientesRepositorio _cliente;
         private readonly IPagosRepositorio _pagosRepositorio;
         private readonly ICriptasRepositorio _criptasRepositorio;   
         private readonly IPagosParcialesRepositorio _parcialesRepositorio;
         private readonly ILogger<BusPagos> _logger;
         private readonly IMapper _mapper;
+        private readonly FirebaseNotificationService _firebase;
+        private readonly EmailService _emailService;
 
-        public BusPagos(IPagosRepositorio pagosRepositorio, ILogger<BusPagos> logger, IMapper mapper, IPagosParcialesRepositorio parcialesRepositorio, ICriptasRepositorio criptasRepositorio)
+        public BusPagos(IPagosRepositorio pagosRepositorio, ILogger<BusPagos> logger, IMapper mapper, IPagosParcialesRepositorio parcialesRepositorio, 
+            ICriptasRepositorio criptasRepositorio, FirebaseNotificationService firebase, EmailService emailService, IClientesRepositorio cliente)
         {
             _pagosRepositorio = pagosRepositorio;
             _logger = logger;
             _mapper = mapper;
             _parcialesRepositorio = parcialesRepositorio;
             _criptasRepositorio = criptasRepositorio;
+            _emailService = emailService;
+            _firebase = firebase;
+            _cliente = cliente;
         }
 
         public async Task<Response<EntPagos>> ValidateAndSavePago(EntPagosRequest pago)
@@ -38,6 +46,27 @@ namespace Business.Implementation.Catalogos
                 if (pago.dMontoTotal <= 0)
                 {
                     response.SetError("El monto total debe ser mayor que cero.");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+
+                var cripta = await _criptasRepositorio.DGetById(pago.uIdCripta);
+                if (cripta.HasError || cripta.Result == null)
+                {
+                    response.SetError("No existe el cripta.");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    return response;
+                }else if(!cripta.Result.bEstatus || !cripta.Result.bDisponible)
+                {
+                    response.SetError("Cripta no disponible para su apartado.");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+
+                var clienteResponse = await _cliente.DGetById(pago.uIdClientes);
+                if (clienteResponse.HasError || clienteResponse.Result == null)
+                {
+                    response.SetError("No existe el cliente.");
                     response.HttpCode = HttpStatusCode.BadRequest;
                     return response;
                 }
@@ -64,7 +93,17 @@ namespace Business.Implementation.Catalogos
                     dtFechaActualizacion = DateTime.Now.ToLocalTime()
                 };
 
-                return await SavePago(nuevoPago);
+                var responseFinal = await SavePago(nuevoPago);
+                if (!responseFinal.HasError)
+                {
+                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "CREADO", nuevoPago.dMontoTotal, cripta.Result.sNumero);
+                    await _firebase.EnviarNotificacionAsync(
+                        clienteResponse.Result.sFcmToken,
+                        "Pago Creado",
+                        $"Tu cripta ha sido asignada con éxito. Monto {pago.dMontoTotal:C} con Fecha Limite de {pago.dtFechaLimite}"
+                    );
+                }
+                return responseFinal;
             }
             catch (Exception ex)
             {
@@ -113,6 +152,20 @@ namespace Business.Implementation.Catalogos
                 if (pago.dMontoTotal <= 0)
                 {
                     response.SetError("El monto total debe ser mayor que cero.");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+
+                var cripta = await _criptasRepositorio.DGetById(pago.uIdCripta);
+                if (cripta.HasError || cripta.Result == null)
+                {
+                    response.SetError("No existe el cripta.");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+                else if (!cripta.Result.bEstatus || !cripta.Result.bDisponible)
+                {
+                    response.SetError("Cripta no disponible para su apartado.");
                     response.HttpCode = HttpStatusCode.BadRequest;
                     return response;
                 }
@@ -180,6 +233,20 @@ namespace Business.Implementation.Catalogos
                         }
                         else
                         {
+                            var clienteResponse = await _cliente.DGetById(pagoBD.uIdClientes);
+                            if (clienteResponse.HasError || clienteResponse.Result == null)
+                            {
+                                response.SetError("No existe el cliente.");
+                                response.HttpCode = HttpStatusCode.BadRequest;
+                                return response;
+                            }
+                            var cripta = await _criptasRepositorio.DGetById(pagoBD.uIdCripta);
+                            if (cripta.HasError || cripta.Result == null)
+                            {
+                                response.SetError("No existe el cripta.");
+                                response.HttpCode = HttpStatusCode.BadRequest;
+                                return response;
+                            }
                             if (decimal.TryParse(pagoBD.dMontoPagado.ToString(), out dMontoActual))
                                 entidad.dMontoPagado = dMonto + dMontoActual;
                             else
@@ -213,7 +280,21 @@ namespace Business.Implementation.Catalogos
                                         uIdCliente = pagoBD.uIdClientes
                                     };
                                     await _criptasRepositorio.DUpdateDisponible(entity);
+                                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "LIQUIDADO", entidad.dMontoPagado.Value, cripta.Result.sNumero);
+                                    await _firebase.EnviarNotificacionAsync(
+                                        clienteResponse.Result.sFcmToken,
+                                        "Pago aplicado",
+                                        $"Tu cripta ha sido liquidada con éxito. Monto {entidad.dMontoPagado:C} con Fecha de {DateTime.Now}"
+                                    );
                                 }
+                            }else if (!response.HasError)
+                            {
+                                await _emailService.EnviarCorreoPago(clienteResponse.Result, "APLICADO", pago.dMontoPagado, cripta.Result.sNumero);
+                                await _firebase.EnviarNotificacionAsync(
+                                        clienteResponse.Result.sFcmToken,
+                                        "Pago aplicado",
+                                        $"Tu cripta ha sido aplicado con éxito. Monto {pago.dMontoPagado:C} con Fecha de {DateTime.Now}"
+                                    );
                             }
                         }
                     }

@@ -8,7 +8,12 @@ namespace Models.Models
         public Guid uId { get; set; }
 
         [JsonProperty("NombreVisitante")]
-        public string sNombreVisitante { get; set; }
+        public string? sNombreVisitante { get; set; }
+
+        [JsonProperty("NombreFallecido")]
+        public string? sNombreFallecido { get; set; }
+        [JsonProperty("Mensaje")]
+        public string? sMensaje { get; set; }
 
         [JsonProperty("IdCriptas")]
         public Guid uIdCriptas { get; set; }

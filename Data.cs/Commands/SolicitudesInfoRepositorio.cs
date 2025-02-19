@@ -50,14 +50,14 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<bool>> AnyExistSolicitud(Guid idCliente, Guid idServicio)
+        public async Task<Response<bool>> AnyExistSolicitud(Guid idCliente, Guid idServicio, string mensaje)
         {
             Response<bool> response = new Response<bool>();
 
             try
             {
                 var existSolicitud = await dbContext.SolicitudesInfo
-                    .AnyAsync(i => i.IdCliente == idCliente && i.IdServicio == idServicio && !i.Eliminado);
+                    .AnyAsync(i => i.IdCliente == idCliente && i.IdServicio == idServicio && !i.Eliminado && i.Mensaje == mensaje);
 
                 if (existSolicitud)
                 {

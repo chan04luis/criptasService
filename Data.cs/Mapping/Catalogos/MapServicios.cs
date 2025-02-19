@@ -35,6 +35,11 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("boolean")
                 .HasColumnName("estatus");
 
+            builder.Property(u => u.IdIglesia)
+                .HasColumnType("uuid")
+                .HasColumnName("id_iglesia");
+
+
             builder.Property(u => u.Eliminado)
                 .HasColumnType("boolean")
                 .HasColumnName("eliminado");

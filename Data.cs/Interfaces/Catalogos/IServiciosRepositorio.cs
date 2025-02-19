@@ -1,9 +1,5 @@
 ﻿using Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Models.Responses.Servicio;
 using Utils;
 
 namespace Data.cs.Interfaces.Catalogos
@@ -20,5 +16,6 @@ namespace Data.cs.Interfaces.Catalogos
         Task<Response<EntServicios>> DGetById(Guid iKey);
         Task<Response<List<EntServicios>>> DGetList();
         Task<Response<List<EntServicios>>> DGetListActive();
+        Task<Response<List<EntServiceItem>>> DGetListActive(Guid uIdIglesia);
     }
 }

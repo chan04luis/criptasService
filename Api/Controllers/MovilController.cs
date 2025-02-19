@@ -19,11 +19,29 @@ namespace Api.Controllers
         private readonly IBusAutenticacion _busAutenticacion;
         private readonly IBusClientes _busClientes;
         private readonly ILogger<MovilController> _logger;
-        public MovilController(IBusAutenticacion _busAutenticacion, IBusClientes busClientes, ILogger<MovilController> logger)
+        private readonly IBusServicios _busServicios;
+        public MovilController(IBusAutenticacion _busAutenticacion, IBusClientes busClientes, ILogger<MovilController> logger, IBusServicios busServicios)
         {
             this._busAutenticacion = _busAutenticacion;
             _busClientes = busClientes;
             _logger = logger;
+            _busServicios = busServicios;
+        }
+
+        [HttpGet("servicio/{id}")]
+        public async Task<Response<EntServicios>> GetById(Guid id)
+        {
+            _logger.LogInformation("Iniciando selección de servicio con ID: {Id}", id);
+            var response = await _busServicios.BGetById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Servicio no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Servicio selección exitosamente con ID: {Id}", id);
+            }
+            return response;
         }
 
         [HttpPost]

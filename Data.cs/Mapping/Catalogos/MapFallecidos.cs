@@ -35,12 +35,24 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("apellidos");
 
+            builder.Property(e => e.sActaDefuncion)
+                .HasColumnType("text")
+                .HasColumnName("acta_defuncion");
+
+            builder.Property(e => e.sAutorizacionIncineracion)
+                .HasColumnType("text")
+                .HasColumnName("autorizacion_incineracion");
+
+            builder.Property(e => e.sAutorizacionTraslado)
+                .HasColumnType("text")
+                .HasColumnName("autorizacion_traslado");
+
             builder.Property(e => e.dtFechaFallecimiento)
-                .HasColumnType("date")
+                .HasColumnType("VARCHAR")
                 .HasColumnName("fecha_fallecimiento");
 
             builder.Property(e => e.dtFechaNacimiento)
-                .HasColumnType("date")
+                .HasColumnType("VARCHAR")
                 .HasColumnName("fecha_nacimiento");
 
             builder.Property(e => e.dtFechaRegistro)
@@ -63,8 +75,11 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("timestamp without time zone")
                 .IsUnicode(false)
                 .HasColumnName("fecha_eliminado")
-                .HasConversion(v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                v => v);
+                .HasConversion(
+                    v => v.HasValue ? DateTime.SpecifyKind(v.Value.ToLocalTime(), DateTimeKind.Unspecified) : (DateTime?)null,
+                    v => v
+                );
+
 
             builder.Property(e => e.bEstatus)
                 .HasColumnType("boolean")

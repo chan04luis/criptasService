@@ -6,6 +6,7 @@ using Utils;
 using Models.Models;
 using Models.Request.Clientes;
 using Models.Responses.Criptas;
+using Utils.Implementation;
 
 namespace Business.Implementation.Catalogos
 {
@@ -15,13 +16,15 @@ namespace Business.Implementation.Catalogos
         private readonly IFiltros _filtros;
         private readonly ILogger<BusClientes> _logger;
         private readonly IMapper _mapper;
+        private readonly EmailService _emailService;
 
-        public BusClientes(IClientesRepositorio clientesRepositorio, IFiltros filtros, ILogger<BusClientes> logger, IMapper mapper)
+        public BusClientes(IClientesRepositorio clientesRepositorio, IFiltros filtros, ILogger<BusClientes> logger, IMapper mapper, EmailService emailService)
         {
             _clientesRepositorio = clientesRepositorio;
             _filtros = filtros;
             _logger = logger;
             _mapper = mapper;
+            _emailService = emailService;
         }
         public async Task<Response<EntClientes>> ValidateAndSaveClientW(EntClienteRequest cliente)
         {
@@ -98,7 +101,12 @@ namespace Business.Implementation.Catalogos
                     dtFechaRegistro = DateTime.Now.ToLocalTime(),
                     iOrigen = iOrigen
                 };
-                return await SaveClient(nCliente);
+                var respuesta = await SaveClient(nCliente);
+                if (!respuesta.HasError)
+                {
+                    _emailService.EnviarCorreoBienvenida(nCliente);
+                }
+                return respuesta;
             }
             catch (Exception ex)
             {
@@ -245,7 +253,8 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _clientesRepositorio.DGetById(id);
+                var response = await _clientesRepositorio.DGetById(id);
+                return response;
             }
             catch (Exception ex)
             {

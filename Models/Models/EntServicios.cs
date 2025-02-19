@@ -12,6 +12,7 @@ namespace Models.Models
         public bool? Estatus { get; set; } = true;
 
         public string? Img { get; set; }
+        public Guid? IdIglesia { get; set; }
         public DateTime FechaRegistro { get; set; }
 
         public DateTime FechaActualizacion { get; set; }

@@ -69,6 +69,7 @@ namespace Business.Implementation.Seguridad
                 }
                 else
                 {
+                    await clientesRepositorio.DUpdateToken(obtenerUsuario.Result.uId, loginModel.sTokenFireBase);
                     var sToken = new LoginClienteResponseModelo{
                         Token = GenerateJwtToken(obtenerUsuario.Result),
                         uId = obtenerUsuario.Result.uId.ToString(),
@@ -78,7 +79,7 @@ namespace Business.Implementation.Seguridad
             }
             catch (Exception ex)
             {
-                response.SetError("Credenciales no validadas");
+                response.SetError("Credenciales no validadas: "+ ex.Message);
             }
 
 
@@ -288,7 +289,7 @@ namespace Business.Implementation.Seguridad
                 issuer: configuration["JwtSettings:Issuer"],
                 audience: configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -310,7 +311,7 @@ namespace Business.Implementation.Seguridad
                 issuer: configuration["JwtSettings:Issuer"],
                 audience: configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

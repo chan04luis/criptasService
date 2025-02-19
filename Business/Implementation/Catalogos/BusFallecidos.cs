@@ -4,6 +4,7 @@ using Business.Interfaces.Catalogos;
 using Models.Models;
 using Models.Request.Fallecidos;
 using Utils;
+using Models.Responses.Criptas;
 
 namespace Business.Implementation.Catalogos
 {
@@ -56,6 +57,24 @@ namespace Business.Implementation.Catalogos
             }
         }
 
+        public async Task<Response<EntFallecidos>> UpdateDocs(EntFallecidos fallecido)
+        {
+            var response = new Response<EntFallecidos>();
+
+            try
+            {
+                var updatedDeceased = _mapper.Map<EntFallecidos>(fallecido);
+                return await _fallecidosRepositorio.DUpdateDocs(updatedDeceased);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar el fallecido");
+                response.SetError("Hubo un error al actualizar el fallecido.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
         public async Task<Response<List<EntFallecidos>>> GetDeceasedById(Guid uId)
         {
             try
@@ -66,6 +85,38 @@ namespace Business.Implementation.Catalogos
             {
                 _logger.LogError(ex, "Error al obtener el fallecido por ID");
                 var response = new Response<List<EntFallecidos>>();
+                response.SetError("Hubo un error al obtener el fallecido.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<PagedResult<FallecidosBusqueda>>> BGetFallecidos(EntFallecidosSearchRequest fallecido)
+        {
+            try
+            {
+                return await _fallecidosRepositorio.DGetFallecidos(fallecido);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener el fallecido por ID");
+                var response = new Response<PagedResult<FallecidosBusqueda>>();
+                response.SetError("Hubo un error al obtener el fallecido.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<EntFallecidos>> GetSingleById(Guid uId)
+        {
+            try
+            {
+                return await _fallecidosRepositorio.DGetById(uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener el fallecido por ID");
+                var response = new Response<EntFallecidos>();
                 response.SetError("Hubo un error al obtener el fallecido.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;

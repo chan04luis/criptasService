@@ -1,5 +1,6 @@
 ﻿using Models.Models;
 using Models.Request.Criptas;
+using Models.Responses.Criptas;
 using Models.Responses.Pagos;
 using Utils;
 
@@ -16,6 +17,7 @@ namespace Business.Data
         Task<Response<PagedResult<EntCriptasLista>>> DGetByFilters(EntCriptaSearchRequest filtros);
         Task<Response<List<EntCriptas>>> DGetList(Guid uIdSeccion);
         Task<Response<List<EntCriptas>>> DGetListDisponible(Guid uIdSeccion);
+        Task<Response<List<CriptasDisponibles>>> DGetListDisponibleByIglesia(Guid uId);
         Task<Response<List<EntCriptas>>> DGetByName(string nombre, Guid uIdSeccion);
     }
 

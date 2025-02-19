@@ -5,7 +5,9 @@ using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request.Criptas;
+using Models.Responses.Criptas;
 using Models.Responses.Pagos;
+using System.Linq;
 using System.Net;
 using Utils;
 
@@ -352,6 +354,54 @@ namespace Data.cs.Commands
             {
                 response.SetError(ex.Message);
             }
+            return response;
+        }
+        public async Task<Response<List<CriptasDisponibles>>> DGetListDisponibleByIglesia(Guid uId)
+        {
+            var response = new Response<List<CriptasDisponibles>>();
+
+            try
+            {
+                var items = await (
+                    from c in dbContext.Criptas
+                    join s in dbContext.Secciones on c.uIdSeccion equals s.uId
+                    join z in dbContext.Zonas on s.uIdZona equals z.uId
+                    join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
+                    where i.uId == uId &&
+                          c.bDisponible == true && !c.bEliminado &&
+                          s.bEstatus == true && !s.bEliminado &&
+                          z.bEstatus == true && !z.bEliminado
+                    select new CriptasDisponibles
+                    {
+                        uId = c.uId,
+                        sNombre = c.sNumero,
+                        sIglesia = i.sNombre,
+                        sNombreSeccion = s.sNombre,
+                        sNombreZona = z.sNombre,
+                        sLatitud = i.sLatitud ?? "0",
+                        sLongitud = i.sLongitud ?? "0",
+                        bEstatus = c.bEstatus,
+                        bDisponible = c.bDisponible
+                    }
+                )
+                .OrderBy(x => x.sNombreZona)
+                .ThenBy(x => x.sNombreSeccion)
+                .ThenBy(x => x.sNombre)
+                .ToListAsync();
+
+                if (items.Any())
+                    response.SetSuccess(items);
+                else
+                {
+                    response.SetError("No hay criptas disponibles para esta iglesia.");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError($"Error al obtener criptas disponibles: {ex.Message}");
+            }
+
             return response;
         }
     }

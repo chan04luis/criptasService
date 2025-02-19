@@ -105,6 +105,33 @@ public class ClientesRepositorio : IClientesRepositorio
         return response;
     }
 
+    public async Task<Response<EntClientes>> DUpdateToken(Guid uId, String? sTokenFireBase)
+    {
+        Response<EntClientes> response = new Response<EntClientes>();
+
+        try
+        {
+            var bEntity = dbContext.Clientes.AsNoTracking().FirstOrDefault(x => x.uId == uId);
+            bEntity.sFcmToken = sTokenFireBase;
+            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            dbContext.Update(bEntity);
+            var exec = await dbContext.SaveChangesAsync();
+
+            if (exec > 0)
+                response.SetSuccess(_mapper.Map<EntClientes>(bEntity), "Actualizado correctamente");
+            else
+            {
+                response.SetError("Registro no actualizado");
+                response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+        return response;
+    }
+
     public async Task<Response<bool>> DUpdateEliminado(Guid uId)
     {
         Response<bool> response = new Response<bool>();
@@ -279,6 +306,21 @@ public class ClientesRepositorio : IClientesRepositorio
                         .Count(f => f.uIdCripta == c.uId && !f.bEliminado), 
                     iBeneficiarios = dbContext.Beneficiarios
                         .Count(b => b.uIdCripta == c.uId && !b.bEliminado),
+                    iVisitas = (from v in dbContext.Visitas.AsNoTracking()
+                                join f in dbContext.Fallecidos.AsNoTracking()
+                                    on v.uIdCriptas equals f.uId
+                                where !v.bEliminado && !f.bEliminado
+                                select new EntVisitas
+                                {
+                                    uId = v.uId,
+                                    sNombreVisitante = v.sNombreVisitante,
+                                    sMensaje = v.sMensaje,
+                                    uIdCriptas = f.uIdCripta,
+                                    dtFechaRegistro = v.dtFechaRegistro,
+                                    dtFechaActualizacion = v.dtFechaActualizacion,
+                                    bEstatus = v.bEstatus,
+                                    sNombreFallecido = f.sNombre + " " + f.sApellidos,
+                                }).Count(b => b.uIdCriptas == c.uId),
                     dtFechaCompra = dbContext.Pagos
                         .Where(p => p.uIdCripta == c.uId && p.bPagado)
                         .OrderBy(p => p.dtFechaPago)

@@ -95,7 +95,7 @@ public class MappingProfile : Profile
 
         #region Fallecidos
         CreateMap<EntFallecidos, Fallecidos>();
-        CreateMap<Fallecidos, EntFallecidos>().ForMember(dest => dest.iEdad, opt => opt.MapFrom(src => CalcularEdad(src.dtFechaFallecimiento)));
+        CreateMap<Fallecidos, EntFallecidos>().ForMember(dest => dest.iEdad, opt => opt.MapFrom(src => CalcularEdad(src.dtFechaNacimiento, src.dtFechaFallecimiento)));
         CreateMap<EntFallecidos, EntFallecidosRequest>().ReverseMap();
         CreateMap<EntFallecidosUpdateRequest, EntFallecidos>().ReverseMap();
         CreateMap<EntFallecidosUpdateEstatusRequest, EntFallecidos>().ReverseMap();
@@ -144,6 +144,19 @@ public class MappingProfile : Profile
             var edad = DateTime.Today.Year - fechaNac.Year;
             if (fechaNac.Date > DateTime.Today.AddYears(-edad)) edad--;
             return edad;
+        }
+        return null;
+    }
+    private int? CalcularEdad(string? fechaNacimiento, string? fechaFallecido)
+    {
+        if (DateTime.TryParse(fechaNacimiento, out DateTime fechaNac))
+        {
+            if (DateTime.TryParse(fechaFallecido, out DateTime fechaF))
+            {
+                var edad = fechaF.Year - fechaNac.Year;
+                if (fechaNac.Date > DateTime.Today.AddYears(-edad)) edad--;
+                return edad;
+            }
         }
         return null;
     }

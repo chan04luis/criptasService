@@ -45,6 +45,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("email");
 
+            builder.Property(c => c.sFcmToken)
+                .HasColumnType("VARCHAR(255)")
+                .HasColumnName("sfcmtoken");
+
             builder.Property(c => c.sSexo)
                 .HasColumnType("VARCHAR(10)")
                 .HasColumnName("sexo");

@@ -31,6 +31,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("nombre_visitante");
 
+            builder.Property(e => e.sMensaje)
+                .HasColumnType("VARCHAR(500)")
+                .HasColumnName("mensaje_visitante");
+
             builder.Property(e => e.uIdCriptas)
                 .HasColumnType("uuid")
                 .HasColumnName("id_criptas");

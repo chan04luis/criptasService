@@ -33,5 +33,8 @@ namespace Models.Models
         public DateTime? dtFechaActualizacion { get; set; }
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+        [JsonProperty("FcmToken")]
+        public string? sFcmToken { get; set; }
+
     }
 }

@@ -3,7 +3,8 @@
     public class Visitas
     {
         public Guid uId { get; set; }
-        public string sNombreVisitante { get; set; }
+        public string? sNombreVisitante { get; set; }
+        public string? sMensaje { get; set; }
         public Guid uIdCriptas { get; set; }
         public DateTime dtFechaRegistro { get; set; }
         public DateTime dtFechaActualizacion { get; set; }

@@ -4,6 +4,7 @@ using Data.cs.Interfaces.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Models.Models;
+using Models.Responses.Servicio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,7 @@ namespace Data.cs.Commands
                 newItem.Id = Guid.NewGuid();
                 newItem.Nombre = entity.Nombre;
                 newItem.Descripcion = entity.Descripcion;
+                newItem.IdIglesia = entity.IdIglesia;
                 newItem.Estatus = true;
                 newItem.Img = entity.Img;
                 newItem.Eliminado = false;
@@ -147,8 +149,8 @@ namespace Data.cs.Commands
                 }
                 bEntity.Nombre = entity.Nombre;
                 bEntity.Descripcion = entity.Descripcion;
-                if (entity.Img != null)
-                    bEntity.Img = entity.Img;
+                bEntity.IdIglesia = entity.IdIglesia;
+                bEntity.Img = entity.Img;
                 bEntity.FechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Update(bEntity);
                 var exec = await dbContext.SaveChangesAsync();
@@ -290,5 +292,45 @@ namespace Data.cs.Commands
             }
             return response;
         }
+
+        public async Task<Response<List<EntServiceItem>>> DGetListActive(Guid uIdIglesia)
+        {
+            var response = new Response<List<EntServiceItem>>();
+
+            try
+            {
+                var itemsQuery = from s in dbContext.Servicios.AsNoTracking()
+                                 where !s.Eliminado && s.Estatus && s.IdIglesia == uIdIglesia
+                                 orderby s.Nombre
+                                 select new EntServiceItem
+                                 {
+                                     Id = s.Id,
+                                     Nombre = s.Nombre,
+                                     Img = s.Img
+                                 };
+
+                var items = await itemsQuery.ToListAsync();
+
+                if (items.Any())
+                {
+                    response.SetSuccess(items);
+                    response.HttpCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListActive));
+                response.SetError(ex.Message);
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using Data.cs.Interfaces.Catalogos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Models.Models;
+using Models.Responses.Servicio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,6 +114,22 @@ namespace Business.Implementation.Catalogos
             return response;
         }
 
+        public async Task<Response<EntServicios>> BGetById(Guid id)
+        {
+            try
+            {
+                return await _serviciosRepositorio.DGetById(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar el estado del servicio");
+                var response = new Response<EntServicios>();
+                response.SetError("Hubo un error al actualizar el estado del servicio.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
         public async Task<Response<List<EntServicios>>> GetServicioList()
         {
             try
@@ -139,6 +156,22 @@ namespace Business.Implementation.Catalogos
             {
                 _logger.LogError(ex, "Error al obtener la lista de servicios activos");
                 var response = new Response<List<EntServicios>>();
+                response.SetError("Hubo un error al obtener la lista de servicios activos.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<List<EntServiceItem>>> GetListActive(Guid uIdIglesia)
+        {
+            try
+            {
+                return await _serviciosRepositorio.DGetListActive(uIdIglesia);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de servicios activos");
+                var response = new Response<List<EntServiceItem>>();
                 response.SetError("Hubo un error al obtener la lista de servicios activos.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;

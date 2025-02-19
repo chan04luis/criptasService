@@ -6,6 +6,12 @@ using Data.cs.Entities.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Fallecidos;
+using System;
+using Models.Responses.Criptas;
+using System.Linq;
+using Utils.Implementation;
+using System.Collections.Generic;
+using Utils.Interfaces;
 
 public class FallecidosRepositorio : IFallecidosRepositorio
 {
@@ -26,6 +32,7 @@ public class FallecidosRepositorio : IFallecidosRepositorio
         {
             var newItem = _mapper.Map<Fallecidos>(entity);
             newItem.bEliminado = false;
+            newItem.dtFechaActualizacion = DateTime.Now.ToLocalTime();
             newItem.dtFechaRegistro = DateTime.Now.ToLocalTime();
             dbContext.Fallecidos.Add(newItem);
             int result = await dbContext.SaveChangesAsync();
@@ -63,6 +70,49 @@ public class FallecidosRepositorio : IFallecidosRepositorio
                 existingEntity.uIdCripta = entity.uIdCripta;
                 existingEntity.dtFechaNacimiento = entity.dtFechaNacimiento;
                 existingEntity.dtFechaFallecimiento = entity.dtFechaFallecimiento;
+                existingEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                dbContext.Fallecidos.Update(existingEntity);
+                int result = await dbContext.SaveChangesAsync();
+
+                if (result > 0)
+                {
+                    response.SetSuccess(_mapper.Map<EntFallecidos>(existingEntity), "Actualizado correctamente");
+                }
+                else
+                {
+                    response.SetError("Registro no actualizado");
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                }
+            }
+            else
+            {
+                response.SetError("Registro no encontrado");
+                response.HttpCode = HttpStatusCode.NotFound;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex);
+        }
+
+        return response;
+    }
+
+
+    public async Task<Response<EntFallecidos>> DUpdateDocs(EntFallecidos entity)
+    {
+        var response = new Response<EntFallecidos>();
+
+        try
+        {
+            var existingEntity = await dbContext.Fallecidos.AsNoTracking().Where(b => !b.bEliminado)
+                .FirstOrDefaultAsync(f => f.uId == entity.uId);
+
+            if (existingEntity != null)
+            {
+                existingEntity.sActaDefuncion = entity.sActaDefuncion;
+                existingEntity.sAutorizacionTraslado = entity.sAutorizacionTraslado;
+                existingEntity.sAutorizacionIncineracion = entity.sAutorizacionIncineracion;
                 existingEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                 dbContext.Fallecidos.Update(existingEntity);
                 int result = await dbContext.SaveChangesAsync();
@@ -170,14 +220,23 @@ public class FallecidosRepositorio : IFallecidosRepositorio
             if (!string.IsNullOrWhiteSpace(filtros.sNombre))
                 query = query.Where(f => f.sNombre.Contains(filtros.sNombre));
 
-            if (filtros.bEstatus.HasValue)
-                query = query.Where(f => f.bEstatus == filtros.bEstatus);
-
-            var items = await query.ToListAsync();
+            var items = await query.Select(x=> new EntFallecidos()
+            {
+                sNombre=x.sNombre,
+                sApellidos=x.sApellidos,
+                uId=x.uId,
+                iEdad = (x.dtFechaFallecimiento!=null && x.dtFechaNacimiento != null) ? DateTime.Parse(x.dtFechaFallecimiento).Year - DateTime.Parse(x.dtFechaNacimiento).Year : 0,
+                dtFechaActualizacion=x.dtFechaActualizacion,
+                dtFechaFallecimiento=x.dtFechaFallecimiento,
+                dtFechaNacimiento=x.dtFechaNacimiento,
+                dtFechaRegistro=x.dtFechaRegistro,
+                bEstatus=x.bEstatus.Value,
+                uIdCripta=x.uIdCripta
+            }).ToListAsync();
 
             if (items.Any())
             {
-                response.SetSuccess(_mapper.Map<List<EntFallecidos>>(items));
+                response.SetSuccess(items);
             }
             else
             {
@@ -206,7 +265,6 @@ public class FallecidosRepositorio : IFallecidosRepositorio
             {
                 fEntity.bEstatus = entity.bEstatus;
                 fEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
-
                 dbContext.Fallecidos.Update(fEntity);
                 int result = await dbContext.SaveChangesAsync();
 
@@ -241,11 +299,24 @@ public class FallecidosRepositorio : IFallecidosRepositorio
         try
         {
             var items = await dbContext.Fallecidos.AsNoTracking()
-                .Where(f => !f.bEliminado && f.uIdCripta == uIdCripta).ToListAsync();
+                .Where(f => !f.bEliminado && f.uIdCripta == uIdCripta)
+                .Select(x => new EntFallecidos()
+                {
+                    sNombre = x.sNombre,
+                    sApellidos = x.sApellidos,
+                    uId = x.uId,
+                    iEdad = (x.dtFechaFallecimiento != null && x.dtFechaNacimiento != null) ? DateTime.Parse(x.dtFechaFallecimiento).Year - DateTime.Parse(x.dtFechaNacimiento).Year : 0,
+                    dtFechaActualizacion = x.dtFechaActualizacion,
+                    dtFechaFallecimiento = x.dtFechaFallecimiento,
+                    dtFechaNacimiento = x.dtFechaNacimiento,
+                    dtFechaRegistro = x.dtFechaRegistro,
+                    bEstatus = x.bEstatus.Value,
+                    uIdCripta = x.uIdCripta
+                }).ToListAsync();
 
             if (items.Any())
             {
-                response.SetSuccess(_mapper.Map<List<EntFallecidos>>(items));
+                response.SetSuccess(items);
             }
             else
             {
@@ -260,4 +331,66 @@ public class FallecidosRepositorio : IFallecidosRepositorio
 
         return response;
     }
+
+    public async Task<Response<PagedResult<FallecidosBusqueda>>> DGetFallecidos(EntFallecidosSearchRequest fallecido)
+    {
+        var response = new Response<PagedResult<FallecidosBusqueda>>();
+        try
+        {
+            var items = (
+                from f in dbContext.Fallecidos
+                join c in dbContext.Criptas on f.uIdCripta equals c.uId
+                join s in dbContext.Secciones on c.uIdSeccion equals s.uId
+                join z in dbContext.Zonas on s.uIdZona equals z.uId
+                join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
+                where !f.bEliminado && !c.bEliminado && !s.bEliminado && !z.bEliminado && !i.bEliminado
+                      && f.sNombre.ToLower().Contains(fallecido.sNombre.ToLower()) && f.sApellidos.ToLower().Contains(fallecido.sApellidos.ToLower())
+                select new FallecidosBusqueda
+                {
+                    uId = f.uId,
+                    uIdIglesia = i.uId,
+                    sNombres = f.sNombre,
+                    sApellidos = f.sApellidos,
+                    iEdad = f.dtFechaNacimiento != null && f.dtFechaFallecimiento != null
+                            ? (DateTime.Parse(f.dtFechaFallecimiento).Year - DateTime.Parse(f.dtFechaNacimiento).Year)
+                            : 0,
+                    sFechaNacido = f.dtFechaNacimiento ?? "No registrado",
+                    sFechaFallecido = f.dtFechaFallecimiento ?? "No registrado",
+                    sNombre = c.sNumero,
+                    sNombreSeccion = s.sNombre,
+                    sNombreZona = z.sNombre,
+                    sIglesia = i.sNombre
+                }
+            );
+            if (fallecido.uIdIglesia != null)
+            {
+                items = items.Where(x => x.uIdIglesia == fallecido.uIdIglesia);
+            }
+            int totalRecords = await items.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalRecords / fallecido.iNumReg);
+            if (items.Any())
+            {
+                var result = await items
+                    .OrderBy(x => x.sNombre)
+                    .ThenBy(x => x.sApellidos)
+                    .ThenBy(x => x.uId)
+                    .Skip((fallecido.iNumPag - 1) * fallecido.iNumReg)
+                    .Take(fallecido.iNumReg)
+                    .ToListAsync();
+                var resultado = new PagedResult<FallecidosBusqueda>(result, totalRecords, fallecido.iNumPag, fallecido.iNumReg);
+                response.SetSuccess(resultado);
+            }
+            else
+            {
+                response.SetError("Sin registros");
+                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex.Message);
+        }
+        return response;
+    }
+
 }

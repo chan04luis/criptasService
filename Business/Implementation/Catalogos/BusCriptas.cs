@@ -7,6 +7,7 @@ using Utils;
 using Models.Models;
 using Models.Request.Criptas;
 using Models.Responses.Pagos;
+using Models.Responses.Criptas;
 
 namespace Business.Implementation.Catalogos
 {
@@ -229,6 +230,21 @@ namespace Business.Implementation.Catalogos
             {
                 _logger.LogError(ex, "Error al obtener la lista de criptas");
                 var response = new Response<List<EntCriptas>>();
+                response.SetError("Hubo un error al obtener la lista de criptas.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+        public async Task<Response<List<CriptasDisponibles>>> BGetListDisponibleByIglesia(Guid uId)
+        {
+            try
+            {
+                return await _criptasRepositorio.DGetListDisponibleByIglesia(uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de criptas");
+                var response = new Response<List<CriptasDisponibles>>();
                 response.SetError("Hubo un error al obtener la lista de criptas.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;

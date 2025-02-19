@@ -12,7 +12,7 @@ namespace Data.cs.Interfaces.Catalogos
     {
 
         Task<Response<bool>> AnyExistKey(Guid pKey);
-        Task<Response<bool>> AnyExistSolicitud(Guid idCliente, Guid idServicio);
+        Task<Response<bool>> AnyExistSolicitud(Guid idCliente, Guid idServicio, string mensaje);
         Task<Response<EntSolicitudesInfo>> DSave(EntSolicitudesInfo entity);
         Task<Response<EntSolicitudesInfo>> DUpdate(EntSolicitudesInfo entity);
         Task<Response<bool>> DDelete(Guid uId);

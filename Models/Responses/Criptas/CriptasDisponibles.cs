@@ -2,10 +2,10 @@
 
 namespace Models.Responses.Criptas
 {
-    public class MisCriptas
+    public class CriptasDisponibles
     {
         [JsonProperty("Id")]
-        public string uId {  get; set; }
+        public Guid uId { get; set; }
         [JsonProperty("Cripta")]
         public string sNombre { get; set; }
         [JsonProperty("Seccion")]
@@ -18,13 +18,9 @@ namespace Models.Responses.Criptas
         public string sLatitud { get; set; }
         [JsonProperty("Long")]
         public string sLongitud { get; set; }
-        [JsonProperty("Fallecidos")]
-        public int iFallecidos { get; set; }
-        [JsonProperty("Beneficiarios")]
-        public int iBeneficiarios { get; set; }
-        [JsonProperty("Visitas")]
-        public int iVisitas { get; set; }
-        [JsonProperty("FechaCompra")]
-        public DateTime dtFechaCompra {  get; set; }
+        [JsonProperty("Estatus")]
+        public bool bEstatus { get; set; }
+        [JsonProperty("Disponible")]
+        public bool bDisponible { get; set; }
     }
 }

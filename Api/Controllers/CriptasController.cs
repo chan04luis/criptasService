@@ -6,6 +6,7 @@ using Models.Request.Beneficiarios;
 using Models.Request.Criptas;
 using Models.Request.Fallecidos;
 using Models.Request.Visitas;
+using Models.Responses.Criptas;
 using Models.Responses.Pagos;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
@@ -153,12 +154,30 @@ namespace Api.Controllers
             }
             return response;
         }
+
         [HttpGet("ListDisponible/{IdSeccion}")]
         [SwaggerOperation(Summary = "Obtiene la lista de criptas", Description = "Recupera una lista de todas las criptas.")]
         public async Task<Response<List<EntCriptas>>> GetCriptaListDisponible(Guid IdSeccion)
         {
             _logger.LogInformation("Iniciando recuperación de lista de criptas.");
             var response = await _busCriptas.GetCriptaListDisponible(IdSeccion);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de criptas: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de criptas recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+
+        [HttpGet("ListDisponible/Iglesia/{uId}")]
+        [SwaggerOperation(Summary = "Obtiene la lista de criptas", Description = "Recupera una lista de todas las criptas.")]
+        public async Task<Response<List<CriptasDisponibles>>> GetCriptaListDisponibleByIglesia(Guid uId)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de criptas.");
+            var response = await _busCriptas.BGetListDisponibleByIglesia(uId);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al recuperar lista de criptas: {Error}", response.Message);
@@ -224,6 +243,23 @@ namespace Api.Controllers
             return response;
         }
 
+        [HttpPost("Visitas/List")]
+        [SwaggerOperation(Summary = "Obtiene una visita por ID", Description = "Recupera una visita específica utilizando su ID.")]
+        public async Task<Response<List<EntVisitas>>> GetVisitsByFilters([FromBody] EntVisitasSearchRequest filters)
+        {
+            _logger.LogInformation("Iniciando búsqueda de visita con filtros: {filters}", filters);
+            var response = await _busVisitas.GetVisitsByFilters(filters);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Visita no encontrada con filtros {filters}: {Error}", filters, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Visita encontrada con filtros: {filters}", filters);
+            }
+            return response;
+        }
+
         #endregion
 
         #region Endpoints de Fallecidos
@@ -245,12 +281,46 @@ namespace Api.Controllers
             return response;
         }
 
+        [HttpPost("Fallecidos/Busqueda")]
+        [SwaggerOperation(Summary = "Crea un fallecido", Description = "Crea un nuevo registro de fallecido.")]
+        public async Task<Response<PagedResult<FallecidosBusqueda>>> BusquedaFallecido([FromBody] EntFallecidosSearchRequest fallecido)
+        {
+            _logger.LogInformation("Iniciando busqueda de fallecido.");
+            var response = await _busFallecidos.BGetFallecidos(fallecido);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al buscar fallecido: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Fallecidos buscados exitosamente");
+            }
+            return response;
+        }
+
         [HttpPut("Fallecidos/Update")]
         [SwaggerOperation(Summary = "Actualiza un fallecido", Description = "Actualiza los datos de un fallecido existente.")]
         public async Task<Response<EntFallecidos>> UpdateFallecido([FromBody] EntFallecidosUpdateRequest fallecido)
         {
             _logger.LogInformation("Iniciando actualización de fallecido con ID: {Id}", fallecido.uId);
             var response = await _busFallecidos.UpdateDeceased(fallecido);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar fallecido con ID {Id}: {Error}", fallecido.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Fallecido actualizado exitosamente con ID: {Id}", fallecido.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("Fallecidos/UpdateDocs")]
+        [SwaggerOperation(Summary = "Actualiza un fallecido", Description = "Actualiza los datos de un fallecido existente.")]
+        public async Task<Response<EntFallecidos>> UpdateFallecidoDocs([FromBody] EntFallecidos fallecido)
+        {
+            _logger.LogInformation("Iniciando actualización de fallecido con ID: {Id}", fallecido.uId);
+            var response = await _busFallecidos.UpdateDocs(fallecido);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al actualizar fallecido con ID {Id}: {Error}", fallecido.uId, response.Message);
@@ -285,6 +355,23 @@ namespace Api.Controllers
         {
             _logger.LogInformation("Iniciando búsqueda de fallecido con ID: {Id}", id);
             var response = await _busFallecidos.GetDeceasedById(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Fallecido no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Fallecido encontrado con ID: {Id}", id);
+            }
+            return response;
+        }
+
+        [HttpGet("Fallecido/{id}")]
+        [SwaggerOperation(Summary = "Obtiene un fallecido por ID", Description = "Recupera un fallecido específico utilizando su ID.")]
+        public async Task<Response<EntFallecidos?>> GetFallecidoSingle(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de fallecido con ID: {Id}", id);
+            var response = await _busFallecidos.GetSingleById(id);
             if (response.HasError)
             {
                 _logger.LogWarning("Fallecido no encontrado con ID {Id}: {Error}", id, response.Message);
