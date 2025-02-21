@@ -80,9 +80,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        Title = "Pizzeria API",
+        Title = "Gownetwork API",
         Version = "v1",
-        Description = "API para gestión de pizzeria lalo's."
+        Description = "API para gestión de Gownetwork."
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {

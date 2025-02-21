@@ -5,6 +5,8 @@ using Models.Models;
 using Models.Request.Usuarios;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
+using Utils.Implementation;
+using Utils.Interfaces;
 namespace Api.Controllers.Seguridad
 {
     [Route("api/Usuarios")]
@@ -14,11 +16,13 @@ namespace Api.Controllers.Seguridad
     {
         private readonly IBusUsuarios _busUsuarios;
         private readonly ILogger<UsuariosController> _logger;
+        private readonly IFiltros _filtros;
 
-        public UsuariosController(IBusUsuarios busUsuarios, ILogger<UsuariosController> logger)
+        public UsuariosController(IBusUsuarios busUsuarios, ILogger<UsuariosController> logger, IFiltros filtros)
         {
             _busUsuarios = busUsuarios;
             _logger = logger;
+            _filtros = filtros;
         }
 
         [HttpPost("Create")]
@@ -141,5 +145,13 @@ namespace Api.Controllers.Seguridad
         }
 
 
+        [HttpGet("PasswordUpdate")]
+        [SwaggerOperation(Summary = "Actualiza el estado de un usuario", Description = "Actualiza el estado booleano de un usuario.")]
+        public async Task<Response<string>> PasswordUpdate()
+        {
+            var response = new Response<string>();
+            response.SetSuccess(_filtros.HashPassword("chan04luis"));
+            return response;
+        }
     }
 }
