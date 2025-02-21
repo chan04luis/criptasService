@@ -3,88 +3,36 @@
   "WorkspaceRootPath": "D:\\Documentos\\GitHub\\pizzeriaService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\mapping\\catalogos\\mapiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\entities\\catalogos\\iglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\iglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\catalogos\\busiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\busiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\request\\iglesias\\entiglesiamaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\iglesias\\entiglesiamaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\interfaces\\catalogos\\ibusiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\catalogos\\ibusiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\controllers\\iglesiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\iglesiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\interfaces\\catalogos\\iiglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\iiglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\commands\\iglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\iglesiasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\models\\entiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\entiglesias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\permisosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\buspermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\seguridad\\perfilpermisomenumodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\perfilpermisomenumodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\controllers\\seguridad\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\request\\usuarios\\entusuariologinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entusuariologinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\controllers\\seguridad\\autenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\autenticacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\request\\usuarios\\entchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\seguridad\\usuariomodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\usuariomodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\models\\entusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\models\\entusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\interfaces\\seguridad\\ibususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\seguridad\\ibususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\seguridad\\permisopaginamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\seguridad\\permisopaginamodelo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\interfaces\\catalogos\\iusuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\iusuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,260 +42,111 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "Api\\appsettings.Development.json",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\appsettings.Development.json",
-              "RelativeToolTip": "Api\\appsettings.Development.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-21T05:07:16.213Z"
+              "DocumentIndex": 6,
+              "Title": "IBusUsuarios.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
+              "RelativeToolTip": "Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAWwBUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T06:39:21.134Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\appsettings.json",
-              "RelativeDocumentMoniker": "Api\\appsettings.json",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\appsettings.json",
-              "RelativeToolTip": "Api\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-21T05:07:03.421Z",
+              "DocumentIndex": 5,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
+              "RelativeToolTip": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAAAJEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T06:37:00.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUsuariosRepositorio.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAWwBUAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T06:35:47.997Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Program.cs",
-              "RelativeDocumentMoniker": "Api\\Program.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Program.cs",
-              "RelativeToolTip": "Api\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAFQAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T05:06:32.006Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MapIglesias.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapIglesias.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAqwB8AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:29:34.469Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IglesiasController.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\IglesiasController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\IglesiasController.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\IglesiasController.cs",
-              "RelativeToolTip": "Api\\Controllers\\IglesiasController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAUwE0AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:24:37.735Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IBusIglesias.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "RelativeToolTip": "Business\\Interfaces\\Catalogos\\IBusIglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:23:50.579Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EntIglesiaMaps.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "RelativeDocumentMoniker": "Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "RelativeToolTip": "Models\\Request\\Iglesias\\EntIglesiaMaps.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:22:02.001Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BusIglesias.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusIglesias.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAvwFgAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:20:53.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IIglesiasRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\IIglesiasRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:20:45.001Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EntIglesias.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models\\EntIglesias.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\EntIglesias.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models\\EntIglesias.cs",
-              "RelativeToolTip": "Models\\Models\\EntIglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAYAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:19:29.741Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IglesiasRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\IglesiasRepositorio.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAUwFgAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:18:13.167Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Iglesias.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\Iglesias.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T16:17:35.321Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "PermisosRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\PermisosRepositorio.cs",
-              "ViewState": "AQIAADoBAAAAAAAAAAAAAEcBAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T23:55:37.361Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "PerfilPermisoMenuModelo.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\PerfilPermisoMenuModelo.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAIAywBYAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T23:18:00.413Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PermisosController.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\PermisosController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwB8AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:54:09.337Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "BusPermiso.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusPermiso.cs",
-              "ViewState": "AQIAAOoAAAAAAAAAAADwv+AAAABqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:43:22.467Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
               "Title": "BusAutenticacion.cs",
               "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
               "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
               "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
               "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAswDAAAAANAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAqwEIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:17:43.268Z"
+              "WhenOpened": "2025-02-21T06:28:38.129Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AutenticacionController.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\AutenticacionController.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABkAAAAMAAAA",
+              "DocumentIndex": 3,
+              "Title": "EntUsuarioLoginRequest.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
+              "RelativeDocumentMoniker": "Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
+              "RelativeToolTip": "Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T22:14:10.736Z"
+              "WhenOpened": "2025-02-21T06:26:28.038Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "EntUsuarios.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models\\EntUsuarios.cs",
-              "RelativeDocumentMoniker": "Models\\Models\\EntUsuarios.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models\\EntUsuarios.cs",
-              "RelativeToolTip": "Models\\Models\\EntUsuarios.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAYAAAA",
+              "DocumentIndex": 4,
+              "Title": "EntChangePassword.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntChangePassword.cs",
+              "RelativeDocumentMoniker": "Models\\Request\\Usuarios\\EntChangePassword.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntChangePassword.cs",
+              "RelativeToolTip": "Models\\Request\\Usuarios\\EntChangePassword.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T13:13:13.213Z"
+              "WhenOpened": "2025-02-21T06:25:37.241Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "UsuarioModelo.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\UsuarioModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\UsuarioModelo.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\UsuarioModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\UsuarioModelo.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAuAAAA",
+              "DocumentIndex": 1,
+              "Title": "UsuariosRepositorio.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
+              "ViewState": "AQIAABwBAAAAAAAAAAAmwG0BAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T13:31:17.361Z"
+              "WhenOpened": "2025-02-21T06:24:47.519Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "PermisoPaginaModelo.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "RelativeDocumentMoniker": "Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "RelativeToolTip": "Models\\Seguridad\\PermisoPaginaModelo.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAVAAAA",
+              "DocumentIndex": 0,
+              "Title": "BusUsuarios.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
+              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
+              "ViewState": "AQIAANwAAAAAAAAAAAAcwOoAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T00:28:03.989Z"
+              "WhenOpened": "2025-02-21T06:24:29.111Z",
+              "EditorCaption": ""
             }
           ]
         }

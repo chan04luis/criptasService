@@ -19,5 +19,7 @@ namespace Business.Interfaces.Seguridad
         Task<Response<List<EntUsuarios>>> GetUsersByFilters(EntUsuarioSearchRequest filtros);
 
         Task<Response<List<EntUsuarios>>> GetUserList();
+
+        Task<Response<EntUsuarios>> UpdatePassword(EntChangePassword entPassword);
     }
 }

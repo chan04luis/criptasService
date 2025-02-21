@@ -16,13 +16,11 @@ namespace Api.Controllers.Seguridad
     {
         private readonly IBusUsuarios _busUsuarios;
         private readonly ILogger<UsuariosController> _logger;
-        private readonly IFiltros _filtros;
 
-        public UsuariosController(IBusUsuarios busUsuarios, ILogger<UsuariosController> logger, IFiltros filtros)
+        public UsuariosController(IBusUsuarios busUsuarios, ILogger<UsuariosController> logger)
         {
             _busUsuarios = busUsuarios;
             _logger = logger;
-            _filtros = filtros;
         }
 
         [HttpPost("Create")]
@@ -145,12 +143,20 @@ namespace Api.Controllers.Seguridad
         }
 
 
-        [HttpGet("PasswordUpdate")]
-        [SwaggerOperation(Summary = "Actualiza el estado de un usuario", Description = "Actualiza el estado booleano de un usuario.")]
-        public async Task<Response<string>> PasswordUpdate()
+        [HttpPut("UpdatePassword")]
+        [SwaggerOperation(Summary = "Actualiza la contraseña de un usuario", Description = "Actualiza la contraseña de un usuario.")]
+        public async Task<Response<EntUsuarios>> PasswordUpdate([FromBody] EntChangePassword usuario)
         {
-            var response = new Response<string>();
-            response.SetSuccess(_filtros.HashPassword("chan04luis"));
+            _logger.LogInformation("Iniciando actualización de usuario con email: {sCorreo}", usuario.sCorreo);
+            var response = await _busUsuarios.UpdatePassword(usuario);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar usuario con email {sCorreo}: {Error}", usuario.sCorreo, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Usuario actualizado exitosamente con email: {sCorreo}", usuario.sCorreo);
+            }
             return response;
         }
     }

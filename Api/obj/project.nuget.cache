@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u6JyWzZCTMg=",
+  "dgSpecHash": "tq98xkk3IsI=",
   "success": true,
   "projectFilePath": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Api.csproj",
   "expectedPackageFiles": [
@@ -124,12 +124,5 @@
     "C:\\Users\\PC-Chan\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\PC-Chan\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1803",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Está ejecutando la operación \"restore\" con un origen \"HTTP\", \"http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json\". El acceso que no sea HTTPS se quitará en una versión futura. Considere la posibilidad de migrar a un origen \"HTTPS\"."
-    }
-  ]
+  "logs": []
 }

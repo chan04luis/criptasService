@@ -31,11 +31,10 @@ namespace Business.Implementation.Seguridad
         private readonly IBusPermiso busPermisos;
         private readonly IMapper mapeador;
         private readonly IConfiguration configuration;
-        private readonly IClientesRepositorio clientesRepositorio;
         private readonly IFiltros _filtros;
 
         public BusAutenticacion(IMapper mapeador, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, 
-            IBusPermiso busPermisos, IConfiguration configuration, IClientesRepositorio clientesRepositorio, IFiltros filtros)
+            IBusPermiso busPermisos, IConfiguration configuration, IFiltros filtros)
         {
             this.mapeador = mapeador;
             this._datUsuario = _datUsuario;
@@ -43,47 +42,7 @@ namespace Business.Implementation.Seguridad
             this.httpContext = httpContext;
             this.busPermisos = busPermisos;
             this.configuration = configuration;
-            this.clientesRepositorio = clientesRepositorio;
             _filtros = filtros;
-        }
-        public async Task<Response<LoginClienteResponseModelo>> LoginMovil(LoginModelo loginModel)
-        {
-            var response = new Response<LoginClienteResponseModelo>();
-            string token = string.Empty;
-            try
-            {
-                Response<bool> validarLogin = ValidarDatosLogin(loginModel);
-                if (validarLogin.HasError)
-                {
-                    return response.GetResponse(validarLogin);
-                }
-
-                Response<EntClientes> obtenerUsuario = await clientesRepositorio.DGetByEmail(loginModel.sCorreo, loginModel.sPassword);
-                if (obtenerUsuario.HasError)
-                {
-                    response.SetError("No se encontro correo");
-                    return response;
-                }else if(!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, loginModel.sPassword))
-                {
-                    response.SetError("Contraseña incorrecta");
-                }
-                else
-                {
-                    var sToken = new LoginClienteResponseModelo{
-                        Token = GenerateJwtToken(obtenerUsuario.Result),
-                        uId = obtenerUsuario.Result.uId.ToString(),
-                    };
-                    response.SetSuccess(sToken);
-                }
-            }
-            catch (Exception ex)
-            {
-                response.SetError("Credenciales no validadas");
-            }
-
-
-            return response;
-
         }
         public async Task<Response<LoginResponseModelo>> Login(LoginModelo loginModel)
         {
@@ -97,9 +56,15 @@ namespace Business.Implementation.Seguridad
                     return response.GetResponse(validarLogin);
                 }
 
-                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGet(loginModel.sCorreo, loginModel.sPassword);
+                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGet(loginModel.sCorreo);
 
                 EntUsuarios usuario = obtenerUsuario.Result;
+
+                if (!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, loginModel.sPassword))
+                {
+                    response.GetUnauthorized("Contraseña incorrecta");
+                    return response;
+                }
 
                 UsuarioModelo usuarioMapeado = mapeador.Map<UsuarioModelo>(usuario);
 
@@ -288,7 +253,7 @@ namespace Business.Implementation.Seguridad
                 issuer: configuration["JwtSettings:Issuer"],
                 audience: configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddDays(5),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

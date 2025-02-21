@@ -5806,7 +5806,6 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5921,13 +5920,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1803",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Está ejecutando la operación \"restore\" con un origen \"HTTP\", \"http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json\". El acceso que no sea HTTPS se quitará en una versión futura. Considere la posibilidad de migrar a un origen \"HTTPS\"."
-    }
-  ]
+  }
 }

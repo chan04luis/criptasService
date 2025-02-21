@@ -7,7 +7,6 @@ namespace Business.Interfaces.Seguridad
     {
         Task<Response<LoginResponseModelo>> Login(LoginModelo loginModel);
         Task<Response<LoginResponseModelo>> Refresh();
-        Task<Response<LoginClienteResponseModelo>> LoginMovil(LoginModelo loginModel);
 
     }
 }
