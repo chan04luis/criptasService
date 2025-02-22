@@ -12,10 +12,10 @@ namespace Models.Request.Fallecidos
         public string sApellidos { get; set; }
 
         [JsonProperty("Nacimiento")]
-        public string dNacimiento { get; set; }
+        public string dtFechaNacimiento { get; set; }
 
         [JsonProperty("Fallecimiento")]
-        public string dFallecimiento { get; set; }
+        public string dtFechaFallecimiento { get; set; }
 
         [JsonProperty("IdCripta")]
         public Guid? uIdCripta { get; set; }
