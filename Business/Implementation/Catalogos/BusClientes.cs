@@ -53,14 +53,14 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
 
-                if (!_filtros.IsValidPhone(cliente.sTelefono))
+                if (cliente.sTelefono != "NA" && !_filtros.IsValidPhone(cliente.sTelefono))
                 {
                     response.SetError("El número de teléfono debe tener 10 dígitos numéricos.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
 
-                if (!_filtros.IsValidEmail(cliente.sEmail))
+                if (cliente.sEmail != "NA" && !_filtros.IsValidEmail(cliente.sEmail))
                 {
                     response.SetError("El formato del correo electrónico es inválido.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
@@ -78,13 +78,17 @@ namespace Business.Implementation.Catalogos
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
-                var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
-                if (!item.HasError && item.Result != null)
+                if(cliente.sEmail != "NA")
                 {
-                    response.SetError("Email ya registrado.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
-                    return response;
+                    var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
+                    if (!item.HasError && item.Result != null)
+                    {
+                        response.SetError("Email ya registrado.");
+                        response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                        return response;
+                    }
                 }
+                
                 EntClientes nCliente = new EntClientes
                 {
                     uId = Guid.NewGuid(),
@@ -102,7 +106,7 @@ namespace Business.Implementation.Catalogos
                     iOrigen = iOrigen
                 };
                 var respuesta = await SaveClient(nCliente);
-                if (!respuesta.HasError)
+                if (!respuesta.HasError && cliente.sEmail != "NA")
                 {
                     _emailService.EnviarCorreoBienvenida(nCliente);
                 }
@@ -151,14 +155,14 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
 
-                if (!_filtros.IsValidPhone(cliente.sTelefono))
+                if (cliente.sTelefono != "NA" && !_filtros.IsValidPhone(cliente.sTelefono))
                 {
                     response.SetError("El número de teléfono debe tener 10 dígitos numéricos.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
 
-                if (!_filtros.IsValidEmail(cliente.sEmail))
+                if (cliente.sEmail != "NA" && !_filtros.IsValidEmail(cliente.sEmail))
                 {
                     response.SetError("El formato del correo electrónico es inválido.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
@@ -171,19 +175,25 @@ namespace Business.Implementation.Catalogos
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
+
                 if (!_filtros.IsValidSexo(cliente.sSexo))
                 {
                     response.SetError("El Sexo es inválido.");
                     response.HttpCode = System.Net.HttpStatusCode.BadRequest;
                     return response;
                 }
-                var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
-                if (!item.HasError && item.Result != null && item.Result.uId != cliente.uId)
+
+                if(cliente.sEmail != "NA")
                 {
-                    response.SetError("Email ya registrado.");
-                    response.HttpCode = System.Net.HttpStatusCode.BadRequest;
-                    return response;
+                    var item = await _clientesRepositorio.DGetByEmail(cliente.sEmail);
+                    if (!item.HasError && item.Result != null && item.Result.uId != cliente.uId)
+                    {
+                        response.SetError("Email ya registrado.");
+                        response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                        return response;
+                    }
                 }
+                
                 var nCliente = _mapper.Map<EntClientes>(cliente);
                 return await UpdateClient(nCliente);
             }

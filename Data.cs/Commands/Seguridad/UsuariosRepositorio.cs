@@ -138,6 +138,7 @@ public class UsuariosRepositorio : IUsuariosRepositorio
                 response.SetError("El usuario no fue encontrado.");
                 return response;
             }
+            bEntity.uIdPerfil = entity.uIdPerfil;
             bEntity.sNombres = entity.sNombres;
             bEntity.sApellidos = entity.sApellidos;
             bEntity.sTelefono = entity.sTelefono;
@@ -282,13 +283,13 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         }
         return response;
     }
-    public async Task<Response<EntUsuarios>> DGet(string correo, string sPassword)
+    public async Task<Response<EntUsuarios>> DGet(string correo)
     {
         var response = new Response<EntUsuarios>();
         try
         {
             var usuario = await dbContext.Usuarios
-                        .SingleOrDefaultAsync(u => u.sCorreo == correo && u.sContra == sPassword && u.bActivo == true);
+                        .SingleOrDefaultAsync(u => u.sCorreo == correo && u.bActivo == true);
 
             response.SetSuccess(_mapper.Map<EntUsuarios>(usuario), "Usuario existente");
 
@@ -335,4 +336,36 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         return response;
     }
 
+    public async Task<Response<EntUsuarios>> DUpdatePassword(EntUsuarios entity)
+    {
+        Response<EntUsuarios> response = new Response<EntUsuarios>();
+
+        try
+        {
+            var bEntity = await dbContext.Usuarios.FindAsync(entity.uId);
+            if (bEntity == null)
+            {
+                response.SetError("El usuario no fue encontrado.");
+                return response;
+            }
+            bEntity.sContra = entity.sContra;
+            bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+            dbContext.Update(bEntity);
+            var exec = await dbContext.SaveChangesAsync();
+
+            if (exec > 0)
+                response.SetSuccess(_mapper.Map<EntUsuarios>(bEntity), "Actualizado correctamente");
+            else
+            {
+                response.SetError("Registro no actualizado");
+                response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DUpdate));
+            response.SetError(ex);
+        }
+        return response;
+    }
 }

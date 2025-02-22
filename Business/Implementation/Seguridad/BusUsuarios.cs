@@ -62,7 +62,7 @@ namespace Business.Implementation.Seguridad
                 }
 
                 var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
-
+                usuarioMapeado.sContra = _filtros.HashPassword(usuarioMapeado.sContra);
                 var usuarioCreado = await _usuariosRepositorio.DSave(usuarioMapeado);
 
                 response.SetSuccess(usuarioCreado.Result);
@@ -201,6 +201,73 @@ namespace Business.Implementation.Seguridad
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
             }
+        }
+        public async Task<Response<EntUsuarios>> UpdatePassword(EntChangePassword entPassword)
+        {
+            var response = new Response<EntUsuarios>();
+
+            try
+            {
+                Response<bool> validarLogin = ValidarDatosLogin(entPassword);
+                if (validarLogin.HasError)
+                {
+                    return response.GetResponse(validarLogin);
+                }
+
+                Response<EntUsuarios> obtenerUsuario = await _usuariosRepositorio.DGet(entPassword.sCorreo);
+
+                EntUsuarios usuario = obtenerUsuario.Result;
+
+                if (!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, entPassword.sContra))
+                {
+                    response.SetError("Contraseña incorrecta");
+                    return response;
+                }
+                else if (entPassword.sNContra != entPassword.sNCContra)
+                {
+                    response.SetError("Contraseña no coinciden");
+                    return response;
+                }
+                var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
+                usuarioMapeado.sContra = _filtros.HashPassword(entPassword.sNContra);
+                var result = await _usuariosRepositorio.DUpdatePassword(usuarioMapeado);
+                result.Result.sContra = "";
+                response.SetSuccess(result.Result);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al validar y actualizar el usuario");
+                response.SetError("Hubo un error al procesar la solicitud.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+            return response;
+        }
+        private Response<bool> ValidarDatosLogin(EntChangePassword entPassword)
+        {
+            Response<bool> response = new();
+            if (entPassword is null)
+            {
+                return response.GetBadRequest("No se ingresó información");
+            }
+            else if (string.IsNullOrWhiteSpace(entPassword.sCorreo))
+            {
+                return response.GetBadRequest("No se ingresó el correo");
+            }
+            else if (string.IsNullOrWhiteSpace(entPassword.sContra))
+            {
+                return response.GetBadRequest("No se ingresó la contraseña");
+            }
+            else if (string.IsNullOrWhiteSpace(entPassword.sNContra))
+            {
+                return response.GetBadRequest("No se ingresó la nueva contraseña");
+            }
+            else if (string.IsNullOrWhiteSpace(entPassword.sNCContra))
+            {
+                return response.GetBadRequest("No se ingresó la confirmación de contraseña");
+            }
+
+            return response.GetSuccess(true);
         }
     }
 }

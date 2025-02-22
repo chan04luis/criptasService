@@ -98,9 +98,14 @@ namespace Business.Implementation.Seguridad
                     return response.GetResponse(validarLogin);
                 }
 
-                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGet(loginModel.sCorreo, loginModel.sPassword);
+                Response<EntUsuarios> obtenerUsuario = await _datUsuario.DGet(loginModel.sCorreo);
 
                 EntUsuarios usuario = obtenerUsuario.Result;
+
+                if (!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, loginModel.sPassword))
+                {
+                    return response.GetUnauthorized("Contraseña incorrecta");
+                }
 
                 UsuarioModelo usuarioMapeado = mapeador.Map<UsuarioModelo>(usuario);
 
@@ -289,7 +294,7 @@ namespace Business.Implementation.Seguridad
                 issuer: configuration["JwtSettings:Issuer"],
                 audience: configuration["JwtSettings:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
