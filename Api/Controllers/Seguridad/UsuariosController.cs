@@ -140,6 +140,21 @@ namespace Api.Controllers.Seguridad
             return response;
         }
 
-
+        [HttpPut("UpdatePassword")]
+        [SwaggerOperation(Summary = "Actualiza la contraseña de un usuario", Description = "Actualiza la contraseña de un usuario.")]
+        public async Task<Response<EntUsuarios>> PasswordUpdate([FromBody] EntChangePassword usuario)
+        {
+            _logger.LogInformation("Iniciando actualización de usuario con email: {sCorreo}", usuario.sCorreo);
+            var response = await _busUsuarios.UpdatePassword(usuario);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar usuario con email {sCorreo}: {Error}", usuario.sCorreo, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Usuario actualizado exitosamente con email: {sCorreo}", usuario.sCorreo);
+            }
+            return response;
+        }
     }
 }
