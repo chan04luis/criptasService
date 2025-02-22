@@ -222,11 +222,11 @@ namespace Business.Implementation.Seguridad
 
                 if (!_filtros.VerifyPassword(obtenerUsuario.Result.sContra, entPassword.sContra))
                 {
-                    response.GetUnauthorized("Contraseña incorrecta");
+                    response.SetError("Contraseña incorrecta");
                     return response;
                 }else if (entPassword.sNContra != entPassword.sNCContra)
                 {
-                    response.GetUnauthorized("Contraseña no coinciden");
+                    response.SetError("Contraseña no coinciden");
                     return response;
                 }
                 var usuarioMapeado = _mapper.Map<EntUsuarios>(usuario);
