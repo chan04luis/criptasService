@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "D:\\Documentos\\GitHub\\Criptas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\criptas\\data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\criptas\\business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\criptas\\api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\criptas\\business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\criptas\\business\\implementation\\catalogos\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\busclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\criptas\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\criptas\\api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,50 +22,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "ViewState": "AQIAACkAAAAgAAAAAMAlwC0AAAAzAAAA",
+              "DocumentIndex": 0,
+              "Title": "BusClientes.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Catalogos\\BusClientes.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusClientes.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Catalogos\\BusClientes.cs",
+              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusClientes.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAwvVgAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T17:34:37.161Z",
+              "WhenOpened": "2025-02-22T17:46:38.62Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuariosRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "ViewState": "AQIAAGEAAAAAZ2ZmZuYcwIwAAAAwAAAA",
+              "DocumentIndex": 2,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Api\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\ClientesController.cs",
+              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Api\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Api\\Controllers\\ClientesController.cs",
+              "ViewState": "AQIAAA8AAACAAAAAAIAZwB8AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T17:33:35.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-22T17:46:31.477Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BusUsuarios.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "ViewState": "AQIAAFUAAADAmpmZmZklwGgAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T17:33:25.568Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Api\\Program.cs",
               "RelativeDocumentMoniker": "Api\\Program.cs",
@@ -82,19 +60,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-22T17:30:05.261Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BusAutenticacion.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\Criptas\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAawGQAAABgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T17:27:55.634Z",
               "EditorCaption": ""
             }
           ]
