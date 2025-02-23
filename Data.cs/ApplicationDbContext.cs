@@ -15,6 +15,8 @@ namespace Data.cs
 
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Sucursales> Sucursal { get; set; }
+        public virtual DbSet<Servicios> Servicios { get; set; }
+        public virtual DbSet<ServiciosSucursales> ServiciosSucursales { get; set; }
 
 
         #region entities seguridad
@@ -46,6 +48,8 @@ namespace Data.cs
         {
             modelBuilder.ApplyConfiguration(new MapClientes(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapSucursales(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapServicios(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapServiciosSucursales(EsquemaCatalogo));
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -16,7 +16,6 @@ namespace Api.Controllers.Seguridad
         {
             this.busConfiguracion = busConfiguracion;
         }
-
         [HttpGet("elementos/sistema")]
         public async Task<ActionResult<Response<List<ModuloModelo>>>> ObtenerElementosSistema()
         {

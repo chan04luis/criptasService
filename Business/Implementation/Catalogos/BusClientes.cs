@@ -23,7 +23,7 @@ namespace Business.Implementation.Catalogos
             _mapper = mapper;
         }
 
-        public async Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente)
+        public async Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente, int iOrigen)
         {
             var response = new Response<EntClientes>();
 
@@ -82,6 +82,7 @@ namespace Business.Implementation.Catalogos
                     sTelefono = cliente.sTelefono,
                     sDireccion = cliente.sDireccion,
                     sSexo = cliente.sSexo,
+                    iOrigen= iOrigen,
                     sFechaNacimiento = cliente.sFechaNac,
                     bEstatus = true,
                     sContra = _filtros.HashPassword(cliente.sContra),

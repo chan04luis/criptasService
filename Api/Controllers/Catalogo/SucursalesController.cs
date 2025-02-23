@@ -6,17 +6,17 @@ using Models.Request.Catalogo.Sucursales;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 
-namespace Api.Controllers
+namespace Api.Controllers.Catalogo
 {
-    [Route("api/Sucursal")]
+    [Route("api/Sucursales")]
     [Authorize]
     [ApiController]
-    public class SucursalController : ControllerBase
+    public class SucursalesController : ControllerBase
     {
         private readonly IBusSucursal _bussines;
-        private readonly ILogger<SucursalController> _logger;
+        private readonly ILogger<SucursalesController> _logger;
 
-        public SucursalController(IBusSucursal bussines, ILogger<SucursalController> logger)
+        public SucursalesController(IBusSucursal bussines, ILogger<SucursalesController> logger)
         {
             _bussines = bussines;
             _logger = logger;

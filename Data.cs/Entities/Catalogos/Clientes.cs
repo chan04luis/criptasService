@@ -9,6 +9,7 @@
         public string sTelefono { get; set; }
         public string sEmail { get; set; }
         public string sSexo { get; set; }
+        public int iOrigen { get; set; }
         public string? sContra { get; set; }
         public string sFechaNacimiento { get; set; }
         public DateTime dtFechaRegistro { get; set; }

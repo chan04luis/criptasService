@@ -1,12 +1,8 @@
 ﻿using Business.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Models.Seguridad;
 using Utils;
-using Utils.Interfaces;
 
 namespace Api.Controllers.Seguridad
 {

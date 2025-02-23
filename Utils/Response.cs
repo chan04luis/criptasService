@@ -105,5 +105,10 @@ namespace Utils
             Message = message;
             Result = default;
         }
+
+        public static implicit operator Response<T>(string? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

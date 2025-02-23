@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Models.Request.Catalogo.Clientes;
 
-namespace Api.Controllers
+namespace Api.Controllers.Catalogo
 {
     [Route("api/Clientes")]
     [Authorize]
@@ -28,7 +28,7 @@ namespace Api.Controllers
         public async Task<Response<EntClientes>> CreateClient([FromBody] EntClienteRequest cliente)
         {
             _logger.LogInformation("Iniciando creación de cliente.");
-            var response = await _busClientes.ValidateAndSaveClient(cliente);
+            var response = await _busClientes.ValidateAndSaveClient(cliente,1);
             if (response.HasError)
             {
                 _logger.LogWarning("Error al crear cliente: {Error}", response.Message);

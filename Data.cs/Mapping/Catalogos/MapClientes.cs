@@ -41,6 +41,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("VARCHAR(20)")
                 .HasColumnName("telefono");
 
+            builder.Property(c => c.iOrigen)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("origen");
+
             builder.Property(c => c.sEmail)
                 .HasColumnType("VARCHAR(255)")
                 .HasColumnName("email");

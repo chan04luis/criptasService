@@ -3,24 +3,60 @@
   "WorkspaceRootPath": "C:\\workspace\\megadentService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\commands\\catalogo\\serviciosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\catalogo\\serviciosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\megadentservice\\business\\implementation\\catalogos\\busservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\busservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapsucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapsucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\controllers\\catalogo\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\catalogo\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\controllers\\catalogo\\sucursalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\catalogo\\sucursalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapserviciossucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapserviciossucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\entities\\catalogos\\serviciossucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\serviciossucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\entities\\catalogos\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\entities\\catalogos\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\megadentservice\\business\\interfaces\\catalogos\\ibusservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\catalogos\\ibusservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\interfaces\\catalogos\\iserviciosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\iserviciosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\workspace\\megadentservice\\business\\implementation\\catalogos\\bussucursal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\bussucursal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\workspace\\megadentservice\\models\\responses\\servicios\\entserviceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\responses\\servicios\\entserviceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +66,188 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "Api\\appsettings.Development.json",
-              "ToolTip": "C:\\workspace\\megadentService\\Api\\appsettings.Development.json",
-              "RelativeToolTip": "Api\\appsettings.Development.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-23T00:25:30.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data.cs\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data.cs\\ApplicationDbContext.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Title": "SucursalesController.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Controllers\\Catalogo\\SucursalesController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\Catalogo\\SucursalesController.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\Controllers\\Catalogo\\SucursalesController.cs",
+              "RelativeToolTip": "Api\\Controllers\\Catalogo\\SucursalesController.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAcwCAAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T00:23:45.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapSucursales.cs",
-              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
-              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T00:23:38.361Z",
+              "WhenOpened": "2025-02-23T07:20:23.067Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MapClientes.cs",
-              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
-              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
-              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA6AAAA",
+              "Title": "BusServicios.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Business\\Implementation\\Catalogos\\BusServicios.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusServicios.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Business\\Implementation\\Catalogos\\BusServicios.cs",
+              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusServicios.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAswBoAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T00:21:50.599Z",
+              "WhenOpened": "2025-02-23T06:46:48.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServiciosSucursales.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Entities\\Catalogos\\ServiciosSucursales.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\ServiciosSucursales.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Entities\\Catalogos\\ServiciosSucursales.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\ServiciosSucursales.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:13:04.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MapServicios.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapServicios.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapServicios.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapServicios.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapServicios.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowCoAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:03:02.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServiciosRepositorio.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Commands\\Catalogo\\ServiciosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Commands\\Catalogo\\ServiciosRepositorio.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Commands\\Catalogo\\ServiciosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Commands\\Catalogo\\ServiciosRepositorio.cs",
+              "ViewState": "AQIAAHwBAAAAAAAAAAAmwJYBAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:07:21.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ClientesController.cs",
-              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Controllers\\ClientesController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\ClientesController.cs",
-              "ToolTip": "C:\\workspace\\megadentService\\Api\\Controllers\\ClientesController.cs",
-              "RelativeToolTip": "Api\\Controllers\\ClientesController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "MapServiciosSucursales.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapServiciosSucursales.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapServiciosSucursales.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapServiciosSucursales.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapServiciosSucursales.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwB0AAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T00:20:52.856Z",
+              "WhenOpened": "2025-02-23T06:14:31.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiciosController.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Controllers\\Catalogo\\ServiciosController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\Catalogo\\ServiciosController.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\Controllers\\Catalogo\\ServiciosController.cs",
+              "RelativeToolTip": "Api\\Controllers\\Catalogo\\ServiciosController.cs",
+              "ViewState": "AQIAAJ0AAAAAAAAAAAAgwLIAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:52:07.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Servicios.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Entities\\Catalogos\\Servicios.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Entities\\Catalogos\\Servicios.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Entities\\Catalogos\\Servicios.cs",
+              "RelativeToolTip": "Data.cs\\Entities\\Catalogos\\Servicios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:02:19.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Program.cs",
+              "RelativeDocumentMoniker": "Api\\Program.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\Program.cs",
+              "RelativeToolTip": "Api\\Program.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAAAH8AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:57:53.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Api\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "Api\\Mapping\\MappingProfile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T07:00:29.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IBusServicios.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Business\\Interfaces\\Catalogos\\IBusServicios.cs",
+              "RelativeDocumentMoniker": "Business\\Interfaces\\Catalogos\\IBusServicios.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Business\\Interfaces\\Catalogos\\IBusServicios.cs",
+              "RelativeToolTip": "Business\\Interfaces\\Catalogos\\IBusServicios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:45:23.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "EntServiceItem.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Models\\Responses\\Servicios\\EntServiceItem.cs",
+              "RelativeDocumentMoniker": "Models\\Responses\\Servicios\\EntServiceItem.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Models\\Responses\\Servicios\\EntServiceItem.cs",
+              "RelativeToolTip": "Models\\Responses\\Servicios\\EntServiceItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:20:44.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BusSucursal.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Business\\Implementation\\Catalogos\\BusSucursal.cs",
+              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusSucursal.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Business\\Implementation\\Catalogos\\BusSucursal.cs",
+              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusSucursal.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:46:47.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IServiciosRepositorio.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Interfaces\\Catalogos\\IServiciosRepositorio.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\IServiciosRepositorio.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Interfaces\\Catalogos\\IServiciosRepositorio.cs",
+              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\IServiciosRepositorio.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAvwBMAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T06:04:22.977Z",
               "EditorCaption": ""
             }
           ]

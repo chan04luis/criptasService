@@ -37,6 +37,11 @@ public class MappingProfile : Profile
 
         #endregion
 
+        #region Servicios
+
+        CreateMap<EntServicios, Servicios>().ReverseMap();
+
+        #endregion
 
     }
 

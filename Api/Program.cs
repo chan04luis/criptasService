@@ -6,7 +6,6 @@ using Utils.Interfaces;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json.Serialization;
 using Business.Data;
-using Data.cs.Commands;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -21,6 +20,8 @@ using Business.Implementation.Catalogos;
 using Business.Interfaces.Catalogos;
 using Models.Models;
 using Models.Validations.Seguridad;
+using Data.cs.Commands.Catalogo;
+using Data.cs.Interfaces.Catalogos;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -124,7 +125,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 /*string ISSUER = builder.Configuration["JwtSettings:Issuer"];
 string JWT_SECRET_KEY = builder.Configuration["JwtSettings:SecretKey"];
 builder.Services.AddScoped<BusJwt>(provider =>
-{
+{ 7d8acec0-eea7-4966-83e7-d0038a6245df
     return new BusJwt(JWT_SECRET_KEY, ISSUER);
 });*/
 
@@ -134,6 +135,8 @@ builder.Services.AddScoped<IBusClientes, BusClientes>();
 builder.Services.AddScoped<IFiltros, Filtros>();
 builder.Services.AddScoped<ISucursalesRepositorio, SucursalesRepositorio>();
 builder.Services.AddScoped<IBusSucursal, BusSucursal>();
+builder.Services.AddScoped<IServiciosRepositorio, ServiciosRepositorio>();
+builder.Services.AddScoped<IBusServicios, BusServicios>();
 
 #endregion
 

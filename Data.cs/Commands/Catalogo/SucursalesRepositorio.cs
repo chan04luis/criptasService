@@ -7,7 +7,7 @@ using Models.Models;
 using Models.Request.Catalogo.Sucursales;
 using Utils;
 
-namespace Data.cs.Commands
+namespace Data.cs.Commands.Catalogo
 {
     public class SucursalesRepositorio : ISucursalesRepositorio
     {
@@ -173,7 +173,7 @@ namespace Data.cs.Commands
                 else
                 {
                     response.SetError("Registro no encontrado");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                    response.HttpCode = System.Net.HttpStatusCode.NoContent;
                 }
             }
             catch (Exception ex)
@@ -206,7 +206,7 @@ namespace Data.cs.Commands
                 else
                 {
                     response.SetError("Registro no encontrado");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                    response.HttpCode = System.Net.HttpStatusCode.NoContent;
                 }
             }
             catch (Exception ex)
@@ -227,7 +227,7 @@ namespace Data.cs.Commands
                 else
                 {
                     response.SetError("Sin registros");
-                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                    response.HttpCode = System.Net.HttpStatusCode.NoContent;
                 }
             }
             catch (Exception ex)

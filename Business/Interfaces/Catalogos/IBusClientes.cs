@@ -7,7 +7,7 @@ namespace Business.Interfaces.Catalogos
 {
     public interface IBusClientes
     {
-        Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente);
+        Task<Response<EntClientes>> ValidateAndSaveClient(EntClienteRequest cliente, int iOrigen);
         Task<Response<EntClientes>> ValidateAndUpdateClient(EntClienteUpdateRequest cliente);
         Task<Response<EntClientes>> UpdateClientStatus(EntClienteUpdateEstatusRequest cliente);
         Task<Response<bool>> DeleteClientById(Guid id);
