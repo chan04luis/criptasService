@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Linq;
 using System.Reflection;
 
 public class SwaggerSchemaFilter : ISchemaFilter
