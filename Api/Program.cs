@@ -128,29 +128,12 @@ builder.Services.AddScoped<BusJwt>(provider =>
     return new BusJwt(JWT_SECRET_KEY, ISSUER);
 });*/
 
-#region Inyeccion de dependencias
+#region Inyeccion de dependencias Catalogo
 builder.Services.AddScoped<IClientesRepositorio, ClientesRepositorio>();
 builder.Services.AddScoped<IBusClientes, BusClientes>();
 builder.Services.AddScoped<IFiltros, Filtros>();
-builder.Services.AddScoped<IIglesiasRepositorio, IglesiasRepositorio>();
-builder.Services.AddScoped<IBusIglesias, BusIglesias>();
-builder.Services.AddScoped<IZonasRepositorio, ZonasRepositorio>();
-builder.Services.AddScoped<IBusZonas, BusZonas>();
-builder.Services.AddScoped<ISeccionesRepositorio, SeccionesRepositorio>();
-builder.Services.AddScoped<IBusSecciones, BusSecciones>();
-builder.Services.AddScoped<ICriptasRepositorio, CriptasRepositorio>();
-builder.Services.AddScoped<IBusCriptas, BusCriptas>();
-builder.Services.AddScoped<ITiposPagoRepositorio, TiposDePagoRepositorio>();
-builder.Services.AddScoped<IBusTiposPago, BusTiposPago>();
-builder.Services.AddScoped<IPagosRepositorio, PagosRepositorio>();
-builder.Services.AddScoped<IBusPagos, BusPagos>();
-builder.Services.AddScoped<IPagosParcialesRepositorio, PagosParcialesRepositorio>();
-builder.Services.AddScoped<IVisitasRepositorio, VisitasRepositorio>();
-builder.Services.AddScoped<IBusVisitas, BusVisitas>();
-builder.Services.AddScoped<IFallecidosRepositorio, FallecidosRepositorio>();
-builder.Services.AddScoped<IBusFallecidos, BusFallecidos>();
-builder.Services.AddScoped<IBeneficiariosRepositorio, BeneficiariosRepositorio>();
-builder.Services.AddScoped<IBusBeneficiarios, BusBeneficiarios>();
+builder.Services.AddScoped<ISucursalesRepositorio, SucursalesRepositorio>();
+builder.Services.AddScoped<IBusSucursal, BusSucursal>();
 
 #endregion
 

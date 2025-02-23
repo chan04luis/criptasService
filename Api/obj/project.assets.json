@@ -5785,19 +5785,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC-Chan\\.nuget\\packages\\": {}
+    "C:\\Users\\Luis Chan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Api.csproj",
+      "projectUniqueName": "C:\\workspace\\megadentService\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Api.csproj",
-      "packagesPath": "C:\\Users\\PC-Chan\\.nuget\\packages\\",
-      "outputPath": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\obj\\",
+      "projectPath": "C:\\workspace\\megadentService\\Api\\Api.csproj",
+      "packagesPath": "C:\\Users\\Luis Chan\\.nuget\\packages\\",
+      "outputPath": "C:\\workspace\\megadentService\\Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\PC-Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Luis Chan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5805,21 +5810,22 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
+        "http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Business.csproj": {
-              "projectPath": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Business.csproj"
+            "C:\\workspace\\megadentService\\Business\\Business.csproj": {
+              "projectPath": "C:\\workspace\\megadentService\\Business\\Business.csproj"
             },
-            "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models.csproj": {
-              "projectPath": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Models.csproj"
+            "C:\\workspace\\megadentService\\Models\\Models.csproj": {
+              "projectPath": "C:\\workspace\\megadentService\\Models\\Models.csproj"
             },
-            "D:\\Documentos\\GitHub\\pizzeriaService\\Utils\\Utils.csproj": {
-              "projectPath": "D:\\Documentos\\GitHub\\pizzeriaService\\Utils\\Utils.csproj"
+            "C:\\workspace\\megadentService\\Utils\\Utils.csproj": {
+              "projectPath": "C:\\workspace\\megadentService\\Utils\\Utils.csproj"
             }
           }
         }
@@ -5917,8 +5923,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://201.46.92.145:8080/tfs/ImasD/_packaging/IMD.Lib/nuget/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

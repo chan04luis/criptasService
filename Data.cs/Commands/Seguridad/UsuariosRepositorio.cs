@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Business.Data;
 using Data.cs;
 using Data.cs.Entities.Seguridad;
+using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

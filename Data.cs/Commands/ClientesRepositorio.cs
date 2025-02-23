@@ -4,7 +4,7 @@ using Data.cs;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
-using Models.Request.Clientes;
+using Models.Request.Catalogo.Clientes;
 using Utils;
 
 public class ClientesRepositorio : IClientesRepositorio
@@ -142,7 +142,7 @@ public class ClientesRepositorio : IClientesRepositorio
             else
             {
                 response.SetError("Registro no encontrado");
-                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                response.HttpCode = System.Net.HttpStatusCode.NoContent;
             }
         }
         catch (Exception ex)
@@ -152,9 +152,9 @@ public class ClientesRepositorio : IClientesRepositorio
         return response;
     }
 
-    public async Task<Response<List<EntClientes>>> DGetByFilters(EntClienteSearchRequest filtros)
+    public async Task<Response<PagedResult<EntClientes>>> DGetByFilters(EntClienteSearchRequest filtros)
     {
-        var response = new Response<List<EntClientes>>();
+        var response = new Response<PagedResult<EntClientes>>();
         try
         {
             var items = dbContext.Clientes.AsNoTracking().Where(c => c.bEliminado == false);
@@ -166,19 +166,34 @@ public class ClientesRepositorio : IClientesRepositorio
             {
                 items = items.Where(x => x.sApellidos.ToLower().Contains(filtros.sApellido.ToLower()));
             }
+            if (filtros.sCorreo != null)
+            {
+                items = items.Where(x => x.sEmail.ToLower().Contains(filtros.sCorreo.ToLower()));
+            }
             if (filtros.bEstatus != null)
             {
                 items = items.Where(x => x.bEstatus == filtros.bEstatus);
             }
-            if (await items.CountAsync() > 0)
+            int totalRecords = await items.CountAsync();
+            int totalPages = (int)Math.Ceiling((double)totalRecords / filtros.iNumReg);
+            if (totalRecords > 0)
             {
-                var result = await items.ToListAsync();
-                response.SetSuccess(_mapper.Map<List<EntClientes>>(result));
+                var result = await items
+                    .OrderBy(x => x.sNombre)
+                    .ThenBy(x => x.sApellidos)
+                    .ThenBy(x => x.uId)
+                    .Skip((filtros.iNumPag - 1) * filtros.iNumReg)
+                    .Take(filtros.iNumReg)
+                    .ToListAsync();
+                var list = _mapper.Map<List<EntClientes>>(result);
+                var resultado = new PagedResult<EntClientes>(list, totalRecords, filtros.iNumPag, filtros.iNumReg);
+
+                response.SetSuccess(resultado);
             }
             else
             {
                 response.SetError("Registro no encontrado");
-                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                response.HttpCode = System.Net.HttpStatusCode.NoContent;
             }
         }
         catch (Exception ex)
@@ -205,7 +220,7 @@ public class ClientesRepositorio : IClientesRepositorio
             else
             {
                 response.SetError("Registro no encontrado");
-                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                response.HttpCode = System.Net.HttpStatusCode.NoContent;
             }
         }
         catch (Exception ex)
@@ -227,7 +242,7 @@ public class ClientesRepositorio : IClientesRepositorio
             else
             {
                 response.SetError("Sin registros");
-                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                response.HttpCode = System.Net.HttpStatusCode.NoContent;
             }
         }
         catch (Exception ex)

@@ -1,38 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Documentos\\GitHub\\pizzeriaService\\",
+  "WorkspaceRootPath": "C:\\workspace\\megadentService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\bususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\seguridad\\usuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\seguridad\\busautenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\mapping\\catalogos\\mapsucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\mapping\\catalogos\\mapsucursales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\request\\usuarios\\entusuariologinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entusuariologinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\workspace\\megadentservice\\data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|d:\\documentos\\github\\pizzeriaservice\\models\\request\\usuarios\\entchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\request\\usuarios\\entchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|d:\\documentos\\github\\pizzeriaservice\\api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\seguridad\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|d:\\documentos\\github\\pizzeriaservice\\business\\interfaces\\seguridad\\ibususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\seguridad\\ibususuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|d:\\documentos\\github\\pizzeriaservice\\data.cs\\interfaces\\catalogos\\iusuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\iusuariosrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\workspace\\megadentservice\\api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IBusUsuarios.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
-              "RelativeToolTip": "Business\\Interfaces\\Seguridad\\IBusUsuarios.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAWwBUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:39:21.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "RelativeToolTip": "Api\\Controllers\\Seguridad\\UsuariosController.cs",
-              "ViewState": "AQIAAI8AAAAAAAAAAAAAAJEAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:37:00.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IUsuariosRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\IUsuariosRepositorio.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAWwBUAAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:35:47.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusAutenticacion.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusAutenticacion.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAqwEIAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:28:38.129Z",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Api\\appsettings.Development.json",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\appsettings.Development.json",
+              "RelativeToolTip": "Api\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-23T00:25:30.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "EntUsuarioLoginRequest.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
-              "RelativeDocumentMoniker": "Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
-              "RelativeToolTip": "Models\\Request\\Usuarios\\EntUsuarioLoginRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAsAAAA",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data.cs\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data.cs\\ApplicationDbContext.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAADwvwAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:26:28.038Z",
+              "WhenOpened": "2025-02-23T00:23:45.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EntChangePassword.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntChangePassword.cs",
-              "RelativeDocumentMoniker": "Models\\Request\\Usuarios\\EntChangePassword.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Models\\Request\\Usuarios\\EntChangePassword.cs",
-              "RelativeToolTip": "Models\\Request\\Usuarios\\EntChangePassword.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAcAAAA",
+              "DocumentIndex": 2,
+              "Title": "MapSucursales.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapSucursales.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:25:37.241Z",
+              "WhenOpened": "2025-02-23T00:23:38.361Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsuariosRepositorio.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\Seguridad\\UsuariosRepositorio.cs",
-              "ViewState": "AQIAABwBAAAAAAAAAAAmwG0BAAAJAAAA",
+              "Title": "MapClientes.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
+              "RelativeDocumentMoniker": "Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
+              "RelativeToolTip": "Data.cs\\Mapping\\Catalogos\\MapClientes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:24:47.519Z",
+              "WhenOpened": "2025-02-23T00:21:50.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BusUsuarios.cs",
-              "DocumentMoniker": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "ToolTip": "D:\\Documentos\\GitHub\\pizzeriaService\\Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "RelativeToolTip": "Business\\Implementation\\Seguridad\\BusUsuarios.cs",
-              "ViewState": "AQIAANwAAAAAAAAAAAAcwOoAAAArAAAA",
+              "DocumentIndex": 4,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\workspace\\megadentService\\Api\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\workspace\\megadentService\\Api\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Api\\Controllers\\ClientesController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T06:24:29.111Z",
+              "WhenOpened": "2025-02-23T00:20:52.856Z",
               "EditorCaption": ""
             }
           ]

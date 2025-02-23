@@ -1,12 +1,12 @@
 ﻿using Models.Models;
-using Models.Request.Clientes;
+using Models.Request.Catalogo.Clientes;
 using Utils;
 
 public interface IClientesRepositorio
 {
     Task<Response<EntClientes>> DSave(EntClientes newItem);
     Task<Response<EntClientes>> DGetById(Guid iKey);
-    Task<Response<List<EntClientes>>> DGetByFilters(EntClienteSearchRequest filtros);
+    Task<Response<PagedResult<EntClientes>>> DGetByFilters(EntClienteSearchRequest filtros);
     Task<Response<List<EntClientes>>> DGetList();
     Task<Response<EntClientes>> DUpdate(EntClientes entity);
     Task<Response<EntClientes>> DUpdateBoolean(EntClientes entity);

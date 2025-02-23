@@ -1,24 +1,14 @@
 ﻿using AutoMapper;
-using Business.Data;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utils.Interfaces;
-using Newtonsoft.Json.Linq;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using FluentValidation;
 using Business.Interfaces.Seguridad;
 using Utils;
 using Models.Models;
-using Models.Request.Usuarios;
 using Models.Validations.Seguridad;
-using Models.Seguridad;
+using Data.cs.Interfaces.Seguridad;
+using Models.Request.Usuarios;
 
 namespace Business.Implementation.Seguridad
 {

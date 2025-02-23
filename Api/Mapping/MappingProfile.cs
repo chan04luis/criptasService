@@ -2,19 +2,9 @@
 using Data.cs.Entities.Catalogos;
 using Data.cs.Entities.Seguridad;
 using Models.Models;
-using Models.Request;
-using Models.Request.Beneficiarios;
-using Models.Request.Clientes;
-using Models.Request.Criptas;
-using Models.Request.Fallecidos;
-using Models.Request.Iglesias;
-using Models.Request.Pagos;
-using Models.Request.Secciones;
-using Models.Request.TipoPagos;
+using Models.Request.Catalogo.Clientes;
+using Models.Request.Catalogo.Sucursales;
 using Models.Request.Usuarios;
-using Models.Request.Zonas;
-using Models.Responses.Iglesia;
-using Models.Responses.Zonas;
 
 
 public class MappingProfile : Profile
@@ -31,80 +21,11 @@ public class MappingProfile : Profile
         CreateMap<EntClienteUpdateEstatusRequest, EntClientes>();
         #endregion
 
-        #region Iglesias
-        CreateMap<EntIglesias, Iglesias>();
-        CreateMap<Iglesias, EntIglesias>();
-        CreateMap<Iglesias, EntIglesiaResponse>().ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.listZonas));
-        CreateMap<EntIglesiaUpdateRequest, EntIglesias>();
-        CreateMap<EntIglesiaUpdateEstatusRequest, EntIglesias>();
-        #endregion
-
-        #region Zonas
-        CreateMap<EntZonas, Zonas>();
-        CreateMap<Zonas, EntZonas>();
-        CreateMap<Zonas, EntZonasResponse>().ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.listSecciones));
-        CreateMap<EntZonaUpdateRequest, EntZonas>();
-        CreateMap<EntZonaUpdateEstatusRequest, EntZonas>();
-        #endregion
-
-        #region Secciones
-        CreateMap<EntSecciones, Secciones>();
-        CreateMap<Secciones, EntSecciones>();
-        CreateMap<EntSeccionesUpdateRequest, EntSecciones>();
-        CreateMap<EntSeccionesUpdateEstatusRequest, EntSecciones>();
-        #endregion
-
-        #region Criptas
-        CreateMap<EntCriptas, Criptas>();
-        CreateMap<Criptas, EntCriptas>();
-        CreateMap<EntCriptaUpdateRequest, EntCriptas>();
-        CreateMap<EntCriptaUpdateEstatusRequest, EntCriptas>();
-        #endregion
-
-        #region Tipos de pagos
-        CreateMap<EntTiposPago, TiposDePago>();
-        CreateMap<TiposDePago, EntTiposPago>();
-        CreateMap<EntTiposPagoRequest, EntTiposPago>();
-        CreateMap<EntTiposPagoSearchRequest, EntTiposPago>();
-        CreateMap<EntTiposPago, EntTiposPagoRequest>();
-        #endregion
-
-        #region Pagos
-        CreateMap<EntPagos, Pagos>();
-        CreateMap<Pagos, EntPagos>();
-        CreateMap<EntPagosRequest, EntPagos>();
-        CreateMap<EntPagosSearchRequest, EntPagos>();
-        CreateMap<EntPagosUpdateEstatusRequest, EntPagos>();
-        #endregion
-
-        #region PagosParciales
-        CreateMap<EntPagosParciales, PagosParciales>().ReverseMap();
-        #endregion
-
-        #region Criptas
-        CreateMap<EntCriptas, Criptas>();
-        CreateMap<Criptas, EntCriptas>();
-        CreateMap<EntCriptaUpdateRequest, EntCriptas>();
-        CreateMap<EntCriptaUpdateEstatusRequest, EntCriptas>();
-        #endregion
-
-        #region Visitas
-        CreateMap<EntVisitas, Visitas>();
-        CreateMap<Visitas, EntVisitas>();
-        #endregion
-
-        #region Fallecidos
-        CreateMap<EntFallecidos, Fallecidos>().ReverseMap();
-        CreateMap<EntFallecidos, EntFallecidosRequest>().ReverseMap();
-        CreateMap<EntFallecidosUpdateRequest, EntFallecidos>().ReverseMap();
-        CreateMap<EntFallecidosUpdateEstatusRequest, EntFallecidos>().ReverseMap();
-        #endregion
-
-        #region Beneficiarios
-        CreateMap<EntBeneficiarios, Beneficiarios>().ReverseMap();
-        CreateMap<EntBeneficiarios, EntBeneficiariosRequest>().ReverseMap();
-        CreateMap<EntBeneficiariosUpdateRequest, EntBeneficiarios>().ReverseMap();
-        CreateMap<EntBeneficiariosUpdateEstatusRequest, EntBeneficiarios>().ReverseMap();
+        #region Sucursales
+        CreateMap<EntSucursal, Sucursales>();
+        CreateMap<Sucursales, EntSucursal>();
+        CreateMap<EntSucursalUpdateRequest, EntSucursal>();
+        CreateMap<EntSucursalUpdateEstatusRequest, EntSucursal>();
         #endregion
 
         #region Usuarios

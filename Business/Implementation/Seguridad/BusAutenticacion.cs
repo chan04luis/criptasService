@@ -1,23 +1,16 @@
 ﻿using AutoMapper;
-using Business.Data;
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Models.Models;
 using Models.Seguridad;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using Utils;
 using Utils.Interfaces;
 

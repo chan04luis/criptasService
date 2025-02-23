@@ -1,10 +1,9 @@
 ﻿using Data.cs.Entities;
 using Data.cs.Entities.Catalogos;
-using Data.cs.Entities.Seguridad;
-using Data.cs.Mapping;
 using Data.cs.Mapping.Seguridad;
 using Data.cs.Mapping.Catalogos;
 using Microsoft.EntityFrameworkCore;
+using Data.cs.Entities.Seguridad;
 
 namespace Data.cs
 {
@@ -14,17 +13,8 @@ namespace Data.cs
         {
         }
 
-        public virtual DbSet<Beneficiarios> Beneficiarios { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
-        public virtual DbSet<Criptas> Criptas { get; set; }
-        public virtual DbSet<Iglesias> Iglesias { get; set; }
-        public virtual DbSet<Fallecidos> Fallecidos { get; set; }
-        public virtual DbSet<Pagos> Pagos { get; set; }
-        public virtual DbSet<PagosParciales> PagosParciales { get; set; }
-        public virtual DbSet<TiposDePago> TiposDePagos { get; set; }
-        public virtual DbSet<Zonas> Zonas { get; set; }
-        public virtual DbSet<Secciones> Secciones { get; set; }
-        public virtual DbSet<Visitas> Visitas { get; set; }
+        public virtual DbSet<Sucursales> Sucursal { get; set; }
 
 
         #region entities seguridad
@@ -42,7 +32,7 @@ namespace Data.cs
         #endregion
 
 
-        private const string EsquemaIglesia = "iglesia";
+        private const string EsquemaCatalogo = "catalogo";
 
         private const string EsquemaSeguridad = "seguridad";
 
@@ -54,17 +44,8 @@ namespace Data.cs
         }
         private void PrepararIgleisas(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new MapClientes(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapIglesias(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapZonas(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapSecciones(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapCriptas(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapBeneficiarios(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapFallecidos(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapPagos(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapPagosParciales(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapVisitas(EsquemaIglesia));
-            modelBuilder.ApplyConfiguration(new MapTiposDePago(EsquemaIglesia));
+            modelBuilder.ApplyConfiguration(new MapClientes(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapSucursales(EsquemaCatalogo));
 
             OnModelCreatingPartial(modelBuilder);
         }

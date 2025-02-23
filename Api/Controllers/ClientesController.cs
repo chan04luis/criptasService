@@ -1,11 +1,11 @@
 ﻿
 using Business.Interfaces.Catalogos;
 using Utils;
-using Models.Request.Clientes;
 using Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Models.Request.Catalogo.Clientes;
 
 namespace Api.Controllers
 {
@@ -110,7 +110,7 @@ namespace Api.Controllers
 
         [HttpPost("ByFilters")]
         [SwaggerOperation(Summary = "Obtiene clientes por filtros", Description = "Recupera una lista de clientes que coincidan con los filtros proporcionado.")]
-        public async Task<Response<List<EntClientes>>> GetClientsByFilters([FromBody] EntClienteSearchRequest cliente)
+        public async Task<Response<PagedResult<EntClientes>>> GetClientsByFilters([FromBody] EntClienteSearchRequest cliente)
         {
             _logger.LogInformation("Iniciando búsqueda de clientes con los filtros: {cliente}", cliente);
             var response = await _busClientes.GetClientsByFilters(cliente);
