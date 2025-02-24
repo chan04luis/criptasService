@@ -250,5 +250,20 @@ namespace Business.Implementation.Catalogos
                 return response;
             }
         }
+        public async Task<Response<CriptasResumen>> GetResumenCriptas()
+        {
+            try
+            {
+                return await _criptasRepositorio.DGetResumenCriptas();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener el resumen de criptas");
+                var response = new Response<CriptasResumen>();
+                response.SetError("Hubo un error al obtener la lista de criptas.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
     }
 }

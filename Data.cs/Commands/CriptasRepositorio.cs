@@ -404,6 +404,38 @@ namespace Data.cs.Commands
 
             return response;
         }
+        public async Task<Response<CriptasResumen>> DGetResumenCriptas()
+        {
+            var response = new Response<CriptasResumen>();
+
+            try
+            {
+                var total = await dbContext.Criptas
+                    .CountAsync(c => !c.bEliminado);
+
+                var disponibles = await dbContext.Criptas
+                    .CountAsync(c => !c.bEliminado && c.bDisponible);
+
+                var ocupadas = await dbContext.Criptas
+                    .CountAsync(c => !c.bEliminado && !c.bDisponible);
+
+                var resumen = new CriptasResumen
+                {
+                    Total = total,
+                    Disponibles = disponibles,
+                    Ocupadas = ocupadas
+                };
+
+                response.SetSuccess(resumen);
+            }
+            catch (Exception ex)
+            {
+                response.SetError($"Error al obtener el resumen de criptas: {ex.Message}");
+                response.HttpCode = HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
     }
 
 }
