@@ -17,6 +17,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<List<EntCriptas>>> GetCriptaList(Guid uIdSeccion);
         Task<Response<List<EntCriptas>>> GetCriptaListDisponible(Guid uIdSeccion);
         Task<Response<List<CriptasDisponibles>>> BGetListDisponibleByIglesia(Guid uId);
+        Task<Response<CriptasResumen>> GetResumenCriptas();
     }
 
 }

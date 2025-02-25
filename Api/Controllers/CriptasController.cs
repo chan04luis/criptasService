@@ -188,6 +188,13 @@ namespace Api.Controllers
             }
             return response;
         }
+
+        [HttpGet("indicadores")]
+        public async Task<Response<CriptasResumen>> GetResumenCriptas()
+        {
+            var response = await _busCriptas.GetResumenCriptas();
+            return response;
+        }
         #endregion
 
         #region Endpoints de Visitas

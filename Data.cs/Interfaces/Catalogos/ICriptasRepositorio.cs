@@ -19,6 +19,7 @@ namespace Business.Data
         Task<Response<List<EntCriptas>>> DGetListDisponible(Guid uIdSeccion);
         Task<Response<List<CriptasDisponibles>>> DGetListDisponibleByIglesia(Guid uId);
         Task<Response<List<EntCriptas>>> DGetByName(string nombre, Guid uIdSeccion);
+        Task<Response<CriptasResumen>> DGetResumenCriptas();
     }
 
 }
