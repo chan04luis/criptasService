@@ -3,6 +3,7 @@ using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
+using Models.Enums;
 using Models.Models;
 using Models.Request.Criptas;
 using Models.Responses.Criptas;
@@ -410,6 +411,9 @@ namespace Data.cs.Commands
 
             try
             {
+                DateTime inicioMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime finMes = inicioMes.AddMonths(1).AddDays(-1);
+
                 var total = await dbContext.Criptas
                     .CountAsync(c => !c.bEliminado);
 
@@ -419,11 +423,35 @@ namespace Data.cs.Commands
                 var ocupadas = await dbContext.Criptas
                     .CountAsync(c => !c.bEliminado && !c.bDisponible);
 
+                var clientes = await dbContext.Clientes
+                    .CountAsync(c => !c.bEliminado && c.uId != Guid.Parse(IdPermanentes.clienteGeneral.GetDescription()));
+
+                var ventas = await dbContext.Pagos
+                    .CountAsync(c => !c.bEliminado && c.iTipoPago==1 && c.bPagado==true && c.dtFechaPago >= inicioMes && c.dtFechaPago <= finMes);
+
+                var ingresos = await dbContext.Pagos
+                    .Where(c => !c.bEliminado && c.bPagado == true && c.dtFechaPago >= inicioMes && c.dtFechaPago <= finMes)
+                    .SumAsync(x=>x.dMontoPagado ?? 0);
+
+                var ingresosParcial = await (from pago in dbContext.Pagos
+                                             join parcial in dbContext.PagosParciales
+                                             on pago.uId equals parcial.uIdPago
+                                             where !pago.bEliminado
+                                                   && pago.bPagado == false
+                                                   && !parcial.bEliminado
+                                                   && parcial.dtFechaPago >= inicioMes
+                                                   && parcial.dtFechaPago <= finMes
+                                             select parcial.dMonto)
+                               .SumAsync();
+
                 var resumen = new CriptasResumen
                 {
                     Total = total,
                     Disponibles = disponibles,
-                    Ocupadas = ocupadas
+                    Ocupadas = ocupadas,
+                    Clientes = clientes,
+                    Ingresos = $"{(ingresos + ingresosParcial):C}",
+                    Ventas = ventas
                 };
 
                 response.SetSuccess(resumen);

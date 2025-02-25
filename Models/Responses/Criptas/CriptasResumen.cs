@@ -11,5 +11,10 @@ namespace Models.Responses.Criptas
         public int Total { get; set; }
         public int Disponibles { get; set; }
         public int Ocupadas { get; set; }
+        public string Ingresos { get; set; }
+
+        public int Clientes { get; set; }   
+
+        public int Ventas { get; set; }
     }
 }

@@ -1,122 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\api\\controllers\\criptascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3DF2C2B8-6797-42D5-981B-587BA9F9A3FA}|Api\\Api.csproj|solutionrelative:api\\controllers\\criptascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\business\\interfaces\\catalogos\\ibuscriptas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\interfaces\\catalogos\\ibuscriptas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\business\\implementation\\catalogos\\buscriptas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51173E67-741F-4E9D-9080-10786D2926B0}|Business\\Business.csproj|solutionrelative:business\\implementation\\catalogos\\buscriptas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\data.cs\\commands\\criptasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\commands\\criptasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\data.cs\\interfaces\\catalogos\\icriptasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DC9352BF-7F2F-4E9F-A873-C55BC99ADD3E}|Data.cs\\Data.cs.csproj|solutionrelative:data.cs\\interfaces\\catalogos\\icriptasrepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|c:\\users\\luis herrera\\documents\\luis jorge\\proyectos\\gestioncripas\\criptasservice\\models\\responses\\criptas\\criptasresumen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3D79F3C-8AF1-4C76-A194-05C870FE9E56}|Models\\Models.csproj|solutionrelative:models\\responses\\criptas\\criptasresumen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\Documentos\\GitHub\\Criptas\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CriptasController.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Api\\Controllers\\CriptasController.cs",
-              "RelativeDocumentMoniker": "Api\\Controllers\\CriptasController.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Api\\Controllers\\CriptasController.cs",
-              "RelativeToolTip": "Api\\Controllers\\CriptasController.cs",
-              "ViewState": "AQIAAK0AAAAAAAAAAAAowMIAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:40:52.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IBusCriptas.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Business\\Interfaces\\Catalogos\\IBusCriptas.cs",
-              "RelativeDocumentMoniker": "Business\\Interfaces\\Catalogos\\IBusCriptas.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Business\\Interfaces\\Catalogos\\IBusCriptas.cs",
-              "RelativeToolTip": "Business\\Interfaces\\Catalogos\\IBusCriptas.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBMAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:40:24.383Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BusCriptas.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Business\\Implementation\\Catalogos\\BusCriptas.cs",
-              "RelativeDocumentMoniker": "Business\\Implementation\\Catalogos\\BusCriptas.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Business\\Implementation\\Catalogos\\BusCriptas.cs",
-              "RelativeToolTip": "Business\\Implementation\\Catalogos\\BusCriptas.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:39:14.515Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ICriptasRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Data.cs\\Interfaces\\Catalogos\\ICriptasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Interfaces\\Catalogos\\ICriptasRepositorio.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Data.cs\\Interfaces\\Catalogos\\ICriptasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Interfaces\\Catalogos\\ICriptasRepositorio.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:38:20.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CriptasResumen.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Models\\Responses\\Criptas\\CriptasResumen.cs",
-              "RelativeDocumentMoniker": "Models\\Responses\\Criptas\\CriptasResumen.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Models\\Responses\\Criptas\\CriptasResumen.cs",
-              "RelativeToolTip": "Models\\Responses\\Criptas\\CriptasResumen.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:36:26.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CriptasRepositorio.cs",
-              "DocumentMoniker": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Data.cs\\Commands\\CriptasRepositorio.cs",
-              "RelativeDocumentMoniker": "Data.cs\\Commands\\CriptasRepositorio.cs",
-              "ToolTip": "C:\\Users\\Luis Herrera\\Documents\\Luis jorge\\Proyectos\\GestionCripas\\criptasService\\Data.cs\\Commands\\CriptasRepositorio.cs",
-              "RelativeToolTip": "Data.cs\\Commands\\CriptasRepositorio.cs",
-              "ViewState": "AQIAAJIBAAAAAAAAAAAqwBIAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T03:33:28.495Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
