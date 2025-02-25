@@ -19,6 +19,9 @@ namespace Models.Models
         [JsonProperty("MontoTotal")]
         public decimal dMontoTotal { get; set; }
 
+        [JsonProperty("TipoPago")]
+        public int iTipoPago { get; set; }
+
         [JsonProperty("FechaLimite")]
         public DateTime dtFechaLimite { get; set; }
 

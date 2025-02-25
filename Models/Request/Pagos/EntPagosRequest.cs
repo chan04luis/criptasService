@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Request.Pagos
 {
@@ -14,6 +9,9 @@ namespace Models.Request.Pagos
 
         [JsonProperty("IdCripta")]
         public Guid uIdCripta { get; set; }
+
+        [JsonProperty("TipoPago")]
+        public int iTipoPago { get; set; }
 
         [JsonProperty("IdTipoPago")]
         public Guid uIdTipoPago { get; set; }

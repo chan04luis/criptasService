@@ -6,6 +6,7 @@
         public Guid uIdClientes { get; set; }
         public Guid uIdCripta { get; set; }
         public Guid uIdTipoPago { get; set; }
+        public int iTipoPago { get; set; }
         public decimal dMontoTotal { get; set; }
         public decimal? dMontoPagado { get; set; }
         public DateTime dtFechaLimite { get; set; }

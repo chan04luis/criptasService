@@ -57,9 +57,9 @@ namespace Utils.Implementation
         /// <summary>
         /// Envía un correo de notificación de pago.
         /// </summary>
-        public async Task EnviarCorreoPago(EntClientes cliente, string estadoPago, decimal monto, string referencia)
+        public async Task EnviarCorreoPago(EntClientes cliente, string estadoPago, decimal monto, string referencia, int tipo)
         {
-            string htmlBody = EmailTemplateService.GetPagoTemplate(cliente, estadoPago, monto, referencia);
+            string htmlBody = EmailTemplateService.GetPagoTemplate(cliente, estadoPago, monto, referencia, tipo);
             string asunto = estadoPago switch
             {
                 "CREADO" => "Pago Registrado",

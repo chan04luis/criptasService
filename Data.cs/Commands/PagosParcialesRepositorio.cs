@@ -3,6 +3,7 @@ using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
+using System.Net;
 using Utils;
 
 namespace Data.cs.Commands
@@ -26,6 +27,7 @@ namespace Data.cs.Commands
                 var pagosParciales = await dbContext.PagosParciales.AsNoTracking()
                     .Where(p => p.uIdPago == uIdPago && !p.bEliminado)
                     .ToListAsync();
+                response.HttpCode =  (pagosParciales.Count > 0) ? HttpStatusCode.OK: HttpStatusCode.NoContent;
 
                 response.Result = _mapper.Map<List<EntPagosParciales>>(pagosParciales);
             }

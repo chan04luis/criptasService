@@ -9,5 +9,11 @@ namespace Models.Request.Pagos
 
         [JsonProperty("MontoPagado")]
         public decimal dMontoPagado { get; set; }
+
+        [JsonProperty("ApplyDate")]
+        public bool bApplyDate { get; set; }
+
+        [JsonProperty("FechaPagado")]
+        public string sFechaPagado { get; set; }
     }
 }

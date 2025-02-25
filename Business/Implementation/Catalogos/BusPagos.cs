@@ -51,12 +51,12 @@ namespace Business.Implementation.Catalogos
                 }
 
                 var cripta = await _criptasRepositorio.DGetById(pago.uIdCripta);
-                if (cripta.HasError || cripta.Result == null)
+                if (cripta.HasError || cripta.Result == null && pago.iTipoPago == 1)
                 {
                     response.SetError("No existe el cripta.");
                     response.HttpCode = HttpStatusCode.BadRequest;
                     return response;
-                }else if(!cripta.Result.bEstatus || !cripta.Result.bDisponible)
+                }else if(!cripta.Result.bEstatus || !cripta.Result.bDisponible && pago.iTipoPago == 1)
                 {
                     response.SetError("Cripta no disponible para su apartado.");
                     response.HttpCode = HttpStatusCode.BadRequest;
@@ -72,7 +72,7 @@ namespace Business.Implementation.Catalogos
                 }
 
                 var item = await _pagosRepositorio.DGetByClienteId(pago.uIdClientes);
-                if (!item.HasError && item.Result.Any(p => p.uIdCripta == pago.uIdCripta && p.uIdTipoPago == pago.uIdTipoPago))
+                if (!item.HasError && pago.iTipoPago == 1 && item.Result.Any(p => p.uIdCripta == pago.uIdCripta && p.uIdTipoPago == pago.uIdTipoPago))
                 {
                     response.SetError("Ya existe un pago registrado con esos datos.");
                     response.HttpCode = HttpStatusCode.BadRequest;
@@ -83,6 +83,7 @@ namespace Business.Implementation.Catalogos
                 {
                     uId = Guid.NewGuid(),
                     uIdClientes = pago.uIdClientes,
+                    iTipoPago = pago.iTipoPago,
                     uIdCripta = pago.uIdCripta,
                     uIdTipoPago = pago.uIdTipoPago,
                     dMontoTotal = pago.dMontoTotal,
@@ -96,7 +97,7 @@ namespace Business.Implementation.Catalogos
                 var responseFinal = await SavePago(nuevoPago);
                 if (!responseFinal.HasError)
                 {
-                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "CREADO", nuevoPago.dMontoTotal, cripta.Result.sNumero);
+                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "CREADO", nuevoPago.dMontoTotal, cripta.Result.sNumero, pago.iTipoPago);
                     await _firebase.EnviarNotificacionAsync(
                         clienteResponse.Result.sFcmToken,
                         "Pago Creado",
@@ -121,7 +122,7 @@ namespace Business.Implementation.Catalogos
                 var respuesta = await _pagosRepositorio.DSave(_mapper.Map<EntPagos>(pago));
                 if(!respuesta.HasError)
                 {
-                    if(pago.uIdCripta  != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
+                    if(pago.uIdCripta  != new Guid(IdPermanentes.clienteGeneral.GetDescription()) && pago.iTipoPago == 1)
                     {
                         EntCriptas entity = new EntCriptas()
                         {
@@ -253,7 +254,21 @@ namespace Business.Implementation.Catalogos
                                 entidad.dMontoPagado = dMonto;
 
                             entidad.bPagado = pagoBD.dMontoTotal <= entidad.dMontoPagado;
-                            entidad.dtFechaPagado = entidad.bPagado ? DateTime.Now.ToLocalTime() : null;
+                            if (pago.bApplyDate)
+                            {
+                                if (DateTime.TryParse(pago.sFechaPagado, out DateTime fechaP))
+                                {
+                                    entidad.dtFechaPagado = fechaP;
+                                }
+                                else
+                                {
+                                    response.SetError("La fecha es incorrecta.");
+                                    response.HttpCode = HttpStatusCode.BadRequest;
+                                    return response;
+                                }
+                            }
+                            else
+                                entidad.dtFechaPagado = entidad.bPagado ? DateTime.Now.ToLocalTime() : null;
                             if (!entidad.bPagado || pagoBD.dMontoTotal > pago.dMontoPagado)
                             {
                                 EntPagosParciales entPagosParciales = new EntPagosParciales()
@@ -261,7 +276,7 @@ namespace Business.Implementation.Catalogos
                                     uIdPago = entidad.uIdPago,
                                     dMonto = pago.dMontoPagado,
                                     dtFechaActualizacion = DateTime.Now.ToLocalTime(),
-                                    dtFechaPago = DateTime.Now.ToLocalTime(),
+                                    dtFechaPago = pago.bApplyDate ? DateTime.Parse(pago.sFechaPagado) : DateTime.Now.ToLocalTime(),
                                     dtFechaRegistro = DateTime.Now.ToLocalTime(),
                                     bEstatus = true,
                                     uId = Guid.NewGuid()
@@ -273,14 +288,18 @@ namespace Business.Implementation.Catalogos
                             {
                                 if (pagoBD.uIdCripta != new Guid(IdPermanentes.clienteGeneral.GetDescription()))
                                 {
-                                    EntCriptas entity = new EntCriptas()
+                                    if(pagoBD.iTipoPago == 1)
                                     {
-                                        uId = pagoBD.uIdCripta,
-                                        bDisponible = false,
-                                        uIdCliente = pagoBD.uIdClientes
-                                    };
-                                    await _criptasRepositorio.DUpdateDisponible(entity);
-                                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "LIQUIDADO", entidad.dMontoPagado.Value, cripta.Result.sNumero);
+                                        EntCriptas entity = new EntCriptas()
+                                        {
+                                            uId = pagoBD.uIdCripta,
+                                            bDisponible = false,
+                                            uIdCliente = pagoBD.uIdClientes
+                                        };
+                                        await _criptasRepositorio.DUpdateDisponible(entity);
+                                    }
+                                    
+                                    await _emailService.EnviarCorreoPago(clienteResponse.Result, "LIQUIDADO", entidad.dMontoPagado.Value, cripta.Result.sNumero, pagoBD.iTipoPago);
                                     await _firebase.EnviarNotificacionAsync(
                                         clienteResponse.Result.sFcmToken,
                                         "Pago aplicado",
@@ -289,7 +308,7 @@ namespace Business.Implementation.Catalogos
                                 }
                             }else if (!response.HasError)
                             {
-                                await _emailService.EnviarCorreoPago(clienteResponse.Result, "APLICADO", pago.dMontoPagado, cripta.Result.sNumero);
+                                await _emailService.EnviarCorreoPago(clienteResponse.Result, "APLICADO", pago.dMontoPagado, cripta.Result.sNumero, pagoBD.iTipoPago);
                                 await _firebase.EnviarNotificacionAsync(
                                         clienteResponse.Result.sFcmToken,
                                         "Pago aplicado",

@@ -77,11 +77,11 @@ namespace Utils.Implementation
         </html>";
         }
 
-        public static string GetPagoTemplate(EntClientes cliente, string estadoPago, decimal monto, string referencia)
+        public static string GetPagoTemplate(EntClientes cliente, string estadoPago, decimal monto, string referencia, int tipo)
         {
             string mensajeEstado = estadoPago switch
             {
-                "CREADO" => $"Tu pago ha sido registrado correctamente. Aún está pendiente de confirmación.",
+                "CREADO" => tipo==1?$"Tu pago ha sido registrado correctamente. Aún está pendiente de confirmación.":"Se te ha asignado un pago de anualidad",
                 "APLICADO" => $"Tu pago ha sido procesado con éxito y ha sido aplicado a tu cuenta.",
                 "LIQUIDADO" => $"Felicidades, tu cuenta ha sido liquidada completamente.",
                 _ => "Estado de pago desconocido."

@@ -40,6 +40,10 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("NUMERIC")
                 .HasColumnName("monto_total");
 
+            builder.Property(e => e.iTipoPago)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("tipo_pagos");
+
             builder.Property(e => e.dtFechaLimite)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_limite");
