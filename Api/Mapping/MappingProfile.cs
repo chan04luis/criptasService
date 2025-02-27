@@ -70,6 +70,7 @@ public class MappingProfile : Profile
         #endregion
 
         #region Pagos
+        CreateMap<EntSolicitudPago, SolicitudPago>().ReverseMap();
         CreateMap<EntPagos, Pagos>();
         CreateMap<Pagos, EntPagos>();
         CreateMap<EntPagosRequest, EntPagos>();

@@ -27,6 +27,40 @@ namespace Api.Controllers
             _busPagos = busPagos;
         }
 
+        #region Evidencias de pago
+        [HttpPost("Evidencia/Create")]
+        [SwaggerOperation(Summary = "Crea una evidencia pago", Description = "Valida los datos y guarda un nuevo pago en la base de datos.")]
+        public async Task<Response<EntSolicitudPago>> CreateEvidenciaPago([FromBody] EntSolicitudPago pago)
+        {
+            _logger.LogInformation("Iniciando creación de pago.");
+            var response = await _busPagos.SaveInfoPago(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al crear pago: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago creado exitosamente con ID: {Id}", response.Result?.uId);
+            }
+            return response;
+        }
+        [HttpPut("Evidencia/UpdateStatus")]
+        [SwaggerOperation(Summary = "Actualiza el estado de una solicitud de pago", Description = "Actualiza el estado booleano de un pago.")]
+        public async Task<Response<EntSolicitudPago>> UpdateEvidenciaPagoStatus([FromBody] EntSolicitudPago pago)
+        {
+            _logger.LogInformation("Iniciando actualización de estado para pago con ID: {Id}", pago.uId);
+            var response = await _busPagos.UpdateInfoPago(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar estado de pago con ID {Id}: {Error}", pago.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Estado de pago actualizado exitosamente con ID: {Id}", pago.uId);
+            }
+            return response;
+        }
+        #endregion
         #region PAGOS
         [HttpPost("Create")]
         [SwaggerOperation(Summary = "Crea un pago", Description = "Valida los datos y guarda un nuevo pago en la base de datos.")]

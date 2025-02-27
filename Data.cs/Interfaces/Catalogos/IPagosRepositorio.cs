@@ -15,5 +15,8 @@ namespace Business.Data
         Task<Response<bool>> DUpdateEliminado(Guid uId);
         Task<Response<EntPagos>> DGetById(Guid uId);
         Task<Response<PagedResult<EntPagosLista>>> DGetByFilters(EntPagosSearchRequest filtros);
+        Task<Response<EntSolicitudPago>> DSaveInfoPago(EntSolicitudPago entity);
+        Task<Response<EntSolicitudPago>> DUpdateStatusInfoPago(EntSolicitudPago entity);
+        Task<Response<EntSolicitudPago>> DGetInfoById(Guid uId);
     }
 }

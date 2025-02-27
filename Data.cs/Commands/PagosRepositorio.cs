@@ -24,6 +24,27 @@ namespace Data.cs.Commands
             _mapper = mapper;
         }
 
+        public async Task<Response<EntSolicitudPago>> DGetInfoById(Guid uId)
+        {
+            var response = new Response<EntSolicitudPago>();
+            try
+            {
+                var entity = await dbContext.SolicitudPagos.AsNoTracking().SingleOrDefaultAsync(x => x.uIdPago == uId && x.bEstatus == null);
+                if (entity != null)
+                    response.SetSuccess(_mapper.Map<EntSolicitudPago>(entity));
+                else
+                {
+                    response.SetError("Registro no encontrado");
+                    response.HttpCode = HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
+
         public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente)
         {
             var response = new Response<List<EntPagos>>();
@@ -34,7 +55,7 @@ namespace Data.cs.Commands
                     .Where(p => p.uIdClientes == uIdCliente && !p.bEliminado).AsNoTracking()
                     .ToListAsync();
 
-                response.Result = _mapper.Map<List<EntPagos>>(pagos);
+                response.SetSuccess(_mapper.Map<List<EntPagos>>(pagos));
                 return response;
             }
             catch (Exception ex)
@@ -43,6 +64,68 @@ namespace Data.cs.Commands
                 response.HttpCode = HttpStatusCode.InternalServerError;
                 return response;
             }
+        }
+
+        public async Task<Response<EntSolicitudPago>> DSaveInfoPago(EntSolicitudPago entity)
+        {
+            var response = new Response<EntSolicitudPago>();
+            try
+            {
+                var newItem = _mapper.Map<SolicitudPago>(entity);
+                newItem.bEstatus = null;
+                newItem.dtFechaRegistro = DateTime.Now.ToLocalTime();
+                newItem.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                dbContext.SolicitudPagos.Add(newItem);
+                int i = await dbContext.SaveChangesAsync();
+                if (i == 0)
+                {
+                    response.HttpCode = HttpStatusCode.BadRequest;
+                    response.SetError("Error al guardar el pago");
+                }
+                else
+                {
+                    response.SetSuccess(_mapper.Map<EntSolicitudPago>(newItem));
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex);
+            }
+            return response;
+        }
+
+        public async Task<Response<EntSolicitudPago>> DUpdateStatusInfoPago(EntSolicitudPago entity)
+        {
+            var response = new Response<EntSolicitudPago>();
+            try
+            {
+                var bEntity = dbContext.SolicitudPagos.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                if (bEntity != null)
+                {
+                    bEntity.bEstatus = entity.bEstatus;
+                    bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                    dbContext.Update(bEntity);
+                    var exec = await dbContext.SaveChangesAsync();
+
+                    if (exec > 0)
+                        response.SetSuccess(_mapper.Map<EntSolicitudPago>(bEntity), "Estado actualizado correctamente");
+                    else
+                    {
+                        response.SetError("Registro no actualizado");
+                        response.HttpCode = HttpStatusCode.BadRequest;
+                    }
+                }
+                else
+                {
+                    response.SetError("Pago no encontrado");
+                    response.HttpCode = HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex);
+            }
+            return response;
         }
 
         public async Task<Response<EntPagos>> DSave(EntPagos entity)

@@ -342,6 +342,7 @@ namespace Business.Implementation.Catalogos
                 return response;
             }
         }
+        
         public async Task<Response<EntPagos>> UpdateCancelarPagado(Guid uIdPago)
         {
             var response = new Response<EntPagos>();
@@ -505,6 +506,79 @@ namespace Business.Implementation.Catalogos
                 _logger.LogError(ex, "Error al obtener el pago por ID de cliente");
                 var response = new Response<List<EntPagos>>();
                 response.SetError("Hubo un error al obtener el pago de cliente.");
+                response.HttpCode = HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<EntSolicitudPago>> SaveInfoPago(EntSolicitudPago entity)
+        {
+            var response = new Response<EntSolicitudPago>();
+            try
+            {
+                var pago = await _pagosRepositorio.DGetInfoById(entity.uIdPago);
+                if (!pago.HasError)
+                {
+                    response.SetError("Hay una evidencia pendiente");
+                    return response;
+                }
+                entity.uId= Guid.NewGuid();
+                entity.dtFechaRegistro = DateTime.Now.ToLocalTime();
+                entity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                var respuesta = await _pagosRepositorio.DSaveInfoPago(entity);
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al guardar el pago");
+                response.SetError("Hubo un error al guardar el pago.");
+                response.HttpCode = HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<EntSolicitudPago>> UpdateInfoPago(EntSolicitudPago entity)
+        {
+            var response = new Response<EntSolicitudPago>();
+            try {
+                if (entity.bEstatus.Value)
+                {
+                    var pago = await _pagosRepositorio.DGetById(entity.uIdPago);
+                    if(pago.HasError || pago.Result == null)
+                    {
+                        response.SetError("No existe el pago.");
+                        response.HttpCode = HttpStatusCode.BadRequest;
+                        return response;
+                    }else if (pago.Result.bPagado)
+                    {
+                        response.SetError("El pago ya ha sido aplicado.");
+                        response.HttpCode = HttpStatusCode.BadRequest;
+                        return response;
+                    }
+                    else
+                    {
+                        ReadPagosRequest readPagosRequest = new ReadPagosRequest()
+                        {
+                            uIdPago = entity.uIdPago,
+                            sFechaPagado = entity.dtFechaRegistro.ToString("yyyy-MM-dd"),
+                            dMontoPagado = pago.Result.dMontoTotal,
+                            bApplyDate = true
+                        };
+                        var respues = await UpdatePagado(readPagosRequest);
+                        if (respues.HasError)
+                        {
+                            response.Message = respues.Message;
+                            response.HttpCode = respues.HttpCode;
+                            return response;
+                        }
+                    }
+                }
+                response = await _pagosRepositorio.DUpdateStatusInfoPago(entity);
+                return response;
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex, "Error al guardar el pago: "+ex.Message);
+                response.SetError("Hubo un error al guardar el pago.");
                 response.HttpCode = HttpStatusCode.InternalServerError;
                 return response;
             }
