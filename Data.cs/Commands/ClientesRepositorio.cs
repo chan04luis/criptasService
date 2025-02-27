@@ -324,9 +324,9 @@ public class ClientesRepositorio : IClientesRepositorio
                                     sNombreFallecido = f.sNombre + " " + f.sApellidos,
                                 }).Count(b => b.uIdCriptas == c.uId),
                     dtFechaCompra = dbContext.Pagos
-                        .Where(p => p.uIdCripta == c.uId && p.bPagado)
+                        .Where(p => p.uIdCripta == c.uId)
                         .OrderBy(p => p.dtFechaPago)
-                        .Select(p => p.dtFechaPago ?? p.dtFechaLimite.Date)
+                        .Select(p => (p.bPagado ? p.dtFechaPago : p.dtFechaLimite.Date) ?? DateTime.MinValue)
                         .FirstOrDefault()
                 }
             ).ToListAsync();
