@@ -302,6 +302,8 @@ public class ClientesRepositorio : IClientesRepositorio
                     sNombreZona = z.sNombre,
                     sLatitud = i.sLatitud,
                     sLongitud = i.sLongitud,
+                    bPagado = !c.bDisponible && !c.bEstatus,
+                    dPrecio = c.dPrecio,
                     iFallecidos = dbContext.Fallecidos
                         .Count(f => f.uIdCripta == c.uId && !f.bEliminado), 
                     iBeneficiarios = dbContext.Beneficiarios
@@ -324,7 +326,7 @@ public class ClientesRepositorio : IClientesRepositorio
                     dtFechaCompra = dbContext.Pagos
                         .Where(p => p.uIdCripta == c.uId && p.bPagado)
                         .OrderBy(p => p.dtFechaPago)
-                        .Select(p => p.dtFechaPago ?? DateTime.MinValue)
+                        .Select(p => p.dtFechaPago ?? p.dtFechaLimite.Date)
                         .FirstOrDefault()
                 }
             ).ToListAsync();

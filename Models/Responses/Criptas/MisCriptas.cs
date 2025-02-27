@@ -12,6 +12,10 @@ namespace Models.Responses.Criptas
         public string sNombreSeccion { get; set; }
         [JsonProperty("Zona")]
         public string sNombreZona { get; set; }
+        [JsonProperty("Pagado")]
+        public bool bPagado { get; set; }
+        [JsonProperty("Precio")]
+        public decimal dPrecio { get; set; }
         [JsonProperty("Iglesia")]
         public string sIglesia { get; set; }
         [JsonProperty("Lat")]
