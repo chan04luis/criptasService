@@ -493,5 +493,21 @@ namespace Business.Implementation.Catalogos
                 return response;
             }
         }
+
+        public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid id)
+        {
+            try
+            {
+                return await _pagosRepositorio.DGetByClienteId(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener el pago por ID de cliente");
+                var response = new Response<List<EntPagos>>();
+                response.SetError("Hubo un error al obtener el pago de cliente.");
+                response.HttpCode = HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
     }
 }

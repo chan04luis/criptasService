@@ -197,6 +197,23 @@ namespace Api.Controllers
             }
             return response;
         }
+
+        [HttpGet("Cliente/{id}")]
+        [SwaggerOperation(Summary = "Obtiene un pago por ID", Description = "Recupera un pago específico utilizando su ID.")]
+        public async Task<Response<List<EntPagos>>> GetPagoByIdCliente(Guid id)
+        {
+            _logger.LogInformation("Iniciando búsqueda de pago con ID: {Id}", id);
+            var response = await _busPagos.DGetByClienteId(id);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Pago no encontrado con ID {Id}: {Error}", id, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Pago encontrado con ID: {Id}", id);
+            }
+            return response;
+        }
         #endregion
 
         #region TIPOS DE PAGOS

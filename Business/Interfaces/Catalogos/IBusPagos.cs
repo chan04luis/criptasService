@@ -17,5 +17,6 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntPagos>> GetPagoById(Guid uId);
         Task<Response<PagedResult<EntPagosLista>>> GetPagosByFilters(EntPagosSearchRequest filtros);
         Task<Response<List<EntPagosParciales>>> GetParcialidadesByIdPago(Guid id);
+        Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente);
     }
 }
