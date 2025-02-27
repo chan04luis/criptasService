@@ -232,12 +232,12 @@ namespace Api.Controllers
             return response;
         }
 
-        [HttpGet("Cliente/{id}")]
+        [HttpGet("Cliente/{id}/{IdCripta}")]
         [SwaggerOperation(Summary = "Obtiene un pago por ID", Description = "Recupera un pago específico utilizando su ID.")]
-        public async Task<Response<List<EntPagos>>> GetPagoByIdCliente(Guid id)
+        public async Task<Response<List<EntPagos>>> GetPagoByIdCliente(Guid id, Guid IdCripta)
         {
             _logger.LogInformation("Iniciando búsqueda de pago con ID: {Id}", id);
-            var response = await _busPagos.DGetByClienteId(id);
+            var response = await _busPagos.DGetByClienteId(id, IdCripta);
             if (response.HasError)
             {
                 _logger.LogWarning("Pago no encontrado con ID {Id}: {Error}", id, response.Message);

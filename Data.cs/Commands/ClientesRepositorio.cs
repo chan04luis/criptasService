@@ -345,4 +345,68 @@ public class ClientesRepositorio : IClientesRepositorio
         }
         return response;
     }
+
+    public async Task<Response<MisCriptas>> DGetMisCripta(Guid uIdCripta)
+    {
+        var response = new Response<MisCriptas>();
+        try
+        {
+            var item = await (
+                from c in dbContext.Criptas
+                join s in dbContext.Secciones on c.uIdSeccion equals s.uId
+                join z in dbContext.Zonas on s.uIdZona equals z.uId
+                join i in dbContext.Iglesias on z.uIdIglesia equals i.uId
+                where c.uId == uIdCripta && !c.bEliminado && !s.bEliminado && !z.bEliminado && !i.bEliminado
+                select new MisCriptas
+                {
+                    uId = c.uId.ToString(),
+                    sNombre = c.sNumero,
+                    sIglesia = i.sNombre,
+                    sNombreSeccion = s.sNombre,
+                    sNombreZona = z.sNombre,
+                    sLatitud = i.sLatitud,
+                    sLongitud = i.sLongitud,
+                    bPagado = !c.bDisponible && !c.bEstatus,
+                    dPrecio = c.dPrecio,
+                    iFallecidos = dbContext.Fallecidos
+                        .Count(f => f.uIdCripta == c.uId && !f.bEliminado),
+                    iBeneficiarios = dbContext.Beneficiarios
+                        .Count(b => b.uIdCripta == c.uId && !b.bEliminado),
+                    iVisitas = (from v in dbContext.Visitas.AsNoTracking()
+                                join f in dbContext.Fallecidos.AsNoTracking()
+                                    on v.uIdCriptas equals f.uId
+                                where !v.bEliminado && !f.bEliminado
+                                select new EntVisitas
+                                {
+                                    uId = v.uId,
+                                    sNombreVisitante = v.sNombreVisitante,
+                                    sMensaje = v.sMensaje,
+                                    uIdCriptas = f.uIdCripta,
+                                    dtFechaRegistro = v.dtFechaRegistro,
+                                    dtFechaActualizacion = v.dtFechaActualizacion,
+                                    bEstatus = v.bEstatus,
+                                    sNombreFallecido = f.sNombre + " " + f.sApellidos,
+                                }).Count(b => b.uIdCriptas == c.uId),
+                    dtFechaCompra = dbContext.Pagos
+                        .Where(p => p.uIdCripta == c.uId)
+                        .OrderBy(p => p.dtFechaPago)
+                        .Select(p => (p.bPagado ? p.dtFechaPago : p.dtFechaLimite.Date) ?? DateTime.MinValue)
+                        .FirstOrDefault()
+                }
+            ).SingleOrDefaultAsync();
+
+            if (item != null)
+                response.SetSuccess(item);
+            else
+            {
+                response.SetError("Sin registros");
+                response.HttpCode = System.Net.HttpStatusCode.NotFound;
+            }
+        }
+        catch (Exception ex)
+        {
+            response.SetError(ex.Message);
+        }
+        return response;
+    }
 }

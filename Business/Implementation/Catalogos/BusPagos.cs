@@ -495,11 +495,11 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid id)
+        public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid id, Guid uIdCripta)
         {
             try
             {
-                return await _pagosRepositorio.DGetByClienteId(id);
+                return await _pagosRepositorio.DGetByClienteId(id, uIdCripta);
             }
             catch (Exception ex)
             {
@@ -523,8 +523,6 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
                 entity.uId= Guid.NewGuid();
-                entity.dtFechaRegistro = DateTime.Now.ToLocalTime();
-                entity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                 var respuesta = await _pagosRepositorio.DSaveInfoPago(entity);
                 return respuesta;
             }

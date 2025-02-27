@@ -7,7 +7,7 @@ namespace Business.Data
 {
     public interface IPagosRepositorio
     {
-        Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente);
+        Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente, Guid uIdCripta);
         Task<Response<EntPagos>> DSave(EntPagos entity);
         Task<Response<EntPagos>> DUpdate(EntPagos entity);
         Task<Response<EntPagos>> DUpdatePagado(EntPagosUpdatePagadoRequest pago);

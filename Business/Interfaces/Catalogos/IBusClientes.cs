@@ -16,5 +16,6 @@ namespace Business.Interfaces.Catalogos
         Task<Response<PagedResult<EntClientes>>> GetClientsByFilters(EntClienteSearchRequest cliente);
         Task<Response<List<EntClientes>>> GetClientList();
         Task<Response<List<MisCriptas>>> GetMisCriptas(Guid uIdCliente);
+        Task<Response<MisCriptas>> GetMisCripta(Guid uIdCripta);
     }
 }

@@ -15,4 +15,5 @@ public interface IClientesRepositorio
     Task<Response<bool>> DUpdateEliminado(Guid uId);
     Task<Response<EntClientes>> DGetByEmail(string sEmail, string? Contra = null);
     Task<Response<List<MisCriptas>>> DGetMisCriptas(Guid uIdCliente);
+    Task<Response<MisCriptas>> DGetMisCripta(Guid uIdCripta);
 }

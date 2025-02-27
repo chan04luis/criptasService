@@ -323,5 +323,21 @@ namespace Business.Implementation.Catalogos
                 return response;
             }
         }
+
+        public async Task<Response<MisCriptas>> GetMisCripta(Guid uIdCripta)
+        {
+            try
+            {
+                return await _clientesRepositorio.DGetMisCripta(uIdCripta);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de criptas por cliente");
+                var response = new Response<MisCriptas>();
+                response.SetError("Hubo un error al obtener la lista de criptas por cliente.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
     }
 }
