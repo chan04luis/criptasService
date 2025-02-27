@@ -122,14 +122,17 @@ namespace Business.Implementation.Catalogos
                 var respuesta = await _pagosRepositorio.DSave(_mapper.Map<EntPagos>(pago));
                 if(!respuesta.HasError)
                 {
-                    if(pago.uIdCripta  != new Guid(IdPermanentes.clienteGeneral.GetDescription()) && pago.iTipoPago == 1)
+                    if(pago.uIdCripta != new Guid(IdPermanentes.clienteGeneral.GetDescription()) && pago.iTipoPago == 1)
                     {
                         EntCriptas entity = new EntCriptas()
                         {
                             uId = pago.uIdCripta,
                             bEstatus = false,
+                            bDisponible = true,
+                            uIdCliente = pago.uIdClientes
                         };
                         await _criptasRepositorio.DUpdateBoolean(entity);
+                        await _criptasRepositorio.DUpdateDisponible(entity);
                     }
                 }
                 return respuesta;

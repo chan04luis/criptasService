@@ -8,6 +8,8 @@ namespace Models.Responses.Criptas
         public Guid uId { get; set; }
         [JsonProperty("Cripta")]
         public string sNombre { get; set; }
+        [JsonProperty("Precio")]
+        public decimal dPrecio { get; set; }
         [JsonProperty("Seccion")]
         public string sNombreSeccion { get; set; }
         [JsonProperty("Zona")]

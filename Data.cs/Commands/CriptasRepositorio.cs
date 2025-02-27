@@ -382,7 +382,8 @@ namespace Data.cs.Commands
                         sLatitud = i.sLatitud ?? "0",
                         sLongitud = i.sLongitud ?? "0",
                         bEstatus = c.bEstatus,
-                        bDisponible = c.bDisponible
+                        bDisponible = c.bDisponible,
+                        dPrecio = c.dPrecio,
                     }
                 )
                 .OrderBy(x => x.sNombreZona)
