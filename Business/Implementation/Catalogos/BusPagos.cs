@@ -71,7 +71,7 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
 
-                var item = await _pagosRepositorio.DGetByClienteId(pago.uIdClientes);
+                var item = await _pagosRepositorio.DGetByClienteId(pago.uIdClientes, pago.uIdCripta);
                 if (!item.HasError && pago.iTipoPago == 1 && item.Result.Any(p => p.uIdCripta == pago.uIdCripta && p.uIdTipoPago == pago.uIdTipoPago))
                 {
                     response.SetError("Ya existe un pago registrado con esos datos.");
@@ -173,7 +173,7 @@ namespace Business.Implementation.Catalogos
                     return response;
                 }
 
-                var item = await _pagosRepositorio.DGetByClienteId(pago.uIdClientes);
+                var item = await _pagosRepositorio.DGetByClienteId(pago.uIdClientes, pago.uIdCripta);
                 if (!item.HasError && item.Result.Any(p => p.uIdCripta == pago.uIdCripta && p.uIdTipoPago == pago.uIdTipoPago && p.uId != uId))
                 {
                     response.SetError("Ya existe un pago registrado con esos datos.");

@@ -45,14 +45,14 @@ namespace Data.cs.Commands
             return response;
         }
 
-        public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente)
+        public async Task<Response<List<EntPagos>>> DGetByClienteId(Guid uIdCliente, Guid uIdCripta)
         {
             var response = new Response<List<EntPagos>>();
 
             try
             {
                 var pagos = await dbContext.Pagos.AsNoTracking()
-                    .Where(p => p.uIdClientes == uIdCliente && !p.bEliminado).AsNoTracking()
+                    .Where(p => p.uIdClientes == uIdCliente && !p.bEliminado && p.uIdCripta== uIdCripta).AsNoTracking()
                     .ToListAsync();
 
                 response.SetSuccess(_mapper.Map<List<EntPagos>>(pagos));
