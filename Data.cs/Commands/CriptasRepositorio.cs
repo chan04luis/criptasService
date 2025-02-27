@@ -142,6 +142,41 @@ namespace Data.cs.Commands
             }
             return response;
         }
+        
+        public async Task<Response<EntCriptas>> DUpdateBooleanByApp(EntCriptas entity)
+        {
+            var response = new Response<EntCriptas>();
+            try
+            {
+                var bEntity = dbContext.Criptas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                if (bEntity != null)
+                {
+                    bEntity.bEstatus = entity.bEstatus;
+                    bEntity.uIdCliente = entity.uIdCliente;
+                    bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+                    dbContext.Update(bEntity);
+                    var exec = await dbContext.SaveChangesAsync();
+
+                    if (exec > 0)
+                        response.SetSuccess(_mapper.Map<EntCriptas>(bEntity), "Actualizado correctamente");
+                    else
+                    {
+                        response.SetError("Registro no actualizado");
+                        response.HttpCode = System.Net.HttpStatusCode.BadRequest;
+                    }
+                }
+                else
+                {
+                    response.SetError("Cripta no encontrada");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex);
+            }
+            return response;
+        }
         public async Task<Response<EntCriptas>> DUpdateDisponible(EntCriptas entity)
         {
             var response = new Response<EntCriptas>();

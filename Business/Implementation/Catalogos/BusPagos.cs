@@ -131,8 +131,7 @@ namespace Business.Implementation.Catalogos
                             bDisponible = true,
                             uIdCliente = pago.uIdClientes
                         };
-                        await _criptasRepositorio.DUpdateBoolean(entity);
-                        await _criptasRepositorio.DUpdateDisponible(entity);
+                        await _criptasRepositorio.DUpdateBooleanByApp(entity);
                     }
                 }
                 return respuesta;

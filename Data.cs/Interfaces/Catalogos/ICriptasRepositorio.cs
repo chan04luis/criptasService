@@ -11,6 +11,7 @@ namespace Business.Data
         Task<Response<EntCriptas>> DSave(EntCriptas entity);
         Task<Response<EntCriptas>> DUpdate(EntCriptas entity);
         Task<Response<EntCriptas>> DUpdateBoolean(EntCriptas entity);
+        Task<Response<EntCriptas>> DUpdateBooleanByApp(EntCriptas entity);
         Task<Response<EntCriptas>> DUpdateDisponible(EntCriptas entity);
         Task<Response<bool>> DUpdateEliminado(Guid uId);
         Task<Response<EntCriptas>> DGetById(Guid iKey);
