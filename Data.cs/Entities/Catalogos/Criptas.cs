@@ -8,6 +8,8 @@
         public string sNumero { get; set; }
         public decimal dPrecio { get; set; }
         public string sUbicacionEspecifica { get; set; }
+
+        public DateTime dtFechaPagado { get; set; }
         public DateTime dtFechaRegistro { get; set; }
         public DateTime dtFechaActualizacion { get; set; }
         public DateTime dtFechaEliminado { get; set; }

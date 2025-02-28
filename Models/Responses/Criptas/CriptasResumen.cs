@@ -16,5 +16,8 @@ namespace Models.Responses.Criptas
         public int Clientes { get; set; }   
 
         public int Ventas { get; set; }
+
+        public int VendidasMesPasado { get; set; }
+        public int VendidasSemanaPasada { get; set; }   
     }
 }

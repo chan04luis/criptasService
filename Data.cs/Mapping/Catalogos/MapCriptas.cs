@@ -57,6 +57,14 @@ namespace Data.cs.Mapping.Catalogos
                     v => v
                 );
 
+            builder.Property(c => c.dtFechaPagado)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("fecha_pagado")
+                .HasConversion(
+                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => v
+                );
+
             builder.Property(c => c.dtFechaEliminado)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_eliminado")

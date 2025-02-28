@@ -447,8 +447,16 @@ namespace Data.cs.Commands
 
             try
             {
-                DateTime inicioMes = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                var now = DateTime.Now;
+
+                DateTime inicioMes = new DateTime(now.Year, now.Month, 1);
                 DateTime finMes = inicioMes.AddMonths(1).AddDays(-1);
+
+                var firstDayOfLastMonth = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+                var lastDayOfLastMonth = firstDayOfLastMonth.AddMonths(1).AddDays(-1);
+
+                var startOfLastWeek = now.AddDays(-(int)now.DayOfWeek - 7);
+                var endOfLastWeek = startOfLastWeek.AddDays(6);
 
                 var total = await dbContext.Criptas
                     .CountAsync(c => !c.bEliminado);
@@ -464,6 +472,12 @@ namespace Data.cs.Commands
 
                 var ventas = await dbContext.Pagos
                     .CountAsync(c => !c.bEliminado && c.iTipoPago==1 && c.bPagado==true && c.dtFechaPago >= inicioMes && c.dtFechaPago <= finMes);
+
+                var vendidasMesPasado = await dbContext.Criptas
+                    .CountAsync(c => !c.bEliminado && c.dtFechaPagado >= firstDayOfLastMonth && c.dtFechaPagado <= lastDayOfLastMonth);
+
+                var vendidasSemanaPasada = await dbContext.Criptas
+                    .CountAsync(c => !c.bEliminado && c.dtFechaPagado >= startOfLastWeek && c.dtFechaPagado <= endOfLastWeek);
 
                 var ingresos = await dbContext.Pagos
                     .Where(c => !c.bEliminado && c.bPagado == true && c.dtFechaPago >= inicioMes && c.dtFechaPago <= finMes)
@@ -487,7 +501,10 @@ namespace Data.cs.Commands
                     Ocupadas = ocupadas,
                     Clientes = clientes,
                     Ingresos = $"{(ingresos + ingresosParcial):C}",
-                    Ventas = ventas
+                    Ventas = ventas,
+                    VendidasSemanaPasada = vendidasSemanaPasada,
+                    VendidasMesPasado=vendidasMesPasado
+
                 };
 
                 response.SetSuccess(resumen);
