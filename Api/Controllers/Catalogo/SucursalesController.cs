@@ -1,8 +1,10 @@
-﻿using Business.Interfaces.Catalogos;
+﻿using Business.Implementation.Catalogos;
+using Business.Interfaces.Catalogos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Models.Request.Catalogo.Sucursales;
+using Models.Responses.Servicio;
 using Swashbuckle.AspNetCore.Annotations;
 using Utils;
 
@@ -154,6 +156,38 @@ namespace Api.Controllers.Catalogo
             else
             {
                 _logger.LogInformation("Lista de sucursales recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+
+        [HttpGet("ListAssigmentUser/{uId}")]
+        public async Task<Response<List<EntServiceItem>>> GetListPreAssigmentUser(Guid uId)
+        {
+            _logger.LogInformation("Iniciando recuperación de lista de servicios activos.");
+            var response = await _bussines.BGetListPreAssigmentUser(uId);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al recuperar lista de servicios activos: {Error}", response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Lista de servicios activos recuperada exitosamente. Total: {Count}", response.Result?.Count);
+            }
+            return response;
+        }
+
+        [HttpPut("ListAssigmentUser/Update/{uId}")]
+        public async Task<Response<bool>> UpdateServicioAssigmentUser([FromBody] List<EntServiceItem> entities, Guid uId)
+        {
+            _logger.LogInformation("Iniciando actualización de servicio con ID: {Id}", uId);
+            var response = await _bussines.BSaveToUser(entities, uId);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar servicio con ID {Id}: {Error}", uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("Servicio actualizado exitosamente con ID: {Id}", uId);
             }
             return response;
         }

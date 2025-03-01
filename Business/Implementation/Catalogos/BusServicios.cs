@@ -11,14 +11,14 @@ namespace Business.Implementation.Catalogos
 {
     public class BusServicios:IBusServicios
     {
-        private readonly IServiciosRepositorio _serviciosRepositorio;
+        private readonly IServiciosRepositorio _repositorio;
         private readonly ILogger<BusServicios> _logger;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
         public BusServicios(IServiciosRepositorio serviciosRepositorio, ILogger<BusServicios> logger, IMapper mapper, IConfiguration configuration)
         {
-            _serviciosRepositorio = serviciosRepositorio;
+            _repositorio = serviciosRepositorio;
             _logger = logger;
             _mapper = mapper;
             _configuration = configuration;
@@ -30,14 +30,14 @@ namespace Business.Implementation.Catalogos
 
             try
             {
-                var existName = await _serviciosRepositorio.DAnyExistName(servicio.Nombre);
+                var existName = await _repositorio.DAnyExistName(servicio.Nombre);
                 if (existName.Result)
                 {
                     response.SetError(existName.Message);
                     return response;
                 }
 
-                var servicioCreado = await _serviciosRepositorio.DSave(servicio);
+                var servicioCreado = await _repositorio.DSave(servicio);
 
                 response.SetSuccess(servicioCreado.Result);
             }
@@ -56,7 +56,7 @@ namespace Business.Implementation.Catalogos
 
             try
             {
-                var result = await _serviciosRepositorio.DUpdate(entServicio);
+                var result = await _repositorio.DUpdate(entServicio);
 
                 response.SetSuccess(result.Result);
             }
@@ -73,7 +73,7 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _serviciosRepositorio.DUpdateEstatus(entServicio);
+                return await _repositorio.DUpdateEstatus(entServicio);
             }
             catch (Exception ex)
             {
@@ -91,14 +91,14 @@ namespace Business.Implementation.Catalogos
 
             try
             {
-                var existKey = await _serviciosRepositorio.AnyExistKey(id);
+                var existKey = await _repositorio.AnyExistKey(id);
                 if (!existKey.Result)
                 {
                     response.SetError(existKey.Message);
                     return response;
                 }
 
-                response = await _serviciosRepositorio.DDelete(id);
+                response = await _repositorio.DDelete(id);
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _serviciosRepositorio.DGetById(id);
+                return await _repositorio.DGetById(id);
             }
             catch (Exception ex)
             {
@@ -129,7 +129,7 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _serviciosRepositorio.DGetList();
+                return await _repositorio.DGetList();
             }
             catch (Exception ex)
             {
@@ -145,7 +145,7 @@ namespace Business.Implementation.Catalogos
         {
             try
             {
-                return await _serviciosRepositorio.DGetListActive();
+                return await _repositorio.DGetListActive();
             }
             catch (Exception ex)
             {
@@ -157,11 +157,11 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntServiceItem>>> GetListActive(Guid uIdIglesia)
+        public async Task<Response<List<EntServiceItem>>> GetListActive(Guid uId)
         {
             try
             {
-                return await _serviciosRepositorio.DGetListActive(uIdIglesia);
+                return await _repositorio.DGetListActive(uId);
             }
             catch (Exception ex)
             {
@@ -173,11 +173,11 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<List<EntServiceItem>>> BGetListPreAssigment(Guid uIdSucursal)
+        public async Task<Response<List<EntServiceItem>>> BGetListPreAssigment(Guid uId)
         {
             try
             {
-                return await _serviciosRepositorio.DGetListPreAssigment(uIdSucursal);
+                return await _repositorio.DGetListPreAssigment(uId);
             }
             catch (Exception ex)
             {
@@ -189,11 +189,43 @@ namespace Business.Implementation.Catalogos
             }
         }
 
-        public async Task<Response<bool>> BSaveToSucursal(List<EntServiceItem> entities, Guid uIdSucursal)
+        public async Task<Response<bool>> BSaveToSucursal(List<EntServiceItem> entities, Guid uId)
         {
             try
             {
-                return await _serviciosRepositorio.DSaveToSucursal(entities,uIdSucursal);
+                return await _repositorio.DSaveToSucursal(entities, uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar la lista de servicios activos");
+                var response = new Response<bool>();
+                response.SetError("Hubo un error al actualizar la lista de servicios activos.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<List<EntServiceItem>>> BGetListPreAssigmentUser(Guid uId)
+        {
+            try
+            {
+                return await _repositorio.DGetListPreAssigmentUser(uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de servicios activos");
+                var response = new Response<List<EntServiceItem>>();
+                response.SetError("Hubo un error al obtener la lista de servicios activos.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<bool>> BSaveToUser(List<EntServiceItem> entities, Guid uId)
+        {
+            try
+            {
+                return await _repositorio.DSaveToUser(entities, uId);
             }
             catch (Exception ex)
             {

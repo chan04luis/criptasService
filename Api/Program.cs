@@ -22,6 +22,10 @@ using Models.Models;
 using Models.Validations.Seguridad;
 using Data.cs.Commands.Catalogo;
 using Data.cs.Interfaces.Catalogos;
+using Business.Implementation.AtencionMedica;
+using Business.Interfaces.AtencionMedica;
+using Data.cs.Commands.AtencionMedica;
+using Data.cs.Interfaces.AtencionMedica;
 
 var builder = WebApplication.CreateBuilder(args);
 #region JWT
@@ -164,6 +168,16 @@ builder.Services.AddScoped<IBusPermiso, BusPermiso>();
 
 builder.Services.AddScoped<IUsuariosRepositorio, UsuariosRepositorio>();
 builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
+
+#endregion
+
+#region Inyeccion de dependencias AtencionMedica
+
+builder.Services.AddScoped<ICitasRepositorio, CitasRepositorio>();
+builder.Services.AddScoped<ISalaConsultaRepositorio, SalaConsultaRepositorio>();
+builder.Services.AddScoped<ISalaEsperaRepositorio, SalaEsperaRepositorio>();
+
+builder.Services.AddScoped<IBusAtencionMedica, BusAtencionMedica>();
 
 #endregion
 

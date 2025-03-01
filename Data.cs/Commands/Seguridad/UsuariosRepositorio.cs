@@ -266,9 +266,30 @@ public class UsuariosRepositorio : IUsuariosRepositorio
         var response = new Response<List<EntUsuarios>>();
         try
         {
-            var items = await dbContext.Usuarios.AsNoTracking().Where(x => x.bEliminado == false).ToListAsync();
-            if (items.Count > 0)
-                response.SetSuccess(_mapper.Map<List<EntUsuarios>>(items));
+            var query = from usuario in dbContext.Usuarios
+                        join perfil in dbContext.Perfiles
+                        on usuario.uIdPerfil equals perfil.id into perfilJoin
+                        from perfil in perfilJoin.DefaultIfEmpty() // Left join
+                        where usuario.bEliminado == false
+                        select new EntUsuarios
+                        {
+                            uId = usuario.uId,
+                            uIdPerfil = usuario.uIdPerfil,
+                            sPerfil = perfil != null ? perfil.NombrePerfil : "Perfil Desconocido",
+                            sNombres = usuario.sNombres,
+                            sApellidos = usuario.sApellidos,
+                            sCorreo = usuario.sCorreo,
+                            sContra = null, // Se establece la contraseña en null
+                            sTelefono = usuario.sTelefono,
+                            bActivo = usuario.bActivo,
+                            dtFechaRegistro = usuario.dtFechaRegistro,
+                            dtFechaActualizacion = usuario.dtFechaActualizacion
+                        };
+
+            var result = await query.ToListAsync();
+
+            if (result.Count > 0)
+                response.SetSuccess(result);
             else
             {
                 response.SetError("Sin registros");

@@ -3,8 +3,10 @@ using AutoMapper;
 using Business.Data;
 using Data.cs.Entities.Catalogos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Models.Models;
 using Models.Request.Catalogo.Sucursales;
+using Models.Responses.Servicio;
 using Utils;
 
 namespace Data.cs.Commands.Catalogo
@@ -13,11 +15,13 @@ namespace Data.cs.Commands.Catalogo
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper _mapper;
+        private readonly ILogger<SucursalesRepositorio> _logger;
 
-        public SucursalesRepositorio(ApplicationDbContext dbContext, IMapper mapper)
+        public SucursalesRepositorio(ApplicationDbContext dbContext, IMapper mapper, ILogger<SucursalesRepositorio> logger)
         {
             this.dbContext = dbContext;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<Response<EntSucursal>> DSave(EntSucursal entity)
@@ -233,6 +237,108 @@ namespace Data.cs.Commands.Catalogo
             catch (Exception ex)
             {
                 response.SetError(ex.Message);
+            }
+            return response;
+        }
+
+        public async Task<Response<List<EntServiceItem>>> DGetListPreAssigmentUser(Guid uId)
+        {
+            var response = new Response<List<EntServiceItem>>();
+
+            try
+            {
+                var sucursal = await dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.uId == uId && !x.bEliminado);
+                if (sucursal == null)
+                {
+                    response.SetError("Usuario no existe");
+                    return response;
+                }
+                var itemsQuery = from s in dbContext.Sucursal.AsNoTracking()
+                                 join su in dbContext.SucursalesUsuario.AsNoTracking().Where(x => x.IdUsuario == uId)
+                                 on s.uId equals su.IdSucursal into servicioUserGroup
+                                 from ss in servicioUserGroup.DefaultIfEmpty()
+                                 where !s.bEliminado && s.bEstatus.Value
+                                 orderby s.sNombre
+                                 select new EntServiceItem
+                                 {
+                                     Id = s.uId,
+                                     Nombre = s.sNombre,
+                                     ImgPreview = "",
+                                     IdAsignado = ss == null ? null : ss.Id,
+                                     Asignado = ss == null ? false : ss.Asignado
+                                 };
+
+                var items = await itemsQuery.ToListAsync();
+
+                if (items.Any())
+                {
+                    response.SetSuccess(items);
+                    response.HttpCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListPreAssigmentUser));
+                response.SetError(ex.Message);
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
+        public async Task<Response<bool>> DSaveToUser(List<EntServiceItem> entities, Guid uId)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                foreach (var item in entities)
+                {
+                    if (item.IdAsignado != null)
+                    {
+                        var dbItem = await dbContext.SucursalesUsuario.FindAsync(item.IdAsignado);
+                        if (dbItem != null)
+                        {
+                            dbItem.Asignado = item.Asignado;
+                            dbItem.FechaActualizacion = DateTime.Now.ToLocalTime();
+                            dbContext.SucursalesUsuario.Update(dbItem);
+                        }
+                    }
+                    else
+                    {
+                        var itemAdd = new SucursalesUsuario()
+                        {
+                            Id = Guid.NewGuid(),
+                            IdSucursal = item.Id.Value,
+                            IdUsuario = uId,
+                            FechaRegistro = DateTime.Now.ToLocalTime(),
+                            FechaActualizacion = DateTime.Now.ToLocalTime(),
+                            Asignado = item.Asignado
+                        };
+                        dbContext.SucursalesUsuario.Add(itemAdd);
+                    }
+                }
+                int i = dbContext.SaveChanges();
+                if (i == 0)
+                {
+                    response.Result = false;
+                    response.Message = "Error al guardar el registro";
+                    response.HasError = false;
+                    response.HttpCode = System.Net.HttpStatusCode.NotModified;
+                }
+                else
+                {
+                    response.SetSuccess(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSaveToUser));
+                response.SetError(ex);
             }
             return response;
         }

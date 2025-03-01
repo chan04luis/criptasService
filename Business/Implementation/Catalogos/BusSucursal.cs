@@ -5,6 +5,7 @@ using Business.Interfaces.Catalogos;
 using Utils;
 using Models.Models;
 using Models.Request.Catalogo.Sucursales;
+using Models.Responses.Servicio;
 
 namespace Business.Implementation.Catalogos
 {
@@ -216,6 +217,38 @@ namespace Business.Implementation.Catalogos
                 _logger.LogError(ex, "Error al obtener la lista");
                 var response = new Response<List<EntSucursal>>();
                 response.SetError("Hubo un error al obtener la lista.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<List<EntServiceItem>>> BGetListPreAssigmentUser(Guid uId)
+        {
+            try
+            {
+                return await _repositorio.DGetListPreAssigmentUser(uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener la lista de servicios activos");
+                var response = new Response<List<EntServiceItem>>();
+                response.SetError("Hubo un error al obtener la lista de servicios activos.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
+
+        public async Task<Response<bool>> BSaveToUser(List<EntServiceItem> entities, Guid uId)
+        {
+            try
+            {
+                return await _repositorio.DSaveToUser(entities, uId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar la lista de servicios activos");
+                var response = new Response<bool>();
+                response.SetError("Hubo un error al actualizar la lista de servicios activos.");
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
                 return response;
             }

@@ -288,7 +288,7 @@ namespace Data.cs.Commands.Catalogo
             return response;
         }
 
-        public async Task<Response<List<EntServiceItem>>> DGetListActive(Guid uIdSucursal)
+        public async Task<Response<List<EntServiceItem>>> DGetListActive(Guid uId)
         {
             var response = new Response<List<EntServiceItem>>();
 
@@ -296,7 +296,7 @@ namespace Data.cs.Commands.Catalogo
             {
                 var itemsQuery = from s in dbContext.Servicios.AsNoTracking()
                                  join ss in dbContext.ServiciosSucursales.AsNoTracking() on s.Id equals ss.IdServicio
-                                      where !s.Eliminado && s.Estatus && ss.IdSucursal == uIdSucursal
+                                      where !s.Eliminado && s.Estatus && ss.IdSucursal == uId
                                  orderby s.Nombre
                                  select new EntServiceItem
                                  {
@@ -329,14 +329,20 @@ namespace Data.cs.Commands.Catalogo
             return response;
         }
 
-        public async Task<Response<List<EntServiceItem>>> DGetListPreAssigment(Guid uIdSucursal)
+        public async Task<Response<List<EntServiceItem>>> DGetListPreAssigment(Guid uId)
         {
             var response = new Response<List<EntServiceItem>>();
 
             try
             {
+                var sucursal = await dbContext.Sucursal.AsNoTracking().FirstOrDefaultAsync(x=>x.uId == uId);
+                if(sucursal == null)
+                {
+                    response.SetError("Sucursal no existe");
+                    return response;
+                }
                 var itemsQuery = from s in dbContext.Servicios.AsNoTracking()
-                                 join ss in dbContext.ServiciosSucursales.AsNoTracking().Where(x => x.IdSucursal==uIdSucursal)
+                                 join ss in dbContext.ServiciosSucursales.AsNoTracking().Where(x => x.IdSucursal== uId)
                                  on s.Id equals ss.IdServicio into servicioSucursalGroup
                                  from ss in servicioSucursalGroup.DefaultIfEmpty()
                                  where !s.Eliminado && s.Estatus
@@ -365,7 +371,7 @@ namespace Data.cs.Commands.Catalogo
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListActive));
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListPreAssigment));
                 response.SetError(ex.Message);
                 response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
             }
@@ -373,37 +379,37 @@ namespace Data.cs.Commands.Catalogo
             return response;
         }
 
-        public async Task<Response<bool>> DSaveToSucursal(List<EntServiceItem> entities, Guid uIdSucursal)
+        public async Task<Response<bool>> DSaveToSucursal(List<EntServiceItem> entities, Guid uId)
         {
             var response = new Response<bool>();
             try
             {
-                var itemsUpdate = entities.Where(x => x.IdAsignado != null);
-                foreach(var item in itemsUpdate)
+                foreach(var item in entities)
                 {
-                    var dbItem = await dbContext.ServiciosSucursales.FindAsync(item.IdAsignado);
-                    if(dbItem != null)
+                    if(item.IdAsignado != null)
                     {
-                        dbItem.Asignado = item.Asignado;
-                        dbItem.FechaActualizacion = DateTime.Now.ToLocalTime();
-                        _logger.LogWarning("{dbItem}", dbItem);
-                        dbContext.ServiciosSucursales.Update(dbItem);
+                        var dbItem = await dbContext.ServiciosSucursales.FindAsync(item.IdAsignado);
+                        if (dbItem != null)
+                        {
+                            dbItem.Asignado = item.Asignado;
+                            dbItem.FechaActualizacion = DateTime.Now.ToLocalTime();
+                            dbContext.ServiciosSucursales.Update(dbItem);
+                        }
+                    }
+                    else
+                    {
+                        var itemAdd = new ServiciosSucursales()
+                        {
+                            Id = Guid.NewGuid(),
+                            IdServicio = item.Id.Value,
+                            IdSucursal = uId,
+                            FechaRegistro = DateTime.Now.ToLocalTime(),
+                            FechaActualizacion = DateTime.Now.ToLocalTime(),
+                            Asignado = item.Asignado
+                        };
+                        dbContext.ServiciosSucursales.Add(itemAdd);
                     }
                 }
-
-                var itemsAdd = entities.Where(x => x.IdAsignado == null).Select(x => new ServiciosSucursales()
-                {
-                    Id = Guid.NewGuid(),
-                    IdServicio = x.Id.Value,
-                    IdSucursal = uIdSucursal,
-                    FechaRegistro = DateTime.Now.ToLocalTime(),
-                    FechaActualizacion = DateTime.Now.ToLocalTime(),
-                    Asignado = x.Asignado
-                }).ToList();
-                _logger.LogWarning("{itemsAdd}", itemsAdd);
-                if (itemsAdd.Count > 0)
-                    dbContext.ServiciosSucursales.AddRange(itemsAdd);
-
                 int i = dbContext.SaveChanges();
                 if (i == 0)
                 {
@@ -419,7 +425,109 @@ namespace Data.cs.Commands.Catalogo
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSave));
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSaveToSucursal));
+                response.SetError(ex);
+            }
+            return response;
+        }
+
+        public async Task<Response<List<EntServiceItem>>> DGetListPreAssigmentUser(Guid uId)
+        {
+            var response = new Response<List<EntServiceItem>>();
+
+            try
+            {
+                var sucursal = await dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.uId == uId && !x.bEliminado);
+                if (sucursal == null)
+                {
+                    response.SetError("Usuario no existe");
+                    return response;
+                }
+                var itemsQuery = from s in dbContext.Servicios.AsNoTracking()
+                                 join su in dbContext.ServiciosUsuario.AsNoTracking().Where(x => x.IdUsuario == uId)
+                                 on s.Id equals su.IdServicio into servicioUserGroup
+                                 from ss in servicioUserGroup.DefaultIfEmpty()
+                                 where !s.Eliminado && s.Estatus
+                                 orderby s.Nombre
+                                 select new EntServiceItem
+                                 {
+                                     Id = s.Id,
+                                     Nombre = s.Nombre,
+                                     ImgPreview = s.ImgPreview,
+                                     IdAsignado = ss == null ? null : ss.Id,
+                                     Asignado = ss == null ? false : ss.Asignado
+                                 };
+
+                var items = await itemsQuery.ToListAsync();
+
+                if (items.Any())
+                {
+                    response.SetSuccess(items);
+                    response.HttpCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DGetListPreAssigmentUser));
+                response.SetError(ex.Message);
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+            }
+
+            return response;
+        }
+
+        public async Task<Response<bool>> DSaveToUser(List<EntServiceItem> entities, Guid uId)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                foreach (var item in entities)
+                {
+                    if (item.IdAsignado != null)
+                    {
+                        var dbItem = await dbContext.ServiciosUsuario.FindAsync(item.IdAsignado);
+                        if (dbItem != null)
+                        {
+                            dbItem.Asignado = item.Asignado;
+                            dbItem.FechaActualizacion = DateTime.Now.ToLocalTime();
+                            dbContext.ServiciosUsuario.Update(dbItem);
+                        }
+                    }
+                    else
+                    {
+                        var itemAdd = new ServiciosUsuario()
+                        {
+                            Id = Guid.NewGuid(),
+                            IdServicio = item.Id.Value,
+                            IdUsuario = uId,
+                            FechaRegistro = DateTime.Now.ToLocalTime(),
+                            FechaActualizacion = DateTime.Now.ToLocalTime(),
+                            Asignado = item.Asignado
+                        };
+                        dbContext.ServiciosUsuario.Add(itemAdd);
+                    }
+                }
+                int i = dbContext.SaveChanges();
+                if (i == 0)
+                {
+                    response.Result = false;
+                    response.Message = "Error al guardar el registro";
+                    response.HasError = false;
+                    response.HttpCode = System.Net.HttpStatusCode.NotModified;
+                }
+                else
+                {
+                    response.SetSuccess(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al ejecutar el método {MethodName}", nameof(DSaveToUser));
                 response.SetError(ex);
             }
             return response;

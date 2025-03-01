@@ -13,8 +13,10 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntServicios>> BGetById(Guid id);
         Task<Response<List<EntServicios>>> GetServicioList();
         Task<Response<List<EntServicios>>> GetListActive();
-        Task<Response<List<EntServiceItem>>> GetListActive(Guid uIdSucursal);
-        Task<Response<List<EntServiceItem>>> BGetListPreAssigment(Guid uIdSucursal);
-        Task<Response<bool>> BSaveToSucursal(List<EntServiceItem>  entities, Guid uIdSucursal);
+        Task<Response<List<EntServiceItem>>> GetListActive(Guid uId);
+        Task<Response<List<EntServiceItem>>> BGetListPreAssigment(Guid uId);
+        Task<Response<bool>> BSaveToSucursal(List<EntServiceItem>  entities, Guid uId);
+        Task<Response<List<EntServiceItem>>> BGetListPreAssigmentUser(Guid uId);
+        Task<Response<bool>> BSaveToUser(List<EntServiceItem> entities, Guid uId);
     }
 }

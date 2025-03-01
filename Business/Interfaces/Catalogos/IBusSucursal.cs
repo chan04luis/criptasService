@@ -1,6 +1,7 @@
 ﻿using Utils;
 using Models.Models;
 using Models.Request.Catalogo.Sucursales;
+using Models.Responses.Servicio;
 
 namespace Business.Interfaces.Catalogos
 {
@@ -16,5 +17,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntSucursal>> GetById(Guid id);
         Task<Response<List<EntSucursal>>> GetByFilters(EntSucursalSearchRequest entity);
         Task<Response<List<EntSucursal>>> GetList();
+        Task<Response<List<EntServiceItem>>> BGetListPreAssigmentUser(Guid uId);
+        Task<Response<bool>> BSaveToUser(List<EntServiceItem> entities, Guid uId);
     }
 }

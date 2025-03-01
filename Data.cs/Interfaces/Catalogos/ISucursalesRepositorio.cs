@@ -1,5 +1,6 @@
 ﻿using Models.Models;
 using Models.Request.Catalogo.Sucursales;
+using Models.Responses.Servicio;
 using Utils;
 
 namespace Business.Data
@@ -14,5 +15,7 @@ namespace Business.Data
         Task<Response<EntSucursal>> DGetById(Guid iKey);
         Task<Response<List<EntSucursal>>> DGetByFilters(EntSucursalSearchRequest filtros);
         Task<Response<List<EntSucursal>>> DGetList();
+        Task<Response<List<EntServiceItem>>> DGetListPreAssigmentUser(Guid uId);
+        Task<Response<bool>> DSaveToUser(List<EntServiceItem> entities, Guid uId);
     }
 }

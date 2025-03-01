@@ -14,5 +14,9 @@ namespace Models.Request.Usuarios
 
         [JsonProperty("Estatus")]
         public bool? bEstatus { get; set; }
+        [JsonProperty("NumPag")]
+        public int iNumPag { get; set; }
+        [JsonProperty("NumReg")]
+        public int iNumReg { get; set; }
     }
 }

@@ -9,6 +9,9 @@ namespace Models.Models
         [JsonProperty("IdPerfil")]
         public Guid uIdPerfil { get; set; }
 
+        [JsonProperty("Perfil")]
+        public string sPerfil { get; set; }
+
         [JsonProperty("Nombres")]
         public string sNombres { get; set; }
 

@@ -1,9 +1,10 @@
-﻿using Data.cs.Entities;
-using Data.cs.Entities.Catalogos;
+﻿using Data.cs.Entities.Catalogos;
 using Data.cs.Mapping.Seguridad;
 using Data.cs.Mapping.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Seguridad;
+using Data.cs.Entities.AtencionMedica;
+using Data.cs.Mapping.AtencionMedica;
 
 namespace Data.cs
 {
@@ -13,14 +14,16 @@ namespace Data.cs
         {
         }
 
+        #region Catalogo
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Sucursales> Sucursal { get; set; }
         public virtual DbSet<Servicios> Servicios { get; set; }
         public virtual DbSet<ServiciosSucursales> ServiciosSucursales { get; set; }
-
+        public virtual DbSet<ServiciosUsuario> ServiciosUsuario { get; set; }
+        public virtual DbSet<SucursalesUsuario> SucursalesUsuario { get; set; }
+        #endregion
 
         #region entities seguridad
-
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Perfil> Perfiles { get; set; }
         public virtual DbSet<Configuracion> Configuracion { get; set; }
@@ -30,6 +33,12 @@ namespace Data.cs
         public virtual DbSet<PermisoModulos> PermisosModulos { get; set; }
         public virtual DbSet<PermisosPagina> PermisosPagina { get; set; }
         public virtual DbSet<PermisoBotones> PermisoBotones { get; set; }
+        #endregion
+
+        #region AtencionMedica
+        public virtual DbSet<Citas> Citas { get; set; }
+        public virtual DbSet<SalaEspera> SalaEspera { get; set; }
+        public virtual DbSet<SalaConsulta> SalaConsulta { get; set; }
 
         #endregion
 
@@ -38,18 +47,33 @@ namespace Data.cs
 
         private const string EsquemaSeguridad = "seguridad";
 
+        private const string EsquemaAtencionMedica = "atencion_medica";
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             PrepararIgleisas(modelBuilder);
             PrepararSeguridad(modelBuilder);
+            PrepararAtencionMedica(modelBuilder);
         }
+        private void PrepararAtencionMedica(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new MapCitas(EsquemaAtencionMedica));
+            modelBuilder.ApplyConfiguration(new MapSalaEspera(EsquemaAtencionMedica));
+            modelBuilder.ApplyConfiguration(new MapSalaConsulta(EsquemaAtencionMedica));
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
         private void PrepararIgleisas(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MapClientes(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapSucursales(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapServicios(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapServiciosSucursales(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapServiciosUsuario(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapSucursalesUsuario(EsquemaCatalogo));
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -1,22 +1,30 @@
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+
+# Fleet
+.fleet/
+
+# Code Rush
+.cr/
+
 # User-specific files
-*.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
-
-# User-specific files (Mono Auto Generated)
-mono_crash.*
-
-# Azure DevOps
-.vs/
-
-# Ignore Visual Studio folder
-.vs/
-
-# Ignore build outputs
-bin/
-obj/
 
 # Build results
 [Dd]ebug/
@@ -25,138 +33,14 @@ obj/
 [Rr]eleases/
 x64/
 x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
+build/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
-[Ll]ogs/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+deploy.qa.sh
 
-# Enable "build/" folder in the NuGet Packages folder since NuGet 4.x
-!build/
-
-# NuGet
-*.nupkg
-*.snupkg
-.nuget/
-packages/
-# Uncomment if necessary.
-# */packages/
-
-# Project lock files
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# StyleCop
-StyleCopReport.xml
-
-# Dotnet watch
-**/hotreload/
-
-# DotNetCompileErrors.txt
-dotnet_compile_errors.txt
-
-# NCrunch
-_NCrunch_*
-.*crunch*.local.xml
-
-# CodeRush
-.cr/
-
-# Rider
-.idea/
-*.sln.iml
-
-# VS Code
-.vscode/
-.history/
-
-# Local History plugin (VS Code/IDE)
-.localhistory/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
-out/
-
-# Log files
-*.log
-
-# Coverage reports
-coverage/
-*.coverage
-*.coveragexml
-*.cov
-*.gcov
-*.lcov
-*.clover
-
-# Backup & output files
-*.bak
-*.swp
-*.orig
-*.tmp
-*.temp
-
-# IDE-specific cache files
-*.dtbcache.v2
-*.FUTDCACHE.V2
-*.SUo
-DocumentLayout.json
-Api.AssemblyInfoInputs.cache
-Api.csproj.AssemblyReference.cache
-
-# Build artifacts
-build/
-releases/
-artifacts/
-
-# Test results
-TestResults/
-*.trx
-*.coverage
-
-# Node.js modules (if applicable)
-node_modules/
-
-# Dependency directories
-*.pyc
-*.pyo
-*.pyd
-
-# Python virtual environments (if applicable)
-.venv/
-.env/
-env/
-/.vs/Criptas/DesignTimeBuild/.dtbcache.v2
-/Api/obj/Debug/net8.0/Api.csproj.AssemblyReference.cache
-/.vs/Criptas/v17/DocumentLayout.json
+.fake
