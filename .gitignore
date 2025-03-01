@@ -13,6 +13,10 @@ nupkg/
 
 # Visual Studio
 .vs/
+.vs/*/
+.vs/*/*.suo
+.vs/*/*.v2
+.vs/*/*.json
 
 # Fleet
 .fleet/
