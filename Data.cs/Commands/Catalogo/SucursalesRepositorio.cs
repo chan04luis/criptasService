@@ -342,5 +342,28 @@ namespace Data.cs.Commands.Catalogo
             }
             return response;
         }
+
+        public async Task<Response<List<EntSucursal>>> DGetByIdUser(Guid uId)
+        {
+            var response = new Response<List<EntSucursal>>();
+            try
+            {
+                var items = await dbContext.Sucursal.AsNoTracking().Where(x => x.bEliminado == false 
+                    && dbContext.SucursalesUsuario.Where(s=>s.IdUsuario==uId && s.Asignado).Select(s=>s.IdSucursal).Contains(x.uId)
+                ).ToListAsync();
+                if (items.Count > 0)
+                    response.SetSuccess(_mapper.Map<List<EntSucursal>>(items));
+                else
+                {
+                    response.SetError("Sin registros");
+                    response.HttpCode = System.Net.HttpStatusCode.NoContent;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex.Message);
+            }
+            return response;
+        }
     }
 }

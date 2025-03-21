@@ -11,7 +11,7 @@ namespace Business.Interfaces.AtencionMedica
         Task<Response<List<EntCitas>>> ObtenerCitas(CitasFiltroRequest filtro);
         Task<Response<EntCitaEditable>> GuardarCita(CitaRequest request);
         Task<Response<bool>> ActualizarCita(Guid id, CitaUpdateRequest request);
-        Task<Response<bool>> AtenderTurno(Guid idSucursal);
+        Task<Response<bool>> AtenderTurno(CitasGenericIdsRequest entity);
         Task<Response<bool>> RegistrarLlegada(Guid idCita);
         Task<Response<bool>> RegistrarSalida(Guid idCita);
         Task<Response<bool>> CancelarCita(Guid id);
@@ -26,5 +26,11 @@ namespace Business.Interfaces.AtencionMedica
         Task<Response<List<EntPacienteEspera>>> ObtenerPacientesEnEspera(Guid idSucursal);
         Task<Response<bool>> RegistrarPacienteEnEspera(Guid idSucursal, Guid idCliente, Guid? idCita);
         Task<Response<bool>> ActualizarEstadoEspera(Guid idSalaEspera, bool atendido);
+        Task<Response<bool>> AbrirSala(Guid idDoctor, Guid idSucursal);
+        Task<Response<bool>> CerrarSala(Guid idDoctor, Guid idSucursal);
+        Task<Response<bool>> NegotiateSalaEspera(Guid idSucursal);
+        Task<Response<bool>> ActualizarEstadoCita(Guid idCita, string nuevoEstado);
+
+
     }
 }

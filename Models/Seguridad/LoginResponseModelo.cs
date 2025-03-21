@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models.Models;
+using Newtonsoft.Json;
 
 namespace Models.Seguridad
 {
@@ -21,6 +17,8 @@ namespace Models.Seguridad
         public List<PermisoPaginaModelo> PermisosPaginas { get; set; }
         [JsonProperty("PermisosBotones")]
         public List<PermisoBotonModelo> PermisosBotones { get; set; }
+        [JsonProperty("Sucursales")]
+        public List<EntSucursal>? Sucursales { get; set; }
         [JsonProperty("Menu")]
         public object Menu { get; set; }
     }

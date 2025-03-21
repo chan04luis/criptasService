@@ -19,5 +19,6 @@ namespace Business.Interfaces.Catalogos
         Task<Response<List<EntSucursal>>> GetList();
         Task<Response<List<EntServiceItem>>> BGetListPreAssigmentUser(Guid uId);
         Task<Response<bool>> BSaveToUser(List<EntServiceItem> entities, Guid uId);
+        Task<Response<List<EntSucursal>>> GetByIdUser(Guid id);
     }
 }

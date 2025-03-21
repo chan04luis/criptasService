@@ -8,5 +8,7 @@ namespace Data.cs.Interfaces.AtencionMedica
         Task<Response<List<EntPacienteEspera>>> DGetPacientesEnEspera(Guid idSucursal);
         Task<Response<bool>> DRegistrarEnEspera(Guid idSucursal, Guid idCliente, Guid? idCita);
         Task<Response<bool>> DActualizarEstadoEspera(Guid idSalaEspera, bool atendido);
+
+        Task<Response<bool>> DNegotiateSalaEspera(Guid idSucursal);
     }
 }

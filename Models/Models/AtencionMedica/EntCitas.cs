@@ -9,6 +9,7 @@
         public string Doctor { get; set; }
         public DateTime FechaCita { get; set; }
         public string Estado { get; set; }
+        public bool? RegistradoEnPiso { get; set; }
 
         public Guid? IdCliente { get; set; }
         public Guid? IdSucursal { get; set; }

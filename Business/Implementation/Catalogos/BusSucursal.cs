@@ -253,5 +253,21 @@ namespace Business.Implementation.Catalogos
                 return response;
             }
         }
+
+        public async Task<Response<List<EntSucursal>>> GetByIdUser(Guid id)
+        {
+            try
+            {
+                return await _repositorio.DGetByIdUser(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener por ID");
+                var response = new Response<List<EntSucursal>>();
+                response.SetError("Hubo un error al obtener.");
+                response.HttpCode = System.Net.HttpStatusCode.InternalServerError;
+                return response;
+            }
+        }
     }
 }

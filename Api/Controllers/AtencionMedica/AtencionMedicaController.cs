@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Models.Models;
+using Api.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Api.Controllers.AtencionMedica
 {
@@ -17,11 +19,13 @@ namespace Api.Controllers.AtencionMedica
     {
         private readonly IBusAtencionMedica _busAtencionMedica;
         private readonly ILogger<AtencionMedicaController> _logger;
+        private readonly IHubContext<SalaEsperaHub> _hubContext;
 
-        public AtencionMedicaController(IBusAtencionMedica busAtencionMedica, ILogger<AtencionMedicaController> logger)
+        public AtencionMedicaController(IBusAtencionMedica busAtencionMedica, ILogger<AtencionMedicaController> logger, IHubContext<SalaEsperaHub> hubContext)
         {
             _busAtencionMedica = busAtencionMedica;
             _logger = logger;
+            _hubContext = hubContext;
         }
 
         [HttpPost("Citas/Crear")]
@@ -45,6 +49,8 @@ namespace Api.Controllers.AtencionMedica
         [SwaggerOperation(Summary = "Obtiene citas por filtros", Description = "Recupera una lista de citas filtradas por los parámetros dados.")]
         public async Task<Response<List<EntCitas>>> ObtenerCitas([FromBody] CitasFiltroRequest filtro)
         {
+            var idDoctor = new Guid(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
+            filtro.uIdDoctor = idDoctor;
             _logger.LogInformation("Obteniendo citas con filtros.");
             return await _busAtencionMedica.ObtenerCitas(filtro);
         }
@@ -62,15 +68,29 @@ namespace Api.Controllers.AtencionMedica
         public async Task<Response<bool>> CancelarCita(Guid id)
         {
             _logger.LogInformation("Cancelando cita con ID: {Id}", id);
-            return await _busAtencionMedica.CancelarCita(id);
+            var response = await _busAtencionMedica.CancelarCita(id);
+
+            if (!response.HasError)
+            {
+                await _hubContext.Clients.All.SendAsync("ReceiveUpdate", $"La cita con ID {id} ha sido cancelada.");
+            }
+
+            return response;
         }
 
-        [HttpPut("Citas/Atender/{idSucursal}")]
+        [HttpPut("Citas/Atender")]
         [SwaggerOperation(Summary = "Atiende una cita", Description = "Asigna un doctor disponible y marca la cita como en proceso.")]
-        public async Task<Response<bool>> AtenderTurno(Guid idSucursal)
+        public async Task<Response<bool>> AtenderTurno([FromBody] CitasGenericIdsRequest entity)
         {
-            _logger.LogInformation("Atendiendo turno en sucursal: {IdSucursal}", idSucursal);
-            return await _busAtencionMedica.AtenderTurno(idSucursal);
+            _logger.LogInformation("Atendiendo turno en sucursal: {IdSucursal}", entity.idSucursal);
+            var response = await _busAtencionMedica.AtenderTurno(entity);
+
+            if (!response.HasError)
+            {
+                await _hubContext.Clients.All.SendAsync("ReceiveUpdate", "Un paciente ha sido atendido.");
+            }
+
+            return response;
         }
 
         [HttpPut("Citas/Llegada/{idCita}")]
@@ -78,7 +98,14 @@ namespace Api.Controllers.AtencionMedica
         public async Task<Response<bool>> RegistrarLlegada(Guid idCita)
         {
             _logger.LogInformation("Registrando llegada de paciente a cita con ID: {IdCita}", idCita);
-            return await _busAtencionMedica.RegistrarLlegada(idCita);
+            var response = await _busAtencionMedica.RegistrarLlegada(idCita);
+
+            if (!response.HasError)
+            {
+                await _hubContext.Clients.All.SendAsync("ReceiveUpdate", $"El paciente con cita {idCita} ha llegado.");
+            }
+
+            return response;
         }
 
         [HttpPut("Citas/Salida/{idCita}")]
@@ -131,10 +158,11 @@ namespace Api.Controllers.AtencionMedica
 
         [HttpPost("Salas/EntradaConsulta")]
         [SwaggerOperation(Summary = "Registra la entrada a una sala de consulta", Description = "Asigna un doctor a una sala de consulta.")]
-        public async Task<Response<bool>> RegistrarEntradaConsulta([FromBody] Guid idDoctor, Guid idSucursal)
+        public async Task<Response<bool>> RegistrarEntradaConsulta([FromBody] CitasGenericIdsRequest entity)
         {
-            _logger.LogInformation("Registrando entrada de doctor con ID: {IdDoctor} en sucursal: {IdSucursal}", idDoctor, idSucursal);
-            return await _busAtencionMedica.RegistrarEntradaConsulta(idDoctor, idSucursal);
+            var idDoctor = new Guid(User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value);
+            _logger.LogInformation("Registrando entrada de doctor con ID: {IdDoctor} en sucursal: {IdSucursal}", idDoctor, entity.idSucursal);
+            return await _busAtencionMedica.RegistrarEntradaConsulta(idDoctor, entity.idSucursal.Value);
         }
 
         [HttpPut("Salas/SalidaConsulta")]

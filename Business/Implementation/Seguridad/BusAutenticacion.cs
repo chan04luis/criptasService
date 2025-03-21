@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Interfaces.Catalogos;
 using Business.Interfaces.Seguridad;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Interfaces.Seguridad;
@@ -25,9 +26,10 @@ namespace Business.Implementation.Seguridad
         private readonly IMapper mapeador;
         private readonly IConfiguration configuration;
         private readonly IFiltros _filtros;
+        private readonly IBusSucursal _sucursal;
 
         public BusAutenticacion(IMapper mapeador, IUsuariosRepositorio _datUsuario, IConfiguracionesRepositorio datConfiguracion, IHttpContextAccessor httpContext, 
-            IBusPermiso busPermisos, IConfiguration configuration, IFiltros filtros)
+            IBusPermiso busPermisos, IConfiguration configuration, IFiltros filtros, IBusSucursal sucursal)
         {
             this.mapeador = mapeador;
             this._datUsuario = _datUsuario;
@@ -36,6 +38,7 @@ namespace Business.Implementation.Seguridad
             this.busPermisos = busPermisos;
             this.configuration = configuration;
             _filtros = filtros;
+            _sucursal = sucursal;
         }
         public async Task<Response<LoginResponseModelo>> Login(LoginModelo loginModel)
         {
@@ -171,6 +174,11 @@ namespace Business.Implementation.Seguridad
                 {
                     return response.GetError("Credenciales no validadas");
                 }
+                var sucursales = await _sucursal.GetByIdUser(uIdUsuario);
+                if (obtenerMenu.HasError)
+                {
+                    
+                }
 
                 ConfiguracionModelo obtenerConfiguracionMapeado = mapeador.Map<ConfiguracionModelo>(obtenerConfiguracion.Result);
 
@@ -192,7 +200,7 @@ namespace Business.Implementation.Seguridad
                         TienePermiso = x.TienePermiso
                     }).ToList(),
                     PermisosBotones = obtenerPermisos.Result.Permisos.SelectMany(x => x.PermisosPagina).SelectMany(x => x.PermisosBoton).ToList(),
-
+                    Sucursales = sucursales.Result,
                     Token = token,
                     Usuario = usuarioMapeado,
                     Menu = obtenerMenu.Result
@@ -247,28 +255,6 @@ namespace Business.Implementation.Seguridad
                 audience: configuration["JwtSettings:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddDays(5),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-        private string GenerateJwtToken(EntClientes usuario)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, usuario.uId.ToString()),
-                new Claim(ClaimTypes.Name, usuario.sContra),
-                new Claim("Correo", usuario.sEmail),
-                new Claim("userId", usuario.uId.ToString()),
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: configuration["JwtSettings:Issuer"],
-                audience: configuration["JwtSettings:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -17,5 +17,6 @@ namespace Business.Data
         Task<Response<List<EntSucursal>>> DGetList();
         Task<Response<List<EntServiceItem>>> DGetListPreAssigmentUser(Guid uId);
         Task<Response<bool>> DSaveToUser(List<EntServiceItem> entities, Guid uId);
+        Task<Response<List<EntSucursal>>> DGetByIdUser(Guid uId);
     }
 }

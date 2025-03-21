@@ -132,5 +132,30 @@ namespace Data.cs.Commands.AtencionMedica
             }
             return response;
         }
+        public async Task<Response<bool>> DNegotiateSalaEspera(Guid idSucursal)
+        {
+            var response = new Response<bool>();
+            try
+            {
+                // Verificar si la sucursal existe antes de continuar
+                var sucursalExiste = await dbContext.Sucursal.AnyAsync(s => s.uId == idSucursal);
+                if (!sucursalExiste)
+                {
+                    response.SetError("La sucursal especificada no existe.");
+                    return response;
+                }
+
+                // Aquí se debe agregar la lógica para la negociación con SignalR si es necesario
+
+                response.SetSuccess(true, "Negociación de sala de espera completada con éxito.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en {MethodName}", nameof(DNegotiateSalaEspera));
+                response.SetError(ex);
+            }
+
+            return response;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Data.cs.Entities.AtencionMedica;
 using Data.cs.Interfaces.AtencionMedica;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Models.Models;
@@ -67,8 +68,8 @@ namespace Data.cs.Commands.AtencionMedica
                     Id = Guid.NewGuid(),
                     IdSucursal = idSucursal,
                     IdDoctor = idDoctor,
-                    FechaEntrada = DateTime.UtcNow,
-                    FechaRegistro = DateTime.UtcNow
+                    FechaEntrada = DateTime.Now.ToLocalTime(),
+                    FechaRegistro = DateTime.Now.ToLocalTime()
                 };
 
                 dbContext.SalaConsulta.Add(nuevaSala);
@@ -110,7 +111,7 @@ namespace Data.cs.Commands.AtencionMedica
                     return response;
                 }
 
-                sala.FechaSalida = DateTime.UtcNow;
+                sala.FechaSalida = DateTime.Now.ToLocalTime();
                 dbContext.Update(sala);
                 await dbContext.SaveChangesAsync();
 
@@ -124,6 +125,9 @@ namespace Data.cs.Commands.AtencionMedica
 
             return response;
         }
+
+        
+
 
     }
 }

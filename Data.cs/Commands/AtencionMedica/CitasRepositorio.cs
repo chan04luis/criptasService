@@ -2,6 +2,7 @@
 using Data.cs.Interfaces.AtencionMedica;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Models.Enums;
 using Models.Models.AtencionMedica;
 using Models.Request.AtencionMedica;
 using Models.Responses.AtencionMedica;
@@ -35,7 +36,10 @@ namespace Data.cs.Commands.AtencionMedica
                                  where (filtro.Fecha == null || c.FechaCita.Date == filtro.Fecha.Value.Date) &&
                                        (filtro.FechaInicio == null || c.FechaCita >= filtro.FechaInicio) &&
                                        (filtro.FechaFin == null || c.FechaCita <= filtro.FechaFin) &&
-                                       (filtro.Estado == null || c.Estado == filtro.Estado)
+                                       (filtro.Estado == null || c.Estado == filtro.Estado) && 
+                                       (filtro.uIdDoctor == null 
+                                            || Guid.Parse(IdDefaults.uIdPerfilDoctor.GetDescription()) !=  dbContext.Usuarios.FirstOrDefault(x=>x.uId == filtro.uIdDoctor).uIdPerfil
+                                            || c.IdDoctor == filtro.uIdDoctor.Value)
                                  orderby c.FechaCita
                                  select new EntCitas
                                  {
@@ -49,7 +53,8 @@ namespace Data.cs.Commands.AtencionMedica
                                      IdCliente=cli.uId,
                                      IdDoctor=d.uId,
                                      IdServicio=srv.Id,
-                                     IdSucursal=s.uId
+                                     IdSucursal=s.uId,
+                                     RegistradoEnPiso = c.RegistradoEnPiso
                                  };
 
                 var citas = await citasQuery.ToListAsync();
@@ -140,7 +145,7 @@ namespace Data.cs.Commands.AtencionMedica
                 cita.IdDoctor = request.IdDoctor;
                 cita.FechaCita = request.FechaCita;
                 cita.Estado = request.Estado;
-                cita.FechaActualizacion = DateTime.UtcNow;
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(cita);
                 await dbContext.SaveChangesAsync();
@@ -154,14 +159,14 @@ namespace Data.cs.Commands.AtencionMedica
             return response;
         }
 
-        public async Task<Response<bool>> DAtenderTurno(Guid idSucursal)
+        public async Task<Response<bool>> DAtenderTurno(Guid uId, Guid uIdSucursal)
         {
             Response<bool> response = new Response<bool>();
 
             try
             {
                 var citaPendiente = await dbContext.Citas
-                    .Where(x => x.IdSucursal == idSucursal && x.Estado == "pendiente")
+                    .Where(x => x.Id == uId && x.Estado == "pendiente")
                     .OrderBy(x => x.FechaCita)
                     .FirstOrDefaultAsync();
 
@@ -175,7 +180,7 @@ namespace Data.cs.Commands.AtencionMedica
                 if (citaPendiente.IdDoctor == null)
                 {
                     var doctorDisponible = await dbContext.SalaConsulta
-                        .Where(sc => sc.IdSucursal == idSucursal && sc.FechaSalida == null)
+                        .Where(sc => sc.IdSucursal == uIdSucursal && sc.FechaSalida == null)
                         .Select(sc => sc.IdDoctor)
                         .FirstOrDefaultAsync();
 
@@ -191,7 +196,7 @@ namespace Data.cs.Commands.AtencionMedica
 
                 // Marcar la cita como "en proceso"
                 citaPendiente.Estado = "en proceso";
-                citaPendiente.FechaActualizacion = DateTime.UtcNow;
+                citaPendiente.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(citaPendiente);
                 await dbContext.SaveChangesAsync();
@@ -224,9 +229,9 @@ namespace Data.cs.Commands.AtencionMedica
                     return response;
                 }
 
-                cita.FechaLlegada = DateTime.UtcNow;
+                cita.FechaLlegada = DateTime.Now.ToLocalTime();
                 cita.RegistradoEnPiso = true;
-                cita.FechaActualizacion = DateTime.UtcNow;
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(cita);
                 await dbContext.SaveChangesAsync();
@@ -259,9 +264,9 @@ namespace Data.cs.Commands.AtencionMedica
                     return response;
                 }
 
-                cita.FechaSalida = DateTime.UtcNow;
+                cita.FechaSalida = DateTime.Now.ToLocalTime();
                 cita.Estado = "finalizada";
-                cita.FechaActualizacion = DateTime.UtcNow;
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(cita);
                 await dbContext.SaveChangesAsync();
@@ -381,7 +386,7 @@ namespace Data.cs.Commands.AtencionMedica
 
                 cita.FechaCita = nuevaFecha;
                 cita.Turno = turnoMax + 1;
-                cita.FechaActualizacion = DateTime.UtcNow;
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(cita);
                 await dbContext.SaveChangesAsync();
@@ -415,8 +420,8 @@ namespace Data.cs.Commands.AtencionMedica
                 }
 
                 // Si la hora ya pasó y el paciente no llegó, se marca como "no presentado"
-                cita.Estado = cita.FechaCita < DateTime.UtcNow ? "no presentado" : "cancelada";
-                cita.FechaActualizacion = DateTime.UtcNow;
+                cita.Estado = cita.FechaCita < DateTime.Now.ToLocalTime() ? "no presentado" : "cancelada";
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
 
                 dbContext.Update(cita);
                 await dbContext.SaveChangesAsync();
@@ -449,7 +454,7 @@ namespace Data.cs.Commands.AtencionMedica
                 foreach (var cita in citasPendientes)
                 {
                     cita.Turno = nuevoTurno++;
-                    cita.FechaActualizacion = DateTime.UtcNow;
+                    cita.FechaActualizacion = DateTime.Now.ToLocalTime();
                     dbContext.Update(cita);
                 }
 
@@ -472,13 +477,13 @@ namespace Data.cs.Commands.AtencionMedica
             try
             {
                 var citasAtoradas = await dbContext.Citas
-                    .Where(c => c.Estado == "en proceso" && c.FechaActualizacion < DateTime.UtcNow.AddMinutes(-tiempoLimiteMinutos))
+                    .Where(c => c.Estado == "en proceso" && c.FechaActualizacion < DateTime.Now.ToLocalTime().AddMinutes(-tiempoLimiteMinutos))
                     .ToListAsync();
 
                 foreach (var cita in citasAtoradas)
                 {
                     cita.Estado = "finalizada";
-                    cita.FechaSalida = DateTime.UtcNow;
+                    cita.FechaSalida = DateTime.Now.ToLocalTime();
                     dbContext.Update(cita);
                 }
 
@@ -518,10 +523,10 @@ namespace Data.cs.Commands.AtencionMedica
                     IdSucursal = idSucursal,
                     IdServicio = Guid.Empty,  // Servicio desconocido
                     IdDoctor = doctorDisponible,
-                    FechaCita = DateTime.UtcNow,
+                    FechaCita = DateTime.Now.ToLocalTime(),
                     Estado = "en proceso",
-                    FechaRegistro = DateTime.UtcNow,
-                    FechaActualizacion = DateTime.UtcNow
+                    FechaRegistro = DateTime.Now.ToLocalTime(),
+                    FechaActualizacion = DateTime.Now.ToLocalTime()
                 };
 
                 dbContext.Citas.Add(nuevaCita);
@@ -532,6 +537,36 @@ namespace Data.cs.Commands.AtencionMedica
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error en {MethodName}", nameof(DAsignarPacienteSinCita));
+                response.SetError(ex);
+            }
+
+            return response;
+        }
+
+        public async Task<Response<bool>> DActualizarEstadoCita(Guid idCita, string nuevoEstado)
+        {
+            var response = new Response<bool>();
+
+            try
+            {
+                var cita = await dbContext.Citas.FirstOrDefaultAsync(c => c.Id == idCita);
+                if (cita == null)
+                {
+                    response.SetError("No se encontró la cita especificada.");
+                    return response;
+                }
+
+                cita.Estado = nuevoEstado;
+                cita.FechaActualizacion = DateTime.Now.ToLocalTime();
+
+                dbContext.Citas.Update(cita);
+                await dbContext.SaveChangesAsync();
+
+                response.SetSuccess(true, "Estado de la cita actualizado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en {MethodName}", nameof(DActualizarEstadoCita));
                 response.SetError(ex);
             }
 

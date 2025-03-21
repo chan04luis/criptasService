@@ -43,9 +43,9 @@ namespace Business.Implementation.AtencionMedica
             return await _citasRepositorio.DUpdateCita(id, request);
         }
 
-        public async Task<Response<bool>> AtenderTurno(Guid idSucursal)
+        public async Task<Response<bool>> AtenderTurno(CitasGenericIdsRequest entity)
         {
-            var salaDisponible = await _salaConsultaRepositorio.DGetSalasDisponibles(idSucursal);
+            var salaDisponible = await _salaConsultaRepositorio.DGetSalasDisponibles(entity.idSucursal.Value);
             if (salaDisponible.Result == null || !salaDisponible.Result.Any())
             {
                 var resp = new Response<bool>();
@@ -53,7 +53,7 @@ namespace Business.Implementation.AtencionMedica
                 return resp;
             }
 
-            return await _citasRepositorio.DAtenderTurno(idSucursal);
+            return await _citasRepositorio.DAtenderTurno(entity.idCita.Value, entity.idSucursal.Value);
         }
 
         public async Task<Response<bool>> RegistrarLlegada(Guid idCita)
@@ -149,6 +149,26 @@ namespace Business.Implementation.AtencionMedica
         public async Task<Response<bool>> ActualizarEstadoEspera(Guid idSalaEspera, bool atendido)
         {
             return await _salaEsperaRepositorio.DActualizarEstadoEspera(idSalaEspera, atendido);
+        }
+
+        public async Task<Response<bool>> AbrirSala(Guid idDoctor, Guid idSucursal)
+        {
+            return await _salaConsultaRepositorio.DRegistrarEntradaConsulta(idDoctor, idSucursal);
+        }
+
+        public async Task<Response<bool>> CerrarSala(Guid idDoctor, Guid idSucursal)
+        {
+            return await _salaConsultaRepositorio.DRegistrarSalidaConsulta(idDoctor, idSucursal);
+        }
+
+        public async Task<Response<bool>> NegotiateSalaEspera(Guid idSucursal)
+        {
+            return await _salaEsperaRepositorio.DNegotiateSalaEspera(idSucursal);
+        }
+
+        public async Task<Response<bool>> ActualizarEstadoCita(Guid idCita, string nuevoEstado)
+        {
+            return await _citasRepositorio.DActualizarEstadoCita(idCita, nuevoEstado);
         }
     }
 }
