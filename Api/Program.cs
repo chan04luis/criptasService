@@ -115,9 +115,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 string CONNECTION_STRING = builder.Configuration.GetConnectionString("Connection");
-builder.Services.AddDbContext<ApplicationDbContext>(option =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    option.UseNpgsql(CONNECTION_STRING);
+    options.UseOracle(CONNECTION_STRING);
 });
 
 /*string ISSUER = builder.Configuration["JwtSettings:Issuer"];

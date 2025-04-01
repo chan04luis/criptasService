@@ -4,103 +4,95 @@ using Data.cs.Entities.Catalogos;
 
 namespace Data.cs.Mapping.Catalogos
 {
-
     public partial class MapClientes : IEntityTypeConfiguration<Clientes>
     {
         private readonly string Esquema;
 
-        public MapClientes(string Esquema)
+        public MapClientes(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Clientes> builder)
         {
-            builder.ToTable("clientes", Esquema);
-            builder.HasKey(c => c.uId).HasName("PK_Cliente");
+            builder.ToTable("CLIENTES", Esquema);
+
+            builder.HasKey(c => c.uId)
+                .HasName("CLIENTES_PKEY");
 
             builder.Property(c => c.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(c => c.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)")
+                .IsRequired();
 
             builder.Property(c => c.sApellidos)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("apellidos");
+                .HasColumnName("APELLIDOS")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(c => c.sDireccion)
-                .HasColumnType("VARCHAR")
-                .IsUnicode(false)
-                .HasColumnName("direccion");
+                .HasColumnName("DIRECCION")
+                .HasColumnType("CLOB");
 
             builder.Property(c => c.sTelefono)
-                .HasColumnType("VARCHAR(20)")
-                .HasColumnName("telefono");
+                .HasColumnName("TELEFONO")
+                .HasColumnType("VARCHAR2(20)");
 
             builder.Property(c => c.sEmail)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("email");
-
-            builder.Property(c => c.sFcmToken)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("sfcmtoken");
+                .HasColumnName("EMAIL")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(c => c.sSexo)
-                .HasColumnType("VARCHAR(10)")
-                .HasColumnName("sexo");
-
-            builder.Property(c => c.iOrigen)
-                .HasColumnType("NUMERIC")
-                .HasColumnName("origen");
+                .HasColumnName("SEXO")
+                .HasColumnType("VARCHAR2(10)");
 
             builder.Property(c => c.sContra)
-                .HasColumnType("VARCHAR(200)")
-                .HasColumnName("contra");
+                .HasColumnName("CONTRA")
+                .HasColumnType("VARCHAR2(200)");
+
+            builder.Property(c => c.iOrigen)
+                .HasColumnName("ORIGEN")
+                .HasColumnType("NUMBER")
+                .IsRequired();
+
+            builder.Property(c => c.sFcmToken)
+                .HasColumnName("SFCMTOKEN")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(c => c.sFechaNacimiento)
-                .HasColumnType("VARCHAR(20)")
-                .HasColumnName("fecha_nac");
+                .HasColumnName("FECHA_NAC")
+                .HasColumnType("VARCHAR2(20)");
 
             builder.Property(c => c.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(c => c.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(c => c.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(c => c.bEstatus)
-                .HasColumnType("bolean")
-                .IsUnicode(false)
-                .HasColumnName("estatus");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)");
 
             builder.Property(c => c.bEliminado)
-                .HasColumnType("bolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
+
+            // Relaciones (si las deseas habilitar luego)
+            // builder.HasMany(c => c.listCriptas).WithOne().HasForeignKey(...);
+            // builder.HasMany(c => c.listPagos).WithOne().HasForeignKey(...);
         }
     }
 }

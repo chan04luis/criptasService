@@ -8,72 +8,61 @@ namespace Data.cs.Mapping.Catalogos
     {
         private readonly string Esquema;
 
-        public MapBeneficiarios(string Esquema)
+        public MapBeneficiarios(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Beneficiarios> builder)
         {
-            builder.ToTable("beneficiarios", Esquema);
+            builder.ToTable("BENEFICIARIOS", Esquema);
+
             builder.HasKey(z => z.uId)
-                .HasName("PK_Beneficiarios");
+                .HasName("BENEFICIARIOS_PKEY");
 
             builder.Property(z => z.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
-            builder.Property(e => e.uIdCripta)
-                .HasColumnType("uuid")
-                .HasColumnName("id_cripta");
+            builder.Property(z => z.uIdCripta)
+                .HasColumnName("ID_CRIPTA")
+                .HasColumnType("RAW(16)");
 
-            builder.Property(e => e.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("nombre");
+            builder.Property(z => z.sNombre)
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)")
+                .IsRequired();
 
-            builder.Property(e => e.sIneFrente)
-                .HasColumnType("text")
-                .HasColumnName("ine_frente");
+            builder.Property(z => z.sIneFrente)
+                .HasColumnName("INE_FRENTE")
+                .HasColumnType("CLOB");
 
-            builder.Property(e => e.sIneReverso)
-                .HasColumnType("text")
-                .HasColumnName("ine_reverso");
+            builder.Property(z => z.sIneReverso)
+                .HasColumnName("INE_REVERSO")
+                .HasColumnType("CLOB");
 
-            builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+            builder.Property(z => z.dtFechaRegistro)
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP");
 
-            builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+            builder.Property(z => z.dtFechaActualizacion)
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
-            builder.Property(c => c.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+            builder.Property(z => z.dtFechaEliminado)
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
-            builder.Property(e => e.bEstatus)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("estatus");
+            builder.Property(z => z.bEstatus)
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)");
 
-            builder.Property(e => e.bEliminado)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminado");
+            builder.Property(z => z.bEliminado)
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
         }
     }
 }
