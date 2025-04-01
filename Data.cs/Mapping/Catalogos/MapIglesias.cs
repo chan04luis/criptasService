@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Data.cs.Entities.Catalogos;
 
 namespace Data.cs.Mapping.Catalogos
@@ -7,77 +7,67 @@ namespace Data.cs.Mapping.Catalogos
     public partial class MapIglesias : IEntityTypeConfiguration<Iglesias>
     {
         public readonly string Esquema;
-        public MapIglesias(string Esquema)
+        public MapIglesias(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Iglesias> builder)
         {
-            builder.ToTable("iglesias", Esquema);
-            builder.HasKey(i => i.uId).HasName("PK_Iglesia");
+            builder.ToTable("IGLESIAS", Esquema);
+
+            builder.HasKey(i => i.uId)
+                .HasName("IGLESIAS_PKEY");
 
             builder.Property(i => i.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(i => i.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)")
+                .IsRequired();
 
             builder.Property(i => i.sDireccion)
-                .HasColumnType("TEXT")
-                .HasColumnName("direccion");
-
-            builder.Property(i => i.sLatitud)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("latitud");
-
-            builder.Property(i => i.sLongitud)
-                .HasColumnType("TEXT")
-                .HasColumnName("longitud");
+                .HasColumnName("DIRECCION")
+                .HasColumnType("CLOB");
 
             builder.Property(i => i.sCiudad)
-                .HasColumnType("VARCHAR(100)")
-                .HasColumnName("ciudad");
+                .HasColumnName("CIUDAD")
+                .HasColumnType("VARCHAR2(100)");
+
+            builder.Property(i => i.sLatitud)
+                .HasColumnName("LATITUD")
+                .HasColumnType("VARCHAR2(100)");
+
+            builder.Property(i => i.sLongitud)
+                .HasColumnName("LONGITUD")
+                .HasColumnType("VARCHAR2(100)");
 
             builder.Property(i => i.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(i => i.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(i => i.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(i => i.bEstatus)
-                .HasColumnType("bolean")
-                .IsUnicode(false)
-                .HasColumnName("estatus");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)");
 
             builder.Property(i => i.bEliminado)
-                .HasColumnType("bolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
+
         }
     }
 }

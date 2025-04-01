@@ -13,48 +13,46 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapModulo(string Esquema)
+        public MapModulo(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Modulo> builder)
         {
-            // table
-            builder.ToTable("modulos", Esquema);
+            builder.ToTable("MODULOS", Esquema);
 
-            // key
-            builder.HasKey(e => e.uIdModulo).HasName("PK_Modulos");
-
-            // properties
+            builder.HasKey(e => e.uIdModulo)
+                .HasName("MODULOS_PKEY");
 
             builder.Property(e => e.uIdModulo)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.sClaveModulo)
-                .HasColumnType("VARCHAR(50)")
-                .IsUnicode(false)
-                .HasColumnName("clave_modulo");
+                .HasColumnName("CLAVE_MODULO")
+                .HasColumnType("VARCHAR2(50)")
+                .IsRequired();
 
             builder.Property(e => e.sNombreModulo)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("nombre_modulo");
+                .HasColumnName("NOMBRE_MODULO")
+                .HasColumnType("VARCHAR2(100)")
+                .IsRequired();
 
             builder.Property(e => e.sPathModulo)
-                .HasColumnType("VARCHAR(250)")
-                .IsUnicode(false)
-                .HasColumnName("path_modulo");
+                .HasColumnName("PATH_MODULO")
+                .HasColumnType("VARCHAR2(250)");
 
             builder.Property(e => e.bMostrarEnMenu)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("mostrar_en_menu");
+                .HasColumnName("MOSTRAR_EN_MENU")
+                .HasColumnType("NUMBER(1)");
 
             builder.Property(e => e.bActivo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
+
         }
     }
 }

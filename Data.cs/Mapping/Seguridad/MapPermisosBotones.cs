@@ -13,73 +13,54 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapPermisosBotones(string Esquema)
+        public MapPermisosBotones(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<PermisoBotones> builder)
         {
-            // table
-            builder.ToTable("permisos_botones", Esquema);
+            builder.ToTable("PERMISOS_BOTONES", Esquema);
 
-            // key
-            builder.HasKey(e => e.uIdPermisoBoton).HasName("PK_PermisosBotones");
+            builder.HasKey(e => e.uIdPermisoBoton)
+                   .HasName("PERMISOS_BOTONES_PKEY");
 
-            // properties
             builder.Property(e => e.uIdPermisoBoton)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                   .HasColumnName("ID")
+                   .HasColumnType("RAW(16)")
+                   .IsRequired();
 
             builder.Property(e => e.uIdPerfil)
-                .HasColumnType("uuid")
-                .HasColumnName("id_perfil");
+                   .HasColumnName("ID_PERFIL")
+                   .HasColumnType("RAW(16)")
+                   .IsRequired();
 
             builder.Property(e => e.uIdBoton)
-                .HasColumnType("uuid")
-                .IsUnicode(false)
-                .HasColumnName("id_boton");
+                   .HasColumnName("ID_BOTON")
+                   .HasColumnType("RAW(16)")
+                   .IsRequired();
 
             builder.Property(e => e.bTienePermiso)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("tiene_permiso");
+                   .HasColumnName("TIENE_PERMISO")
+                   .HasColumnType("NUMBER(1)");
 
             builder.Property(e => e.dtFechaCreacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_creacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                   .HasColumnName("FECHA_CREACION")
+                   .HasColumnType("DATE");
 
             builder.Property(e => e.dtFechaModificacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_modificacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                   .HasColumnName("FECHA_MODIFICACION")
+                   .HasColumnType("DATE");
 
             builder.Property(e => e.uIdUsuarioModificacion)
-                .HasColumnType("uuid")
-                .HasColumnName("usuario_modificacion");
+                   .HasColumnName("USUARIO_MODIFICACION")
+                   .HasColumnType("RAW(16)");
 
             builder.Property(e => e.bActivo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
+                   .HasColumnName("ACTIVO")
+                   .HasColumnType("NUMBER(1)")
+                   .IsRequired();
 
-            // relaciones
-            builder
-               .HasOne(c => c.boton)
-               .WithMany(e => e.lstPermisosBotones)
-               .HasForeignKey(c => c.uIdBoton)
-               .HasConstraintName("fk_boton");
-
-            builder
-                 .HasOne(pm => pm.perfil)
-                 .WithMany()
-                 .HasForeignKey(pm => pm.uIdPerfil);
         }
     }
 }

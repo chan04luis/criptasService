@@ -13,72 +13,63 @@ namespace Data.cs.Mapping.Catalogos
     {
         private readonly string Esquema;
 
-        public MapVisitas(string Esquema)
+        public MapVisitas(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Visitas> builder)
         {
-            builder.ToTable("visitas", Esquema);
+            builder.ToTable("VISITAS", Esquema);
 
-            builder.HasKey(z => z.uId).HasName("PK_Visitas");
+            builder.HasKey(z => z.uId)
+                .HasName("VISITAS_PKEY");
 
             builder.Property(z => z.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.sNombreVisitante)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("nombre_visitante");
+                .HasColumnName("NOMBRE_VISITANTE")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(e => e.sMensaje)
-                .HasColumnType("VARCHAR(500)")
-                .HasColumnName("mensaje_visitante");
+                .HasColumnName("MENSAJE_VISITANTE")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.uIdCriptas)
-                .HasColumnType("uuid")
-                .HasColumnName("id_criptas");
+                .HasColumnName("ID_CRIPTAS")
+                .HasColumnType("RAW(16)");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registo")
-                .IsUnicode(false)
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                 );
+                .HasColumnName("FECHA_REGISTO") // (conservar tal como está en Oracle, aunque sea un typo)
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("timestamp winthout time zone")
-                .HasColumnName("fecha_actualizacion")
-                .IsUnicode(false)
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(e => e.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(e => e.bEstatus)
-                .HasColumnType("boolean")
-                .HasColumnName("estatus");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(e => e.bEliminado)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.HasOne(z => z.cripta)
-               .WithMany(i => i.listVisitas)
-               .HasForeignKey(z => z.uIdCriptas)
-               .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(i => i.listVisitas)
+                .HasForeignKey(z => z.uIdCriptas)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

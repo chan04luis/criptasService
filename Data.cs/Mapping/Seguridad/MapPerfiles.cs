@@ -14,63 +14,58 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapPerfiles(string Esquema)
+        public MapPerfiles(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Perfil> builder)
         {
-            builder.ToTable("perfiles", Esquema);
-            builder.HasKey(c => c.id).HasName("perfiles_pkey");
+            builder.ToTable("PERFILES", Esquema);
+
+            builder.HasKey(c => c.id)
+                .HasName("PERFILES_PKEY");
 
             builder.Property(c => c.id)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(c => c.ClavePerfil)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("clave_perfil");
+                .HasColumnName("CLAVE_PERFIL")
+                .HasColumnType("VARCHAR2(500)")
+                .IsRequired();
 
             builder.Property(c => c.NombrePerfil)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("nombre_perfil");
+                .HasColumnName("NOMBRE_PERFIL")
+                .HasColumnType("VARCHAR2(500)")
+                .IsRequired();
 
             builder.Property(c => c.Eliminable)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminable");
+                .HasColumnName("ELIMINABLE")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(c => c.FechaCreacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_creacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_CREACION")
+                .HasColumnType("DATE");
 
             builder.Property(c => c.UsuarioCreacion)
-                .HasColumnType("uuid")
-                .HasColumnName("usuario_creacion");
+                .HasColumnName("USUARIO_CREACION")
+                .HasColumnType("RAW(16)");
 
             builder.Property(c => c.FechaModificacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_modificacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_MODIFICACION")
+                .HasColumnType("DATE");
 
             builder.Property(c => c.UsuarioModificacion)
-               .HasColumnType("uuid")
-               .HasColumnName("usuario_modificacion");
+                .HasColumnName("USUARIO_MODIFICACION")
+                .HasColumnType("RAW(16)");
 
             builder.Property(c => c.Activo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
         }
     }
 }

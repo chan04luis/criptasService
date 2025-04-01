@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Data.cs.Entities.Catalogos;
 
 namespace Data.cs.Mapping.Catalogos
@@ -8,59 +8,55 @@ namespace Data.cs.Mapping.Catalogos
     {
         private readonly string Esquema;
 
-        public MapSecciones(string Esquema)
+        public MapSecciones(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Secciones> builder)
         {
-            builder.ToTable("secciones", Esquema);
-            builder.HasKey(s => s.uId).HasName("PK_Seccion");
+            builder.ToTable("SECCIONES", Esquema);
+
+            builder.HasKey(s => s.uId)
+                .HasName("SECCIONES_PKEY");
 
             builder.Property(s => s.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(s => s.uIdZona)
-                .HasColumnType("uuid")
-                .HasColumnName("id_zona");
+                .HasColumnName("ID_ZONA")
+                .HasColumnType("RAW(16)");
 
             builder.Property(s => s.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("nombre");
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)")
+                .IsRequired();
 
             builder.Property(s => s.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(s => s.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(s => s.bEstatus)
-                .HasColumnType("boolean")
-                .HasColumnName("estatus");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(s => s.bEliminado)
-                .HasColumnType("boolean")
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(s => s.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.HasOne(s => s.Zona)
                 .WithMany(z => z.listSecciones)
@@ -68,5 +64,4 @@ namespace Data.cs.Mapping.Catalogos
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
 }

@@ -13,64 +13,50 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapPagina(string Esquema)
+        public MapPagina(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Pagina> builder)
         {
-            // table
-            builder.ToTable("paginas", Esquema);
+            builder.ToTable("PAGINAS", Esquema);
 
-            // key
-            builder.HasKey(e => e.uIdPagina).HasName("PK_Paginas");
+            builder.HasKey(e => e.uIdPagina)
+                .HasName("PAGINAS_PKEY");
 
-            // properties
             builder.Property(e => e.uIdPagina)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.uIdModulo)
-                .HasColumnType("uuid")
-                .IsUnicode(false)
-                .HasColumnName("id_modulo");
+                .HasColumnName("ID_MODULO")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.sClavePagina)
-                .HasColumnType("VARCHAR(50)")
-                .IsUnicode(false)
-                .HasColumnName("clave_pagina");
+                .HasColumnName("CLAVE_PAGINA")
+                .HasColumnType("VARCHAR2(50)")
+                .IsRequired();
 
             builder.Property(e => e.sNombrePagina)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("nombre_pagina");
+                .HasColumnName("NOMBRE_PAGINA")
+                .HasColumnType("VARCHAR2(100)")
+                .IsRequired();
 
             builder.Property(e => e.sPathPagina)
-                .HasColumnType("VARCHAR(250)")
-                .IsUnicode(false)
-                .HasColumnName("path_pagina");
+                .HasColumnName("PATH_PAGINA")
+                .HasColumnType("VARCHAR2(250)");
 
             builder.Property(e => e.bMostrarEnMenu)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("mostrar_en_menu");
+                .HasColumnName("MOSTRAR_EN_MENU")
+                .HasColumnType("NUMBER(1)");
 
             builder.Property(e => e.bActivo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
-
-            builder.HasOne(c => c.Modulo)
-              .WithMany(e => e.lstPaginas)
-              .HasForeignKey(c => c.uIdModulo)
-              .HasConstraintName("fk_modulos");
-
-            //relaciones
-            builder
-                .HasOne(c => c.Modulo)
-                .WithMany(e => e.lstPaginas)
-                .HasForeignKey(c => c.uIdModulo)
-                .HasConstraintName("fk_modulos");
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
         }
     }
 }

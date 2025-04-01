@@ -1,64 +1,64 @@
-﻿using Data.cs.Entities.Catalogos;
-using Data.cs.Entities.Seguridad;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Data.cs.Entities.Catalogos;
+
 namespace Data.cs.Mapping.Catalogos
 {
     public partial class MapTiposMantenimiento : IEntityTypeConfiguration<TipoDeMantenimiento>
     {
         private readonly string Esquema;
-        public MapTiposMantenimiento(string Esquema)
+
+        public MapTiposMantenimiento(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<TipoDeMantenimiento> builder)
         {
-            builder.ToTable("tipos_mantenimiento", Esquema);
-            builder.HasKey(u => u.Id).HasName("tipos_mantenimiento_pk");
+            builder.ToTable("TIPOS_MANTENIMIENTO", Esquema);
+
+            builder.HasKey(u => u.Id)
+                .HasName("TIPOS_MANTENIMIENTO_PK");
 
             builder.Property(u => u.Id)
-           .HasColumnType("uuid")
-           .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(u => u.Nombre)
-           .HasColumnType("VARCHAR(100)")
-           .HasColumnName("nombre");
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(u => u.Descripcion)
-            .HasColumnType("text")
-            .HasColumnName("descripcion");
+                .HasColumnName("DESCRIPCION")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(u => u.Costo)
-           .HasColumnType("numeric")
-           .HasColumnName("costo");
-
-            builder.Property(u => u.Estatus)
-           .HasColumnType("boolean")
-           .HasColumnName("estatus");
-
-            builder.Property(u => u.bEliminado)
-            .HasColumnType("boolean")
-            .HasColumnName("eliminado");
+                .HasColumnName("COSTO")
+                .HasColumnType("NUMBER")
+                .IsRequired();
 
             builder.Property(u => u.Img)
-           .HasColumnType("text")
-           .HasColumnName("img");
-
-            builder.Property(u => u.FechaActualizacion)
-            .HasColumnType("timestamp without time zone")
-            .HasColumnName("fecha_actualizacion")
-            .HasConversion(
-                v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                v => v
-            );
+                .HasColumnName("IMG")
+                .HasColumnType("CLOB");
 
             builder.Property(u => u.FechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP");
+
+            builder.Property(u => u.FechaActualizacion)
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
+
+            builder.Property(u => u.bEliminado)
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
+
+            builder.Property(u => u.Estatus)
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
         }
     }
 }

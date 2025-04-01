@@ -1,6 +1,6 @@
 ﻿using Data.cs.Entities.Catalogos;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data.cs.Mapping.Catalogos
 {
@@ -10,57 +10,56 @@ namespace Data.cs.Mapping.Catalogos
 
         public MapSolicitudesInfo(string esquema)
         {
-            this.Esquema = esquema;
+            Esquema = esquema;
         }
 
         public void Configure(EntityTypeBuilder<SolicitudesInfo> builder)
         {
-            builder.ToTable("solicitudes_info", Esquema);
-            builder.HasKey(u => u.Id).HasName("solicitudes_info_pk");
+            builder.ToTable("SOLICITUDES_INFO", Esquema);
+
+            builder.HasKey(u => u.Id)
+                .HasName("SOLICITUDES_INFO_PK");
 
             builder.Property(u => u.Id)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(u => u.IdCliente)
-                .HasColumnType("uuid")
-                .HasColumnName("id_cliente");
+                .HasColumnName("ID_CLIENTE")
+                .HasColumnType("RAW(16)");
 
             builder.Property(u => u.IdServicio)
-                .HasColumnType("uuid")
-                .HasColumnName("id_servicio");
+                .HasColumnName("ID_SERVICIO")
+                .HasColumnType("RAW(16)");
 
             builder.Property(u => u.Mensaje)
-                .HasColumnType("text")
-                .HasColumnName("mensaje");
+                .HasColumnName("MENSAJE")
+                .HasColumnType("CLOB");
 
             builder.Property(u => u.Visto)
-                .HasColumnType("boolean")
-                .HasColumnName("visto");
+                .HasColumnName("VISTO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(u => u.Atendido)
-                .HasColumnType("boolean")
-                .HasColumnName("atendido");
+                .HasColumnName("ATENDIDO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(u => u.Eliminado)
-                .HasColumnType("boolean")
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(u => u.FechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(u => u.FechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
+
         }
     }
 }

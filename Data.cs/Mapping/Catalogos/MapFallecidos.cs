@@ -8,92 +8,77 @@ namespace Data.cs.Mapping.Catalogos
     {
         private readonly string Esquema;
 
-        public MapFallecidos(string Esquema)
+        public MapFallecidos(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Fallecidos> builder)
         {
-            builder.ToTable("fallecidos", Esquema);
+            builder.ToTable("FALLECIDOS", Esquema);
 
             builder.HasKey(z => z.uId)
-                .HasName("PK_fallecidos");
+                .HasName("FALLECIDOS_PKEY");
 
             builder.Property(z => z.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(c => c.uIdCripta)
-                .HasColumnType("uuid")
-                .HasColumnName("id_cripta");
+                .HasColumnName("ID_CRIPTA")
+                .HasColumnType("RAW(16)");
 
             builder.Property(e => e.sNombre)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("nombre");
+                .HasColumnName("NOMBRE")
+                .HasColumnType("VARCHAR2(255)")
+                .IsRequired();
 
             builder.Property(e => e.sApellidos)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("apellidos");
+                .HasColumnName("APELLIDOS")
+                .HasColumnType("VARCHAR2(255)");
 
             builder.Property(e => e.sActaDefuncion)
-                .HasColumnType("text")
-                .HasColumnName("acta_defuncion");
+                .HasColumnName("ACTA_DEFUNCION")
+                .HasColumnType("CLOB");
 
             builder.Property(e => e.sAutorizacionIncineracion)
-                .HasColumnType("text")
-                .HasColumnName("autorizacion_incineracion");
+                .HasColumnName("AUTORIZACION_INCINERACION")
+                .HasColumnType("CLOB");
 
             builder.Property(e => e.sAutorizacionTraslado)
-                .HasColumnType("text")
-                .HasColumnName("autorizacion_traslado");
+                .HasColumnName("AUTORIZACION_TRASLADO")
+                .HasColumnType("CLOB");
 
             builder.Property(e => e.dtFechaFallecimiento)
-                .HasColumnType("VARCHAR")
-                .HasColumnName("fecha_fallecimiento");
+                .HasColumnName("FECHA_FALLECIMIENTO")
+                .HasColumnType("VARCHAR2(100)");
 
             builder.Property(e => e.dtFechaNacimiento)
-                .HasColumnType("VARCHAR")
-                .HasColumnName("fecha_nacimiento");
+                .HasColumnName("FECHA_NACIMIENTO")
+                .HasColumnType("VARCHAR2(100)");
 
             builder.Property(e => e.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(e => e.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(e => e.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => v.HasValue ? DateTime.SpecifyKind(v.Value.ToLocalTime(), DateTimeKind.Unspecified) : (DateTime?)null,
-                    v => v
-                );
-
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(e => e.bEstatus)
-                .HasColumnType("boolean")
-                .HasColumnName("estatus");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)");
 
             builder.Property(e => e.bEliminado)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("eliminado");
-
-            builder.HasOne(z => z.cripta)
-               .WithMany(i => i.listFallecidos)
-               .HasForeignKey(z => z.uIdCripta)
-               .OnDelete(DeleteBehavior.Restrict);
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
         }
     }

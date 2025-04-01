@@ -14,110 +14,86 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapConfiguracion(string Esquema)
+        public MapConfiguracion(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Configuracion> builder)
         {
-            // table
-            builder.ToTable("configuracion", Esquema);
+            builder.ToTable("CONFIGURACION", Esquema);
 
-            // key
-            builder.HasKey(e => e.uIdConfiguracion).HasName("PK_Configuracion");
+            builder.HasKey(e => e.uIdConfiguracion)
+                .HasName("CONFIGURACION_PKEY");
 
-            // properties
             builder.Property(e => e.uIdConfiguracion)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.sTituloNavegador)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("titulo_navegador");
+                .HasColumnName("TITULO_NAVEGADOR")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sMetaDescripcion)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("meta_descripcion");
+                .HasColumnName("META_DESCRIPCION")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sColorPrimario)
-                .HasColumnType("VARCHAR(7)")
-                .IsUnicode(false)
-                .HasColumnName("color_primario");
+                .HasColumnName("COLOR_PRIMARIO")
+                .HasColumnType("VARCHAR2(7)");
 
             builder.Property(e => e.sColorSecundario)
-                .HasColumnType("VARCHAR(7)")
-                .IsUnicode(false)
-                .HasColumnName("color_secundario");
+                .HasColumnName("COLOR_SECUNDARIO")
+                .HasColumnType("VARCHAR2(7)");
 
             builder.Property(e => e.sContrastePrimario)
-                .HasColumnType("VARCHAR(7)")
-                .IsUnicode(false)
-                .HasColumnName("contraste_primario");
+                .HasColumnName("CONTRASTE_PRIMARIO")
+                .HasColumnType("VARCHAR2(7)");
 
             builder.Property(e => e.sContrasteSecundario)
-                .HasColumnType("VARCHAR(7)")
-                .IsUnicode(false)
-                .HasColumnName("contraste_secundario");
+                .HasColumnName("CONTRASTE_SECUNDARIO")
+                .HasColumnType("VARCHAR2(7)");
 
             builder.Property(e => e.sUrlFuente)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("url_fuente");
+                .HasColumnName("URL_FUENTE")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sNombreFuente)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("nombre_fuente");
+                .HasColumnName("NOMBRE_FUENTE")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sRutaImagenFondo)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("ruta_imagen_fondo");
+                .HasColumnName("RUTA_IMAGEN_FONDO")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sRutaImagenLogo)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("ruta_imagen_logo");
+                .HasColumnName("RUTA_IMAGEN_LOGO")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.sRutaImagenPortal)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("ruta_imagen_portal");
+                .HasColumnName("RUTA_IMAGEN_PORTAL")
+                .HasColumnType("VARCHAR2(500)");
 
             builder.Property(e => e.dtFechaCreacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_creacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_CREACION")
+                .HasColumnType("DATE");
 
             builder.Property(e => e.uIdUsuarioCreacion)
-              .HasColumnType("datetime")
-              .IsUnicode(false)
-              .HasColumnName("usuario_creacion");
+                .HasColumnName("USUARIO_CREACION")
+                .HasColumnType("RAW(16)");
 
             builder.Property(e => e.dtFechaModificacion)
-                .HasColumnType("timestamp without time zone")
-                .IsUnicode(false)
-                .HasColumnName("fecha_modificacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_MODIFICACION")
+                .HasColumnType("DATE");
 
             builder.Property(e => e.uIdUsuarioModificacion)
-                .HasColumnType("uniqueidentifier")
-                .HasColumnName("usuario_modificacion");
+                .HasColumnName("USUARIO_MODIFICACION")
+                .HasColumnType("RAW(16)");
 
             builder.Property(e => e.bActivo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
-
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)");
         }
     }
 }

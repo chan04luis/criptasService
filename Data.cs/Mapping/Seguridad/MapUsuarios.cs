@@ -12,75 +12,70 @@ namespace Data.cs.Mapping.Seguridad
         {
             this.Esquema = Esquema;
         }
+
         public void Configure(EntityTypeBuilder<Usuarios> builder)
         {
-            builder.ToTable("usuarios", Esquema);
-            builder.HasKey(u => u.uId).HasName("PK_Usuario");
+            builder.ToTable("USUARIOS", Esquema);
+
+            builder.HasKey(u => u.uId).HasName("USUARIOS_PKEY");
 
             builder.Property(u => u.uId)
-               .HasColumnType("uuid")
-               .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(u => u.uIdPerfil)
-                .HasColumnType("uuid")
-                .HasColumnName("id_perfil");
+                .HasColumnName("ID_PERFIL")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(u => u.sNombres)
-                .HasColumnType("VARCHAR(100)")
-                .IsUnicode(false)
-                .HasColumnName("nombres");
+                .HasColumnName("NOMBRES")
+                .HasColumnType("VARCHAR2(100 CHAR)")
+                .IsRequired();
 
             builder.Property(u => u.sApellidos)
-                .HasColumnType("VARCHAR(100)")
-                .IsUnicode(false)
-                .HasColumnName("apellidos");
+                .HasColumnName("APELLIDOS")
+                .HasColumnType("VARCHAR2(100 CHAR)");
 
             builder.Property(u => u.sCorreo)
-                .HasColumnType("VARCHAR(255)")
-                .IsUnicode(false)
-                .HasColumnName("correo");
+                .HasColumnName("CORREO")
+                .HasColumnType("VARCHAR2(255 CHAR)")
+                .IsRequired();
 
             builder.Property(u => u.sContra)
-                .HasColumnType("TEXT")
-                .IsUnicode(false)
-                .HasColumnName("contra");
+                .HasColumnName("CONTRA")
+                .HasColumnType("CLOB")
+                .IsRequired();
 
             builder.Property(u => u.sTelefono)
-                .HasColumnType("VARCHAR(15)")
-                .IsUnicode(false)
-                .HasColumnName("telefono");
+                .HasColumnName("TELEFONO")
+                .HasColumnType("VARCHAR2(15 CHAR)");
 
             builder.Property(u => u.bActivo)
-                .HasColumnType("BOOLEAN")
-                .HasColumnName("activo");
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(u => u.bEliminado)
-                .HasColumnType("BOOLEAN")
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(u => u.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(u => u.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(u => u.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP");
+
         }
     }
 }

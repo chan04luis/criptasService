@@ -13,47 +13,42 @@ namespace Data.cs.Mapping.Seguridad
     {
         private readonly string Esquema;
 
-        public MapBoton(string Esquema)
+        public MapBoton(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Boton> builder)
         {
+            builder.ToTable("BOTONES", Esquema);
 
-            builder.ToTable("botones", Esquema);
-
-            builder.HasKey(e => e.uIdBoton).HasName("PK_Botones");
+            builder.HasKey(e => e.uIdBoton)
+                .HasName("BOTONES_PKEY");
 
             builder.Property(e => e.uIdBoton)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.uIdPagina)
-                .HasColumnType("uuid")
-                .IsUnicode(false)
-                .HasColumnName("id_pagina");
+                .HasColumnName("ID_PAGINA")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(e => e.sClaveBoton)
-                .HasColumnType("VARCHAR(50)")
-                .IsUnicode(false)
-                .HasColumnName("clave_boton");
+                .HasColumnName("CLAVE_BOTON")
+                .HasColumnType("VARCHAR2(50)")
+                .IsRequired();
 
             builder.Property(e => e.sNombreBoton)
-                .HasColumnType("VARCHAR(500)")
-                .IsUnicode(false)
-                .HasColumnName("nombre_boton");
+                .HasColumnName("NOMBRE_BOTON")
+                .HasColumnType("VARCHAR2(100)")
+                .IsRequired();
 
             builder.Property(e => e.bActivo)
-                .HasColumnType("boolean")
-                .IsUnicode(false)
-                .HasColumnName("activo");
-
-            //relaciones
-            builder
-                .HasOne(c => c.pagina)
-                .WithMany(e => e.lstBotones)
-                .HasForeignKey(c => c.uIdPagina)
-                .HasConstraintName("fk_paginas");
+                .HasColumnName("ACTIVO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
         }
     }

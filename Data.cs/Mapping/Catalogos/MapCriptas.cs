@@ -8,93 +8,78 @@ namespace Data.cs.Mapping.Catalogos
     {
         private readonly string Esquema;
 
-        public MapCriptas(string Esquema)
+        public MapCriptas(string esquema)
         {
-            this.Esquema = Esquema;
+            Esquema = esquema;
         }
+
         public void Configure(EntityTypeBuilder<Criptas> builder)
         {
-            builder.ToTable("criptas", Esquema);
-            builder.HasKey(c => c.uId).HasName("PK_Criptas");
+            builder.ToTable("CRIPTAS", Esquema);
+
+            builder.HasKey(c => c.uId)
+                .HasName("CRIPTAS_PKEY");
 
             builder.Property(c => c.uId)
-                .HasColumnType("uuid")
-                .HasColumnName("id");
+                .HasColumnName("ID")
+                .HasColumnType("RAW(16)")
+                .IsRequired();
 
             builder.Property(c => c.uIdSeccion)
-                .HasColumnType("uuid")
-                .HasColumnName("id_seccion");
+                .HasColumnName("ID_SECCION")
+                .HasColumnType("RAW(16)");
 
             builder.Property(c => c.uIdCliente)
-                .HasColumnType("uuid")
-                .HasColumnName("id_cliente");
+                .HasColumnName("ID_CLIENTE")
+                .HasColumnType("RAW(16)");
 
             builder.Property(c => c.sNumero)
-                .HasColumnType("VARCHAR(50)")
-                .HasColumnName("numero");
-
-            builder.Property(c => c.dPrecio)
-                .HasColumnType("Numeric")
-                .HasColumnName("precio");
+                .HasColumnName("NUMERO")
+                .HasColumnType("VARCHAR2(50)")
+                .IsRequired();
 
             builder.Property(c => c.sUbicacionEspecifica)
-                .HasColumnType("VARCHAR(255)")
-                .HasColumnName("ubicacion_especifica");
+                .HasColumnName("UBICACION_ESPECIFICA")
+                .HasColumnType("VARCHAR2(255)");
+
+            builder.Property(c => c.dPrecio)
+                .HasColumnName("PRECIO")
+                .HasColumnType("NUMBER")
+                .IsRequired();
 
             builder.Property(c => c.dtFechaRegistro)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_registro")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(c => c.dtFechaActualizacion)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_actualizacion")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(c => c.dtFechaPagado)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_pagado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.Value.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_PAGADO")
+                .HasColumnType("TIMESTAMP");
 
             builder.Property(c => c.dtFechaEliminado)
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("fecha_eliminado")
-                .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
-                    v => v
-                );
+                .HasColumnName("FECHA_ELIMINADO")
+                .HasColumnType("TIMESTAMP")
+                .IsRequired();
 
             builder.Property(c => c.bEstatus)
-                .HasColumnType("boolean")
-                .HasColumnName("estatus");
-
-            builder.Property(c => c.bDisponible)
-                .HasColumnType("boolean")
-                .HasColumnName("disponible");
+                .HasColumnName("ESTATUS")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
             builder.Property(c => c.bEliminado)
-                .HasColumnType("boolean")
-                .HasColumnName("eliminado");
+                .HasColumnName("ELIMINADO")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
-            builder.HasOne(z => z.Cliente)
-                .WithMany(i => i.listCriptas)
-                .HasForeignKey(z => z.uIdCliente)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(c => c.bDisponible)
+                .HasColumnName("DISPONIBLE")
+                .HasColumnType("NUMBER(1)")
+                .IsRequired();
 
-            builder.HasOne(z => z.Seccion)
-                .WithMany(i => i.listCriptas)
-                .HasForeignKey(z => z.uIdSeccion)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
-
