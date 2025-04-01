@@ -46,9 +46,9 @@ namespace Data.cs
         #endregion
 
 
-        private const string EsquemaIglesia = "iglesia";
+        private const string EsquemaIglesia = "CHAN04LUIS";
 
-        private const string EsquemaSeguridad = "seguridad";
+        private const string EsquemaSeguridad = "CHAN04LUIS";
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

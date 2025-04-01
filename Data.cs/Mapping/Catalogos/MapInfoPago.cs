@@ -4,105 +4,46 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data.cs.Mapping.Catalogos
 {
-    public class MapPagos : IEntityTypeConfiguration<Pagos>
+    public class MapInfoPago : IEntityTypeConfiguration<SolicitudPago>
     {
         private readonly string Esquema;
 
-        public MapPagos(string esquema)
+        public MapInfoPago(string esquema)
         {
             Esquema = esquema;
         }
 
-        public void Configure(EntityTypeBuilder<Pagos> builder)
+        public void Configure(EntityTypeBuilder<SolicitudPago> builder)
         {
-            builder.ToTable("PAGOS", Esquema);
+            builder.ToTable("SOLICITUD_PAGO", Esquema);
 
-            builder.HasKey(p => p.uId)
-                .HasName("PAGOS_PKEY");
+            builder.HasKey(z => z.uId)
+                .HasName("SOLICITUD_PAGO_PK");
 
-            builder.Property(p => p.uId)
+            builder.Property(z => z.uId)
                 .HasColumnName("ID")
                 .HasColumnType("RAW(16)")
                 .IsRequired();
 
-            builder.Property(p => p.uIdClientes)
-                .HasColumnName("ID_CLIENTE")
+            builder.Property(e => e.uIdPago)
+                .HasColumnName("ID_PAGO")
                 .HasColumnType("RAW(16)");
 
-            builder.Property(p => p.uIdCripta)
-                .HasColumnName("ID_CRIPTA")
-                .HasColumnType("RAW(16)");
+            builder.Property(e => e.sEvidencia)
+                .HasColumnName("EVIDENCIA")
+                .HasColumnType("CLOB");
 
-            builder.Property(p => p.uIdTipoPago)
-                .HasColumnName("ID_TIPO_PAGO")
-                .HasColumnType("RAW(16)");
-
-            builder.Property(p => p.iTipoPago)
-                .HasColumnName("TIPO_PAGOS")
-                .HasColumnType("NUMBER")
-                .IsRequired();
-
-            builder.Property(p => p.dMontoTotal)
-                .HasColumnName("MONTO_TOTAL")
-                .HasColumnType("NUMBER(10,2)")
-                .IsRequired();
-
-            builder.Property(p => p.dMontoPagado)
-                .HasColumnName("MONTO_PAGADO")
-                .HasColumnType("NUMBER(10,2)");
-
-            builder.Property(p => p.dtFechaLimite)
-                .HasColumnName("FECHA_LIMITE")
-                .HasColumnType("DATE")
-                .IsRequired();
-
-            builder.Property(p => p.dtFechaPago)
-                .HasColumnName("FECHA_PAGADO")
-                .HasColumnType("DATE");
-
-            builder.Property(p => p.bPagado)
-                .HasColumnName("PAGADO")
-                .HasColumnType("NUMBER(1)")
-                .IsRequired();
-
-            builder.Property(p => p.dtFechaRegistro)
-                .HasColumnName("FECHA_REGISTRO")
-                .HasColumnType("TIMESTAMP")
-                .IsRequired();
-
-            builder.Property(p => p.dtFechaActualizacion)
-                .HasColumnName("FECHA_ACTUALIZACION")
-                .HasColumnType("TIMESTAMP");
-
-            builder.Property(p => p.dtFechaEliminado)
-                .HasColumnName("FECHA_ELIMINADO")
-                .HasColumnType("TIMESTAMP")
-                .IsRequired();
-
-            builder.Property(p => p.bEstatus)
+            builder.Property(e => e.bEstatus)
                 .HasColumnName("ESTATUS")
                 .HasColumnType("NUMBER(1)");
 
-            builder.Property(p => p.bEliminado)
-                .HasColumnName("ELIMINADO")
-                .HasColumnType("NUMBER(1)")
-                .IsRequired();
+            builder.Property(e => e.dtFechaRegistro)
+                .HasColumnName("FECHA_REGISTRO")
+                .HasColumnType("TIMESTAMP");
 
-            // Relaciones
-            builder.HasOne(p => p.Cliente)
-                .WithMany(c => c.listPagos)
-                .HasForeignKey(p => p.uIdClientes)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(p => p.Cripta)
-                .WithMany(c => c.listPagos)
-                .HasForeignKey(p => p.uIdCripta)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(p => p.TipoPago)
-                .WithMany()
-                .HasForeignKey(p => p.uIdTipoPago)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(e => e.dtFechaActualizacion)
+                .HasColumnName("FECHA_ACTUALIZACION")
+                .HasColumnType("TIMESTAMP");
         }
     }
 }

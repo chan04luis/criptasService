@@ -61,12 +61,14 @@ namespace Data.cs.Mapping.Catalogos
 
             builder.Property(i => i.bEstatus)
                 .HasColumnName("ESTATUS")
-                .HasColumnType("NUMBER(1)");
+                .HasColumnType("NUMBER(1)")
+                .HasConversion(v => v.Value ? 1 : 0, v => v == 1);
 
             builder.Property(i => i.bEliminado)
                 .HasColumnName("ELIMINADO")
                 .HasColumnType("NUMBER(1)")
-                .IsRequired();
+                .HasConversion(v => v ? 1 : 0, v => v == 1);
+
 
         }
     }
