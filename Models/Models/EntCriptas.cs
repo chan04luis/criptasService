@@ -25,6 +25,9 @@ namespace Models.Models
         [JsonProperty("FechaRegistro")]
         public DateTime dtFechaRegistro { get; set; }
 
+        [JsonProperty("FechaPagado")]
+        public DateTime? dtFechaPagado { get; set; }
+
         [JsonProperty("FechaActualizacion")]
         public DateTime dtFechaActualizacion { get; set; }
 

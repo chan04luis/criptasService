@@ -61,7 +61,7 @@ namespace Data.cs.Mapping.Catalogos
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("fecha_pagado")
                 .HasConversion(
-                    v => DateTime.SpecifyKind(v.ToLocalTime(), DateTimeKind.Unspecified),
+                    v => DateTime.SpecifyKind(v.Value.ToLocalTime(), DateTimeKind.Unspecified),
                     v => v
                 );
 

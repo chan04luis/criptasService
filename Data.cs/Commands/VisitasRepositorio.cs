@@ -164,17 +164,27 @@ public class VisitasRepositorio : IVisitasRepositorio
             var query = from v in dbContext.Visitas.AsNoTracking()
                         join f in dbContext.Fallecidos.AsNoTracking()
                             on v.uIdCriptas equals f.uId
-                        where !v.bEliminado && !f.bEliminado 
+                        join c in dbContext.Criptas.AsNoTracking()
+                            on f.uIdCripta equals c.uId
+                        join s in dbContext.Secciones.AsNoTracking()
+                            on c.uIdSeccion equals s.uId
+                        join z in dbContext.Zonas.AsNoTracking()
+                            on s.uIdZona equals z.uId
+                        join i in dbContext.Iglesias.AsNoTracking()
+                            on z.uIdIglesia equals i.uId
+                        where !v.bEliminado 
                         select new EntVisitas
                         {
                             uId = v.uId,
                             sNombreVisitante= v.sNombreVisitante,
+                            sCripta= z.sNombre+", "+s.sNombre+", "+ c.sNumero,
+                            sIglesia = i.sNombre,
                             sMensaje=v.sMensaje,
-                            uIdCriptas=f.uIdCripta,
+                            uIdCriptas=c.uId,
                             dtFechaRegistro=v.dtFechaRegistro,
                             dtFechaActualizacion=v.dtFechaActualizacion,
                             bEstatus=v.bEstatus,
-                            sNombreFallecido = f.sNombre+" "+f.sApellidos,
+                            sNombreFallecido = f.sNombre + " " + f.sApellidos
                         };
 
             if (!string.IsNullOrWhiteSpace(filtros.sNombreVisitante))
@@ -182,6 +192,16 @@ public class VisitasRepositorio : IVisitasRepositorio
 
             if (filtros.uIdCriptas.HasValue)
                 query = query.Where(v => v.uIdCriptas == filtros.uIdCriptas);
+
+            if (filtros.dtFechaInicio.HasValue)
+                query = query.Where(v => v.dtFechaRegistro >= filtros.dtFechaInicio.Value);
+
+            if (filtros.dtFechaFin.HasValue)
+            {
+                var fechaFin = filtros.dtFechaFin.Value.Date.AddDays(1);
+                query = query.Where(v => v.dtFechaRegistro < fechaFin);
+            }
+
 
 
             var items = await query.ToListAsync();

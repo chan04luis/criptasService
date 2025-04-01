@@ -187,6 +187,7 @@ namespace Data.cs.Commands
                 {
                     bEntity.bDisponible = entity.bDisponible;
                     bEntity.uIdCliente = entity.uIdCliente;
+                    bEntity.dtFechaPagado = entity.dtFechaPagado;
                     bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
                     dbContext.Update(bEntity);
                     var exec = await dbContext.SaveChangesAsync();

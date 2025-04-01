@@ -214,9 +214,9 @@ app.UseSwaggerUI(options =>
     options.DefaultModelsExpandDepth(-1);
     options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
 });
-app.UseCors(allowSpecificOrigins);
 app.UseHttpsRedirection();
 
+app.UseCors(allowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 

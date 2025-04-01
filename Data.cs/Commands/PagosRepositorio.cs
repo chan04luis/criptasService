@@ -263,6 +263,61 @@ namespace Data.cs.Commands
             return response;
         }
 
+        public async Task<Response<EntPagos>> DUpdateCriptaAfterBuy(EntCambioCripta entity)
+        {
+            var response = new Response<EntPagos>();
+            using var transaction = await dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                var bEntity = dbContext.Pagos.AsNoTracking().FirstOrDefault(x => x.uId == entity.uId);
+                var bEntityCA = dbContext.Criptas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uIdCripta);
+                var bEntityCN = dbContext.Criptas.AsNoTracking().FirstOrDefault(x => x.uId == entity.uIdCriptaNuevo);
+                if (bEntity != null && bEntityCA != null && bEntityCN != null)
+                {
+                    bEntity.uIdCripta = entity.uIdCriptaNuevo;
+                    bEntity.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+
+                    bEntityCA.bEstatus = true;
+                    bEntityCA.bDisponible = true;
+                    bEntityCA.uIdCliente = new Guid(IdPermanentes.clienteGeneral.GetDescription());
+                    bEntityCA.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+
+                    bEntityCN.bEstatus = false;
+                    bEntityCN.bDisponible = false;
+                    bEntityCN.uIdCliente = bEntity.uIdClientes;
+                    bEntityCN.dtFechaActualizacion = DateTime.Now.ToLocalTime();
+
+                    dbContext.Update(bEntity);
+                    dbContext.Update(bEntityCA);
+                    dbContext.Update(bEntityCN);
+                    var exec = await dbContext.SaveChangesAsync();
+
+                    if (exec >= 3)
+                    {
+                        await transaction.CommitAsync();
+                        response.SetSuccess(_mapper.Map<EntPagos>(bEntity), "Estado actualizado correctamente");
+                    }
+                    else
+                    {
+                        await transaction.RollbackAsync();
+                        response.SetError("Registro no actualizado");
+                        response.HttpCode = HttpStatusCode.BadRequest;
+                    }
+                }
+                else
+                {
+                    response.SetError("Pago no encontrado");
+                    response.HttpCode = HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                response.SetError(ex);
+            }
+            return response;
+        }
+
         public async Task<Response<bool>> DUpdateEliminado(Guid uId)
         {
             var response = new Response<bool>();

@@ -53,7 +53,8 @@ namespace Api.Controllers
             return response;
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
+        [Route("Update")]
         [SwaggerOperation(Summary = "Actualiza una cripta", Description = "Valida y actualiza los datos de una cripta existente.")]
         public async Task<Response<EntCriptas>> UpdateCripta([FromBody] EntCriptaUpdateRequest cripta)
         {

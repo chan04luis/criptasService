@@ -12,6 +12,12 @@ namespace Models.Models
 
         [JsonProperty("NombreFallecido")]
         public string? sNombreFallecido { get; set; }
+
+        [JsonProperty("Cripta")]
+        public string? sCripta { get; set; }
+
+        [JsonProperty("Iglesia")]
+        public string? sIglesia { get; set; }
         [JsonProperty("Mensaje")]
         public string? sMensaje { get; set; }
 

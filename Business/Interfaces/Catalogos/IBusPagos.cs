@@ -12,6 +12,7 @@ namespace Business.Interfaces.Catalogos
         Task<Response<EntPagos>> UpdatePagado(ReadPagosRequest pago);
         Task<Response<EntPagos>> UpdateCancelarPagado(Guid uIdPago);
         Task<Response<EntPagos>> UpdatePagoStatus(EntPagosUpdateEstatusRequest pago);
+        Task<Response<EntPagos>> UpdateCriptaAfterBuy(EntCambioCripta pago);
         Task<Response<bool>> DeletePagoById(Guid uId);
         Task<Response<bool>> DeletePagoParcialById(Guid uId);
         Task<Response<EntPagos>> GetPagoById(Guid uId);

@@ -296,7 +296,8 @@ namespace Business.Implementation.Catalogos
                                         {
                                             uId = pagoBD.uIdCripta,
                                             bDisponible = false,
-                                            uIdCliente = pagoBD.uIdClientes
+                                            uIdCliente = pagoBD.uIdClientes,
+                                            dtFechaPagado = pago.bApplyDate ? DateTime.Parse(pago.sFechaPagado) : DateTime.Now.ToLocalTime()
                                         };
                                         await _criptasRepositorio.DUpdateDisponible(entity);
                                     }
@@ -402,6 +403,36 @@ namespace Business.Implementation.Catalogos
                 response.HttpCode = HttpStatusCode.InternalServerError;
                 return response;
             }
+        }
+
+        public async Task<Response<EntPagos>> UpdateCriptaAfterBuy(EntCambioCripta pago)
+        {
+            var response = new Response<EntPagos>();
+            try
+            {
+                var pagoBD = await _pagosRepositorio.DGetById(pago.uId);
+                if (!pagoBD.HasError)
+                {
+                    var cripta = await _criptasRepositorio.DGetById(pagoBD.Result.uIdCripta);
+                    if (!cripta.HasError)
+                    {
+                        pago.uIdCripta = cripta.Result.uId;
+                        response = await _pagosRepositorio.DUpdateCriptaAfterBuy(pago);
+                    }
+                    else
+                        response.SetError("Cripta no existe");
+                }
+                else
+                    response = pagoBD;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar el estado del pago");
+                
+                response.SetError("Hubo un error al actualizar el estado del pago.");
+                response.HttpCode = HttpStatusCode.InternalServerError;
+            }
+            return response;
         }
 
         public async Task<Response<bool>> DeletePagoById(Guid id)

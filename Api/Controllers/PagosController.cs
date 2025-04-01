@@ -61,6 +61,7 @@ namespace Api.Controllers
             return response;
         }
         #endregion
+
         #region PAGOS
         [HttpPost("Create")]
         [SwaggerOperation(Summary = "Crea un pago", Description = "Valida los datos y guarda un nuevo pago en la base de datos.")]
@@ -177,6 +178,23 @@ namespace Api.Controllers
             else
             {
                 _logger.LogInformation("Estado de pago actualizado exitosamente con ID: {Id}", pago.uId);
+            }
+            return response;
+        }
+
+        [HttpPut("UpdateCriptaAfterBuy")]
+        [SwaggerOperation(Summary = "Actualiza el estado de un pago", Description = "Actualiza el estado booleano de un pago.")]
+        public async Task<Response<EntPagos>> UpdateCriptaAfterBuy([FromBody] EntCambioCripta pago)
+        {
+            _logger.LogInformation("Iniciando actualización de cripta para pago con ID: {Id}", pago.uId);
+            var response = await _busPagos.UpdateCriptaAfterBuy(pago);
+            if (response.HasError)
+            {
+                _logger.LogWarning("Error al actualizar cripta de pago con ID {Id}: {Error}", pago.uId, response.Message);
+            }
+            else
+            {
+                _logger.LogInformation("cripta de pago actualizado exitosamente con ID: {Id}", pago.uId);
             }
             return response;
         }

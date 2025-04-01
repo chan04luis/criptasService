@@ -11,13 +11,13 @@ namespace Models.Request.Pagos
         [JsonProperty("Cliente")]
         public string? sCliente { get; set; }
 
-        [JsonProperty("IdCripta")]
+        [JsonProperty("Cripta")]
         public Guid? uIdCripta { get; set; }
-        [JsonProperty("IdSeccion")]
+        [JsonProperty("Seccion")]
         public Guid? uIdSeccion { get; set; }
-        [JsonProperty("IdZona")]
+        [JsonProperty("Zona")]
         public Guid? uIdZona { get; set; }
-        [JsonProperty("IdIglesia")]
+        [JsonProperty("Iglesia")]
         public Guid? uIdIglesia { get; set; }
 
         [JsonProperty("IdTipoPago")]

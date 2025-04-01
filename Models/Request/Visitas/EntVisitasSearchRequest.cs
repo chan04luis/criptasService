@@ -9,5 +9,10 @@ namespace Models.Request.Visitas
 
         [JsonProperty("IdCriptas")]
         public Guid? uIdCriptas { get; set; }
+        [JsonProperty("FechaInicio")]
+        public DateTime? dtFechaInicio { get; set; }
+
+        [JsonProperty("FechaFin")]
+        public DateTime? dtFechaFin { get; set; }
     }
 }

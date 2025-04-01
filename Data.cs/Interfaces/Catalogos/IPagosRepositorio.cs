@@ -12,6 +12,7 @@ namespace Business.Data
         Task<Response<EntPagos>> DUpdate(EntPagos entity);
         Task<Response<EntPagos>> DUpdatePagado(EntPagosUpdatePagadoRequest pago);
         Task<Response<EntPagos>> DUpdateStatus(EntPagosUpdateEstatusRequest entity);
+        Task<Response<EntPagos>> DUpdateCriptaAfterBuy(EntCambioCripta entity);
         Task<Response<bool>> DUpdateEliminado(Guid uId);
         Task<Response<EntPagos>> DGetById(Guid uId);
         Task<Response<PagedResult<EntPagosLista>>> DGetByFilters(EntPagosSearchRequest filtros);
