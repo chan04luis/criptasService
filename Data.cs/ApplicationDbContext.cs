@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Seguridad;
 using Data.cs.Entities.AtencionMedica;
 using Data.cs.Mapping.AtencionMedica;
+using Data.cs.Entities.Control;
+using Data.cs.Mapping.Control;
 
 namespace Data.cs
 {
@@ -21,6 +23,13 @@ namespace Data.cs
         public virtual DbSet<ServiciosSucursales> ServiciosSucursales { get; set; }
         public virtual DbSet<ServiciosUsuario> ServiciosUsuario { get; set; }
         public virtual DbSet<SucursalesUsuario> SucursalesUsuario { get; set; }
+        public virtual DbSet<Horarios> Horarios { get; set; }
+        public virtual DbSet<Dias> Dias { get; set; }
+        public virtual DbSet<Validador> Validador { get; set; }
+        public virtual DbSet<Tarjeta> Tarjeta { get; set; }
+        public virtual DbSet<Grupo> Grupo { get; set; }
+        public virtual DbSet<GrupoRelacion> GrupoRelacion { get; set; }
+        public virtual DbSet<Asistencia> Asistencia { get; set; }
         #endregion
 
         #region entities seguridad
@@ -74,6 +83,13 @@ namespace Data.cs
             modelBuilder.ApplyConfiguration(new MapServiciosSucursales(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapServiciosUsuario(EsquemaCatalogo));
             modelBuilder.ApplyConfiguration(new MapSucursalesUsuario(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapDias(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapValidador(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapHorarios(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapTarjeta(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapGrupo(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapGrupoRelacion(EsquemaCatalogo));
+            modelBuilder.ApplyConfiguration(new MapAsistencia(EsquemaCatalogo));
 
             OnModelCreatingPartial(modelBuilder);
         }

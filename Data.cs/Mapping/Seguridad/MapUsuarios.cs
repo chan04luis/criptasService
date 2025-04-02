@@ -25,6 +25,10 @@ namespace Data.cs.Mapping.Seguridad
                 .HasColumnType("uuid")
                 .HasColumnName("id_perfil");
 
+            builder.Property(u => u.uIdGrupo)
+                .HasColumnType("uuid")
+                .HasColumnName("id_grupo");
+
             builder.Property(u => u.sNombres)
                 .HasColumnType("VARCHAR(100)")
                 .IsUnicode(false)

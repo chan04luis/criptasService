@@ -4,6 +4,7 @@
     {
         public Guid uId { get; set; }
         public Guid uIdPerfil { get; set; }
+        public Guid? uIdGrupo { get; set; }
         public string sNombres { get; set; }
         public string sApellidos { get; set; }
         public string sCorreo { get; set; }
