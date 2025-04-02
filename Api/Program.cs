@@ -22,11 +22,6 @@ using Models.Models;
 using Models.Validations.Seguridad;
 using Data.cs.Commands.Catalogo;
 using Data.cs.Interfaces.Catalogos;
-using Business.Implementation.AtencionMedica;
-using Business.Interfaces.AtencionMedica;
-using Data.cs.Commands.AtencionMedica;
-using Data.cs.Interfaces.AtencionMedica;
-using Api.Hubs;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -173,16 +168,6 @@ builder.Services.AddScoped<IBusUsuarios, BusUsuarios>();
 
 #endregion
 
-#region Inyeccion de dependencias AtencionMedica
-
-builder.Services.AddScoped<ICitasRepositorio, CitasRepositorio>();
-builder.Services.AddScoped<ISalaConsultaRepositorio, SalaConsultaRepositorio>();
-builder.Services.AddScoped<ISalaEsperaRepositorio, SalaEsperaRepositorio>();
-
-builder.Services.AddScoped<IBusAtencionMedica, BusAtencionMedica>();
-
-#endregion
-
 #region Hosted Background Services
 //builder.Services.AddHostedService<TestDat>();
 #endregion
@@ -215,7 +200,6 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapHub<SalaEsperaHub>("/api/SalaEsperaHub");
 });
 
 app.UseWebSockets();

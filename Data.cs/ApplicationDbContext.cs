@@ -3,9 +3,6 @@ using Data.cs.Mapping.Seguridad;
 using Data.cs.Mapping.Catalogos;
 using Microsoft.EntityFrameworkCore;
 using Data.cs.Entities.Seguridad;
-using Data.cs.Entities.AtencionMedica;
-using Data.cs.Mapping.AtencionMedica;
-
 namespace Data.cs
 {
     public partial class ApplicationDbContext : DbContext
@@ -35,19 +32,10 @@ namespace Data.cs
         public virtual DbSet<PermisoBotones> PermisoBotones { get; set; }
         #endregion
 
-        #region AtencionMedica
-        public virtual DbSet<Citas> Citas { get; set; }
-        public virtual DbSet<SalaEspera> SalaEspera { get; set; }
-        public virtual DbSet<SalaConsulta> SalaConsulta { get; set; }
-
-        #endregion
-
 
         private const string EsquemaCatalogo = "catalogo";
 
         private const string EsquemaSeguridad = "seguridad";
-
-        private const string EsquemaAtencionMedica = "atencion_medica";
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,17 +43,7 @@ namespace Data.cs
             base.OnModelCreating(modelBuilder);
             PrepararIgleisas(modelBuilder);
             PrepararSeguridad(modelBuilder);
-            PrepararAtencionMedica(modelBuilder);
         }
-        private void PrepararAtencionMedica(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new MapCitas(EsquemaAtencionMedica));
-            modelBuilder.ApplyConfiguration(new MapSalaEspera(EsquemaAtencionMedica));
-            modelBuilder.ApplyConfiguration(new MapSalaConsulta(EsquemaAtencionMedica));
-
-            OnModelCreatingPartial(modelBuilder);
-        }
-
         private void PrepararIgleisas(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MapClientes(EsquemaCatalogo));
